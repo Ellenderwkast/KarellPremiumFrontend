@@ -1,0 +1,1582 @@
+.header-subnav {
+  display: none !important;
+}
+/* Fila 2: navegación secundaria */
+.header-subnav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.2rem;
+  background: var(--gray-800);
+  border-bottom: 1px solid var(--gray-700);
+  padding: 0.5rem 0 0.35rem 0;
+  font-size: 1.01rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.subnav-link {
+  color: #f3f4f6;
+  text-decoration: none;
+  transition: color 0.18s;
+  position: relative;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+}
+
+.subnav-link:hover {
+  color: var(--primary-color);
+  background: rgba(255,255,255,0.04);
+}
+/* Header Mobile Optimized v2.0 - Force refresh */
+.header {
+  background-color: var(--gray-900);
+  color: white;
+  padding: clamp(0.10rem, 0.3vw, 0.22rem) 0;
+  box-shadow: var(--box-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* En desktop muy ancho, el .container global deja mucho margen; expandir solo en header */
+/* Wrapper propio del header (evita limitaciones del `.container` global) */
+.header-container,
+.header .container {
+  max-width: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: clamp(0.9rem, 2vw, 2rem);
+  padding-right: clamp(0.9rem, 2vw, 2rem);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  flex-wrap: wrap;
+  min-width: 0;
+  justify-content: space-between;
+}
+
+/* Desktop: centrar el buscador sin depender del ancho de botones/links */
+@media (min-width: 901px) {
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    min-width: 0;
+    justify-content: space-between;
+  }
+  .nav {
+    flex: 1 1 auto;
+    min-width: 180px;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    align-items: center;
+    z-index: 2;
+  }
+  .search-bar {
+    flex: 1 1 320px;
+    min-width: 160px;
+    max-width: 420px;
+    margin: 0 0.5rem;
+    z-index: 1;
+  }
+  .header-actions {
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  /* Aplana el wrapper para posicionar nav/buscador/acciones en el grid sin cambiar JSX */
+  .header-collapse {
+    display: contents;
+  }
+
+  .logo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .nav {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .search-bar {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: stretch;
+    width: 100%;
+    max-width: 640px;
+    min-width: 280px;
+  }
+
+  .header-actions {
+    grid-column: 5;
+    grid-row: 1;
+    justify-self: end;
+    margin-left: 0;
+  }
+}
+
+.logo-image {
+  width: 48px;
+  height: auto;
+  background: transparent;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: var(--transition);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+/* Ensure the actual <img> inside OptimizedImage never overflows its container */
+.logo .logo-image,
+.logo-image {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.logo-image img {
+  display: block;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+}
+/* Extra safety: ensure logo container clips overflow and image fits */
+.logo {
+  overflow: hidden;
+}
+.logo-image {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.logo-image img {
+  object-fit: contain;
+  max-height: 100%;
+  height: 100%;
+  width: auto;
+  vertical-align: middle;
+}
+
+  /* Reduce logo size in narrow screens to prevent overflow */
+  .logo-image {
+    width: 78px;
+    height: 44px;
+  }
+  
+
+  /* Further reduce logo on very small screens */
+  .logo-image {
+    width: 72px;
+    height: 42px;
+  }
+
+.header .search-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+
+.logo {
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  flex-shrink: 0;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Buscador móvil en header */
+.header-search-mobile {
+  display: none;
+}
+
+/* Botón de cierre - solo visible en móvil */
+.menu-close {
+  display: none;
+}
+
+.header-collapse {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-start;
+}
+
+.nav {
+  display: flex;
+  gap: 1.15rem;
+  align-items: center;
+  flex-shrink: 0;
+  order: 1;
+}
+
+
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0.82;
+  position: relative;
+}
+
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -5px;
+  height: 3px;
+  background: var(--primary-color, #3b82f6);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+  opacity: 1;
+  z-index: 2;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.nav-link.admin-link {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+
+.nav-link:hover {
+  color: var(--primary-color);
+  opacity: 1;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 560px;
+  min-width: 200px;
+  order: 2;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  flex-shrink: 0;
+  order: 3;
+  margin-left: auto;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* Botones dentro del header: sobrescribir `.btn` global (evita tamaños enormes) */
+.header .btn {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  line-height: 1.1;
+}
+
+.header .btn-primary,
+.header .btn-outline {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+}
+
+
+.btn-whatsapp-outline {
+  border: 2px solid #1da153;
+  background: transparent;
+  color: #1da153;
+  padding: 0.35rem 0.55rem;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-whatsapp-outline:hover {
+  background: #e6f4ea;
+  color: #128c7e;
+  border-color: #128c7e;
+}
+
+
+
+.cart-link {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: var(--transition);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  position: relative;
+}
+
+.cart-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--primary-color);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+  opacity: 0.9;
+}
+
+.cart-link:hover::after,
+.cart-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.cart-icon {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 2.1rem;
+}
+
+.cart-label {
+  font-size: 0.78rem;
+  color: #e2e8f0;
+  margin-top: 2px;
+  letter-spacing: 0.01em;
+}
+
+.cart-icon {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cart-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.menu-close svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-link.admin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link.admin-link .nav-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.cart-link:hover {
+  color: var(--primary-color);
+}
+
+
+.cart-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: var(--danger-color);
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  border: 2px solid #fff;
+}
+
+.user-menu {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.user-name {
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.user-name:hover {
+  color: var(--primary-color);
+}
+
+.auth-links {
+  display: flex;
+  gap: 0.7rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* User dropdown (auth) */
+.user-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.user-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  color: white;
+  border-radius: 10px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.user-trigger:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.user-trigger:focus {
+  outline: none;
+}
+
+.user-trigger-text {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-trigger-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.user-trigger-icon.open {
+  transform: rotate(180deg);
+}
+
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  background: rgba(17, 24, 39, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+  padding: 0.35rem;
+  display: none;
+  z-index: 200;
+}
+
+.user-dropdown-menu.open {
+  display: block;
+}
+
+.user-dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.user-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.user-dropdown-item.danger {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.user-dropdown-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.header .btn-primary,
+.header .btn-outline {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2.5px;
+  background: white;
+  border-radius: 999px;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.header-content.is-open .menu-toggle span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.header-content.is-open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+.header-content.is-open .menu-toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.menu-backdrop {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .logo-image {
+    width: 64px; /* Mantener igual que desktop */
+  }
+
+  .header-collapse {
+    gap: 0.9rem;
+  }
+
+  .nav {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .search-bar {
+    max-width: 300px;
+    min-width: 200px;
+  }
+
+  .header-actions {
+    gap: 0.75rem;
+  }
+
+  .header .btn-primary,
+  .header .btn-outline {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .header .btn-whatsapp {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .header {
+    padding: 0.5rem 0;
+  }
+
+  .logo-image {
+    width: 78px;
+  }
+
+  /* Mobile: keep header elements aligned horizontally when possible */
+  .header-content {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    justify-content: flex-start;
+  }
+
+  /* Mostrar buscador móvil: ocupar el espacio central entre logo y menu */
+  .header-search-mobile {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-width: 0;
+    order: 2;
+    margin: 0 10px 0 0;
+    gap: 0.4rem;
+  }
+
+  .header-search-mobile .search-bar {
+    flex: 1 1 auto;
+    width: auto;
+    order: 1;
+  }
+
+  .header-search-mobile .cart-link {
+    flex-shrink: 0;
+    order: 2;
+    padding: 0;
+    min-width: auto;
+    min-height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-search-mobile .cart-link::after {
+    display: none;
+  }
+
+  .header-search-mobile .cart-label {
+    display: none;
+  }
+
+  .header-search-mobile .cart-icon {
+    font-size: 1.6rem;
+  }
+
+  /* Ensure logo and search vertically align with the menu button: match heights */
+  .logo,
+  .header-search-mobile {
+    height: 40px;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Make the search input occupy full height and center its content */
+  .header .search-input {
+    height: 32px;
+    line-height: 32px;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    align-items: center;
+    display: inline-flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+    order: 3;
+    margin-left: auto;
+    margin-right: 6px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ocultar buscador del menú colapsable */
+  .header-collapse .search-bar {
+    display: none;
+  }
+
+  /* Keep menu toggle at the right of the header row */
+  .menu-toggle {
+    display: flex;
+    order: 3;
+    margin-left: 6px;
+    flex-shrink: 0;
+  }
+
+  /* Ensure logo stays left and doesn't shrink */
+  .logo {
+    order: 1;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .header-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.98) 0%, rgba(31, 41, 55, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    padding-bottom: 80px; /* Espacio para WhatsApp flotante */
+    overflow-y: auto;
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 999;
+  }
+
+  .header-collapse.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  /* Botón de cierre */
+  .menu-close {
+    display: flex;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 1000;
+  }
+
+  .menu-close:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: rotate(90deg);
+  }
+
+  /* Posicionar el botón 'Mi cuenta' en la esquina superior derecha cuando el menú está abierto en móvil */
+  .header-collapse.open .user-trigger {
+    /* Use fixed positioning so the trigger stays at the viewport corner
+       regardless of parent layout/overflow. Use high specificity to
+       override mobile-wide rules that force width:100%. */
+    position: fixed !important;
+    top: 12px !important;
+    right: 12px !important;
+    z-index: 1100 !important;
+    width: auto !important;
+    padding: 0.45rem 0.8rem !important;
+    border-radius: 10px !important;
+  }
+
+  /* Asegurar que el icono/chevron no se muestre cuando la user-trigger está en la esquina */
+  .header-collapse.open .user-trigger .user-trigger-text {
+    max-width: 110px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* Cuando el menú mobile está abierto y el trigger está fijado en la esquina,
+     también fijar el desplegable de usuario cerca del trigger para que los
+     items (Mi cuenta / Panel Admin / Cerrar sesión) aparezcan junto al botón. */
+  .header-collapse.open .user-dropdown .user-dropdown-menu {
+    position: fixed !important;
+    top: 48px !important; /* un poco más arriba */
+    right: 4px !important; /* un poco más hacia la derecha */
+    /* Usar width basado en contenido pero limitar el máximo para que no sea demasiado ancho
+       y no reducir el tamaño de la fuente; el contenido podrá ocupar su tamaño natural
+       hasta el máximo especificado. */
+    min-width: auto !important;
+    width: -webkit-max-content !important;
+    width: -moz-max-content !important;
+    width: max-content !important;
+    max-width: 220px !important;
+    margin: 0 !important;
+    background: rgba(17,24,39,0.98) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    box-shadow: var(--box-shadow) !important;
+    z-index: 1150 !important;
+    display: none; /* seguirá controlado por la clase .open */
+  }
+
+  /* Mostrar el dropdown cuando se añade la clase .open (estado del componente) */
+  .header-collapse.open .user-dropdown .user-dropdown-menu.open {
+    display: block !important;
+  }
+
+  /* Ajustes finos para los items: mantener tamaño de texto y permitir que el
+     ancho del contenedor se ajuste al contenido hasta el límite (no forzar
+     wrapping que reduzca visualmente la legibilidad). */
+  .header-collapse.open .user-dropdown .user-dropdown-item {
+    white-space: normal !important;
+    word-break: break-word !important;
+    padding: 0.5rem 0.65rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Sección de navegación */
+  .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    order: 1;
+    padding: 1.5rem 1.25rem;
+
+  /* Dropdown en móvil: menú en flujo (no flotante) para no salirse del overlay */
+  .user-dropdown {
+    width: 100%;
+  }
+
+  .user-trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.65rem;
+    font-size: 0.86rem;
+  }
+
+  .user-dropdown-menu {
+    position: static;
+    width: 100%;
+    margin-top: 0.6rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+  }
+    padding-top: 4rem; /* Espacio para el botón de cierre */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav::before {
+    content: 'Navegación';
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.75rem 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    padding-left: 1rem;
+  }
+
+  /* Centrar visualmente la sección de navegación dentro del overlay móvil */
+  .header-collapse .nav {
+    max-width: 360px;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: stretch;
+  }
+
+  .header-collapse .nav::before {
+    text-align: center;
+    display: block;
+  }
+
+  .header-collapse .nav-link {
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Ocultar búsqueda en móvil dentro del menú */
+  .header-collapse .search-bar {
+    display: none;
+  }
+
+  /* Sección de acciones */
+  .header-actions {
+    flex-direction: column;
+    /* Center children so action buttons appear centered in the overlay */
+    align-items: center;
+    gap: 0.85rem;
+    width: 100%;
+    margin-left: 0;
+    order: 3;
+    padding: 1.25rem;
+  }
+
+  .header-actions::before {
+    content: 'Acciones';
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-actions .btn-primary,
+  .header-actions .btn-outline,
+  .header-actions .btn-whatsapp,
+  .header-actions .cart-link {
+    /* Center action buttons and use auto width so they appear centered
+       in the mobile overlay. Individual buttons can still be full-width
+       if necessary via more specific rules. */
+    width: auto !important;
+    align-self: center !important;
+    text-align: center;
+    justify-content: center;
+    padding: 0.7rem 1rem !important;
+    font-size: 0.86rem;
+    min-height: 44px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  /* Pero el botón del carrito debe ser compacto (icono + label breve). */
+  .header-actions .cart-link {
+    width: auto !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    /* Slightly larger for better tap targets */
+    padding: 0.6rem 0.9rem !important;
+    min-width: 52px !important;
+    max-width: 180px !important;
+    border-radius: 10px !important;
+    /* Center inside the vertical action column */
+    align-self: center !important;
+    margin: 0.25rem auto !important;
+  }
+
+  .header-actions .cart-link .cart-icon svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  /* Quitar la apariencia de 'botón' (borde azul) en el overlay móvil para el cart-link */
+  .header-collapse.open .header-actions .cart-link,
+  .header-collapse.open .header-actions .cart-link .cart-icon {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .header-collapse.open .header-actions .cart-link:focus,
+  .header-collapse.open .header-actions .cart-link:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Mantener accesibilidad: mostrar un indicador muy sutil en focus-visible si se desea */
+  .header-collapse.open .header-actions .cart-link:focus-visible {
+    /* alternativa sutil (comentar si no quieres nada): */
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.08) !important;
+  }
+
+  /* Opcional: si quieres esconder la etiqueta en menú muy estrecho, descomenta
+     la siguiente regla o pídeme que la aplique. */
+  /* .header-collapse.open .cart-label { display: none; } */
+
+  .header-actions .btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+  }
+
+  .header-actions .btn-outline {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .header-actions .btn-whatsapp {
+    background: transparent;
+    border: 2px solid #25d366;
+    color: #25d366;
+  }
+
+  .header-actions .cart-link {
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+  }
+
+  /* Sección de usuario */
+  .user-menu {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.25rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .user-menu::before {
+    content: 'Mi cuenta';
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .user-menu button {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.75rem;
+    font-size: 0.88rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .user-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 1rem 0;
+    margin-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  /* Sección de autenticación */
+  .auth-links {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.25rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .auth-links::before {
+    content: 'Acceso';
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-links .btn-primary,
+  .auth-links .btn-outline {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.7rem;
+    font-size: 0.86rem;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .auth-links .btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+  }
+
+  .auth-links .btn-outline {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+@media (max-width: 600px) {
+  .header {
+    padding: 0.5rem 0;
+  }
+
+  .logo-image {
+    width: 78px;
+  }
+
+  /* Layout móvil simple y robusto: fila única
+     [logo] [buscador flexible] [menú fijo derecha] */
+  .header-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .header-collapse {
+    padding-bottom: 80px;
+  }
+
+  .header-search-mobile {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    margin: 0 6px;
+    height: 40px;
+  }
+
+  .header-search-mobile .search-bar {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Keep elements same vertical rhythm as menu-toggle */
+  .logo,
+  .header-search-mobile {
+    height: 40px;
+    align-items: center;
+  }
+
+  .header .search-input {
+    height: 30px;
+    line-height: 30px;
+  }
+
+  .logo {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.15rem;
+    align-items: center;
+    flex-shrink: 0;
+    order: 1;
+    overflow: visible !important;
+    min-height: 38px;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .header-actions .btn-primary,
+  .header-actions .btn-outline,
+  .header-actions .btn-whatsapp,
+  .header-actions .cart-link,
+  .auth-links .btn-primary,
+  .auth-links .btn-outline,
+  .user-menu button {
+    min-height: 42px;
+    padding: 0.65rem;
+    font-size: 0.82rem;
+  }
+
+
+
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    white-space: nowrap;
+    opacity: 0.92;
+    position: relative;
+    padding: 8px 16px 12px 16px;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    z-index: 2;
+    outline: none;
+  }
+  .nav-link:focus-visible {
+    box-shadow: 0 0 0 3px var(--primary-color, #3b82f6), 0 0 0 6px #fff;
+    background: rgba(59,130,246,0.12);
+  }
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.45rem 0;
+  }
+
+  .logo-image {
+    width: 76px;
+  }
+
+  .header-content {
+    gap: 0.4rem;
+  }
+
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .menu-toggle span {
+    width: 18px;
+  }
+
+  .nav,
+  .search-bar,
+  .header-actions,
+  .user-menu,
+  .auth-links {
+    padding: 0.85rem;
+  }
+
+  /* Extra small screens: make search compact so menu stays on the same line */
+  .header-search-mobile {
+    flex: 1 1 0;
+    max-width: none;
+    margin: 0 8px 0 0;
+    height: 38px;
+  }
+
+  .header-search-mobile .search-bar {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .logo,
+  .header-search-mobile {
+    height: 38px;
+    align-items: center;
+  }
+
+  .header .search-input {
+    height: 28px;
+    line-height: 28px;
+    min-height: 28px !important;
+    max-height: 28px !important;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.7rem 0.5rem;
+  }
+
+  .header-actions .btn-primary,
+  .header-actions .btn-outline,
+  .header-actions .btn-whatsapp,
+  .header-actions .cart-link,
+  .auth-links .btn-primary,
+  .auth-links .btn-outline,
+  .user-menu button {
+    min-height: 40px;
+    padding: 0.65rem;
+    font-size: 0.8rem;
+  }
+
+
+  .cart-link {
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 6px;
+    outline: none;
+  }
+  .cart-link:focus-visible {
+    box-shadow: 0 0 0 3px var(--primary-color, #3b82f6), 0 0 0 6px #fff;
+    background: rgba(59,130,246,0.12);
+  }
+  .user-menu,
+  .auth-links {
+    padding: 0.75rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.5rem;
+  }
+
+  .header-actions .btn-primary,
+  .header-actions .btn-outline,
+  .header-actions .btn-whatsapp,
+  .header-actions .cart-link,
+  .auth-links .btn-primary,
+  .auth-links .btn-outline,
+  .user-menu button {
+    min-height: 40px;
+    padding: 0.65rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Desktop-specific override: make header search input less tall than global default */
+@media (min-width: 901px) {
+  .header .search-bar .search-input {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.95rem !important;
+    min-height: 34px !important;
+    height: 34px !important;
+    line-height: 34px !important;
+    box-shadow: none !important;
+  }
+
+  .header .search-bar {
+    padding: 0.15rem 0.4rem !important;
+    background: transparent !important; /* keep header look */
+  }
+
+  .header .search-btn {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 1rem !important;
+    min-height: 34px !important;
+    height: 34px !important;
+  }
+
+  /* Put search icon inside the input on desktop: position the button absolutely */
+  .header .search-bar {
+    position: relative;
+  }
+
+  .header .search-bar .search-input {
+    padding-right: 40px !important; /* room for icon */
+  }
+
+  .header .search-bar .search-btn {
+    position: absolute !important;
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    padding: 6px !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .header .search-bar .search-btn svg {
+    width: 16px !important;
+    height: 16px !important;
+    color: var(--gray-700);
+  }
+}
+
+/* Force header button colors to match app variables (fix visual regressions) */
+.header .btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+.header .btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.header .btn-outline {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+}
+.header .btn-outline:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.header .btn-whatsapp {
+  background: #25d366;
+  color: white;
+}
+.header .btn-whatsapp:hover {
+  background: #1da153;
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .header .nav-link,
+  .header .cart-link,
+  .header .btn-primary,
+  .header .btn-outline,
+  .header .btn-whatsapp,
+  .header .menu-toggle {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .header .nav-link:active,
+  .header .cart-link:active {
+    opacity: 0.7;
+  }
+
+  .header .btn-primary:active,
+  .header .btn-outline:active,
+  .header .btn-whatsapp:active {
+    transform: scale(0.98);
+  }
+
+  .header .menu-toggle:active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Desktop overrides (al final para evitar que reglas base los sobrescriban) */
+@media (min-width: 901px) {
+  .header-content {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) minmax(240px, 420px) minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 0.9rem;
+    width: 100%;
+  }
+
+  /* Aplana el wrapper para posicionar nav/buscador/acciones en el grid sin cambiar JSX */
+  .header .header-collapse {
+    display: contents;
+  }
+
+  .logo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .nav {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    min-width: 0;
+    overflow: visible !important;
+    z-index: 10;
+    background: transparent;
+  }
+
+  .search-bar {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: center;
+    width: 100%;
+    max-width: 420px;
+    min-width: 240px;
+  }
+
+  .header-actions {
+    grid-column: 5;
+    grid-row: 1;
+    justify-self: end;
+    margin-left: 0;
+  }
+}
+
+/* Fix: normalize search input height across breakpoints to avoid it growing too tall */
+.header .search-input {
+  /* compact, consistent height */
+  height: 28px !important;
+  min-height: 28px !important;
+  line-height: 28px !important;
+  padding: 0.22rem 0.6rem !important;
+  font-size: 0.9rem !important;
+  box-sizing: border-box;
+}
+
+/* Ensure the mobile search wrapper doesn't force extra height */
+.header-search-mobile,
+.header-search-mobile .search-bar {
+  height: auto !important;
+  max-height: 44px;
+}
+
+@media (max-width: 900px) {
+  .header .search-input {
+    height: 30px !important;
+    min-height: 30px !important;
+    line-height: 30px !important;
+    padding: 0.18rem 0.55rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header .search-input {
+    height: 28px !important;
+    min-height: 28px !important;
+    line-height: 28px !important;
+    padding: 0.15rem 0.45rem !important;
+  }
+}

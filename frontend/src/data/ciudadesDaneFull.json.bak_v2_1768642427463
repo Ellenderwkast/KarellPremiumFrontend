@@ -1,0 +1,4494 @@
+[
+  {
+    "nombre": "* A PARTIR DEL DECRETO 0284 DEL 26 DE DICIEMBRE DE 2023 Y DE LA ORDENANZA NO. 180 DEL 27 DE JUNIO DE 2023, POR LA CUAL SE CREA EL MUNICIPIO DE NUEVO BELÉN DE BAJIRÁ, SEGREGADO DEL MUNICIPIO DE RIOSUCIO, EL DEPARTAMENTO ADMINISTRATIVO NACIONAL DE ESTADÍSTICA (DANE) HA INCORPORADO EL NUEVO MUNICIPIO Y SUS CENTROS POBLADOS A LA DIVIPOLA; UNA VEZ EL INSTITUTO GEOGRÁFICO AGUSTÍN CODAZZI (IGAC) CULMINE EL PROCESO DE DESLINDE RESPECTIVO Y ELABORE LA CARTOGRAFÍA OFICIAL CON ESTA NUEVA ENTIDAD TERRITORIAL, EL DANE PROCEDERÁ CON LA ACTUALIZACIÓN DEL MARCO GEOESTADÍSTICO NACIONAL (MGN) Y REALIZARÁ LAS ACTUALIZACIONES CARTOGRÁFICAS A QUE HAYA LUGAR; SE DEBE TENER PRESENTE QUE LA CREACIÓN DEL NUEVO MUNICIPIO AFECTA LOS LÍMITES MUNICIPALES DE LOS MUNICIPIOS NUEVO BELÉN DE BAJIRÁ, RIOSUCIO Y CARMEN DEL DARIÉN (CHOCO).",
+    "codigo": "02840000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05001000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05002000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05004000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05021000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05030000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05031000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05034000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05036000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05038000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05040000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05042000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05044000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05045000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05051000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05055000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05059000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05079000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05086000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05088000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05091000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05093000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05101000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05107000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05113000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05120000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05125000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05129000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05134000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05138000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05142000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05145000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05147000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05148000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05150000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05154000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05172000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05190000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05197000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05206000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05209000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05212000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05234000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05237000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05240000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05250000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05264000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05266000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05282000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05284000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05306000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05308000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05310000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05313000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05315000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05318000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05321000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05347000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05353000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05360000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05361000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05364000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05368000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05376000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05380000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05390000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05400000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05411000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05425000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05440000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05467000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05475000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05480000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05483000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05490000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05495000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05501000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05541000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05543000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05576000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05579000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05585000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05591000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05604000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05607000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05615000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05628000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05631000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05642000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05647000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05649000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05652000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05656000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05658000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05659000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05660000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05664000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05665000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05667000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05670000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05674000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05679000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05686000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05690000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05697000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05736000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05756000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05761000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05789000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05790000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05792000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05809000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05819000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05837000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05842000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05847000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05854000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05856000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05858000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05861000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05873000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05885000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05887000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05890000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05893000"
+  },
+  {
+    "nombre": "05",
+    "codigo": "05895000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08001000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08078000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08137000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08141000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08296000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08372000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08421000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08433000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08436000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08520000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08549000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08558000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08560000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08573000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08606000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08634000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08638000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08675000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08685000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08758000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08770000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08832000"
+  },
+  {
+    "nombre": "08",
+    "codigo": "08849000"
+  },
+  {
+    "nombre": "11",
+    "codigo": "11001000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13001000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13006000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13030000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13042000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13052000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13062000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13074000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13140000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13160000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13188000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13212000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13222000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13244000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13248000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13268000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13300000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13430000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13433000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13440000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13442000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13458000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13468000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13473000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13490000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13549000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13580000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13600000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13620000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13647000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13650000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13654000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13655000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13657000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13667000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13670000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13673000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13683000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13688000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13744000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13760000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13780000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13810000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13836000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13838000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13873000"
+  },
+  {
+    "nombre": "13",
+    "codigo": "13894000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15001000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15022000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15047000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15051000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15087000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15090000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15092000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15097000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15104000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15106000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15109000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15114000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15131000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15135000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15162000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15172000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15176000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15180000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15183000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15185000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15187000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15189000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15204000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15212000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15215000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15218000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15223000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15224000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15226000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15232000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15236000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15238000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15244000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15248000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15272000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15276000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15293000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15296000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15299000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15317000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15322000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15325000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15332000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15362000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15367000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15368000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15377000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15380000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15401000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15403000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15407000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15425000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15442000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15455000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15464000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15466000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15469000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15476000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15480000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15491000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15494000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15500000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15507000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15511000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15514000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15516000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15518000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15522000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15531000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15533000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15537000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15542000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15550000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15572000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15580000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15599000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15600000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15621000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15632000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15638000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15646000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15660000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15664000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15667000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15673000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15676000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15681000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15686000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15690000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15693000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15696000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15720000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15723000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15740000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15753000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15755000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15757000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15759000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15761000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15762000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15763000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15764000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15774000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15776000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15778000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15790000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15798000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15804000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15806000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15808000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15810000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15814000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15816000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15820000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15822000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15832000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15835000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15837000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15839000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15842000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15861000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15879000"
+  },
+  {
+    "nombre": "15",
+    "codigo": "15897000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17001000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17013000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17042000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17050000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17088000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17174000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17272000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17380000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17388000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17433000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17442000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17444000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17446000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17486000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17495000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17513000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17524000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17541000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17614000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17616000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17653000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17662000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17665000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17777000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17867000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17873000"
+  },
+  {
+    "nombre": "17",
+    "codigo": "17877000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18001000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18029000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18094000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18150000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18205000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18247000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18256000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18410000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18460000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18479000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18592000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18610000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18753000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18756000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18785000"
+  },
+  {
+    "nombre": "18",
+    "codigo": "18860000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19001000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19022000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19050000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19075000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19100000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19110000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19130000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19137000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19142000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19212000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19256000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19290000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19300000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19318000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19355000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19364000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19392000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19397000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19418000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19450000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19455000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19473000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19513000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19517000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19532000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19533000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19548000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19573000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19585000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19622000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19693000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19698000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19701000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19743000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19760000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19780000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19785000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19807000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19809000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19821000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19824000"
+  },
+  {
+    "nombre": "19",
+    "codigo": "19845000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20001000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20011000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20013000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20032000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20045000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20060000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20175000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20178000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20228000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20238000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20295000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20310000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20383000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20400000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20443000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20517000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20550000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20570000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20614000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20621000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20710000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20750000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20770000"
+  },
+  {
+    "nombre": "20",
+    "codigo": "20787000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23001000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23068000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23079000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23090000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23162000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23168000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23182000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23189000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23300000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23350000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23417000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23419000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23464000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23466000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23500000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23555000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23570000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23574000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23580000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23586000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23660000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23670000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23672000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23675000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23678000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23682000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23686000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23807000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23815000"
+  },
+  {
+    "nombre": "23",
+    "codigo": "23855000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25001000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25019000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25035000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25040000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25053000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25086000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25095000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25099000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25120000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25123000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25126000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25148000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25151000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25154000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25168000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25175000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25178000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25181000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25183000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25200000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25214000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25224000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25245000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25258000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25260000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25269000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25279000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25281000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25286000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25288000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25290000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25293000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25295000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25297000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25299000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25307000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25312000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25317000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25320000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25322000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25324000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25326000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25328000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25335000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25339000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25368000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25372000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25377000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25386000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25394000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25398000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25402000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25407000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25426000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25430000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25436000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25438000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25473000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25483000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25486000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25488000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25489000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25491000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25506000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25513000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25518000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25524000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25530000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25535000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25572000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25580000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25592000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25594000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25596000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25599000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25612000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25645000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25649000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25653000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25658000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25662000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25718000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25736000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25740000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25743000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25745000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25754000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25758000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25769000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25772000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25777000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25779000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25781000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25785000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25793000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25797000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25799000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25805000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25807000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25815000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25817000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25823000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25839000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25841000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25843000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25845000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25851000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25862000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25867000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25871000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25873000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25875000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25878000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25885000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25898000"
+  },
+  {
+    "nombre": "25",
+    "codigo": "25899000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27001000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27006000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27025000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27050000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27073000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27075000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27077000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27099000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27135000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27150000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27160000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27205000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27245000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27250000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27361000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27372000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27413000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27425000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27430000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27450000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27491000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27493000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27495000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27580000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27600000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27615000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27660000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27745000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27787000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27800000"
+  },
+  {
+    "nombre": "27",
+    "codigo": "27810000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41001000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41006000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41013000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41016000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41020000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41026000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41078000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41132000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41206000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41244000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41298000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41306000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41319000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41349000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41357000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41359000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41378000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41396000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41483000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41503000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41518000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41524000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41530000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41548000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41551000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41615000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41660000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41668000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41676000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41770000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41791000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41797000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41799000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41801000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41807000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41872000"
+  },
+  {
+    "nombre": "41",
+    "codigo": "41885000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44001000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44035000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44078000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44090000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44098000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44110000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44279000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44378000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44420000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44430000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44560000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44650000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44847000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44855000"
+  },
+  {
+    "nombre": "44",
+    "codigo": "44874000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47001000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47030000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47053000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47058000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47161000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47170000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47189000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47205000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47245000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47258000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47268000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47288000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47318000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47460000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47541000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47545000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47551000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47555000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47570000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47605000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47660000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47675000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47692000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47703000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47707000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47720000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47745000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47798000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47960000"
+  },
+  {
+    "nombre": "47",
+    "codigo": "47980000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50001000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50006000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50110000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50124000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50150000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50223000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50226000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50245000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50251000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50270000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50287000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50313000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50318000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50325000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50330000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50350000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50370000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50400000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50450000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50568000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50573000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50577000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50590000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50606000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50680000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50683000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50686000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50689000"
+  },
+  {
+    "nombre": "50",
+    "codigo": "50711000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52001000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52019000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52022000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52036000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52051000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52079000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52083000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52110000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52203000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52207000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52210000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52215000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52224000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52227000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52233000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52240000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52250000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52254000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52256000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52258000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52260000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52287000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52317000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52320000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52323000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52352000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52354000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52356000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52378000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52381000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52385000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52390000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52399000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52405000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52411000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52418000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52427000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52435000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52473000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52480000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52490000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52506000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52520000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52540000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52560000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52565000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52573000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52585000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52612000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52621000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52678000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52683000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52685000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52687000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52693000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52694000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52696000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52699000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52720000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52786000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52788000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52835000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52838000"
+  },
+  {
+    "nombre": "52",
+    "codigo": "52885000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54001000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54003000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54051000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54099000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54109000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54125000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54128000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54172000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54174000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54206000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54223000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54239000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54245000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54250000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54261000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54313000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54344000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54347000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54377000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54385000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54398000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54405000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54418000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54480000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54498000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54518000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54520000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54553000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54599000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54660000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54670000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54673000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54680000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54720000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54743000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54800000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54810000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54820000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54871000"
+  },
+  {
+    "nombre": "54",
+    "codigo": "54874000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63001000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63111000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63130000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63190000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63212000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63272000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63302000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63401000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63470000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63548000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63594000"
+  },
+  {
+    "nombre": "63",
+    "codigo": "63690000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66001000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66045000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66075000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66088000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66170000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66318000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66383000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66400000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66440000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66456000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66572000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66594000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66682000"
+  },
+  {
+    "nombre": "66",
+    "codigo": "66687000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68001000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68013000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68020000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68051000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68077000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68079000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68081000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68092000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68101000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68121000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68132000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68147000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68152000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68160000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68162000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68167000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68169000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68176000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68179000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68190000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68207000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68209000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68211000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68217000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68229000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68235000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68245000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68250000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68255000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68264000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68266000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68271000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68276000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68296000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68298000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68307000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68318000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68320000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68322000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68324000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68327000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68344000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68368000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68370000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68377000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68385000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68397000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68406000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68418000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68425000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68432000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68444000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68464000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68468000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68498000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68500000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68502000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68522000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68524000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68533000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68547000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68549000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68572000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68573000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68575000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68615000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68655000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68669000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68673000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68679000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68682000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68684000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68686000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68689000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68705000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68720000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68745000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68755000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68770000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68773000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68780000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68820000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68855000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68861000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68867000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68872000"
+  },
+  {
+    "nombre": "68",
+    "codigo": "68895000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70001000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70110000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70124000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70204000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70215000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70221000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70230000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70233000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70235000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70265000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70400000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70418000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70429000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70473000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70508000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70523000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70670000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70678000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70702000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70708000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70713000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70717000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70742000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70771000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70820000"
+  },
+  {
+    "nombre": "70",
+    "codigo": "70823000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73001000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73024000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73026000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73030000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73043000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73055000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73067000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73124000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73148000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73152000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73168000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73200000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73217000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73226000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73236000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73268000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73270000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73275000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73283000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73319000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73347000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73349000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73352000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73408000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73411000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73443000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73449000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73461000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73483000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73504000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73520000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73547000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73555000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73563000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73585000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73616000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73622000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73624000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73671000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73675000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73678000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73686000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73770000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73854000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73861000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73870000"
+  },
+  {
+    "nombre": "73",
+    "codigo": "73873000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76001000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76020000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76036000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76041000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76054000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76100000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76109000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76111000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76113000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76122000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76126000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76130000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76147000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76233000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76243000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76246000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76248000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76250000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76275000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76306000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76318000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76364000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76377000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76400000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76403000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76497000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76520000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76563000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76606000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76616000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76622000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76670000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76736000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76823000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76828000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76834000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76845000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76863000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76869000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76890000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76892000"
+  },
+  {
+    "nombre": "76",
+    "codigo": "76895000"
+  },
+  {
+    "nombre": "81",
+    "codigo": "81001000"
+  },
+  {
+    "nombre": "81",
+    "codigo": "81065000"
+  },
+  {
+    "nombre": "81",
+    "codigo": "81220000"
+  },
+  {
+    "nombre": "81",
+    "codigo": "81300000"
+  },
+  {
+    "nombre": "81",
+    "codigo": "81591000"
+  },
+  {
+    "nombre": "81",
+    "codigo": "81736000"
+  },
+  {
+    "nombre": "81",
+    "codigo": "81794000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85001000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85010000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85015000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85125000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85136000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85139000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85162000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85225000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85230000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85250000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85263000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85279000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85300000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85315000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85325000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85400000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85410000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85430000"
+  },
+  {
+    "nombre": "85",
+    "codigo": "85440000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86001000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86219000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86320000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86568000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86569000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86571000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86573000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86749000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86755000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86757000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86760000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86865000"
+  },
+  {
+    "nombre": "86",
+    "codigo": "86885000"
+  },
+  {
+    "nombre": "88",
+    "codigo": "88001000"
+  },
+  {
+    "nombre": "88",
+    "codigo": "88564000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91001000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91263000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91405000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91407000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91430000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91460000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91530000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91536000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91540000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91669000"
+  },
+  {
+    "nombre": "91",
+    "codigo": "91798000"
+  },
+  {
+    "nombre": "94",
+    "codigo": "94001000"
+  },
+  {
+    "nombre": "94",
+    "codigo": "94343000"
+  },
+  {
+    "nombre": "94",
+    "codigo": "94883000"
+  },
+  {
+    "nombre": "94",
+    "codigo": "94884000"
+  },
+  {
+    "nombre": "94",
+    "codigo": "94885000"
+  },
+  {
+    "nombre": "94",
+    "codigo": "94886000"
+  },
+  {
+    "nombre": "94",
+    "codigo": "94887000"
+  },
+  {
+    "nombre": "94",
+    "codigo": "94888000"
+  },
+  {
+    "nombre": "95",
+    "codigo": "95001000"
+  },
+  {
+    "nombre": "95",
+    "codigo": "95015000"
+  },
+  {
+    "nombre": "95",
+    "codigo": "95025000"
+  },
+  {
+    "nombre": "95",
+    "codigo": "95200000"
+  },
+  {
+    "nombre": "97",
+    "codigo": "97001000"
+  },
+  {
+    "nombre": "97",
+    "codigo": "97161000"
+  },
+  {
+    "nombre": "97",
+    "codigo": "97511000"
+  },
+  {
+    "nombre": "97",
+    "codigo": "97666000"
+  },
+  {
+    "nombre": "97",
+    "codigo": "97777000"
+  },
+  {
+    "nombre": "97",
+    "codigo": "97889000"
+  },
+  {
+    "nombre": "99",
+    "codigo": "99001000"
+  },
+  {
+    "nombre": "99",
+    "codigo": "99524000"
+  },
+  {
+    "nombre": "99",
+    "codigo": "99624000"
+  },
+  {
+    "nombre": "99",
+    "codigo": "99773000"
+  },
+  {
+    "nombre": "CODIFICACIÓN DE LA DIVISIÓN POLÍTICO ADMINISTRATIVA DE COLOMBIA - DIVIPOLA SEPTIEMBRE 2025",
+    "codigo": "20250000"
+  }
+]

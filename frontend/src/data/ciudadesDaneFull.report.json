@@ -1,0 +1,160 @@
+{
+  "total_before": 1122,
+  "total_after": 1122,
+  "dup_codes": [],
+  "dup_names_count": 66,
+  "dup_names_sample": [
+    {
+      "nombre": "ARGELIA",
+      "count": 3,
+      "items": [
+        {
+          "codigo": "05055000",
+          "nombre": "ARGELIA"
+        },
+        {
+          "codigo": "19050000",
+          "nombre": "ARGELIA"
+        },
+        {
+          "codigo": "76054000",
+          "nombre": "ARGELIA"
+        }
+      ]
+    },
+    {
+      "nombre": "ARMENIA",
+      "count": 2,
+      "items": [
+        {
+          "codigo": "05059000",
+          "nombre": "ARMENIA"
+        },
+        {
+          "codigo": "63001000",
+          "nombre": "ARMENIA"
+        }
+      ]
+    },
+    {
+      "nombre": "BARBOSA",
+      "count": 2,
+      "items": [
+        {
+          "codigo": "05079000",
+          "nombre": "BARBOSA"
+        },
+        {
+          "codigo": "68077000",
+          "nombre": "BARBOSA"
+        }
+      ]
+    },
+    {
+      "nombre": "BETULIA",
+      "count": 2,
+      "items": [
+        {
+          "codigo": "05093000",
+          "nombre": "BETULIA"
+        },
+        {
+          "codigo": "68092000",
+          "nombre": "BETULIA"
+        }
+      ]
+    },
+    {
+      "nombre": "BRICEÑO",
+      "count": 2,
+      "items": [
+        {
+          "codigo": "05107000",
+          "nombre": "BRICEÑO"
+        },
+        {
+          "codigo": "15106000",
+          "nombre": "BRICEÑO"
+        }
+      ]
+    },
+    {
+      "nombre": "CALDAS",
+      "count": 2,
+      "items": [
+        {
+          "codigo": "05129000",
+          "nombre": "CALDAS"
+        },
+        {
+          "codigo": "15131000",
+          "nombre": "CALDAS"
+        }
+      ]
+    },
+    {
+      "nombre": "CONCEPCIÓN",
+      "count": 2,
+      "items": [
+        {
+          "codigo": "05206000",
+          "nombre": "CONCEPCIÓN"
+        },
+        {
+          "codigo": "68207000",
+          "nombre": "CONCEPCIÓN"
+        }
+      ]
+    },
+    {
+      "nombre": "CONCORDIA",
+      "count": 2,
+      "items": [
+        {
+          "codigo": "05209000",
+          "nombre": "CONCORDIA"
+        },
+        {
+          "codigo": "47205000",
+          "nombre": "CONCORDIA"
+        }
+      ]
+    },
+    {
+      "nombre": "GRANADA",
+      "count": 3,
+      "items": [
+        {
+          "codigo": "05313000",
+          "nombre": "GRANADA"
+        },
+        {
+          "codigo": "25312000",
+          "nombre": "GRANADA"
+        },
+        {
+          "codigo": "50313000",
+          "nombre": "GRANADA"
+        }
+      ]
+    },
+    {
+      "nombre": "GUADALUPE",
+      "count": 3,
+      "items": [
+        {
+          "codigo": "05315000",
+          "nombre": "GUADALUPE"
+        },
+        {
+          "codigo": "41319000",
+          "nombre": "GUADALUPE"
+        },
+        {
+          "codigo": "68320000",
+          "nombre": "GUADALUPE"
+        }
+      ]
+    }
+  ]
+}

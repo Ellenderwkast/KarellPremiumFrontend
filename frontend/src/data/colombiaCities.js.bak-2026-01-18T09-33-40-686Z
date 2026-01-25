@@ -1,0 +1,8 @@
+// Departamentos y ciudades de Colombia
+// Generado automáticamente desde DIVIPOLA_Municipios.xlsx
+export const departments = [];
+
+export const citiesByDepartment = {
+};
+
+export const cities = Object.values(citiesByDepartment).flat();

@@ -1,0 +1,774 @@
+.product-card {
+  background-color: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  /* Permitir que el contenido (imagenes ampliadas) no se recorte */
+  overflow: visible;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  padding: 0.35rem 0.35rem 0.6rem 0.35rem;
+}
+
+/* Fuerza compactación final en móviles: ubicamos estas reglas al final para sobreescribir otras declaraciones */
+@media (max-width: 768px) {
+  .product-card {
+    height: auto !important;
+    min-height: auto !important;
+    padding-bottom: 0.4rem !important;
+    /* Evitar que contenido absoluto (flechas/puntos) se salga y tape otras cards */
+    overflow: hidden !important;
+  }
+
+  .product-info {
+    min-height: auto !important;
+  }
+
+  .product-info .product-controls {
+    margin-top: 0 !important;
+  }
+
+  .product-controls {
+    min-height: auto !important;
+    margin-bottom: 0.06rem !important;
+  }
+
+  .product-image {
+    /* En móvil: imagen visible, tamaño moderado y sin solaparse */
+    aspect-ratio: 4 / 3 !important;
+    max-height: 200px !important;
+    min-height: 140px !important;
+    overflow: hidden !important;
+    padding: 0.14rem !important;
+  }
+
+  .product-image img,
+  .product-card-image {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+  }
+}
+
+/* Forzar una altura mínima en pantallas grandes para mantener tarjetas alineadas */
+@media (min-width: 900px) {
+  .product-card {
+    min-height: 360px;
+  }
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.product-image {
+  width: 100%;
+  /* Usar una relación más horizontal para mostrar más contenido de la imagen sin recortar */
+  aspect-ratio: 4 / 3;
+  /* Aumentar altura máxima para que las miniaturas sean más grandes (ajustable por responsivo) */
+  max-height: 200px;
+  min-height: 120px;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  position: relative;
+}
+
+/* Asegurar que el enlace no altere dimensiones del contenedor */
+.product-image a,
+.product-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.product-image img {
+  /* Mantener la imagen centrada y escalada sin recortar */
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: var(--transition);
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+/* En pantallas muy grandes dar aún más altura a la miniatura */
+@media (min-width: 1200px) {
+  .product-image {
+    max-height: 240px;
+    min-height: 150px;
+  }
+}
+
+/* Forzar tamaño para imágenes con clase específica */
+.product-card-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Botones del carrusel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+  color: #1f2937;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  padding: 0;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-btn:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-btn:active {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-prev {
+  left: 8px;
+}
+
+.carousel-next {
+  right: 8px;
+}
+
+/* Indicadores de puntos */
+.carousel-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+.carousel-dot.active {
+  background-color: #ffffff;
+  width: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: var(--transition);
+  background-color: #ffffff;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+
+.product-info {
+  padding: clamp(0.3rem, 0.7vw, 0.6rem);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 160px;
+}
+
+/* Ocultar la descripción en la lista de productos (se muestra en detalle) */
+.product-card .product-description {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.product-info h2,
+.product-info h3 {
+  font-size: 1rem;
+  margin: 0 0 0.25rem 0;
+  color: var(--gray-900);
+  line-height: 1.15;
+  /* Permitir hasta 2 líneas y truncar con ellipsis para títulos largos */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  min-height: 2.2em;
+  max-height: 2.8em;
+}
+
+.product-description {
+  color: var(--gray-600);
+  font-size: 0.97rem;
+  margin-bottom: 0rem;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.2em;
+  max-height: 3.2em;
+  white-space: normal !important;
+  word-break: break-word;
+  visibility: visible !important;
+  opacity: 1 !important;
+  line-height: 1.2;
+}
+
+/* Selector de colores */
+.color-selector {
+  /* Mantener variantes compactas; evitar margin negativo que solapa el título */
+  margin-top: 0.15rem;
+  margin-bottom: 0.08rem;
+  padding: 0.12rem 0.14rem;
+  background-color: var(--gray-50);
+  border-radius: 8px;
+  /* Reservar espacio menor para alinear cards con/sin variantes */
+  min-height: 18px;
+}
+
+.color-selector-placeholder {
+  background-color: transparent;
+  padding: 0;
+}
+
+.color-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-right: 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.color-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.color-option {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+}
+
+.color-option:hover {
+  border-color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.color-option.active {
+  border-color: var(--primary-color);
+  border-width: 3px;
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 59, 130, 246), 0.2);
+}
+
+.color-option .check-mark {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.variant-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.colors {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color-swatch.selected {
+  border-color: var(--primary-color);
+}
+
+.color-label {
+  font-size: 0.7rem;
+  color: var(--gray-700);
+  padding: 0 6px;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  cursor: pointer;
+}
+
+.qty-input {
+  width: 56px;
+  text-align: center;
+  padding: 6px 8px;
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.product-card .product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.product-card .product-unavailable-note {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #b91c1c; /* Mantener color de advertencia */
+  background: transparent; /* Sin fondo */
+  border: none; /* Sin borde */
+  padding: 0; /* Solo texto, sin padding */
+  border-radius: 0;
+  line-height: 1;
+  /* Apariencia tipo "link/button text": ajustar espaciado y transformación */
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
+
+.product-card .product-stock {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.product-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  margin-bottom: 0.1rem;
+  min-height: 72px;
+}
+/* Alinear los controles (Ver / Agregar) al final del contenedor de info
+   para que queden alineados en todas las cards aunque cambie la altura
+   del selector de color u otros elementos anteriores. */
+.product-info .product-controls {
+  margin-top: auto;
+}
+
+.product-actions {
+  display: flex;
+  gap: 0.4rem;
+  width: 100%;
+  min-height: 32px;
+  margin-top: 0.45rem;
+}
+
+
+.product-actions .btn-sm {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  min-width: 80px;
+  min-height: 36px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 10px 0 rgba(0, 140, 255, 0.10);
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.13s;
+  font-size: 1rem;
+  padding: 0.45rem 1.1rem;
+}
+
+.btn-sm {
+  padding: 0.45rem 1.1rem;
+  font-size: 1rem;
+  white-space: nowrap;
+  border-radius: 999px;
+}
+
+/* Botón destacado llamativo */
+.product-actions .btn-primary.btn-sm {
+  background: linear-gradient(90deg, #00c6fb 0%, #005bea 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 12px 0 rgba(0, 140, 255, 0.18);
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.product-actions .btn-primary.btn-sm:hover:not(:disabled) {
+  background: linear-gradient(90deg, #005bea 0%, #00c6fb 100%);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 4px 18px 0 rgba(0, 140, 255, 0.22);
+}
+
+/* Etiqueta de agotado (solo dentro de product-card) */
+.product-card .out-of-stock {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #ffeaea;
+  color: #d32f2f;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 6px;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  user-select: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.product-card .out-of-stock-red {
+  background: #ffeaea !important;
+  color: #d32f2f !important;
+}
+
+.agotado-btn {
+  background: #ffeaea !important;
+  color: #d32f2f !important;
+  border: 1.5px solid #d32f2f !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    border: 1px solid rgba(17, 24, 39, 0.05);
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  }
+
+  /* Mobile: compactar imagen y padding */
+  .product-image {
+    max-height: 70px;
+    aspect-ratio: 1 / 1;
+    padding: 0.12rem;
+  }
+
+  .product-info {
+    padding: 0.32rem;
+  }
+  /* Mobile: permitir que la card no tenga altura mínima fija y mantener el flujo compacto */
+  .product-card {
+    min-height: auto;
+    padding-bottom: 0.45rem;
+  }
+  .product-info {
+    min-height: auto;
+  }
+  /* Evitar que los controles empujen la card hacia abajo: no usar margin-top:auto en móvil */
+  .product-info .product-controls {
+    margin-top: 0;
+  }
+  .product-controls {
+    min-height: auto;
+    margin-bottom: 0.08rem;
+    gap: 0.18rem;
+  }
+  .product-actions {
+    min-height: auto;
+    margin-top: 0.28rem;
+  }
+
+  .product-info h2,
+  .product-info h3 {
+    font-size: 0.72rem;
+    margin-bottom: 0.12rem;
+    line-height: 1.08;
+  }
+
+  .product-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .color-selector {
+    padding: 0.18rem;
+    margin-bottom: 0.22rem;
+    min-height: 20px;
+  }
+
+  .color-label {
+    font-size: 0.62rem;
+    margin-bottom: 0.12rem;
+  }
+
+  .color-option {
+    width: 18px;
+    height: 18px;
+  }
+
+  .product-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.18rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .product-price {
+    font-size: 0.92rem;
+  }
+
+  .product-stock {
+    font-size: 0.5rem;
+  }
+
+  .product-controls {
+    gap: 0.22rem;
+  }
+
+  /* Mostrar botones en fila/2-columnas en móvil para que no se vean extremadamente anchos */
+  .product-actions {
+    flex-direction: row;
+    width: 100%;
+    gap: 0.34rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .product-actions .btn-sm,
+  .product-controls .btn-sm {
+    width: auto;
+    flex: 1 1 48%;
+    justify-content: center;
+    padding: 0.28rem 0.6rem;
+    font-size: 0.58rem;
+    box-sizing: border-box;
+  }
+
+  .qty {
+    width: auto;
+    justify-content: center;
+    gap: 0.22rem;
+    flex-wrap: nowrap;
+  }
+
+  .qty-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+
+  .qty-input {
+    flex: 1;
+    max-width: 44px;
+    padding: 2px 3px;
+    font-size: 0.72rem;
+  }
+
+  .carousel-btn {
+    /* Aumentado en tablet/pequeñas pantallas para mejorar objetivo táctil */
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .carousel-prev {
+    left: 2px;
+  }
+
+  .product-controls {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .carousel-next {
+    right: 2px;
+  }
+
+  @media (max-width: 480px) {
+    /* Extra small screens: mantener legibilidad y compactación */
+    .product-image {
+      /* aumentar en pantallas muy pequeñas para mantener legibilidad */
+      max-height: 180px;
+      padding: 0.14rem;
+    }
+
+    .product-info {
+      padding: 0.24rem;
+      min-height: auto;
+    }
+    .product-card {
+      min-height: auto;
+      padding-bottom: 0.4rem;
+    }
+    .product-info .product-controls {
+      margin-top: 0;
+    }
+    .product-controls {
+      min-height: auto;
+      margin-bottom: 0.06rem;
+    }
+
+    .product-info h2,
+    .product-info h3 {
+      font-size: 0.66rem;
+      margin-bottom: 0.08rem;
+    }
+
+    .product-price {
+      font-size: 0.86rem;
+    }
+
+    .product-stock {
+      font-size: 0.42rem;
+    }
+
+    .color-selector {
+      padding: 0.14rem;
+    }
+
+    .color-label {
+      font-size: 0.58rem;
+    }
+
+    .color-option {
+      width: 16px;
+      height: 16px;
+    }
+
+    .product-actions .btn-sm,
+    .product-controls .btn-sm {
+      padding: 0.22rem 0.32rem;
+      /* Aumentar solo la tipografía en móvil sin cambiar el tamaño físico del botón */
+      font-size: 0.82rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .qty-btn {
+      width: 18px;
+      height: 18px;
+      font-size: 0.65rem;
+    }
+
+    .qty-input {
+      max-width: 36px;
+      font-size: 0.65rem;
+      padding: 1.5px;
+    }
+
+    /* Acercar los controles de cantidad en móviles: quitar separación excesiva */
+    .qty {
+      width: auto !important;
+      justify-content: flex-start !important;
+      gap: 0.22rem !important;
+      align-items: center !important;
+    }
+
+    .qty-input {
+      flex: none !important;
+      max-width: 44px !important;
+    }
+
+    .carousel-btn {
+      /* Objetivo táctil más grande en móviles pequeños */
+      width: 30px;
+      height: 30px;
+      font-size: 15px;
+    }
+
+    .product-card .out-of-stock {
+        top: 3px;
+        left: 3px;
+        padding: 0.08rem 0.2rem;
+        font-size: 0.45rem;
+        font-weight: 600;
+      }
+  }
+
+  }

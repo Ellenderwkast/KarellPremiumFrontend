@@ -1,0 +1,132 @@
+.variant-carousel {
+  padding: 18px 0;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  border-top: 1px solid #f1f5f9;
+  background: transparent;
+}
+
+.variant-carousel .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 12px;
+  overflow: visible; /* allow nav buttons to sit outside the container */
+}
+
+.carousel-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px; /* separación entre cards */
+}
+
+/* Una sola columna en pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .carousel-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Navigation buttons specific styling for VariantCarousel */
+.variant-carousel .carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  /* give buttons a subtle blue tint + stronger blue shadow */
+  background: rgba(13,110,253,0.08);
+  color: #ffffff;
+  border: 1px solid rgba(13,110,253,0.18);
+  backdrop-filter: blur(6px) saturate(140%);
+  cursor: pointer;
+  z-index: 30;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  /* blue-tinted shadow to improve visibility */
+  /* more vivid blue shadow */
+  box-shadow: 0 18px 60px rgba(13,110,253,0.55), 0 1px 0 rgba(255,255,255,0.04) inset;
+}
+.variant-carousel .carousel-btn:hover {
+  transform: translateY(-50%) scale(1.08);
+  background: rgba(13,110,253,0.13);
+  box-shadow: 0 22px 72px rgba(13,110,253,0.70), 0 1px 0 rgba(255,255,255,0.04) inset;
+}
+.variant-carousel .carousel-prev { left: -56px; }
+.variant-carousel .carousel-next { right: -56px; }
+
+/* Slightly reduce size on very small screens */
+@media (max-width: 520px) {
+  .variant-carousel .carousel-btn { width: 40px; height: 40px; }
+}
+
+@media (max-width: 880px) {
+  /* Slightly smaller negative offset on narrower screens so buttons remain reachable */
+  .variant-carousel .carousel-prev { left: -34px; }
+  .variant-carousel .carousel-next { right: -34px; }
+}
+
+@media (max-width: 520px) {
+  /* On very small screens bring arrows closer to the cards */
+  .variant-carousel .carousel-prev { left: -6px; }
+  .variant-carousel .carousel-next { right: -6px; }
+}
+
+.carousel-card {
+  flex: 1 1 0;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+.carousel-link { text-decoration: none; color: inherit; display: block; width:100%; }
+
+
+/* Center content and avoid forced stretching so portrait images won't be cropped */
+.carousel-image-wrap {
+  width: 100%;
+  /* Un poco más alta para darle más presencia */
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #fff;
+}
+
+.carousel-image-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  .carousel-image-wrap { height: 400px; }
+}
+
+@media (max-width: 880px) {
+  .carousel-image-wrap { height: 320px; }
+}
+@media (max-width: 520px) {
+  .carousel-image-wrap { height: 260px; }
+}
+
+/* Match product-card min-height on large screens */
+@media (min-width: 900px) {
+  .carousel-card { min-height: 480px; }
+}
+
+/* On small screens collapse to auto (like product-card rules) */
+@media (max-width: 768px) {
+  .carousel-card { min-height: auto; }
+}

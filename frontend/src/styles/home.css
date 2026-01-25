@@ -1,0 +1,567 @@
+.hero-row-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.2rem;
+}
+.hero-row-flex .hero-titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-row-flex .hero-cta {
+  margin-left: 0.5rem;
+}
+@media (max-width: 600px) {
+  .hero-row-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-row-flex .hero-titles {
+    align-items: center;
+    text-align: center;
+  }
+  .hero-row-flex .hero-cta {
+    margin-left: 0;
+  }
+}
+.home {
+  width: 100%;
+  position: relative;
+}
+.video-bg {
+  position: fixed;
+  top: -4%;
+  left: 0;
+  width: 100%;
+  height: 108vh;
+  object-fit: cover;
+  object-position: center 18%;
+  z-index: -1;
+  filter: brightness(1.1) contrast(1.15) saturate(1.2);
+  opacity: 0.85;
+  pointer-events: none; /* evita interacción con el video */
+}
+
+/* Asegurar que featured-products tenga z-index positivo */
+.featured-products {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+}
+
+.featured-products .featured-products-title {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #fff 60%, #e3f0ff 100%);
+  border: 1.2px solid #00c6fb;
+  color: #005bea;
+  font-weight: 800;
+  /* Tipografía más profesional: preferir Inter/Segoe UI/Roboto */
+  font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.03em;
+  font-size: clamp(1.01rem, 1.1vw + 0.4rem, 1.22rem);
+  line-height: 1.13;
+  position: relative;
+  box-shadow: 0 2px 12px 0 rgba(0, 140, 255, 0.08), 0 1px 0 #00c6fb inset;
+  text-shadow: 0 1px 6px #b3e6ff, 0 1px 0 #fff;
+  animation: featured-glow 2.2s ease-in-out infinite alternate;
+  overflow: hidden;
+  /* Mover ligeramente el título hacia arriba sin afectar el layout */
+  transform: translateY(-12px); /* aumentado para subir un poco más */
+  display: block; /* mantener block para que margin:auto lo centre */
+}
+
+@keyframes featured-glow {
+  0% { box-shadow: 0 4px 24px 0 rgba(0, 140, 255, 0.10), 0 1.5px 0 #00c6fb inset; }
+  100% { box-shadow: 0 8px 32px 0 rgba(0, 140, 255, 0.18), 0 2.5px 0 #00c6fb inset; }
+}
+
+.featured-products .featured-products-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -0.38rem;
+  width: 38px;
+  height: 2.2px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00c6fb 0%, #005bea 100%);
+  opacity: 0.85;
+  animation: underline-move 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes underline-move {
+  0% { width: 38px; opacity: 0.85; }
+  100% { width: 60px; opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .featured-products .featured-products-title {
+    padding: 0.35rem 0.75rem;
+    transform: translateY(-8px);
+  }
+
+  .featured-products .featured-products-title::after {
+    bottom: -0.4rem;
+    width: 44px;
+  }
+}
+
+/* Compactar aún más la tarjeta e imagen de productos destacados
+   en móviles y tablets (incluyendo zoom 80–100%) sin tocar /products */
+@media (max-width: 900px) {
+  .home .featured-products .product-card {
+    padding-top: 0.18rem;
+    padding-bottom: 0.3rem;
+    width: 92%;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+    /* En destacados, mantener la card contenida para que no se monte sobre otras */
+    overflow: hidden !important;
+  }
+
+  /* En destacados móviles: imagen más pequeña y sin recortes */
+  .home .featured-products .product-image {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    padding: 0.12rem !important;
+    overflow: visible !important;
+  }
+
+  .home .featured-products .product-image img,
+  .home .featured-products .product-card-image {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 200px !important;
+    object-fit: contain !important;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Evitar que el hover agrande la imagen en esta sección en pantallas pequeñas */
+  .home .featured-products .product-card:hover .product-image img {
+    transform: none !important;
+  }
+}
+
+.home .hero {
+  background: transparent;
+  color: white;
+  /* Compactar un poco el hero para acercar los destacados */
+  padding: 0.5rem 0 0.5rem 0;
+  text-align: center;
+  border: none;
+  margin: 0 auto 0.5rem auto;
+  margin-top: -1.2rem;
+  border-radius: 16px;
+  opacity: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.home .hero-content h1 {
+  font-size: clamp(1.3rem, 2.5vw + 0.5rem, 2.1rem);
+  line-height: 1.08;
+  margin-bottom: 0.1rem;
+  color: white;
+}
+
+.home .hero-content p {
+  font-size: clamp(0.98rem, 1.2vw + 0.2rem, 1.08rem);
+  margin-bottom: 0.18rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Subir/compactar el bloque de destacados (Home reutiliza .products-page/.products-header) */
+.home .featured-products .products-page {
+  padding: 0.15rem 0 0.55rem;
+}
+
+.home .featured-products .products-header {
+  margin-bottom: 0.55rem;
+}
+
+.home .featured-products .featured-products-title {
+  margin-top: 0;
+}
+
+/* CTA del hero (scoped para evitar efectos globales/HMR) */
+.home .hero .hero-cta {
+  border-radius: 999px;
+  /* aún más pequeño que antes */
+  padding: clamp(0.45rem, 0.7vw, 0.65rem) clamp(0.85rem, 1.1vw, 1.1rem);
+  font-size: clamp(0.82rem, 0.9vw, 0.93rem);
+  width: fit-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background-image: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 55%, transparent);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 7px 14px color-mix(in srgb, var(--primary-color) 30%, transparent),
+    0 4px 8px color-mix(in srgb, var(--primary-dark) 20%, transparent);
+}
+
+.home .hero .hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 120% at 20% 10%,
+    color-mix(in srgb, #fff 22%, transparent),
+    transparent 60%
+  );
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.home .hero .hero-cta:hover {
+  filter: brightness(1.02) saturate(1.05);
+  box-shadow:
+    0 12px 26px color-mix(in srgb, var(--primary-color) 42%, transparent),
+    0 8px 16px color-mix(in srgb, var(--primary-dark) 34%, transparent);
+}
+
+.home .hero .hero-cta:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--primary-color) 30%, transparent),
+    0 6px 16px color-mix(in srgb, var(--primary-color) 20%, transparent);
+}
+
+/* Ocultar buscador del hero ya que está en el header */
+.home .hero-search {
+  display: none;
+}
+
+/* Hacer títulos responsivos: permitir hasta 2 líneas para evitar que se recorten al hacer zoom */
+.featured-products .product-card .product-info h2,
+.featured-products .product-card .product-info h3 {
+  font-size: clamp(1.05rem, 1.2vw + 0.4rem, 1.5rem);
+  line-height: 1.18;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  /* Reserva espacio para hasta 2 líneas, manteniendo alineación entre cards */
+  min-height: calc(1.18em * 2);
+  max-height: calc(1.18em * 2);
+  word-break: break-word;
+}
+
+/* Info Gallery Section */
+.info-gallery {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
+}
+
+.info-gallery h2 {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--gray-900);
+}
+
+.info-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  /* Evita que los items colapsen en una sola fila tras cambios HMR
+     Fuerza filas automáticas iguales y asegura alineamiento estable */
+  grid-auto-rows: 1fr;
+  align-items: start;
+}
+
+.gallery-item {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-image {
+  width: 100%;
+  /* Usar aspect-ratio evita saltos de layout cuando las imágenes cargan
+     y mantiene proporción consistente entre items */
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.gallery-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image::before {
+  opacity: 0;
+}
+
+.gallery-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Centro solo la imagen de 'Viajes & Aventuras' y hago que llene
+  completamente el contenedor para que no queden franjas moradas laterales */
+.info-gallery .gallery-image img.center-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Para imágenes más verticales: dar más ancho y asegurar que
+    al menos la altura completa del contenedor queda cubierta */
+  width: 120%;
+  height: auto;
+  min-height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 25%;
+    /* Desplazo aún un poco más hacia abajo el encuadre vertical
+      sin dejar espacio vacío: menos negativo desplaza la imagen hacia abajo */
+    transform: translate(-50%, -35%);
+}
+
+/* Bajar imagen 'Resistentes al agua' */
+.info-gallery .gallery-image img.water-image {
+  object-position: center 12%;
+}
+
+/* Ajuste específico para la imagen 'Cancelación de ruido' */
+.info-gallery .gallery-image img.noise-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  /* Centrar verticalmente un poco más para evitar recorte de zonas importantes */
+  object-position: center 40%;
+}
+
+@media (max-width: 768px) {
+  .info-gallery .gallery-image img.noise-image {
+    object-position: center 30%;
+  }
+}
+
+/* Ajustes adicionales para móviles pequeños: asegurar que la imagen cubra
+   y que no se vea la franja de fondo morado en pantallas estrechas */
+@media (max-width: 480px) {
+  .info-gallery .gallery-image {
+    /* Dar un poco más de altura al contenedor para que la porción importante
+       de la imagen quede visible sin necesidad de recortar demasiado */
+    max-height: 220px; /* antes 160px, aumentamos ligeramente */
+  }
+
+  .info-gallery .gallery-image img.noise-image {
+    /* Centrar la parte útil de la imagen algo más hacia abajo en móvil */
+    object-position: center 50%;
+    /* una ligera escala evita pequeños bordes cuando la imagen no cubre exactamente */
+    transform: scale(1.02);
+    transition: transform 180ms ease;
+  }
+}
+
+/* Forzar cobertura total: usar posicionamiento absoluto evita que queden franjas
+   visibles del fondo del contenedor cuando el img no ocupa exactamente el area */
+.info-gallery .gallery-image img.noise-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.info-gallery .gallery-image {
+  position: relative; /* ya debería estar, pero reafirmo para seguridad */
+  overflow: hidden;
+}
+
+/* Ajuste para móviles: evitar recortes y mantener proporción */
+@media (max-width: 768px) {
+  .info-gallery .gallery-image img.center-image {
+    object-position: center 20%;
+  }
+
+  .info-gallery .gallery-image img.water-image {
+    object-position: center 8%;
+  }
+}
+
+.gallery-item:hover .gallery-image img {
+  transform: scale(1.05);
+}
+
+/* Evitar que el hover rompa el centrado especial de 'Viajes & Aventuras' */
+.info-gallery .gallery-item:hover .gallery-image img.center-image {
+  transform: translate(-50%, -35%);
+}
+
+.gallery-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-content h3 {
+  font-size: 1.25rem;
+  color: var(--gray-900);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.gallery-content p {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive Gallery */
+@media (max-width: 1024px) {
+  .info-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .info-gallery {
+    padding: 2.5rem 0;
+  }
+
+  .info-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .gallery-image {
+    /* Con aspect-ratio el height queda relativo; limitarlo evita cards demasiado altos en móvil */
+    max-height: 220px;
+  }
+
+  .gallery-content {
+    padding: 1.25rem;
+  }
+
+  .gallery-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .gallery-content p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-image {
+    height: 160px;
+  }
+
+  .gallery-content {
+    padding: 1rem;
+  }
+
+  .gallery-content h3 {
+    font-size: 1rem;
+  }
+}
+
+/* El grid para la sección info-gallery ahora usa una clase dedicada
+  `.info-gallery-grid` para evitar colisiones con otras hojas de estilo. */
+
+.features {
+  background-color: var(--gray-100);
+  padding: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.feature {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+}
+
+.feature:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.feature-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--primary-color);
+}
+
+.feature p {
+  color: var(--gray-600);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}

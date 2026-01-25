@@ -1,0 +1,12 @@
+# Code Citations
+
+## License: MIT
+https://github.com/pandalabco/creeandoBack/tree/d8e2aa6d2ea6a8c240bbc53009965d1fdf3527ec/src/services/coordinadora.service.js
+
+```
+="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="https://sandbox.coordinadora.com/ags/1.5/server.php">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <
+```
+

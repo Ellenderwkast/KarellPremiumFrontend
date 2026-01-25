@@ -1,0 +1,113 @@
+.product-list-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search-results-header {
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0; /* no card look */
+  background: transparent;
+  flex-direction: column;
+}
+
+.search-results-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  color: #111;
+  font-weight: 700;
+  flex: 0 1 auto;
+}
+
+.search-results-header h2 span {
+  color: var(--primary-color, #007bff);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.search-results-header p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+  white-space: normal;
+  flex: 0 0 auto;
+  margin-top: 0.25rem;
+}
+
+.product-list {
+  /* Forzar 4 columnas en desktop; ajustar responsivamente en breakpoints */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 1600px;
+  width: 100%;
+  align-items: start;
+}
+
+.product-list > * {
+  /* Forzar que cada card ocupe todo el ancho de su celda */
+  width: 100%;
+  min-width: 0;
+}
+
+.no-products {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* Breakpoints: 3 cols <=1200px, 2 cols <=900px, 1 col <=600px */
+@media (max-width: 1200px) {
+  .product-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .search-results-header {
+    padding: 0.8rem 0.5rem;
+  }
+
+  .search-results-header h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Móviles */
+@media (max-width: 600px) {
+  .product-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .search-results-header {
+    padding: 0.4rem 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .search-results-header h2 {
+    font-size: 1.15rem;
+    line-height: 1.15;
+    margin-bottom: 0;
+  }
+
+  .search-results-header p {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0;
+  }
+}

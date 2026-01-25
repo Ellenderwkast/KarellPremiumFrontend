@@ -1,0 +1,82 @@
+.shipping-status-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.shipping-status-table th,
+.shipping-status-table td {
+  padding: 12px 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.shipping-status-table th {
+  background: #f6f9fc;
+  font-weight: bold;
+}
+
+.shipping-status-table tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.shipping-status-table td {
+  min-width: 80px;
+}
+
+.shipping-status-table .acciones {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.shipping-status-table .color-badge {
+  display: inline-block;
+  min-width: 60px;
+  padding: 2px 10px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.shipping-status-table .btn-editar {
+  background: #4ea1fc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.shipping-status-table .btn-eliminar {
+  background: #fc4e4e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.shipping-status-table .estado-activo {
+  background: #4efc9a;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.shipping-status-table .estado-inactivo {
+  background: #fc4e4e;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-weight: bold;
+  display: inline-block;
+}

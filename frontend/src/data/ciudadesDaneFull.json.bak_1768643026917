@@ -1,0 +1,4490 @@
+[
+  {
+    "codigo": "05001000",
+    "nombre": "MEDELLÍN"
+  },
+  {
+    "codigo": "05002000",
+    "nombre": "ABEJORRAL"
+  },
+  {
+    "codigo": "05004000",
+    "nombre": "ABRIAQUÍ"
+  },
+  {
+    "codigo": "05021000",
+    "nombre": "ALEJANDRÍA"
+  },
+  {
+    "codigo": "05030000",
+    "nombre": "AMAGÁ"
+  },
+  {
+    "codigo": "05031000",
+    "nombre": "AMALFI"
+  },
+  {
+    "codigo": "05034000",
+    "nombre": "ANDES"
+  },
+  {
+    "codigo": "05036000",
+    "nombre": "ANGELÓPOLIS"
+  },
+  {
+    "codigo": "05038000",
+    "nombre": "ANGOSTURA"
+  },
+  {
+    "codigo": "05040000",
+    "nombre": "ANORÍ"
+  },
+  {
+    "codigo": "05042000",
+    "nombre": "SANTA FÉ DE ANTIOQUIA"
+  },
+  {
+    "codigo": "05044000",
+    "nombre": "ANZÁ"
+  },
+  {
+    "codigo": "05045000",
+    "nombre": "APARTADÓ"
+  },
+  {
+    "codigo": "05051000",
+    "nombre": "ARBOLETES"
+  },
+  {
+    "codigo": "05055000",
+    "nombre": "ARGELIA"
+  },
+  {
+    "codigo": "05059000",
+    "nombre": "ARMENIA"
+  },
+  {
+    "codigo": "05079000",
+    "nombre": "BARBOSA"
+  },
+  {
+    "codigo": "05086000",
+    "nombre": "BELMIRA"
+  },
+  {
+    "codigo": "05088000",
+    "nombre": "BELLO"
+  },
+  {
+    "codigo": "05091000",
+    "nombre": "BETANIA"
+  },
+  {
+    "codigo": "05093000",
+    "nombre": "BETULIA"
+  },
+  {
+    "codigo": "05101000",
+    "nombre": "CIUDAD BOLÍVAR"
+  },
+  {
+    "codigo": "05107000",
+    "nombre": "BRICEÑO"
+  },
+  {
+    "codigo": "05113000",
+    "nombre": "BURITICÁ"
+  },
+  {
+    "codigo": "05120000",
+    "nombre": "CÁCERES"
+  },
+  {
+    "codigo": "05125000",
+    "nombre": "CAICEDO"
+  },
+  {
+    "codigo": "05129000",
+    "nombre": "CALDAS"
+  },
+  {
+    "codigo": "05134000",
+    "nombre": "CAMPAMENTO"
+  },
+  {
+    "codigo": "05138000",
+    "nombre": "CAÑASGORDAS"
+  },
+  {
+    "codigo": "05142000",
+    "nombre": "CARACOLÍ"
+  },
+  {
+    "codigo": "05145000",
+    "nombre": "CARAMANTA"
+  },
+  {
+    "codigo": "05147000",
+    "nombre": "CAREPA"
+  },
+  {
+    "codigo": "05148000",
+    "nombre": "EL CARMEN DE VIBORAL"
+  },
+  {
+    "codigo": "05150000",
+    "nombre": "CAROLINA"
+  },
+  {
+    "codigo": "05154000",
+    "nombre": "CAUCASIA"
+  },
+  {
+    "codigo": "05172000",
+    "nombre": "CHIGORODÓ"
+  },
+  {
+    "codigo": "05190000",
+    "nombre": "CISNEROS"
+  },
+  {
+    "codigo": "05197000",
+    "nombre": "COCORNÁ"
+  },
+  {
+    "codigo": "05206000",
+    "nombre": "CONCEPCIÓN"
+  },
+  {
+    "codigo": "05209000",
+    "nombre": "CONCORDIA"
+  },
+  {
+    "codigo": "05212000",
+    "nombre": "COPACABANA"
+  },
+  {
+    "codigo": "05234000",
+    "nombre": "DABEIBA"
+  },
+  {
+    "codigo": "05237000",
+    "nombre": "DONMATÍAS"
+  },
+  {
+    "codigo": "05240000",
+    "nombre": "EBÉJICO"
+  },
+  {
+    "codigo": "05250000",
+    "nombre": "EL BAGRE"
+  },
+  {
+    "codigo": "05264000",
+    "nombre": "ENTRERRÍOS"
+  },
+  {
+    "codigo": "05266000",
+    "nombre": "ENVIGADO"
+  },
+  {
+    "codigo": "05282000",
+    "nombre": "FREDONIA"
+  },
+  {
+    "codigo": "05284000",
+    "nombre": "FRONTINO"
+  },
+  {
+    "codigo": "05306000",
+    "nombre": "GIRALDO"
+  },
+  {
+    "codigo": "05308000",
+    "nombre": "GIRARDOTA"
+  },
+  {
+    "codigo": "05310000",
+    "nombre": "GÓMEZ PLATA"
+  },
+  {
+    "codigo": "05313000",
+    "nombre": "GRANADA"
+  },
+  {
+    "codigo": "05315000",
+    "nombre": "GUADALUPE"
+  },
+  {
+    "codigo": "05318000",
+    "nombre": "GUARNE"
+  },
+  {
+    "codigo": "05321000",
+    "nombre": "GUATAPÉ"
+  },
+  {
+    "codigo": "05347000",
+    "nombre": "HELICONIA"
+  },
+  {
+    "codigo": "05353000",
+    "nombre": "HISPANIA"
+  },
+  {
+    "codigo": "05360000",
+    "nombre": "ITAGÜÍ"
+  },
+  {
+    "codigo": "05361000",
+    "nombre": "ITUANGO"
+  },
+  {
+    "codigo": "05364000",
+    "nombre": "JARDÍN"
+  },
+  {
+    "codigo": "05368000",
+    "nombre": "JERICÓ"
+  },
+  {
+    "codigo": "05376000",
+    "nombre": "LA CEJA"
+  },
+  {
+    "codigo": "05380000",
+    "nombre": "LA ESTRELLA"
+  },
+  {
+    "codigo": "05390000",
+    "nombre": "LA PINTADA"
+  },
+  {
+    "codigo": "05400000",
+    "nombre": "LA UNIÓN"
+  },
+  {
+    "codigo": "05411000",
+    "nombre": "LIBORINA"
+  },
+  {
+    "codigo": "05425000",
+    "nombre": "MACEO"
+  },
+  {
+    "codigo": "05440000",
+    "nombre": "MARINILLA"
+  },
+  {
+    "codigo": "05467000",
+    "nombre": "MONTEBELLO"
+  },
+  {
+    "codigo": "05475000",
+    "nombre": "MURINDÓ"
+  },
+  {
+    "codigo": "05480000",
+    "nombre": "MUTATÁ"
+  },
+  {
+    "codigo": "05483000",
+    "nombre": "NARIÑO"
+  },
+  {
+    "codigo": "05490000",
+    "nombre": "NECOCLÍ"
+  },
+  {
+    "codigo": "05495000",
+    "nombre": "NECHÍ"
+  },
+  {
+    "codigo": "05501000",
+    "nombre": "OLAYA"
+  },
+  {
+    "codigo": "05541000",
+    "nombre": "PEÑOL"
+  },
+  {
+    "codigo": "05543000",
+    "nombre": "PEQUE"
+  },
+  {
+    "codigo": "05576000",
+    "nombre": "PUEBLORRICO"
+  },
+  {
+    "codigo": "05579000",
+    "nombre": "PUERTO BERRÍO"
+  },
+  {
+    "codigo": "05585000",
+    "nombre": "PUERTO NARE"
+  },
+  {
+    "codigo": "05591000",
+    "nombre": "PUERTO TRIUNFO"
+  },
+  {
+    "codigo": "05604000",
+    "nombre": "REMEDIOS"
+  },
+  {
+    "codigo": "05607000",
+    "nombre": "RETIRO"
+  },
+  {
+    "codigo": "05615000",
+    "nombre": "RIONEGRO"
+  },
+  {
+    "codigo": "05628000",
+    "nombre": "SABANALARGA"
+  },
+  {
+    "codigo": "05631000",
+    "nombre": "SABANETA"
+  },
+  {
+    "codigo": "05642000",
+    "nombre": "SALGAR"
+  },
+  {
+    "codigo": "05647000",
+    "nombre": "SAN ANDRÉS DE CUERQUÍA"
+  },
+  {
+    "codigo": "05649000",
+    "nombre": "SAN CARLOS"
+  },
+  {
+    "codigo": "05652000",
+    "nombre": "SAN FRANCISCO"
+  },
+  {
+    "codigo": "05656000",
+    "nombre": "SAN JERÓNIMO"
+  },
+  {
+    "codigo": "05658000",
+    "nombre": "SAN JOSÉ DE LA MONTAÑA"
+  },
+  {
+    "codigo": "05659000",
+    "nombre": "SAN JUAN DE URABÁ"
+  },
+  {
+    "codigo": "05660000",
+    "nombre": "SAN LUIS"
+  },
+  {
+    "codigo": "05664000",
+    "nombre": "SAN PEDRO DE LOS MILAGROS"
+  },
+  {
+    "codigo": "05665000",
+    "nombre": "SAN PEDRO DE URABÁ"
+  },
+  {
+    "codigo": "05667000",
+    "nombre": "SAN RAFAEL"
+  },
+  {
+    "codigo": "05670000",
+    "nombre": "SAN ROQUE"
+  },
+  {
+    "codigo": "05674000",
+    "nombre": "SAN VICENTE FERRER"
+  },
+  {
+    "codigo": "05679000",
+    "nombre": "SANTA BÁRBARA"
+  },
+  {
+    "codigo": "05686000",
+    "nombre": "SANTA ROSA DE OSOS"
+  },
+  {
+    "codigo": "05690000",
+    "nombre": "SANTO DOMINGO"
+  },
+  {
+    "codigo": "05697000",
+    "nombre": "EL SANTUARIO"
+  },
+  {
+    "codigo": "05736000",
+    "nombre": "SEGOVIA"
+  },
+  {
+    "codigo": "05756000",
+    "nombre": "SONSÓN"
+  },
+  {
+    "codigo": "05761000",
+    "nombre": "SOPETRÁN"
+  },
+  {
+    "codigo": "05789000",
+    "nombre": "TÁMESIS"
+  },
+  {
+    "codigo": "05790000",
+    "nombre": "TARAZÁ"
+  },
+  {
+    "codigo": "05792000",
+    "nombre": "TARSO"
+  },
+  {
+    "codigo": "05809000",
+    "nombre": "TITIRIBÍ"
+  },
+  {
+    "codigo": "05819000",
+    "nombre": "TOLEDO"
+  },
+  {
+    "codigo": "05837000",
+    "nombre": "TURBO"
+  },
+  {
+    "codigo": "05842000",
+    "nombre": "URAMITA"
+  },
+  {
+    "codigo": "05847000",
+    "nombre": "URRAO"
+  },
+  {
+    "codigo": "05854000",
+    "nombre": "VALDIVIA"
+  },
+  {
+    "codigo": "05856000",
+    "nombre": "VALPARAÍSO"
+  },
+  {
+    "codigo": "05858000",
+    "nombre": "VEGACHÍ"
+  },
+  {
+    "codigo": "05861000",
+    "nombre": "VENECIA"
+  },
+  {
+    "codigo": "05873000",
+    "nombre": "VIGÍA DEL FUERTE"
+  },
+  {
+    "codigo": "05885000",
+    "nombre": "YALÍ"
+  },
+  {
+    "codigo": "05887000",
+    "nombre": "YARUMAL"
+  },
+  {
+    "codigo": "05890000",
+    "nombre": "YOLOMBÓ"
+  },
+  {
+    "codigo": "05893000",
+    "nombre": "YONDÓ"
+  },
+  {
+    "codigo": "05895000",
+    "nombre": "ZARAGOZA"
+  },
+  {
+    "codigo": "08001000",
+    "nombre": "BARRANQUILLA"
+  },
+  {
+    "codigo": "08078000",
+    "nombre": "BARANOA"
+  },
+  {
+    "codigo": "08137000",
+    "nombre": "CAMPO DE LA CRUZ"
+  },
+  {
+    "codigo": "08141000",
+    "nombre": "CANDELARIA"
+  },
+  {
+    "codigo": "08296000",
+    "nombre": "GALAPA"
+  },
+  {
+    "codigo": "08372000",
+    "nombre": "JUAN DE ACOSTA"
+  },
+  {
+    "codigo": "08421000",
+    "nombre": "LURUACO"
+  },
+  {
+    "codigo": "08433000",
+    "nombre": "MALAMBO"
+  },
+  {
+    "codigo": "08436000",
+    "nombre": "MANATÍ"
+  },
+  {
+    "codigo": "08520000",
+    "nombre": "PALMAR DE VARELA"
+  },
+  {
+    "codigo": "08549000",
+    "nombre": "PIOJÓ"
+  },
+  {
+    "codigo": "08558000",
+    "nombre": "POLONUEVO"
+  },
+  {
+    "codigo": "08560000",
+    "nombre": "PONEDERA"
+  },
+  {
+    "codigo": "08573000",
+    "nombre": "PUERTO COLOMBIA"
+  },
+  {
+    "codigo": "08606000",
+    "nombre": "REPELÓN"
+  },
+  {
+    "codigo": "08634000",
+    "nombre": "SABANAGRANDE"
+  },
+  {
+    "codigo": "08638000",
+    "nombre": "SABANALARGA"
+  },
+  {
+    "codigo": "08675000",
+    "nombre": "SANTA LUCÍA"
+  },
+  {
+    "codigo": "08685000",
+    "nombre": "SANTO TOMÁS"
+  },
+  {
+    "codigo": "08758000",
+    "nombre": "SOLEDAD"
+  },
+  {
+    "codigo": "08770000",
+    "nombre": "SUAN"
+  },
+  {
+    "codigo": "08832000",
+    "nombre": "TUBARÁ"
+  },
+  {
+    "codigo": "08849000",
+    "nombre": "USIACURÍ"
+  },
+  {
+    "codigo": "11001000",
+    "nombre": "BOGOTÁ, D.C."
+  },
+  {
+    "codigo": "13001000",
+    "nombre": "CARTAGENA DE INDIAS"
+  },
+  {
+    "codigo": "13006000",
+    "nombre": "ACHÍ"
+  },
+  {
+    "codigo": "13030000",
+    "nombre": "ALTOS DEL ROSARIO"
+  },
+  {
+    "codigo": "13042000",
+    "nombre": "ARENAL"
+  },
+  {
+    "codigo": "13052000",
+    "nombre": "ARJONA"
+  },
+  {
+    "codigo": "13062000",
+    "nombre": "ARROYOHONDO"
+  },
+  {
+    "codigo": "13074000",
+    "nombre": "BARRANCO DE LOBA"
+  },
+  {
+    "codigo": "13140000",
+    "nombre": "CALAMAR"
+  },
+  {
+    "codigo": "13160000",
+    "nombre": "CANTAGALLO"
+  },
+  {
+    "codigo": "13188000",
+    "nombre": "CICUCO"
+  },
+  {
+    "codigo": "13212000",
+    "nombre": "CÓRDOBA"
+  },
+  {
+    "codigo": "13222000",
+    "nombre": "CLEMENCIA"
+  },
+  {
+    "codigo": "13244000",
+    "nombre": "EL CARMEN DE BOLÍVAR"
+  },
+  {
+    "codigo": "13248000",
+    "nombre": "EL GUAMO"
+  },
+  {
+    "codigo": "13268000",
+    "nombre": "EL PEÑÓN"
+  },
+  {
+    "codigo": "13300000",
+    "nombre": "HATILLO DE LOBA"
+  },
+  {
+    "codigo": "13430000",
+    "nombre": "MAGANGUÉ"
+  },
+  {
+    "codigo": "13433000",
+    "nombre": "MAHATES"
+  },
+  {
+    "codigo": "13440000",
+    "nombre": "MARGARITA"
+  },
+  {
+    "codigo": "13442000",
+    "nombre": "MARÍA LA BAJA"
+  },
+  {
+    "codigo": "13458000",
+    "nombre": "MONTECRISTO"
+  },
+  {
+    "codigo": "13468000",
+    "nombre": "SANTA CRUZ DE MOMPOX"
+  },
+  {
+    "codigo": "13473000",
+    "nombre": "MORALES"
+  },
+  {
+    "codigo": "13490000",
+    "nombre": "NOROSÍ"
+  },
+  {
+    "codigo": "13549000",
+    "nombre": "PINILLOS"
+  },
+  {
+    "codigo": "13580000",
+    "nombre": "REGIDOR"
+  },
+  {
+    "codigo": "13600000",
+    "nombre": "RÍO VIEJO"
+  },
+  {
+    "codigo": "13620000",
+    "nombre": "SAN CRISTÓBAL"
+  },
+  {
+    "codigo": "13647000",
+    "nombre": "SAN ESTANISLAO"
+  },
+  {
+    "codigo": "13650000",
+    "nombre": "SAN FERNANDO"
+  },
+  {
+    "codigo": "13654000",
+    "nombre": "SAN JACINTO"
+  },
+  {
+    "codigo": "13655000",
+    "nombre": "SAN JACINTO DEL CAUCA"
+  },
+  {
+    "codigo": "13657000",
+    "nombre": "SAN JUAN NEPOMUCENO"
+  },
+  {
+    "codigo": "13667000",
+    "nombre": "SAN MARTÍN DE LOBA"
+  },
+  {
+    "codigo": "13670000",
+    "nombre": "SAN PABLO"
+  },
+  {
+    "codigo": "13673000",
+    "nombre": "SANTA CATALINA"
+  },
+  {
+    "codigo": "13683000",
+    "nombre": "SANTA ROSA"
+  },
+  {
+    "codigo": "13688000",
+    "nombre": "SANTA ROSA DEL SUR"
+  },
+  {
+    "codigo": "13744000",
+    "nombre": "SIMITÍ"
+  },
+  {
+    "codigo": "13760000",
+    "nombre": "SOPLAVIENTO"
+  },
+  {
+    "codigo": "13780000",
+    "nombre": "TALAIGUA NUEVO"
+  },
+  {
+    "codigo": "13810000",
+    "nombre": "TIQUISIO"
+  },
+  {
+    "codigo": "13836000",
+    "nombre": "TURBACO"
+  },
+  {
+    "codigo": "13838000",
+    "nombre": "TURBANA"
+  },
+  {
+    "codigo": "13873000",
+    "nombre": "VILLANUEVA"
+  },
+  {
+    "codigo": "13894000",
+    "nombre": "ZAMBRANO"
+  },
+  {
+    "codigo": "15001000",
+    "nombre": "TUNJA"
+  },
+  {
+    "codigo": "15022000",
+    "nombre": "ALMEIDA"
+  },
+  {
+    "codigo": "15047000",
+    "nombre": "AQUITANIA"
+  },
+  {
+    "codigo": "15051000",
+    "nombre": "ARCABUCO"
+  },
+  {
+    "codigo": "15087000",
+    "nombre": "BELÉN"
+  },
+  {
+    "codigo": "15090000",
+    "nombre": "BERBEO"
+  },
+  {
+    "codigo": "15092000",
+    "nombre": "BETÉITIVA"
+  },
+  {
+    "codigo": "15097000",
+    "nombre": "BOAVITA"
+  },
+  {
+    "codigo": "15104000",
+    "nombre": "BOYACÁ"
+  },
+  {
+    "codigo": "15106000",
+    "nombre": "BRICEÑO"
+  },
+  {
+    "codigo": "15109000",
+    "nombre": "BUENAVISTA"
+  },
+  {
+    "codigo": "15114000",
+    "nombre": "BUSBANZÁ"
+  },
+  {
+    "codigo": "15131000",
+    "nombre": "CALDAS"
+  },
+  {
+    "codigo": "15135000",
+    "nombre": "CAMPOHERMOSO"
+  },
+  {
+    "codigo": "15162000",
+    "nombre": "CERINZA"
+  },
+  {
+    "codigo": "15172000",
+    "nombre": "CHINAVITA"
+  },
+  {
+    "codigo": "15176000",
+    "nombre": "CHIQUINQUIRÁ"
+  },
+  {
+    "codigo": "15180000",
+    "nombre": "CHISCAS"
+  },
+  {
+    "codigo": "15183000",
+    "nombre": "CHITA"
+  },
+  {
+    "codigo": "15185000",
+    "nombre": "CHITARAQUE"
+  },
+  {
+    "codigo": "15187000",
+    "nombre": "CHIVATÁ"
+  },
+  {
+    "codigo": "15189000",
+    "nombre": "CIÉNEGA"
+  },
+  {
+    "codigo": "15204000",
+    "nombre": "CÓMBITA"
+  },
+  {
+    "codigo": "15212000",
+    "nombre": "COPER"
+  },
+  {
+    "codigo": "15215000",
+    "nombre": "CORRALES"
+  },
+  {
+    "codigo": "15218000",
+    "nombre": "COVARACHÍA"
+  },
+  {
+    "codigo": "15223000",
+    "nombre": "CUBARÁ"
+  },
+  {
+    "codigo": "15224000",
+    "nombre": "CUCAITA"
+  },
+  {
+    "codigo": "15226000",
+    "nombre": "CUÍTIVA"
+  },
+  {
+    "codigo": "15232000",
+    "nombre": "CHÍQUIZA"
+  },
+  {
+    "codigo": "15236000",
+    "nombre": "CHIVOR"
+  },
+  {
+    "codigo": "15238000",
+    "nombre": "DUITAMA"
+  },
+  {
+    "codigo": "15244000",
+    "nombre": "EL COCUY"
+  },
+  {
+    "codigo": "15248000",
+    "nombre": "EL ESPINO"
+  },
+  {
+    "codigo": "15272000",
+    "nombre": "FIRAVITOBA"
+  },
+  {
+    "codigo": "15276000",
+    "nombre": "FLORESTA"
+  },
+  {
+    "codigo": "15293000",
+    "nombre": "GACHANTIVÁ"
+  },
+  {
+    "codigo": "15296000",
+    "nombre": "GÁMEZA"
+  },
+  {
+    "codigo": "15299000",
+    "nombre": "GARAGOA"
+  },
+  {
+    "codigo": "15317000",
+    "nombre": "GUACAMAYAS"
+  },
+  {
+    "codigo": "15322000",
+    "nombre": "GUATEQUE"
+  },
+  {
+    "codigo": "15325000",
+    "nombre": "GUAYATÁ"
+  },
+  {
+    "codigo": "15332000",
+    "nombre": "GÜICÁN DE LA SIERRA"
+  },
+  {
+    "codigo": "15362000",
+    "nombre": "IZA"
+  },
+  {
+    "codigo": "15367000",
+    "nombre": "JENESANO"
+  },
+  {
+    "codigo": "15368000",
+    "nombre": "JERICÓ"
+  },
+  {
+    "codigo": "15377000",
+    "nombre": "LABRANZAGRANDE"
+  },
+  {
+    "codigo": "15380000",
+    "nombre": "LA CAPILLA"
+  },
+  {
+    "codigo": "15401000",
+    "nombre": "LA VICTORIA"
+  },
+  {
+    "codigo": "15403000",
+    "nombre": "LA UVITA"
+  },
+  {
+    "codigo": "15407000",
+    "nombre": "VILLA DE LEYVA"
+  },
+  {
+    "codigo": "15425000",
+    "nombre": "MACANAL"
+  },
+  {
+    "codigo": "15442000",
+    "nombre": "MARIPÍ"
+  },
+  {
+    "codigo": "15455000",
+    "nombre": "MIRAFLORES"
+  },
+  {
+    "codigo": "15464000",
+    "nombre": "MONGUA"
+  },
+  {
+    "codigo": "15466000",
+    "nombre": "MONGUÍ"
+  },
+  {
+    "codigo": "15469000",
+    "nombre": "MONIQUIRÁ"
+  },
+  {
+    "codigo": "15476000",
+    "nombre": "MOTAVITA"
+  },
+  {
+    "codigo": "15480000",
+    "nombre": "MUZO"
+  },
+  {
+    "codigo": "15491000",
+    "nombre": "NOBSA"
+  },
+  {
+    "codigo": "15494000",
+    "nombre": "NUEVO COLÓN"
+  },
+  {
+    "codigo": "15500000",
+    "nombre": "OICATÁ"
+  },
+  {
+    "codigo": "15507000",
+    "nombre": "OTANCHE"
+  },
+  {
+    "codigo": "15511000",
+    "nombre": "PACHAVITA"
+  },
+  {
+    "codigo": "15514000",
+    "nombre": "PÁEZ"
+  },
+  {
+    "codigo": "15516000",
+    "nombre": "PAIPA"
+  },
+  {
+    "codigo": "15518000",
+    "nombre": "PAJARITO"
+  },
+  {
+    "codigo": "15522000",
+    "nombre": "PANQUEBA"
+  },
+  {
+    "codigo": "15531000",
+    "nombre": "PAUNA"
+  },
+  {
+    "codigo": "15533000",
+    "nombre": "PAYA"
+  },
+  {
+    "codigo": "15537000",
+    "nombre": "PAZ DE RÍO"
+  },
+  {
+    "codigo": "15542000",
+    "nombre": "PESCA"
+  },
+  {
+    "codigo": "15550000",
+    "nombre": "PISBA"
+  },
+  {
+    "codigo": "15572000",
+    "nombre": "PUERTO BOYACÁ"
+  },
+  {
+    "codigo": "15580000",
+    "nombre": "QUÍPAMA"
+  },
+  {
+    "codigo": "15599000",
+    "nombre": "RAMIRIQUÍ"
+  },
+  {
+    "codigo": "15600000",
+    "nombre": "RÁQUIRA"
+  },
+  {
+    "codigo": "15621000",
+    "nombre": "RONDÓN"
+  },
+  {
+    "codigo": "15632000",
+    "nombre": "SABOYÁ"
+  },
+  {
+    "codigo": "15638000",
+    "nombre": "SÁCHICA"
+  },
+  {
+    "codigo": "15646000",
+    "nombre": "SAMACÁ"
+  },
+  {
+    "codigo": "15660000",
+    "nombre": "SAN EDUARDO"
+  },
+  {
+    "codigo": "15664000",
+    "nombre": "SAN JOSÉ DE PARE"
+  },
+  {
+    "codigo": "15667000",
+    "nombre": "SAN LUIS DE GACENO"
+  },
+  {
+    "codigo": "15673000",
+    "nombre": "SAN MATEO"
+  },
+  {
+    "codigo": "15676000",
+    "nombre": "SAN MIGUEL DE SEMA"
+  },
+  {
+    "codigo": "15681000",
+    "nombre": "SAN PABLO DE BORBUR"
+  },
+  {
+    "codigo": "15686000",
+    "nombre": "SANTANA"
+  },
+  {
+    "codigo": "15690000",
+    "nombre": "SANTA MARÍA"
+  },
+  {
+    "codigo": "15693000",
+    "nombre": "SANTA ROSA DE VITERBO"
+  },
+  {
+    "codigo": "15696000",
+    "nombre": "SANTA SOFÍA"
+  },
+  {
+    "codigo": "15720000",
+    "nombre": "SATIVANORTE"
+  },
+  {
+    "codigo": "15723000",
+    "nombre": "SATIVASUR"
+  },
+  {
+    "codigo": "15740000",
+    "nombre": "SIACHOQUE"
+  },
+  {
+    "codigo": "15753000",
+    "nombre": "SOATÁ"
+  },
+  {
+    "codigo": "15755000",
+    "nombre": "SOCOTÁ"
+  },
+  {
+    "codigo": "15757000",
+    "nombre": "SOCHA"
+  },
+  {
+    "codigo": "15759000",
+    "nombre": "SOGAMOSO"
+  },
+  {
+    "codigo": "15761000",
+    "nombre": "SOMONDOCO"
+  },
+  {
+    "codigo": "15762000",
+    "nombre": "SORA"
+  },
+  {
+    "codigo": "15763000",
+    "nombre": "SOTAQUIRÁ"
+  },
+  {
+    "codigo": "15764000",
+    "nombre": "SORACÁ"
+  },
+  {
+    "codigo": "15774000",
+    "nombre": "SUSACÓN"
+  },
+  {
+    "codigo": "15776000",
+    "nombre": "SUTAMARCHÁN"
+  },
+  {
+    "codigo": "15778000",
+    "nombre": "SUTATENZA"
+  },
+  {
+    "codigo": "15790000",
+    "nombre": "TASCO"
+  },
+  {
+    "codigo": "15798000",
+    "nombre": "TENZA"
+  },
+  {
+    "codigo": "15804000",
+    "nombre": "TIBANÁ"
+  },
+  {
+    "codigo": "15806000",
+    "nombre": "TIBASOSA"
+  },
+  {
+    "codigo": "15808000",
+    "nombre": "TINJACÁ"
+  },
+  {
+    "codigo": "15810000",
+    "nombre": "TIPACOQUE"
+  },
+  {
+    "codigo": "15814000",
+    "nombre": "TOCA"
+  },
+  {
+    "codigo": "15816000",
+    "nombre": "TOGÜÍ"
+  },
+  {
+    "codigo": "15820000",
+    "nombre": "TÓPAGA"
+  },
+  {
+    "codigo": "15822000",
+    "nombre": "TOTA"
+  },
+  {
+    "codigo": "15832000",
+    "nombre": "TUNUNGUÁ"
+  },
+  {
+    "codigo": "15835000",
+    "nombre": "TURMEQUÉ"
+  },
+  {
+    "codigo": "15837000",
+    "nombre": "TUTA"
+  },
+  {
+    "codigo": "15839000",
+    "nombre": "TUTAZÁ"
+  },
+  {
+    "codigo": "15842000",
+    "nombre": "ÚMBITA"
+  },
+  {
+    "codigo": "15861000",
+    "nombre": "VENTAQUEMADA"
+  },
+  {
+    "codigo": "15879000",
+    "nombre": "VIRACACHÁ"
+  },
+  {
+    "codigo": "15897000",
+    "nombre": "ZETAQUIRA"
+  },
+  {
+    "codigo": "17001000",
+    "nombre": "MANIZALES"
+  },
+  {
+    "codigo": "17013000",
+    "nombre": "AGUADAS"
+  },
+  {
+    "codigo": "17042000",
+    "nombre": "ANSERMA"
+  },
+  {
+    "codigo": "17050000",
+    "nombre": "ARANZAZU"
+  },
+  {
+    "codigo": "17088000",
+    "nombre": "BELALCÁZAR"
+  },
+  {
+    "codigo": "17174000",
+    "nombre": "CHINCHINÁ"
+  },
+  {
+    "codigo": "17272000",
+    "nombre": "FILADELFIA"
+  },
+  {
+    "codigo": "17380000",
+    "nombre": "LA DORADA"
+  },
+  {
+    "codigo": "17388000",
+    "nombre": "LA MERCED"
+  },
+  {
+    "codigo": "17433000",
+    "nombre": "MANZANARES"
+  },
+  {
+    "codigo": "17442000",
+    "nombre": "MARMATO"
+  },
+  {
+    "codigo": "17444000",
+    "nombre": "MARQUETALIA"
+  },
+  {
+    "codigo": "17446000",
+    "nombre": "MARULANDA"
+  },
+  {
+    "codigo": "17486000",
+    "nombre": "NEIRA"
+  },
+  {
+    "codigo": "17495000",
+    "nombre": "NORCASIA"
+  },
+  {
+    "codigo": "17513000",
+    "nombre": "PÁCORA"
+  },
+  {
+    "codigo": "17524000",
+    "nombre": "PALESTINA"
+  },
+  {
+    "codigo": "17541000",
+    "nombre": "PENSILVANIA"
+  },
+  {
+    "codigo": "17614000",
+    "nombre": "RIOSUCIO"
+  },
+  {
+    "codigo": "17616000",
+    "nombre": "RISARALDA"
+  },
+  {
+    "codigo": "17653000",
+    "nombre": "SALAMINA"
+  },
+  {
+    "codigo": "17662000",
+    "nombre": "SAMANÁ"
+  },
+  {
+    "codigo": "17665000",
+    "nombre": "SAN JOSÉ"
+  },
+  {
+    "codigo": "17777000",
+    "nombre": "SUPÍA"
+  },
+  {
+    "codigo": "17867000",
+    "nombre": "VICTORIA"
+  },
+  {
+    "codigo": "17873000",
+    "nombre": "VILLAMARÍA"
+  },
+  {
+    "codigo": "17877000",
+    "nombre": "VITERBO"
+  },
+  {
+    "codigo": "18001000",
+    "nombre": "FLORENCIA"
+  },
+  {
+    "codigo": "18029000",
+    "nombre": "ALBANIA"
+  },
+  {
+    "codigo": "18094000",
+    "nombre": "BELÉN DE LOS ANDAQUÍES"
+  },
+  {
+    "codigo": "18150000",
+    "nombre": "CARTAGENA DEL CHAIRÁ"
+  },
+  {
+    "codigo": "18205000",
+    "nombre": "CURILLO"
+  },
+  {
+    "codigo": "18247000",
+    "nombre": "EL DONCELLO"
+  },
+  {
+    "codigo": "18256000",
+    "nombre": "EL PAUJÍL"
+  },
+  {
+    "codigo": "18410000",
+    "nombre": "LA MONTAÑITA"
+  },
+  {
+    "codigo": "18460000",
+    "nombre": "MILÁN"
+  },
+  {
+    "codigo": "18479000",
+    "nombre": "MORELIA"
+  },
+  {
+    "codigo": "18592000",
+    "nombre": "PUERTO RICO"
+  },
+  {
+    "codigo": "18610000",
+    "nombre": "SAN JOSÉ DEL FRAGUA"
+  },
+  {
+    "codigo": "18753000",
+    "nombre": "SAN VICENTE DEL CAGUÁN"
+  },
+  {
+    "codigo": "18756000",
+    "nombre": "SOLANO"
+  },
+  {
+    "codigo": "18785000",
+    "nombre": "SOLITA"
+  },
+  {
+    "codigo": "18860000",
+    "nombre": "VALPARAÍSO"
+  },
+  {
+    "codigo": "19001000",
+    "nombre": "POPAYÁN"
+  },
+  {
+    "codigo": "19022000",
+    "nombre": "ALMAGUER"
+  },
+  {
+    "codigo": "19050000",
+    "nombre": "ARGELIA"
+  },
+  {
+    "codigo": "19075000",
+    "nombre": "BALBOA"
+  },
+  {
+    "codigo": "19100000",
+    "nombre": "BOLÍVAR"
+  },
+  {
+    "codigo": "19110000",
+    "nombre": "BUENOS AIRES"
+  },
+  {
+    "codigo": "19130000",
+    "nombre": "CAJIBÍO"
+  },
+  {
+    "codigo": "19137000",
+    "nombre": "CALDONO"
+  },
+  {
+    "codigo": "19142000",
+    "nombre": "CALOTO"
+  },
+  {
+    "codigo": "19212000",
+    "nombre": "CORINTO"
+  },
+  {
+    "codigo": "19256000",
+    "nombre": "EL TAMBO"
+  },
+  {
+    "codigo": "19290000",
+    "nombre": "FLORENCIA"
+  },
+  {
+    "codigo": "19300000",
+    "nombre": "GUACHENÉ"
+  },
+  {
+    "codigo": "19318000",
+    "nombre": "GUAPI"
+  },
+  {
+    "codigo": "19355000",
+    "nombre": "INZÁ"
+  },
+  {
+    "codigo": "19364000",
+    "nombre": "JAMBALÓ"
+  },
+  {
+    "codigo": "19392000",
+    "nombre": "LA SIERRA"
+  },
+  {
+    "codigo": "19397000",
+    "nombre": "LA VEGA"
+  },
+  {
+    "codigo": "19418000",
+    "nombre": "LÓPEZ DE MICAY"
+  },
+  {
+    "codigo": "19450000",
+    "nombre": "MERCADERES"
+  },
+  {
+    "codigo": "19455000",
+    "nombre": "MIRANDA"
+  },
+  {
+    "codigo": "19473000",
+    "nombre": "MORALES"
+  },
+  {
+    "codigo": "19513000",
+    "nombre": "PADILLA"
+  },
+  {
+    "codigo": "19517000",
+    "nombre": "PÁEZ"
+  },
+  {
+    "codigo": "19532000",
+    "nombre": "PATÍA"
+  },
+  {
+    "codigo": "19533000",
+    "nombre": "PIAMONTE"
+  },
+  {
+    "codigo": "19548000",
+    "nombre": "PIENDAMÓ - TUNÍA"
+  },
+  {
+    "codigo": "19573000",
+    "nombre": "PUERTO TEJADA"
+  },
+  {
+    "codigo": "19585000",
+    "nombre": "PURACÉ"
+  },
+  {
+    "codigo": "19622000",
+    "nombre": "ROSAS"
+  },
+  {
+    "codigo": "19693000",
+    "nombre": "SAN SEBASTIÁN"
+  },
+  {
+    "codigo": "19698000",
+    "nombre": "SANTANDER DE QUILICHAO"
+  },
+  {
+    "codigo": "19701000",
+    "nombre": "SANTA ROSA"
+  },
+  {
+    "codigo": "19743000",
+    "nombre": "SILVIA"
+  },
+  {
+    "codigo": "19760000",
+    "nombre": "SOTARÁ PAISPAMBA"
+  },
+  {
+    "codigo": "19780000",
+    "nombre": "SUÁREZ"
+  },
+  {
+    "codigo": "19785000",
+    "nombre": "SUCRE"
+  },
+  {
+    "codigo": "19807000",
+    "nombre": "TIMBÍO"
+  },
+  {
+    "codigo": "19809000",
+    "nombre": "TIMBIQUÍ"
+  },
+  {
+    "codigo": "19821000",
+    "nombre": "TORIBÍO"
+  },
+  {
+    "codigo": "19824000",
+    "nombre": "TOTORÓ"
+  },
+  {
+    "codigo": "19845000",
+    "nombre": "VILLA RICA"
+  },
+  {
+    "codigo": "20001000",
+    "nombre": "VALLEDUPAR"
+  },
+  {
+    "codigo": "20011000",
+    "nombre": "AGUACHICA"
+  },
+  {
+    "codigo": "20013000",
+    "nombre": "AGUSTÍN CODAZZI"
+  },
+  {
+    "codigo": "20032000",
+    "nombre": "ASTREA"
+  },
+  {
+    "codigo": "20045000",
+    "nombre": "BECERRIL"
+  },
+  {
+    "codigo": "20060000",
+    "nombre": "BOSCONIA"
+  },
+  {
+    "codigo": "20175000",
+    "nombre": "CHIMICHAGUA"
+  },
+  {
+    "codigo": "20178000",
+    "nombre": "CHIRIGUANÁ"
+  },
+  {
+    "codigo": "20228000",
+    "nombre": "CURUMANÍ"
+  },
+  {
+    "codigo": "20238000",
+    "nombre": "EL COPEY"
+  },
+  {
+    "codigo": "20250000",
+    "nombre": "EL PASO"
+  },
+  {
+    "codigo": "20295000",
+    "nombre": "GAMARRA"
+  },
+  {
+    "codigo": "20310000",
+    "nombre": "GONZÁLEZ"
+  },
+  {
+    "codigo": "20383000",
+    "nombre": "LA GLORIA"
+  },
+  {
+    "codigo": "20400000",
+    "nombre": "LA JAGUA DE IBIRICO"
+  },
+  {
+    "codigo": "20443000",
+    "nombre": "MANAURE BALCÓN DEL CESAR"
+  },
+  {
+    "codigo": "20517000",
+    "nombre": "PAILITAS"
+  },
+  {
+    "codigo": "20550000",
+    "nombre": "PELAYA"
+  },
+  {
+    "codigo": "20570000",
+    "nombre": "PUEBLO BELLO"
+  },
+  {
+    "codigo": "20614000",
+    "nombre": "RÍO DE ORO"
+  },
+  {
+    "codigo": "20621000",
+    "nombre": "LA PAZ"
+  },
+  {
+    "codigo": "20710000",
+    "nombre": "SAN ALBERTO"
+  },
+  {
+    "codigo": "20750000",
+    "nombre": "SAN DIEGO"
+  },
+  {
+    "codigo": "20770000",
+    "nombre": "SAN MARTÍN"
+  },
+  {
+    "codigo": "20787000",
+    "nombre": "TAMALAMEQUE"
+  },
+  {
+    "codigo": "23001000",
+    "nombre": "MONTERÍA"
+  },
+  {
+    "codigo": "23068000",
+    "nombre": "AYAPEL"
+  },
+  {
+    "codigo": "23079000",
+    "nombre": "BUENAVISTA"
+  },
+  {
+    "codigo": "23090000",
+    "nombre": "CANALETE"
+  },
+  {
+    "codigo": "23162000",
+    "nombre": "CERETÉ"
+  },
+  {
+    "codigo": "23168000",
+    "nombre": "CHIMÁ"
+  },
+  {
+    "codigo": "23182000",
+    "nombre": "CHINÚ"
+  },
+  {
+    "codigo": "23189000",
+    "nombre": "CIÉNAGA DE ORO"
+  },
+  {
+    "codigo": "23300000",
+    "nombre": "COTORRA"
+  },
+  {
+    "codigo": "23350000",
+    "nombre": "LA APARTADA"
+  },
+  {
+    "codigo": "23417000",
+    "nombre": "LORICA"
+  },
+  {
+    "codigo": "23419000",
+    "nombre": "LOS CÓRDOBAS"
+  },
+  {
+    "codigo": "23464000",
+    "nombre": "MOMIL"
+  },
+  {
+    "codigo": "23466000",
+    "nombre": "MONTELÍBANO"
+  },
+  {
+    "codigo": "23500000",
+    "nombre": "MOÑITOS"
+  },
+  {
+    "codigo": "23555000",
+    "nombre": "PLANETA RICA"
+  },
+  {
+    "codigo": "23570000",
+    "nombre": "PUEBLO NUEVO"
+  },
+  {
+    "codigo": "23574000",
+    "nombre": "PUERTO ESCONDIDO"
+  },
+  {
+    "codigo": "23580000",
+    "nombre": "PUERTO LIBERTADOR"
+  },
+  {
+    "codigo": "23586000",
+    "nombre": "PURÍSIMA DE LA CONCEPCIÓN"
+  },
+  {
+    "codigo": "23660000",
+    "nombre": "SAHAGÚN"
+  },
+  {
+    "codigo": "23670000",
+    "nombre": "SAN ANDRÉS DE SOTAVENTO"
+  },
+  {
+    "codigo": "23672000",
+    "nombre": "SAN ANTERO"
+  },
+  {
+    "codigo": "23675000",
+    "nombre": "SAN BERNARDO DEL VIENTO"
+  },
+  {
+    "codigo": "23678000",
+    "nombre": "SAN CARLOS"
+  },
+  {
+    "codigo": "23682000",
+    "nombre": "SAN JOSÉ DE URÉ"
+  },
+  {
+    "codigo": "23686000",
+    "nombre": "SAN PELAYO"
+  },
+  {
+    "codigo": "23807000",
+    "nombre": "TIERRALTA"
+  },
+  {
+    "codigo": "23815000",
+    "nombre": "TUCHÍN"
+  },
+  {
+    "codigo": "23855000",
+    "nombre": "VALENCIA"
+  },
+  {
+    "codigo": "25001000",
+    "nombre": "AGUA DE DIOS"
+  },
+  {
+    "codigo": "25019000",
+    "nombre": "ALBÁN"
+  },
+  {
+    "codigo": "25035000",
+    "nombre": "ANAPOIMA"
+  },
+  {
+    "codigo": "25040000",
+    "nombre": "ANOLAIMA"
+  },
+  {
+    "codigo": "25053000",
+    "nombre": "ARBELÁEZ"
+  },
+  {
+    "codigo": "25086000",
+    "nombre": "BELTRÁN"
+  },
+  {
+    "codigo": "25095000",
+    "nombre": "BITUIMA"
+  },
+  {
+    "codigo": "25099000",
+    "nombre": "BOJACÁ"
+  },
+  {
+    "codigo": "25120000",
+    "nombre": "CABRERA"
+  },
+  {
+    "codigo": "25123000",
+    "nombre": "CACHIPAY"
+  },
+  {
+    "codigo": "25126000",
+    "nombre": "CAJICÁ"
+  },
+  {
+    "codigo": "25148000",
+    "nombre": "CAPARRAPÍ"
+  },
+  {
+    "codigo": "25151000",
+    "nombre": "CÁQUEZA"
+  },
+  {
+    "codigo": "25154000",
+    "nombre": "CARMEN DE CARUPA"
+  },
+  {
+    "codigo": "25168000",
+    "nombre": "CHAGUANÍ"
+  },
+  {
+    "codigo": "25175000",
+    "nombre": "CHÍA"
+  },
+  {
+    "codigo": "25178000",
+    "nombre": "CHIPAQUE"
+  },
+  {
+    "codigo": "25181000",
+    "nombre": "CHOACHÍ"
+  },
+  {
+    "codigo": "25183000",
+    "nombre": "CHOCONTÁ"
+  },
+  {
+    "codigo": "25200000",
+    "nombre": "COGUA"
+  },
+  {
+    "codigo": "25214000",
+    "nombre": "COTA"
+  },
+  {
+    "codigo": "25224000",
+    "nombre": "CUCUNUBÁ"
+  },
+  {
+    "codigo": "25245000",
+    "nombre": "EL COLEGIO"
+  },
+  {
+    "codigo": "25258000",
+    "nombre": "EL PEÑÓN"
+  },
+  {
+    "codigo": "25260000",
+    "nombre": "EL ROSAL"
+  },
+  {
+    "codigo": "25269000",
+    "nombre": "FACATATIVÁ"
+  },
+  {
+    "codigo": "25279000",
+    "nombre": "FÓMEQUE"
+  },
+  {
+    "codigo": "25281000",
+    "nombre": "FOSCA"
+  },
+  {
+    "codigo": "25286000",
+    "nombre": "FUNZA"
+  },
+  {
+    "codigo": "25288000",
+    "nombre": "FÚQUENE"
+  },
+  {
+    "codigo": "25290000",
+    "nombre": "FUSAGASUGÁ"
+  },
+  {
+    "codigo": "25293000",
+    "nombre": "GACHALÁ"
+  },
+  {
+    "codigo": "25295000",
+    "nombre": "GACHANCIPÁ"
+  },
+  {
+    "codigo": "25297000",
+    "nombre": "GACHETÁ"
+  },
+  {
+    "codigo": "25299000",
+    "nombre": "GAMA"
+  },
+  {
+    "codigo": "25307000",
+    "nombre": "GIRARDOT"
+  },
+  {
+    "codigo": "25312000",
+    "nombre": "GRANADA"
+  },
+  {
+    "codigo": "25317000",
+    "nombre": "GUACHETÁ"
+  },
+  {
+    "codigo": "25320000",
+    "nombre": "GUADUAS"
+  },
+  {
+    "codigo": "25322000",
+    "nombre": "GUASCA"
+  },
+  {
+    "codigo": "25324000",
+    "nombre": "GUATAQUÍ"
+  },
+  {
+    "codigo": "25326000",
+    "nombre": "GUATAVITA"
+  },
+  {
+    "codigo": "25328000",
+    "nombre": "GUAYABAL DE SÍQUIMA"
+  },
+  {
+    "codigo": "25335000",
+    "nombre": "GUAYABETAL"
+  },
+  {
+    "codigo": "25339000",
+    "nombre": "GUTIÉRREZ"
+  },
+  {
+    "codigo": "25368000",
+    "nombre": "JERUSALÉN"
+  },
+  {
+    "codigo": "25372000",
+    "nombre": "JUNÍN"
+  },
+  {
+    "codigo": "25377000",
+    "nombre": "LA CALERA"
+  },
+  {
+    "codigo": "25386000",
+    "nombre": "LA MESA"
+  },
+  {
+    "codigo": "25394000",
+    "nombre": "LA PALMA"
+  },
+  {
+    "codigo": "25398000",
+    "nombre": "LA PEÑA"
+  },
+  {
+    "codigo": "25402000",
+    "nombre": "LA VEGA"
+  },
+  {
+    "codigo": "25407000",
+    "nombre": "LENGUAZAQUE"
+  },
+  {
+    "codigo": "25426000",
+    "nombre": "MACHETÁ"
+  },
+  {
+    "codigo": "25430000",
+    "nombre": "MADRID"
+  },
+  {
+    "codigo": "25436000",
+    "nombre": "MANTA"
+  },
+  {
+    "codigo": "25438000",
+    "nombre": "MEDINA"
+  },
+  {
+    "codigo": "25473000",
+    "nombre": "MOSQUERA"
+  },
+  {
+    "codigo": "25483000",
+    "nombre": "NARIÑO"
+  },
+  {
+    "codigo": "25486000",
+    "nombre": "NEMOCÓN"
+  },
+  {
+    "codigo": "25488000",
+    "nombre": "NILO"
+  },
+  {
+    "codigo": "25489000",
+    "nombre": "NIMAIMA"
+  },
+  {
+    "codigo": "25491000",
+    "nombre": "NOCAIMA"
+  },
+  {
+    "codigo": "25506000",
+    "nombre": "VENECIA"
+  },
+  {
+    "codigo": "25513000",
+    "nombre": "PACHO"
+  },
+  {
+    "codigo": "25518000",
+    "nombre": "PAIME"
+  },
+  {
+    "codigo": "25524000",
+    "nombre": "PANDI"
+  },
+  {
+    "codigo": "25530000",
+    "nombre": "PARATEBUENO"
+  },
+  {
+    "codigo": "25535000",
+    "nombre": "PASCA"
+  },
+  {
+    "codigo": "25572000",
+    "nombre": "PUERTO SALGAR"
+  },
+  {
+    "codigo": "25580000",
+    "nombre": "PULÍ"
+  },
+  {
+    "codigo": "25592000",
+    "nombre": "QUEBRADANEGRA"
+  },
+  {
+    "codigo": "25594000",
+    "nombre": "QUETAME"
+  },
+  {
+    "codigo": "25596000",
+    "nombre": "QUIPILE"
+  },
+  {
+    "codigo": "25599000",
+    "nombre": "APULO"
+  },
+  {
+    "codigo": "25612000",
+    "nombre": "RICAURTE"
+  },
+  {
+    "codigo": "25645000",
+    "nombre": "SAN ANTONIO DEL TEQUENDAMA"
+  },
+  {
+    "codigo": "25649000",
+    "nombre": "SAN BERNARDO"
+  },
+  {
+    "codigo": "25653000",
+    "nombre": "SAN CAYETANO"
+  },
+  {
+    "codigo": "25658000",
+    "nombre": "SAN FRANCISCO"
+  },
+  {
+    "codigo": "25662000",
+    "nombre": "SAN JUAN DE RIOSECO"
+  },
+  {
+    "codigo": "25718000",
+    "nombre": "SASAIMA"
+  },
+  {
+    "codigo": "25736000",
+    "nombre": "SESQUILÉ"
+  },
+  {
+    "codigo": "25740000",
+    "nombre": "SIBATÉ"
+  },
+  {
+    "codigo": "25743000",
+    "nombre": "SILVANIA"
+  },
+  {
+    "codigo": "25745000",
+    "nombre": "SIMIJACA"
+  },
+  {
+    "codigo": "25754000",
+    "nombre": "SOACHA"
+  },
+  {
+    "codigo": "25758000",
+    "nombre": "SOPÓ"
+  },
+  {
+    "codigo": "25769000",
+    "nombre": "SUBACHOQUE"
+  },
+  {
+    "codigo": "25772000",
+    "nombre": "SUESCA"
+  },
+  {
+    "codigo": "25777000",
+    "nombre": "SUPATÁ"
+  },
+  {
+    "codigo": "25779000",
+    "nombre": "SUSA"
+  },
+  {
+    "codigo": "25781000",
+    "nombre": "SUTATAUSA"
+  },
+  {
+    "codigo": "25785000",
+    "nombre": "TABIO"
+  },
+  {
+    "codigo": "25793000",
+    "nombre": "TAUSA"
+  },
+  {
+    "codigo": "25797000",
+    "nombre": "TENA"
+  },
+  {
+    "codigo": "25799000",
+    "nombre": "TENJO"
+  },
+  {
+    "codigo": "25805000",
+    "nombre": "TIBACUY"
+  },
+  {
+    "codigo": "25807000",
+    "nombre": "TIBIRITA"
+  },
+  {
+    "codigo": "25815000",
+    "nombre": "TOCAIMA"
+  },
+  {
+    "codigo": "25817000",
+    "nombre": "TOCANCIPÁ"
+  },
+  {
+    "codigo": "25823000",
+    "nombre": "TOPAIPÍ"
+  },
+  {
+    "codigo": "25839000",
+    "nombre": "UBALÁ"
+  },
+  {
+    "codigo": "25841000",
+    "nombre": "UBAQUE"
+  },
+  {
+    "codigo": "25843000",
+    "nombre": "VILLA DE SAN DIEGO DE UBATÉ"
+  },
+  {
+    "codigo": "25845000",
+    "nombre": "UNE"
+  },
+  {
+    "codigo": "25851000",
+    "nombre": "ÚTICA"
+  },
+  {
+    "codigo": "25862000",
+    "nombre": "VERGARA"
+  },
+  {
+    "codigo": "25867000",
+    "nombre": "VIANÍ"
+  },
+  {
+    "codigo": "25871000",
+    "nombre": "VILLAGÓMEZ"
+  },
+  {
+    "codigo": "25873000",
+    "nombre": "VILLAPINZÓN"
+  },
+  {
+    "codigo": "25875000",
+    "nombre": "VILLETA"
+  },
+  {
+    "codigo": "25878000",
+    "nombre": "VIOTÁ"
+  },
+  {
+    "codigo": "25885000",
+    "nombre": "YACOPÍ"
+  },
+  {
+    "codigo": "25898000",
+    "nombre": "ZIPACÓN"
+  },
+  {
+    "codigo": "25899000",
+    "nombre": "ZIPAQUIRÁ"
+  },
+  {
+    "codigo": "27001000",
+    "nombre": "QUIBDÓ"
+  },
+  {
+    "codigo": "27006000",
+    "nombre": "ACANDÍ"
+  },
+  {
+    "codigo": "27025000",
+    "nombre": "ALTO BAUDÓ"
+  },
+  {
+    "codigo": "27050000",
+    "nombre": "ATRATO"
+  },
+  {
+    "codigo": "27073000",
+    "nombre": "BAGADÓ"
+  },
+  {
+    "codigo": "27075000",
+    "nombre": "BAHÍA SOLANO"
+  },
+  {
+    "codigo": "27077000",
+    "nombre": "BAJO BAUDÓ"
+  },
+  {
+    "codigo": "27099000",
+    "nombre": "BOJAYÁ"
+  },
+  {
+    "codigo": "27135000",
+    "nombre": "EL CANTÓN DEL SAN PABLO"
+  },
+  {
+    "codigo": "27150000",
+    "nombre": "CARMEN DEL DARIÉN"
+  },
+  {
+    "codigo": "27160000",
+    "nombre": "CÉRTEGUI"
+  },
+  {
+    "codigo": "27205000",
+    "nombre": "CONDOTO"
+  },
+  {
+    "codigo": "27245000",
+    "nombre": "EL CARMEN DE ATRATO"
+  },
+  {
+    "codigo": "27250000",
+    "nombre": "EL LITORAL DEL SAN JUAN"
+  },
+  {
+    "codigo": "27361000",
+    "nombre": "ISTMINA"
+  },
+  {
+    "codigo": "27372000",
+    "nombre": "JURADÓ"
+  },
+  {
+    "codigo": "27413000",
+    "nombre": "LLORÓ"
+  },
+  {
+    "codigo": "27425000",
+    "nombre": "MEDIO ATRATO"
+  },
+  {
+    "codigo": "27430000",
+    "nombre": "MEDIO BAUDÓ"
+  },
+  {
+    "codigo": "27450000",
+    "nombre": "MEDIO SAN JUAN"
+  },
+  {
+    "codigo": "27491000",
+    "nombre": "NÓVITA"
+  },
+  {
+    "codigo": "27493000",
+    "nombre": "NUEVO BELÉN DE BAJIRÁ"
+  },
+  {
+    "codigo": "27495000",
+    "nombre": "NUQUÍ"
+  },
+  {
+    "codigo": "27580000",
+    "nombre": "RÍO IRÓ"
+  },
+  {
+    "codigo": "27600000",
+    "nombre": "RÍO QUITO"
+  },
+  {
+    "codigo": "27615000",
+    "nombre": "RIOSUCIO"
+  },
+  {
+    "codigo": "27660000",
+    "nombre": "SAN JOSÉ DEL PALMAR"
+  },
+  {
+    "codigo": "27745000",
+    "nombre": "SIPÍ"
+  },
+  {
+    "codigo": "27787000",
+    "nombre": "TADÓ"
+  },
+  {
+    "codigo": "27800000",
+    "nombre": "UNGUÍA"
+  },
+  {
+    "codigo": "27810000",
+    "nombre": "UNIÓN PANAMERICANA"
+  },
+  {
+    "codigo": "41001000",
+    "nombre": "NEIVA"
+  },
+  {
+    "codigo": "41006000",
+    "nombre": "ACEVEDO"
+  },
+  {
+    "codigo": "41013000",
+    "nombre": "AGRADO"
+  },
+  {
+    "codigo": "41016000",
+    "nombre": "AIPE"
+  },
+  {
+    "codigo": "41020000",
+    "nombre": "ALGECIRAS"
+  },
+  {
+    "codigo": "41026000",
+    "nombre": "ALTAMIRA"
+  },
+  {
+    "codigo": "41078000",
+    "nombre": "BARAYA"
+  },
+  {
+    "codigo": "41132000",
+    "nombre": "CAMPOALEGRE"
+  },
+  {
+    "codigo": "41206000",
+    "nombre": "COLOMBIA"
+  },
+  {
+    "codigo": "41244000",
+    "nombre": "ELÍAS"
+  },
+  {
+    "codigo": "41298000",
+    "nombre": "GARZÓN"
+  },
+  {
+    "codigo": "41306000",
+    "nombre": "GIGANTE"
+  },
+  {
+    "codigo": "41319000",
+    "nombre": "GUADALUPE"
+  },
+  {
+    "codigo": "41349000",
+    "nombre": "HOBO"
+  },
+  {
+    "codigo": "41357000",
+    "nombre": "ÍQUIRA"
+  },
+  {
+    "codigo": "41359000",
+    "nombre": "ISNOS"
+  },
+  {
+    "codigo": "41378000",
+    "nombre": "LA ARGENTINA"
+  },
+  {
+    "codigo": "41396000",
+    "nombre": "LA PLATA"
+  },
+  {
+    "codigo": "41483000",
+    "nombre": "NÁTAGA"
+  },
+  {
+    "codigo": "41503000",
+    "nombre": "OPORAPA"
+  },
+  {
+    "codigo": "41518000",
+    "nombre": "PAICOL"
+  },
+  {
+    "codigo": "41524000",
+    "nombre": "PALERMO"
+  },
+  {
+    "codigo": "41530000",
+    "nombre": "PALESTINA"
+  },
+  {
+    "codigo": "41548000",
+    "nombre": "PITAL"
+  },
+  {
+    "codigo": "41551000",
+    "nombre": "PITALITO"
+  },
+  {
+    "codigo": "41615000",
+    "nombre": "RIVERA"
+  },
+  {
+    "codigo": "41660000",
+    "nombre": "SALADOBLANCO"
+  },
+  {
+    "codigo": "41668000",
+    "nombre": "SAN AGUSTÍN"
+  },
+  {
+    "codigo": "41676000",
+    "nombre": "SANTA MARÍA"
+  },
+  {
+    "codigo": "41770000",
+    "nombre": "SUAZA"
+  },
+  {
+    "codigo": "41791000",
+    "nombre": "TARQUI"
+  },
+  {
+    "codigo": "41797000",
+    "nombre": "TESALIA"
+  },
+  {
+    "codigo": "41799000",
+    "nombre": "TELLO"
+  },
+  {
+    "codigo": "41801000",
+    "nombre": "TERUEL"
+  },
+  {
+    "codigo": "41807000",
+    "nombre": "TIMANÁ"
+  },
+  {
+    "codigo": "41872000",
+    "nombre": "VILLAVIEJA"
+  },
+  {
+    "codigo": "41885000",
+    "nombre": "YAGUARÁ"
+  },
+  {
+    "codigo": "44001000",
+    "nombre": "RIOHACHA"
+  },
+  {
+    "codigo": "44035000",
+    "nombre": "ALBANIA"
+  },
+  {
+    "codigo": "44078000",
+    "nombre": "BARRANCAS"
+  },
+  {
+    "codigo": "44090000",
+    "nombre": "DIBULLA"
+  },
+  {
+    "codigo": "44098000",
+    "nombre": "DISTRACCIÓN"
+  },
+  {
+    "codigo": "44110000",
+    "nombre": "EL MOLINO"
+  },
+  {
+    "codigo": "44279000",
+    "nombre": "FONSECA"
+  },
+  {
+    "codigo": "44378000",
+    "nombre": "HATONUEVO"
+  },
+  {
+    "codigo": "44420000",
+    "nombre": "LA JAGUA DEL PILAR"
+  },
+  {
+    "codigo": "44430000",
+    "nombre": "MAICAO"
+  },
+  {
+    "codigo": "44560000",
+    "nombre": "MANAURE"
+  },
+  {
+    "codigo": "44650000",
+    "nombre": "SAN JUAN DEL CESAR"
+  },
+  {
+    "codigo": "44847000",
+    "nombre": "URIBIA"
+  },
+  {
+    "codigo": "44855000",
+    "nombre": "URUMITA"
+  },
+  {
+    "codigo": "44874000",
+    "nombre": "VILLANUEVA"
+  },
+  {
+    "codigo": "47001000",
+    "nombre": "SANTA MARTA"
+  },
+  {
+    "codigo": "47030000",
+    "nombre": "ALGARROBO"
+  },
+  {
+    "codigo": "47053000",
+    "nombre": "ARACATACA"
+  },
+  {
+    "codigo": "47058000",
+    "nombre": "ARIGUANÍ"
+  },
+  {
+    "codigo": "47161000",
+    "nombre": "CERRO DE SAN ANTONIO"
+  },
+  {
+    "codigo": "47170000",
+    "nombre": "CHIVOLO"
+  },
+  {
+    "codigo": "47189000",
+    "nombre": "CIÉNAGA"
+  },
+  {
+    "codigo": "47205000",
+    "nombre": "CONCORDIA"
+  },
+  {
+    "codigo": "47245000",
+    "nombre": "EL BANCO"
+  },
+  {
+    "codigo": "47258000",
+    "nombre": "EL PIÑÓN"
+  },
+  {
+    "codigo": "47268000",
+    "nombre": "EL RETÉN"
+  },
+  {
+    "codigo": "47288000",
+    "nombre": "FUNDACIÓN"
+  },
+  {
+    "codigo": "47318000",
+    "nombre": "GUAMAL"
+  },
+  {
+    "codigo": "47460000",
+    "nombre": "NUEVA GRANADA"
+  },
+  {
+    "codigo": "47541000",
+    "nombre": "PEDRAZA"
+  },
+  {
+    "codigo": "47545000",
+    "nombre": "PIJIÑO DEL CARMEN"
+  },
+  {
+    "codigo": "47551000",
+    "nombre": "PIVIJAY"
+  },
+  {
+    "codigo": "47555000",
+    "nombre": "PLATO"
+  },
+  {
+    "codigo": "47570000",
+    "nombre": "PUEBLOVIEJO"
+  },
+  {
+    "codigo": "47605000",
+    "nombre": "REMOLINO"
+  },
+  {
+    "codigo": "47660000",
+    "nombre": "SABANAS DE SAN ÁNGEL"
+  },
+  {
+    "codigo": "47675000",
+    "nombre": "SALAMINA"
+  },
+  {
+    "codigo": "47692000",
+    "nombre": "SAN SEBASTIÁN DE BUENAVISTA"
+  },
+  {
+    "codigo": "47703000",
+    "nombre": "SAN ZENÓN"
+  },
+  {
+    "codigo": "47707000",
+    "nombre": "SANTA ANA"
+  },
+  {
+    "codigo": "47720000",
+    "nombre": "SANTA BÁRBARA DE PINTO"
+  },
+  {
+    "codigo": "47745000",
+    "nombre": "SITIONUEVO"
+  },
+  {
+    "codigo": "47798000",
+    "nombre": "TENERIFE"
+  },
+  {
+    "codigo": "47960000",
+    "nombre": "ZAPAYÁN"
+  },
+  {
+    "codigo": "47980000",
+    "nombre": "ZONA BANANERA"
+  },
+  {
+    "codigo": "50001000",
+    "nombre": "VILLAVICENCIO"
+  },
+  {
+    "codigo": "50006000",
+    "nombre": "ACACÍAS"
+  },
+  {
+    "codigo": "50110000",
+    "nombre": "BARRANCA DE UPÍA"
+  },
+  {
+    "codigo": "50124000",
+    "nombre": "CABUYARO"
+  },
+  {
+    "codigo": "50150000",
+    "nombre": "CASTILLA LA NUEVA"
+  },
+  {
+    "codigo": "50223000",
+    "nombre": "CUBARRAL"
+  },
+  {
+    "codigo": "50226000",
+    "nombre": "CUMARAL"
+  },
+  {
+    "codigo": "50245000",
+    "nombre": "EL CALVARIO"
+  },
+  {
+    "codigo": "50251000",
+    "nombre": "EL CASTILLO"
+  },
+  {
+    "codigo": "50270000",
+    "nombre": "EL DORADO"
+  },
+  {
+    "codigo": "50287000",
+    "nombre": "FUENTE DE ORO"
+  },
+  {
+    "codigo": "50313000",
+    "nombre": "GRANADA"
+  },
+  {
+    "codigo": "50318000",
+    "nombre": "GUAMAL"
+  },
+  {
+    "codigo": "50325000",
+    "nombre": "MAPIRIPÁN"
+  },
+  {
+    "codigo": "50330000",
+    "nombre": "MESETAS"
+  },
+  {
+    "codigo": "50350000",
+    "nombre": "LA MACARENA"
+  },
+  {
+    "codigo": "50370000",
+    "nombre": "URIBE"
+  },
+  {
+    "codigo": "50400000",
+    "nombre": "LEJANÍAS"
+  },
+  {
+    "codigo": "50450000",
+    "nombre": "PUERTO CONCORDIA"
+  },
+  {
+    "codigo": "50568000",
+    "nombre": "PUERTO GAITÁN"
+  },
+  {
+    "codigo": "50573000",
+    "nombre": "PUERTO LÓPEZ"
+  },
+  {
+    "codigo": "50577000",
+    "nombre": "PUERTO LLERAS"
+  },
+  {
+    "codigo": "50590000",
+    "nombre": "PUERTO RICO"
+  },
+  {
+    "codigo": "50606000",
+    "nombre": "RESTREPO"
+  },
+  {
+    "codigo": "50680000",
+    "nombre": "SAN CARLOS DE GUAROA"
+  },
+  {
+    "codigo": "50683000",
+    "nombre": "SAN JUAN DE ARAMA"
+  },
+  {
+    "codigo": "50686000",
+    "nombre": "SAN JUANITO"
+  },
+  {
+    "codigo": "50689000",
+    "nombre": "SAN MARTÍN"
+  },
+  {
+    "codigo": "50711000",
+    "nombre": "VISTAHERMOSA"
+  },
+  {
+    "codigo": "52001000",
+    "nombre": "PASTO"
+  },
+  {
+    "codigo": "52019000",
+    "nombre": "ALBÁN"
+  },
+  {
+    "codigo": "52022000",
+    "nombre": "ALDANA"
+  },
+  {
+    "codigo": "52036000",
+    "nombre": "ANCUYA"
+  },
+  {
+    "codigo": "52051000",
+    "nombre": "ARBOLEDA"
+  },
+  {
+    "codigo": "52079000",
+    "nombre": "BARBACOAS"
+  },
+  {
+    "codigo": "52083000",
+    "nombre": "BELÉN"
+  },
+  {
+    "codigo": "52110000",
+    "nombre": "BUESACO"
+  },
+  {
+    "codigo": "52203000",
+    "nombre": "COLÓN"
+  },
+  {
+    "codigo": "52207000",
+    "nombre": "CONSACÁ"
+  },
+  {
+    "codigo": "52210000",
+    "nombre": "CONTADERO"
+  },
+  {
+    "codigo": "52215000",
+    "nombre": "CÓRDOBA"
+  },
+  {
+    "codigo": "52224000",
+    "nombre": "CUASPUD CARLOSAMA"
+  },
+  {
+    "codigo": "52227000",
+    "nombre": "CUMBAL"
+  },
+  {
+    "codigo": "52233000",
+    "nombre": "CUMBITARA"
+  },
+  {
+    "codigo": "52240000",
+    "nombre": "CHACHAGÜÍ"
+  },
+  {
+    "codigo": "52250000",
+    "nombre": "EL CHARCO"
+  },
+  {
+    "codigo": "52254000",
+    "nombre": "EL PEÑOL"
+  },
+  {
+    "codigo": "52256000",
+    "nombre": "EL ROSARIO"
+  },
+  {
+    "codigo": "52258000",
+    "nombre": "EL TABLÓN DE GÓMEZ"
+  },
+  {
+    "codigo": "52260000",
+    "nombre": "EL TAMBO"
+  },
+  {
+    "codigo": "52287000",
+    "nombre": "FUNES"
+  },
+  {
+    "codigo": "52317000",
+    "nombre": "GUACHUCAL"
+  },
+  {
+    "codigo": "52320000",
+    "nombre": "GUAITARILLA"
+  },
+  {
+    "codigo": "52323000",
+    "nombre": "GUALMATÁN"
+  },
+  {
+    "codigo": "52352000",
+    "nombre": "ILES"
+  },
+  {
+    "codigo": "52354000",
+    "nombre": "IMUÉS"
+  },
+  {
+    "codigo": "52356000",
+    "nombre": "IPIALES"
+  },
+  {
+    "codigo": "52378000",
+    "nombre": "LA CRUZ"
+  },
+  {
+    "codigo": "52381000",
+    "nombre": "LA FLORIDA"
+  },
+  {
+    "codigo": "52385000",
+    "nombre": "LA LLANADA"
+  },
+  {
+    "codigo": "52390000",
+    "nombre": "LA TOLA"
+  },
+  {
+    "codigo": "52399000",
+    "nombre": "LA UNIÓN"
+  },
+  {
+    "codigo": "52405000",
+    "nombre": "LEIVA"
+  },
+  {
+    "codigo": "52411000",
+    "nombre": "LINARES"
+  },
+  {
+    "codigo": "52418000",
+    "nombre": "LOS ANDES"
+  },
+  {
+    "codigo": "52427000",
+    "nombre": "MAGÜÍ"
+  },
+  {
+    "codigo": "52435000",
+    "nombre": "MALLAMA"
+  },
+  {
+    "codigo": "52473000",
+    "nombre": "MOSQUERA"
+  },
+  {
+    "codigo": "52480000",
+    "nombre": "NARIÑO"
+  },
+  {
+    "codigo": "52490000",
+    "nombre": "OLAYA HERRERA"
+  },
+  {
+    "codigo": "52506000",
+    "nombre": "OSPINA"
+  },
+  {
+    "codigo": "52520000",
+    "nombre": "FRANCISCO PIZARRO"
+  },
+  {
+    "codigo": "52540000",
+    "nombre": "POLICARPA"
+  },
+  {
+    "codigo": "52560000",
+    "nombre": "POTOSÍ"
+  },
+  {
+    "codigo": "52565000",
+    "nombre": "PROVIDENCIA"
+  },
+  {
+    "codigo": "52573000",
+    "nombre": "PUERRES"
+  },
+  {
+    "codigo": "52585000",
+    "nombre": "PUPIALES"
+  },
+  {
+    "codigo": "52612000",
+    "nombre": "RICAURTE"
+  },
+  {
+    "codigo": "52621000",
+    "nombre": "ROBERTO PAYÁN"
+  },
+  {
+    "codigo": "52678000",
+    "nombre": "SAMANIEGO"
+  },
+  {
+    "codigo": "52683000",
+    "nombre": "SANDONÁ"
+  },
+  {
+    "codigo": "52685000",
+    "nombre": "SAN BERNARDO"
+  },
+  {
+    "codigo": "52687000",
+    "nombre": "SAN LORENZO"
+  },
+  {
+    "codigo": "52693000",
+    "nombre": "SAN PABLO"
+  },
+  {
+    "codigo": "52694000",
+    "nombre": "SAN PEDRO DE CARTAGO"
+  },
+  {
+    "codigo": "52696000",
+    "nombre": "SANTA BÁRBARA"
+  },
+  {
+    "codigo": "52699000",
+    "nombre": "SANTACRUZ"
+  },
+  {
+    "codigo": "52720000",
+    "nombre": "SAPUYES"
+  },
+  {
+    "codigo": "52786000",
+    "nombre": "TAMINANGO"
+  },
+  {
+    "codigo": "52788000",
+    "nombre": "TANGUA"
+  },
+  {
+    "codigo": "52835000",
+    "nombre": "SAN ANDRÉS DE TUMACO"
+  },
+  {
+    "codigo": "52838000",
+    "nombre": "TÚQUERRES"
+  },
+  {
+    "codigo": "52885000",
+    "nombre": "YACUANQUER"
+  },
+  {
+    "codigo": "54001000",
+    "nombre": "SAN JOSÉ DE CÚCUTA"
+  },
+  {
+    "codigo": "54003000",
+    "nombre": "ÁBREGO"
+  },
+  {
+    "codigo": "54051000",
+    "nombre": "ARBOLEDAS"
+  },
+  {
+    "codigo": "54099000",
+    "nombre": "BOCHALEMA"
+  },
+  {
+    "codigo": "54109000",
+    "nombre": "BUCARASICA"
+  },
+  {
+    "codigo": "54125000",
+    "nombre": "CÁCOTA"
+  },
+  {
+    "codigo": "54128000",
+    "nombre": "CÁCHIRA"
+  },
+  {
+    "codigo": "54172000",
+    "nombre": "CHINÁCOTA"
+  },
+  {
+    "codigo": "54174000",
+    "nombre": "CHITAGÁ"
+  },
+  {
+    "codigo": "54206000",
+    "nombre": "CONVENCIÓN"
+  },
+  {
+    "codigo": "54223000",
+    "nombre": "CUCUTILLA"
+  },
+  {
+    "codigo": "54239000",
+    "nombre": "DURANIA"
+  },
+  {
+    "codigo": "54245000",
+    "nombre": "EL CARMEN"
+  },
+  {
+    "codigo": "54250000",
+    "nombre": "EL TARRA"
+  },
+  {
+    "codigo": "54261000",
+    "nombre": "EL ZULIA"
+  },
+  {
+    "codigo": "54313000",
+    "nombre": "GRAMALOTE"
+  },
+  {
+    "codigo": "54344000",
+    "nombre": "HACARÍ"
+  },
+  {
+    "codigo": "54347000",
+    "nombre": "HERRÁN"
+  },
+  {
+    "codigo": "54377000",
+    "nombre": "LABATECA"
+  },
+  {
+    "codigo": "54385000",
+    "nombre": "LA ESPERANZA"
+  },
+  {
+    "codigo": "54398000",
+    "nombre": "LA PLAYA"
+  },
+  {
+    "codigo": "54405000",
+    "nombre": "LOS PATIOS"
+  },
+  {
+    "codigo": "54418000",
+    "nombre": "LOURDES"
+  },
+  {
+    "codigo": "54480000",
+    "nombre": "MUTISCUA"
+  },
+  {
+    "codigo": "54498000",
+    "nombre": "OCAÑA"
+  },
+  {
+    "codigo": "54518000",
+    "nombre": "PAMPLONA"
+  },
+  {
+    "codigo": "54520000",
+    "nombre": "PAMPLONITA"
+  },
+  {
+    "codigo": "54553000",
+    "nombre": "PUERTO SANTANDER"
+  },
+  {
+    "codigo": "54599000",
+    "nombre": "RAGONVALIA"
+  },
+  {
+    "codigo": "54660000",
+    "nombre": "SALAZAR"
+  },
+  {
+    "codigo": "54670000",
+    "nombre": "SAN CALIXTO"
+  },
+  {
+    "codigo": "54673000",
+    "nombre": "SAN CAYETANO"
+  },
+  {
+    "codigo": "54680000",
+    "nombre": "SANTIAGO"
+  },
+  {
+    "codigo": "54720000",
+    "nombre": "SARDINATA"
+  },
+  {
+    "codigo": "54743000",
+    "nombre": "SILOS"
+  },
+  {
+    "codigo": "54800000",
+    "nombre": "TEORAMA"
+  },
+  {
+    "codigo": "54810000",
+    "nombre": "TIBÚ"
+  },
+  {
+    "codigo": "54820000",
+    "nombre": "TOLEDO"
+  },
+  {
+    "codigo": "54871000",
+    "nombre": "VILLA CARO"
+  },
+  {
+    "codigo": "54874000",
+    "nombre": "VILLA DEL ROSARIO"
+  },
+  {
+    "codigo": "63001000",
+    "nombre": "ARMENIA"
+  },
+  {
+    "codigo": "63111000",
+    "nombre": "BUENAVISTA"
+  },
+  {
+    "codigo": "63130000",
+    "nombre": "CALARCÁ"
+  },
+  {
+    "codigo": "63190000",
+    "nombre": "CIRCASIA"
+  },
+  {
+    "codigo": "63212000",
+    "nombre": "CÓRDOBA"
+  },
+  {
+    "codigo": "63272000",
+    "nombre": "FILANDIA"
+  },
+  {
+    "codigo": "63302000",
+    "nombre": "GÉNOVA"
+  },
+  {
+    "codigo": "63401000",
+    "nombre": "LA TEBAIDA"
+  },
+  {
+    "codigo": "63470000",
+    "nombre": "MONTENEGRO"
+  },
+  {
+    "codigo": "63548000",
+    "nombre": "PIJAO"
+  },
+  {
+    "codigo": "63594000",
+    "nombre": "QUIMBAYA"
+  },
+  {
+    "codigo": "63690000",
+    "nombre": "SALENTO"
+  },
+  {
+    "codigo": "66001000",
+    "nombre": "PEREIRA"
+  },
+  {
+    "codigo": "66045000",
+    "nombre": "APÍA"
+  },
+  {
+    "codigo": "66075000",
+    "nombre": "BALBOA"
+  },
+  {
+    "codigo": "66088000",
+    "nombre": "BELÉN DE UMBRÍA"
+  },
+  {
+    "codigo": "66170000",
+    "nombre": "DOSQUEBRADAS"
+  },
+  {
+    "codigo": "66318000",
+    "nombre": "GUÁTICA"
+  },
+  {
+    "codigo": "66383000",
+    "nombre": "LA CELIA"
+  },
+  {
+    "codigo": "66400000",
+    "nombre": "LA VIRGINIA"
+  },
+  {
+    "codigo": "66440000",
+    "nombre": "MARSELLA"
+  },
+  {
+    "codigo": "66456000",
+    "nombre": "MISTRATÓ"
+  },
+  {
+    "codigo": "66572000",
+    "nombre": "PUEBLO RICO"
+  },
+  {
+    "codigo": "66594000",
+    "nombre": "QUINCHÍA"
+  },
+  {
+    "codigo": "66682000",
+    "nombre": "SANTA ROSA DE CABAL"
+  },
+  {
+    "codigo": "66687000",
+    "nombre": "SANTUARIO"
+  },
+  {
+    "codigo": "68001000",
+    "nombre": "BUCARAMANGA"
+  },
+  {
+    "codigo": "68013000",
+    "nombre": "AGUADA"
+  },
+  {
+    "codigo": "68020000",
+    "nombre": "ALBANIA"
+  },
+  {
+    "codigo": "68051000",
+    "nombre": "ARATOCA"
+  },
+  {
+    "codigo": "68077000",
+    "nombre": "BARBOSA"
+  },
+  {
+    "codigo": "68079000",
+    "nombre": "BARICHARA"
+  },
+  {
+    "codigo": "68081000",
+    "nombre": "BARRANCABERMEJA"
+  },
+  {
+    "codigo": "68092000",
+    "nombre": "BETULIA"
+  },
+  {
+    "codigo": "68101000",
+    "nombre": "BOLÍVAR"
+  },
+  {
+    "codigo": "68121000",
+    "nombre": "CABRERA"
+  },
+  {
+    "codigo": "68132000",
+    "nombre": "CALIFORNIA"
+  },
+  {
+    "codigo": "68147000",
+    "nombre": "CAPITANEJO"
+  },
+  {
+    "codigo": "68152000",
+    "nombre": "CARCASÍ"
+  },
+  {
+    "codigo": "68160000",
+    "nombre": "CEPITÁ"
+  },
+  {
+    "codigo": "68162000",
+    "nombre": "CERRITO"
+  },
+  {
+    "codigo": "68167000",
+    "nombre": "CHARALÁ"
+  },
+  {
+    "codigo": "68169000",
+    "nombre": "CHARTA"
+  },
+  {
+    "codigo": "68176000",
+    "nombre": "CHIMA"
+  },
+  {
+    "codigo": "68179000",
+    "nombre": "CHIPATÁ"
+  },
+  {
+    "codigo": "68190000",
+    "nombre": "CIMITARRA"
+  },
+  {
+    "codigo": "68207000",
+    "nombre": "CONCEPCIÓN"
+  },
+  {
+    "codigo": "68209000",
+    "nombre": "CONFINES"
+  },
+  {
+    "codigo": "68211000",
+    "nombre": "CONTRATACIÓN"
+  },
+  {
+    "codigo": "68217000",
+    "nombre": "COROMORO"
+  },
+  {
+    "codigo": "68229000",
+    "nombre": "CURITÍ"
+  },
+  {
+    "codigo": "68235000",
+    "nombre": "EL CARMEN DE CHUCURÍ"
+  },
+  {
+    "codigo": "68245000",
+    "nombre": "EL GUACAMAYO"
+  },
+  {
+    "codigo": "68250000",
+    "nombre": "EL PEÑÓN"
+  },
+  {
+    "codigo": "68255000",
+    "nombre": "EL PLAYÓN"
+  },
+  {
+    "codigo": "68264000",
+    "nombre": "ENCINO"
+  },
+  {
+    "codigo": "68266000",
+    "nombre": "ENCISO"
+  },
+  {
+    "codigo": "68271000",
+    "nombre": "FLORIÁN"
+  },
+  {
+    "codigo": "68276000",
+    "nombre": "FLORIDABLANCA"
+  },
+  {
+    "codigo": "68296000",
+    "nombre": "GALÁN"
+  },
+  {
+    "codigo": "68298000",
+    "nombre": "GÁMBITA"
+  },
+  {
+    "codigo": "68307000",
+    "nombre": "GIRÓN"
+  },
+  {
+    "codigo": "68318000",
+    "nombre": "GUACA"
+  },
+  {
+    "codigo": "68320000",
+    "nombre": "GUADALUPE"
+  },
+  {
+    "codigo": "68322000",
+    "nombre": "GUAPOTÁ"
+  },
+  {
+    "codigo": "68324000",
+    "nombre": "GUAVATÁ"
+  },
+  {
+    "codigo": "68327000",
+    "nombre": "GÜEPSA"
+  },
+  {
+    "codigo": "68344000",
+    "nombre": "HATO"
+  },
+  {
+    "codigo": "68368000",
+    "nombre": "JESÚS MARÍA"
+  },
+  {
+    "codigo": "68370000",
+    "nombre": "JORDÁN"
+  },
+  {
+    "codigo": "68377000",
+    "nombre": "LA BELLEZA"
+  },
+  {
+    "codigo": "68385000",
+    "nombre": "LANDÁZURI"
+  },
+  {
+    "codigo": "68397000",
+    "nombre": "LA PAZ"
+  },
+  {
+    "codigo": "68406000",
+    "nombre": "LEBRIJA"
+  },
+  {
+    "codigo": "68418000",
+    "nombre": "LOS SANTOS"
+  },
+  {
+    "codigo": "68425000",
+    "nombre": "MACARAVITA"
+  },
+  {
+    "codigo": "68432000",
+    "nombre": "MÁLAGA"
+  },
+  {
+    "codigo": "68444000",
+    "nombre": "MATANZA"
+  },
+  {
+    "codigo": "68464000",
+    "nombre": "MOGOTES"
+  },
+  {
+    "codigo": "68468000",
+    "nombre": "MOLAGAVITA"
+  },
+  {
+    "codigo": "68498000",
+    "nombre": "OCAMONTE"
+  },
+  {
+    "codigo": "68500000",
+    "nombre": "OIBA"
+  },
+  {
+    "codigo": "68502000",
+    "nombre": "ONZAGA"
+  },
+  {
+    "codigo": "68522000",
+    "nombre": "PALMAR"
+  },
+  {
+    "codigo": "68524000",
+    "nombre": "PALMAS DEL SOCORRO"
+  },
+  {
+    "codigo": "68533000",
+    "nombre": "PÁRAMO"
+  },
+  {
+    "codigo": "68547000",
+    "nombre": "PIEDECUESTA"
+  },
+  {
+    "codigo": "68549000",
+    "nombre": "PINCHOTE"
+  },
+  {
+    "codigo": "68572000",
+    "nombre": "PUENTE NACIONAL"
+  },
+  {
+    "codigo": "68573000",
+    "nombre": "PUERTO PARRA"
+  },
+  {
+    "codigo": "68575000",
+    "nombre": "PUERTO WILCHES"
+  },
+  {
+    "codigo": "68615000",
+    "nombre": "RIONEGRO"
+  },
+  {
+    "codigo": "68655000",
+    "nombre": "SABANA DE TORRES"
+  },
+  {
+    "codigo": "68669000",
+    "nombre": "SAN ANDRÉS"
+  },
+  {
+    "codigo": "68673000",
+    "nombre": "SAN BENITO"
+  },
+  {
+    "codigo": "68679000",
+    "nombre": "SAN GIL"
+  },
+  {
+    "codigo": "68682000",
+    "nombre": "SAN JOAQUÍN"
+  },
+  {
+    "codigo": "68684000",
+    "nombre": "SAN JOSÉ DE MIRANDA"
+  },
+  {
+    "codigo": "68686000",
+    "nombre": "SAN MIGUEL"
+  },
+  {
+    "codigo": "68689000",
+    "nombre": "SAN VICENTE DE CHUCURÍ"
+  },
+  {
+    "codigo": "68705000",
+    "nombre": "SANTA BÁRBARA"
+  },
+  {
+    "codigo": "68720000",
+    "nombre": "SANTA HELENA DEL OPÓN"
+  },
+  {
+    "codigo": "68745000",
+    "nombre": "SIMACOTA"
+  },
+  {
+    "codigo": "68755000",
+    "nombre": "SOCORRO"
+  },
+  {
+    "codigo": "68770000",
+    "nombre": "SUAITA"
+  },
+  {
+    "codigo": "68773000",
+    "nombre": "SUCRE"
+  },
+  {
+    "codigo": "68780000",
+    "nombre": "SURATÁ"
+  },
+  {
+    "codigo": "68820000",
+    "nombre": "TONA"
+  },
+  {
+    "codigo": "68855000",
+    "nombre": "VALLE DE SAN JOSÉ"
+  },
+  {
+    "codigo": "68861000",
+    "nombre": "VÉLEZ"
+  },
+  {
+    "codigo": "68867000",
+    "nombre": "VETAS"
+  },
+  {
+    "codigo": "68872000",
+    "nombre": "VILLANUEVA"
+  },
+  {
+    "codigo": "68895000",
+    "nombre": "ZAPATOCA"
+  },
+  {
+    "codigo": "70001000",
+    "nombre": "SINCELEJO"
+  },
+  {
+    "codigo": "70110000",
+    "nombre": "BUENAVISTA"
+  },
+  {
+    "codigo": "70124000",
+    "nombre": "CAIMITO"
+  },
+  {
+    "codigo": "70204000",
+    "nombre": "COLOSÓ"
+  },
+  {
+    "codigo": "70215000",
+    "nombre": "COROZAL"
+  },
+  {
+    "codigo": "70221000",
+    "nombre": "COVEÑAS"
+  },
+  {
+    "codigo": "70230000",
+    "nombre": "CHALÁN"
+  },
+  {
+    "codigo": "70233000",
+    "nombre": "EL ROBLE"
+  },
+  {
+    "codigo": "70235000",
+    "nombre": "GALERAS"
+  },
+  {
+    "codigo": "70265000",
+    "nombre": "GUARANDA"
+  },
+  {
+    "codigo": "70400000",
+    "nombre": "LA UNIÓN"
+  },
+  {
+    "codigo": "70418000",
+    "nombre": "LOS PALMITOS"
+  },
+  {
+    "codigo": "70429000",
+    "nombre": "MAJAGUAL"
+  },
+  {
+    "codigo": "70473000",
+    "nombre": "MORROA"
+  },
+  {
+    "codigo": "70508000",
+    "nombre": "OVEJAS"
+  },
+  {
+    "codigo": "70523000",
+    "nombre": "PALMITO"
+  },
+  {
+    "codigo": "70670000",
+    "nombre": "SAMPUÉS"
+  },
+  {
+    "codigo": "70678000",
+    "nombre": "SAN BENITO ABAD"
+  },
+  {
+    "codigo": "70702000",
+    "nombre": "SAN JUAN DE BETULIA"
+  },
+  {
+    "codigo": "70708000",
+    "nombre": "SAN MARCOS"
+  },
+  {
+    "codigo": "70713000",
+    "nombre": "SAN ONOFRE"
+  },
+  {
+    "codigo": "70717000",
+    "nombre": "SAN PEDRO"
+  },
+  {
+    "codigo": "70742000",
+    "nombre": "SAN LUIS DE SINCÉ"
+  },
+  {
+    "codigo": "70771000",
+    "nombre": "SUCRE"
+  },
+  {
+    "codigo": "70820000",
+    "nombre": "SANTIAGO DE TOLÚ"
+  },
+  {
+    "codigo": "70823000",
+    "nombre": "SAN JOSÉ DE TOLUVIEJO"
+  },
+  {
+    "codigo": "73001000",
+    "nombre": "IBAGUÉ"
+  },
+  {
+    "codigo": "73024000",
+    "nombre": "ALPUJARRA"
+  },
+  {
+    "codigo": "73026000",
+    "nombre": "ALVARADO"
+  },
+  {
+    "codigo": "73030000",
+    "nombre": "AMBALEMA"
+  },
+  {
+    "codigo": "73043000",
+    "nombre": "ANZOÁTEGUI"
+  },
+  {
+    "codigo": "73055000",
+    "nombre": "ARMERO"
+  },
+  {
+    "codigo": "73067000",
+    "nombre": "ATACO"
+  },
+  {
+    "codigo": "73124000",
+    "nombre": "CAJAMARCA"
+  },
+  {
+    "codigo": "73148000",
+    "nombre": "CARMEN DE APICALÁ"
+  },
+  {
+    "codigo": "73152000",
+    "nombre": "CASABIANCA"
+  },
+  {
+    "codigo": "73168000",
+    "nombre": "CHAPARRAL"
+  },
+  {
+    "codigo": "73200000",
+    "nombre": "COELLO"
+  },
+  {
+    "codigo": "73217000",
+    "nombre": "COYAIMA"
+  },
+  {
+    "codigo": "73226000",
+    "nombre": "CUNDAY"
+  },
+  {
+    "codigo": "73236000",
+    "nombre": "DOLORES"
+  },
+  {
+    "codigo": "73268000",
+    "nombre": "ESPINAL"
+  },
+  {
+    "codigo": "73270000",
+    "nombre": "FALAN"
+  },
+  {
+    "codigo": "73275000",
+    "nombre": "FLANDES"
+  },
+  {
+    "codigo": "73283000",
+    "nombre": "FRESNO"
+  },
+  {
+    "codigo": "73319000",
+    "nombre": "GUAMO"
+  },
+  {
+    "codigo": "73347000",
+    "nombre": "HERVEO"
+  },
+  {
+    "codigo": "73349000",
+    "nombre": "HONDA"
+  },
+  {
+    "codigo": "73352000",
+    "nombre": "ICONONZO"
+  },
+  {
+    "codigo": "73408000",
+    "nombre": "LÉRIDA"
+  },
+  {
+    "codigo": "73411000",
+    "nombre": "LÍBANO"
+  },
+  {
+    "codigo": "73443000",
+    "nombre": "SAN SEBASTIÁN DE MARIQUITA"
+  },
+  {
+    "codigo": "73449000",
+    "nombre": "MELGAR"
+  },
+  {
+    "codigo": "73461000",
+    "nombre": "MURILLO"
+  },
+  {
+    "codigo": "73483000",
+    "nombre": "NATAGAIMA"
+  },
+  {
+    "codigo": "73504000",
+    "nombre": "ORTEGA"
+  },
+  {
+    "codigo": "73520000",
+    "nombre": "PALOCABILDO"
+  },
+  {
+    "codigo": "73547000",
+    "nombre": "PIEDRAS"
+  },
+  {
+    "codigo": "73555000",
+    "nombre": "PLANADAS"
+  },
+  {
+    "codigo": "73563000",
+    "nombre": "PRADO"
+  },
+  {
+    "codigo": "73585000",
+    "nombre": "PURIFICACIÓN"
+  },
+  {
+    "codigo": "73616000",
+    "nombre": "RIOBLANCO"
+  },
+  {
+    "codigo": "73622000",
+    "nombre": "RONCESVALLES"
+  },
+  {
+    "codigo": "73624000",
+    "nombre": "ROVIRA"
+  },
+  {
+    "codigo": "73671000",
+    "nombre": "SALDAÑA"
+  },
+  {
+    "codigo": "73675000",
+    "nombre": "SAN ANTONIO"
+  },
+  {
+    "codigo": "73678000",
+    "nombre": "SAN LUIS"
+  },
+  {
+    "codigo": "73686000",
+    "nombre": "SANTA ISABEL"
+  },
+  {
+    "codigo": "73770000",
+    "nombre": "SUÁREZ"
+  },
+  {
+    "codigo": "73854000",
+    "nombre": "VALLE DE SAN JUAN"
+  },
+  {
+    "codigo": "73861000",
+    "nombre": "VENADILLO"
+  },
+  {
+    "codigo": "73870000",
+    "nombre": "VILLAHERMOSA"
+  },
+  {
+    "codigo": "73873000",
+    "nombre": "VILLARRICA"
+  },
+  {
+    "codigo": "76001000",
+    "nombre": "SANTIAGO DE CALI"
+  },
+  {
+    "codigo": "76020000",
+    "nombre": "ALCALÁ"
+  },
+  {
+    "codigo": "76036000",
+    "nombre": "ANDALUCÍA"
+  },
+  {
+    "codigo": "76041000",
+    "nombre": "ANSERMANUEVO"
+  },
+  {
+    "codigo": "76054000",
+    "nombre": "ARGELIA"
+  },
+  {
+    "codigo": "76100000",
+    "nombre": "BOLÍVAR"
+  },
+  {
+    "codigo": "76109000",
+    "nombre": "BUENAVENTURA"
+  },
+  {
+    "codigo": "76111000",
+    "nombre": "GUADALAJARA DE BUGA"
+  },
+  {
+    "codigo": "76113000",
+    "nombre": "BUGALAGRANDE"
+  },
+  {
+    "codigo": "76122000",
+    "nombre": "CAICEDONIA"
+  },
+  {
+    "codigo": "76126000",
+    "nombre": "CALIMA"
+  },
+  {
+    "codigo": "76130000",
+    "nombre": "CANDELARIA"
+  },
+  {
+    "codigo": "76147000",
+    "nombre": "CARTAGO"
+  },
+  {
+    "codigo": "76233000",
+    "nombre": "DAGUA"
+  },
+  {
+    "codigo": "76243000",
+    "nombre": "EL ÁGUILA"
+  },
+  {
+    "codigo": "76246000",
+    "nombre": "EL CAIRO"
+  },
+  {
+    "codigo": "76248000",
+    "nombre": "EL CERRITO"
+  },
+  {
+    "codigo": "76250000",
+    "nombre": "EL DOVIO"
+  },
+  {
+    "codigo": "76275000",
+    "nombre": "FLORIDA"
+  },
+  {
+    "codigo": "76306000",
+    "nombre": "GINEBRA"
+  },
+  {
+    "codigo": "76318000",
+    "nombre": "GUACARÍ"
+  },
+  {
+    "codigo": "76364000",
+    "nombre": "JAMUNDÍ"
+  },
+  {
+    "codigo": "76377000",
+    "nombre": "LA CUMBRE"
+  },
+  {
+    "codigo": "76400000",
+    "nombre": "LA UNIÓN"
+  },
+  {
+    "codigo": "76403000",
+    "nombre": "LA VICTORIA"
+  },
+  {
+    "codigo": "76497000",
+    "nombre": "OBANDO"
+  },
+  {
+    "codigo": "76520000",
+    "nombre": "PALMIRA"
+  },
+  {
+    "codigo": "76563000",
+    "nombre": "PRADERA"
+  },
+  {
+    "codigo": "76606000",
+    "nombre": "RESTREPO"
+  },
+  {
+    "codigo": "76616000",
+    "nombre": "RIOFRÍO"
+  },
+  {
+    "codigo": "76622000",
+    "nombre": "ROLDANILLO"
+  },
+  {
+    "codigo": "76670000",
+    "nombre": "SAN PEDRO"
+  },
+  {
+    "codigo": "76736000",
+    "nombre": "SEVILLA"
+  },
+  {
+    "codigo": "76823000",
+    "nombre": "TORO"
+  },
+  {
+    "codigo": "76828000",
+    "nombre": "TRUJILLO"
+  },
+  {
+    "codigo": "76834000",
+    "nombre": "TULUÁ"
+  },
+  {
+    "codigo": "76845000",
+    "nombre": "ULLOA"
+  },
+  {
+    "codigo": "76863000",
+    "nombre": "VERSALLES"
+  },
+  {
+    "codigo": "76869000",
+    "nombre": "VIJES"
+  },
+  {
+    "codigo": "76890000",
+    "nombre": "YOTOCO"
+  },
+  {
+    "codigo": "76892000",
+    "nombre": "YUMBO"
+  },
+  {
+    "codigo": "76895000",
+    "nombre": "ZARZAL"
+  },
+  {
+    "codigo": "81001000",
+    "nombre": "ARAUCA"
+  },
+  {
+    "codigo": "81065000",
+    "nombre": "ARAUQUITA"
+  },
+  {
+    "codigo": "81220000",
+    "nombre": "CRAVO NORTE"
+  },
+  {
+    "codigo": "81300000",
+    "nombre": "FORTUL"
+  },
+  {
+    "codigo": "81591000",
+    "nombre": "PUERTO RONDÓN"
+  },
+  {
+    "codigo": "81736000",
+    "nombre": "SARAVENA"
+  },
+  {
+    "codigo": "81794000",
+    "nombre": "TAME"
+  },
+  {
+    "codigo": "85001000",
+    "nombre": "YOPAL"
+  },
+  {
+    "codigo": "85010000",
+    "nombre": "AGUAZUL"
+  },
+  {
+    "codigo": "85015000",
+    "nombre": "CHÁMEZA"
+  },
+  {
+    "codigo": "85125000",
+    "nombre": "HATO COROZAL"
+  },
+  {
+    "codigo": "85136000",
+    "nombre": "LA SALINA"
+  },
+  {
+    "codigo": "85139000",
+    "nombre": "MANÍ"
+  },
+  {
+    "codigo": "85162000",
+    "nombre": "MONTERREY"
+  },
+  {
+    "codigo": "85225000",
+    "nombre": "NUNCHÍA"
+  },
+  {
+    "codigo": "85230000",
+    "nombre": "OROCUÉ"
+  },
+  {
+    "codigo": "85250000",
+    "nombre": "PAZ DE ARIPORO"
+  },
+  {
+    "codigo": "85263000",
+    "nombre": "PORE"
+  },
+  {
+    "codigo": "85279000",
+    "nombre": "RECETOR"
+  },
+  {
+    "codigo": "85300000",
+    "nombre": "SABANALARGA"
+  },
+  {
+    "codigo": "85315000",
+    "nombre": "SÁCAMA"
+  },
+  {
+    "codigo": "85325000",
+    "nombre": "SAN LUIS DE PALENQUE"
+  },
+  {
+    "codigo": "85400000",
+    "nombre": "TÁMARA"
+  },
+  {
+    "codigo": "85410000",
+    "nombre": "TAURAMENA"
+  },
+  {
+    "codigo": "85430000",
+    "nombre": "TRINIDAD"
+  },
+  {
+    "codigo": "85440000",
+    "nombre": "VILLANUEVA"
+  },
+  {
+    "codigo": "86001000",
+    "nombre": "MOCOA"
+  },
+  {
+    "codigo": "86219000",
+    "nombre": "COLÓN"
+  },
+  {
+    "codigo": "86320000",
+    "nombre": "ORITO"
+  },
+  {
+    "codigo": "86568000",
+    "nombre": "PUERTO ASÍS"
+  },
+  {
+    "codigo": "86569000",
+    "nombre": "PUERTO CAICEDO"
+  },
+  {
+    "codigo": "86571000",
+    "nombre": "PUERTO GUZMÁN"
+  },
+  {
+    "codigo": "86573000",
+    "nombre": "PUERTO LEGUÍZAMO"
+  },
+  {
+    "codigo": "86749000",
+    "nombre": "SIBUNDOY"
+  },
+  {
+    "codigo": "86755000",
+    "nombre": "SAN FRANCISCO"
+  },
+  {
+    "codigo": "86757000",
+    "nombre": "SAN MIGUEL"
+  },
+  {
+    "codigo": "86760000",
+    "nombre": "SANTIAGO"
+  },
+  {
+    "codigo": "86865000",
+    "nombre": "VALLE DEL GUAMUEZ"
+  },
+  {
+    "codigo": "86885000",
+    "nombre": "VILLAGARZÓN"
+  },
+  {
+    "codigo": "88001000",
+    "nombre": "SAN ANDRÉS"
+  },
+  {
+    "codigo": "88564000",
+    "nombre": "PROVIDENCIA"
+  },
+  {
+    "codigo": "91001000",
+    "nombre": "LETICIA"
+  },
+  {
+    "codigo": "91263000",
+    "nombre": "EL ENCANTO"
+  },
+  {
+    "codigo": "91405000",
+    "nombre": "LA CHORRERA"
+  },
+  {
+    "codigo": "91407000",
+    "nombre": "LA PEDRERA"
+  },
+  {
+    "codigo": "91430000",
+    "nombre": "LA VICTORIA"
+  },
+  {
+    "codigo": "91460000",
+    "nombre": "MIRITÍ - PARANÁ"
+  },
+  {
+    "codigo": "91530000",
+    "nombre": "PUERTO ALEGRÍA"
+  },
+  {
+    "codigo": "91536000",
+    "nombre": "PUERTO ARICA"
+  },
+  {
+    "codigo": "91540000",
+    "nombre": "PUERTO NARIÑO"
+  },
+  {
+    "codigo": "91669000",
+    "nombre": "PUERTO SANTANDER"
+  },
+  {
+    "codigo": "91798000",
+    "nombre": "TARAPACÁ"
+  },
+  {
+    "codigo": "94001000",
+    "nombre": "INÍRIDA"
+  },
+  {
+    "codigo": "94343000",
+    "nombre": "BARRANCOMINAS"
+  },
+  {
+    "codigo": "94883000",
+    "nombre": "SAN FELIPE"
+  },
+  {
+    "codigo": "94884000",
+    "nombre": "PUERTO COLOMBIA"
+  },
+  {
+    "codigo": "94885000",
+    "nombre": "LA GUADALUPE"
+  },
+  {
+    "codigo": "94886000",
+    "nombre": "CACAHUAL"
+  },
+  {
+    "codigo": "94887000",
+    "nombre": "PANA PANA"
+  },
+  {
+    "codigo": "94888000",
+    "nombre": "MORICHAL"
+  },
+  {
+    "codigo": "95001000",
+    "nombre": "SAN JOSÉ DEL GUAVIARE"
+  },
+  {
+    "codigo": "95015000",
+    "nombre": "CALAMAR"
+  },
+  {
+    "codigo": "95025000",
+    "nombre": "EL RETORNO"
+  },
+  {
+    "codigo": "95200000",
+    "nombre": "MIRAFLORES"
+  },
+  {
+    "codigo": "97001000",
+    "nombre": "MITÚ"
+  },
+  {
+    "codigo": "97161000",
+    "nombre": "CARURÚ"
+  },
+  {
+    "codigo": "97511000",
+    "nombre": "PACOA"
+  },
+  {
+    "codigo": "97666000",
+    "nombre": "TARAIRA"
+  },
+  {
+    "codigo": "97777000",
+    "nombre": "PAPUNAHUA"
+  },
+  {
+    "codigo": "97889000",
+    "nombre": "YAVARATÉ"
+  },
+  {
+    "codigo": "99001000",
+    "nombre": "PUERTO CARREÑO"
+  },
+  {
+    "codigo": "99524000",
+    "nombre": "LA PRIMAVERA"
+  },
+  {
+    "codigo": "99624000",
+    "nombre": "SANTA ROSALÍA"
+  },
+  {
+    "codigo": "99773000",
+    "nombre": "CUMARIBO"
+  }
+]

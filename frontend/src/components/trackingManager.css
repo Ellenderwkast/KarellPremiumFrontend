@@ -1,0 +1,138 @@
+.tracking-manager {
+  /* container spacing */
+}
+
+.tm-toolbar {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.tm-input {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  min-width: 100px;
+  height: 34px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #0f172a;
+  background: #fff;
+  box-shadow: none;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+
+.tm-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.08);
+}
+
+.tm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+  min-height: 34px;
+  min-width: 90px;
+  cursor: pointer;
+  transition: transform .06s ease, box-shadow .08s ease, filter .08s ease;
+}
+
+.tm-btn:active { transform: translateY(1px); }
+
+.tm-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  filter: grayscale(.02) brightness(.98);
+}
+
+.tm-btn--primary {
+  background: #06b6d4; /* teal-400 */
+  color: #fff;
+}
+
+.tm-btn--accent {
+  background: #6366f1; /* indigo-500 */
+  color: #fff;
+}
+
+.tm-btn--warning {
+  background: #f97316; /* orange-500 */
+  color: #fff;
+}
+
+.tm-btn--ghost {
+  background: linear-gradient(90deg, var(--primary-color, #3b82f6), var(--primary-dark, #1e40af));
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 24px rgba(14, 42, 86, 0.18);
+}
+.tm-btn--ghost:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(14, 42, 86, 0.22);
+}
+.tm-btn--ghost:focus {
+  outline: none;
+  box-shadow: 0 0 0 6px rgba(59,130,246,0.12);
+}
+
+/* Botón de refrescar más destacado */
+.tm-btn--refresh { 
+  min-width: 120px;
+  padding: 8px 14px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tm-btn--refresh svg { width: 16px; height: 16px; display: inline-block; vertical-align: middle; }
+
+.tm-btn .tm-btn-label { display: inline-block; }
+
+/* row actions container */
+.tm-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  /* Evitar que los botones salten de línea al hacer zoom: mantener en una sola fila */
+  flex-wrap: nowrap;
+  /* Permitir scroll horizontal si el espacio no alcanza (mejor que desacomodar) */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0;
+}
+
+/* Asegurar que los botones no se encogen inesperadamente y mantengan etiqueta en una sola línea */
+.tm-actions .tm-btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Scrollbar discreto para cuando aparezca overflow */
+.tm-actions::-webkit-scrollbar { height: 6px; }
+.tm-actions::-webkit-scrollbar-thumb { background: rgba(2,6,23,0.12); border-radius: 6px; }
+
+/* responsive: tighten on small screens */
+@media (max-width: 720px) {
+  .tm-input { min-width: 90px; }
+  .tm-btn { padding: 6px 8px; font-size: 12px; }
+}
+
+/* Make selects inside toolbar readable */
+.tm-toolbar select {
+  min-width: 140px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  height: 34px;
+}

@@ -1,0 +1,20 @@
+<!-- INSTRUCCIONES: Limpia el carrito después de los cambios -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Limpiar Carrito</title>
+</head>
+<body>
+    <h1>Limpiar Carrito</h1>
+    <p>Este script limpiará el carrito del navegador para aplicar los cambios.</p>
+    <button onclick="clearCart()">Limpiar Carrito</button>
+    <div id="result"></div>
+    
+    <script>
+        function clearCart() {
+            localStorage.removeItem('cart-storage');
+            document.getElementById('result').innerHTML = '<p style="color: green;">✅ Carrito limpiado! Recarga la página del frontend.</p>';
+        }
+    </script>
+</body>
+</html>

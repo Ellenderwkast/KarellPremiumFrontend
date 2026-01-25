@@ -1,0 +1,62 @@
+.carrier-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.carrier-table th,
+.carrier-table td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.carrier-table th {
+  background: #f6f9fc;
+  font-weight: bold;
+}
+
+.carrier-table tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.carrier-table td {
+  min-width: 100px;
+}
+
+.carrier-table .acciones {
+  display: flex;
+  gap: 8px;
+}
+
+.carrier-table .estado-activo {
+  background: #4efc9a;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.carrier-table .btn-editar {
+  background: #4ea1fc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.carrier-table .btn-eliminar {
+  background: #fc4e4e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}

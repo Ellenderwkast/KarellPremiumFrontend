@@ -1,0 +1,76 @@
+.products-page {
+  padding: 2rem 0;
+}
+
+.products-header {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.back-button:hover {
+  color: var(--primary-dark);
+  transform: translateX(-4px);
+}
+
+.products-page h1 {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    font-size: 0.9rem;
+  }
+  
+  .products-page h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Ajustes móviles: hacer que las imágenes de las cards en "Todos nuestros productos"
+   se comporten como en "Productos destacados" (sin recortes y más compactas) */
+@media (max-width: 900px) {
+  .products-page .product-card {
+    padding-top: 0.18rem;
+    padding-bottom: 0.3rem;
+    overflow: hidden !important;
+  }
+
+  .products-page .product-image {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    padding: 0.12rem !important;
+    overflow: visible !important;
+  }
+
+  .products-page .product-image img,
+  .products-page .product-card-image {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 200px !important;
+    object-fit: contain !important;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .products-page .product-card:hover .product-image img {
+    transform: none !important;
+  }
+}

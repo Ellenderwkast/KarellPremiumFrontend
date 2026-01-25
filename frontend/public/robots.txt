@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://karellpremium.com.co/sitemap.xml
+
+# Block admin routes
+Disallow: /admin/
+
+# Block user-specific routes
+Disallow: /profile
+Disallow: /orders
+Disallow: /checkout
+
+# Block payment results (may contain sensitive data)
+Disallow: /payment-result
