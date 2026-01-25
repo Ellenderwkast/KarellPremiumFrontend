@@ -46,8 +46,9 @@ import '../styles/checkout.css';
 import { IconCart, IconBox, IconCard } from '../components/CheckoutIcons';
 import { departments, citiesByDepartment } from '../data/colombiaCities';
 
-// Mapa de códigos DANE por ciudad y departamento (debe mantenerse sincronizado con backend/config/shipping_rates.json)
-import shippingRates from '../../../backend/config/shipping_rates.json';
+// Mapa de códigos DANE por ciudad y departamento basado en datos locales
+// Se usa `ciudadesDaneFull.json` como fuente de verdad en el frontend.
+import daneCities from '../data/ciudadesDaneFull.json';
 
 // Arreglar problemas de codificación mojibake (p. ej. "UbalÃ¡" -> "Ubalá").
 // Técnica: reinterpretar la cadena como Latin1 y decodificarla correctamente a UTF-8.
@@ -60,11 +61,13 @@ function fixEncoding(s) {
   }
 }
 
-// Versión corregida de shippingRates usada localmente en el frontend
-const fixedShippingRates = (shippingRates || []).map(r => ({
+// Versión corregida de los datos DANE usada localmente en el frontend
+// `ciudadesDaneFull.json` expone campos { codigo, nombre }.
+// Los adaptamos a la forma { codigo, ciudad, departamento } esperada por el resto del código.
+const fixedShippingRates = (daneCities || []).map(r => ({
   ...r,
-  ciudad: fixEncoding(r.ciudad),
-  departamento: fixEncoding(r.departamento)
+  ciudad: fixEncoding(r.nombre),
+  departamento: ''
 }));
 
   // Utilidad para obtener el código DANE de una ciudad/departamento
