@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://karellpremium.com.co/sitemap.xml
+Sitemap: https://www.karellpremium.com.co/sitemap.xml
 
 # Block admin routes
 Disallow: /admin/
