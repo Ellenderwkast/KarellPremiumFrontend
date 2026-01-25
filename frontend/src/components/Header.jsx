@@ -106,7 +106,9 @@ function Header() {
               <X aria-hidden="true" />
             </button>
 
-            <SearchBar />
+            <div className="search-desktop-only">
+              <SearchBar />
+            </div>
 
             <nav className="nav" data-open={menuOpen}>
               <Link to="/" className="nav-link" onClick={closeMenu}>
