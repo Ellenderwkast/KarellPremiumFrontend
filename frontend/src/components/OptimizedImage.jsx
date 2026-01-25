@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 
 /**
  * Componente para servir imágenes WebP con fallback automático
@@ -182,18 +181,6 @@ const OptimizedImage = ({
       />
     </picture>
   );
-};
-
-OptimizedImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  sizes: PropTypes.string,
-  loading: PropTypes.oneOf(['lazy', 'eager']),
-  objectFit: PropTypes.oneOf(['cover', 'contain', 'fill', 'none', 'scale-down']),
-  fallback: PropTypes.node
 };
 
 export default OptimizedImage;
