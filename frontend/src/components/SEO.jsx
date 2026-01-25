@@ -1,6 +1,25 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+// Obtiene una URL base consistente para canónicos/OG (preferimos www.karellpremium.com.co)
+const getBaseUrl = () => {
+  try {
+    const envUrl = import.meta.env.VITE_FRONTEND_URL;
+    if (envUrl && typeof envUrl === 'string' && /^https?:\/\//i.test(envUrl)) {
+      return envUrl.replace(/\/+$/, '');
+    }
+  } catch (_) {
+    // ignore, fallbacks below
+  }
+
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    return window.location.origin.replace(/\/+$/, '');
+  }
+
+  // Fallback seguro para entornos donde no haya window (SSR, herramientas)
+  return 'https://www.karellpremium.com.co';
+};
+
 const SEO = ({ 
   title, 
   description, 
@@ -10,17 +29,9 @@ const SEO = ({
   keywords = 'tecnología, gadgets, accesorios, productos premium, electrónica'
 }) => {
   const location = useLocation();
-  let baseUrl = window.location.origin;
-  try {
-    const envUrl = import.meta.env.VITE_FRONTEND_URL;
-    if (envUrl && typeof envUrl === 'string' && /^https?:\/\//i.test(envUrl)) {
-      baseUrl = envUrl;
-    }
-  } catch (_) {
-    // ignore, fallback to window.location.origin
-  }
-  const fullCanonical = canonical || `${baseUrl}${location.pathname}`;
-  const defaultImage = `${baseUrl}/images/logo.png`;
+  const baseUrl = getBaseUrl();
+  const fullCanonical = canonical || `${baseUrl}${location.pathname || '/'}`;
+  const defaultImage = `${baseUrl}/images/logo.webp`;
   const ogImage = image || defaultImage;
   const fullTitle = title ? `${title} | Karell Premium` : 'Karell Premium - Tecnología y Accesorios Premium';
 
