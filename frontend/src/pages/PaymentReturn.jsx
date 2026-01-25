@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { orderService } from '../services/api';
+import SEO from '../components/SEO';
 
 function PaymentReturn() {
   const navigate = useNavigate();
@@ -51,7 +52,13 @@ function PaymentReturn() {
   }, [navigate]);
 
   return (
-    <div style={{
+    <>
+      <SEO
+        title="Procesando tu pago"
+        description="Verificando el estado de tu pago y redirigiéndote a tus pedidos en Karell Premium."
+        robots="noindex, nofollow"
+      />
+      <div style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
@@ -79,6 +86,7 @@ function PaymentReturn() {
         }
       `}</style>
     </div>
+    </>
   );
 }
 

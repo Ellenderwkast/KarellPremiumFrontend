@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { authService } from '../services/api';
 import { useAuthStore } from '../store/authStore';
 import '../styles/auth.css';
+import SEO from '../components/SEO';
 
 export default function CreateAccountFromOrder() {
   const [searchParams] = useSearchParams();
@@ -35,6 +36,11 @@ export default function CreateAccountFromOrder() {
 
   return (
     <div className="auth-container">
+      <SEO
+        title="Crear cuenta desde tu pedido"
+        description="Crea tu cuenta en Karell Premium para ver el historial y estado de tus pedidos realizados como invitado."
+        robots="noindex, nofollow"
+      />
       <div className="auth-card">
         <div className="auth-header">
           <h2>Crear tu cuenta</h2>

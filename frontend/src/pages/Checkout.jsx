@@ -45,6 +45,7 @@ import { orderService, paymentService, productService, shippingService, API_URL 
 import '../styles/checkout.css';
 import { IconCart, IconBox, IconCard } from '../components/CheckoutIcons';
 import { departments, citiesByDepartment } from '../data/colombiaCities';
+import SEO from '../components/SEO';
 
 // Mapa de códigos DANE por ciudad y departamento basado en datos locales
 // Se usa `ciudadesDaneFull.json` como fuente de verdad en el frontend.
@@ -974,7 +975,13 @@ function Checkout() {
   }
 
   return (
-    <div className="checkout-page">
+    <>
+      <SEO
+        title="Finalizar compra"
+        description="Completa tus datos de envío y elige tu método de pago para finalizar tu compra en Karell Premium."
+        robots="noindex, nofollow"
+      />
+      <div className="checkout-page">
       <div className="container">
         <div className="page-header checkout-header">
           <button onClick={() => navigate('/cart')} className="btn-back">
@@ -1444,6 +1451,7 @@ function Checkout() {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore';
 import OptimizedImage from '../components/OptimizedImage';
 import '../styles/cart.css';
+import SEO from '../components/SEO';
 
 function Cart() {
   const navigate = useNavigate();
@@ -12,6 +13,11 @@ function Cart() {
   if (items.length === 0) {
     return (
       <div className="cart-empty">
+        <SEO
+          title="Tu carrito está vacío"
+          description="Tu carrito de compras en Karell Premium está vacío. Explora nuestro catálogo de productos y añade tus audífonos y accesorios favoritos."
+          robots="noindex, follow"
+        />
         <div className="container">
           <h2>Tu carrito está vacío</h2>
           <p>Explora nuestros productos y añade algunos a tu carrito</p>
@@ -25,6 +31,11 @@ function Cart() {
 
   return (
     <div className="cart-page">
+      <SEO
+        title="Tu carrito de compras"
+        description="Revisa y edita los productos de tu carrito antes de finalizar la compra en Karell Premium."
+        robots="noindex, follow"
+      />
       <div className="container">
         <div className="page-header">
           <button onClick={() => navigate(-1)} className="btn-back">

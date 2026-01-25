@@ -5,6 +5,7 @@ import { useAuthStore } from '../store/authStore';
 import '../styles/orders.css';
 import { formatCOPFromUnits } from '../utils/currency';
 import { PAYMENT_REJECTED_TITLE, PAYMENT_REJECTED_BODY } from '../constants/paymentMessages';
+import SEO from '../components/SEO';
 
 export default function PaymentResult() {
   const navigate = useNavigate();
@@ -87,7 +88,13 @@ export default function PaymentResult() {
   // Si no hay status, mostrar error genérico
   if (!status) {
     return (
-      <div
+      <>
+        <SEO
+          title="Resultado del pago"
+          description="Estado de tu pago en Karell Premium."
+          robots="noindex, nofollow"
+        />
+        <div
         className="modal-overlay"
         style={{
           position: 'fixed',
@@ -97,7 +104,7 @@ export default function PaymentResult() {
           placeItems: 'center',
           zIndex: 9999
         }}
-      >
+        >
         <div className="modal-card">
           <h2>Error</h2>
           <p>No se especificó el resultado del pago.</p>
@@ -108,6 +115,7 @@ export default function PaymentResult() {
           </div>
         </div>
       </div>
+      </>
     );
   }
 
@@ -423,20 +431,32 @@ export default function PaymentResult() {
   };
 
   return (
-    <div
-      className="modal-overlay"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        background: 'rgba(0,0,0,.5)',
-        display: 'grid',
-        placeItems: 'center',
-        zIndex: 9999
-      }}
-    >
-      <div className="modal-card fancy" role="dialog" aria-modal="true" onClick={e => e.stopPropagation()}>
-        {loading ? <p>Cargando...</p> : <Content />}
+    <>
+      <SEO
+        title="Resultado del pago"
+        description="Resumen de tu pago y estado de tu pedido en Karell Premium."
+        robots="noindex, nofollow"
+      />
+      <div
+        className="modal-overlay"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,.5)',
+          display: 'grid',
+          placeItems: 'center',
+          zIndex: 9999
+        }}
+      >
+        <div
+          className="modal-card fancy"
+          role="dialog"
+          aria-modal="true"
+          onClick={e => e.stopPropagation()}
+        >
+          {loading ? <p>Cargando...</p> : <Content />}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

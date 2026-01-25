@@ -26,13 +26,15 @@ const SEO = ({
   canonical, 
   image,
   type = 'website',
-  keywords = 'tecnología, gadgets, accesorios, productos premium, electrónica'
+  keywords = 'tecnología, gadgets, accesorios, productos premium, electrónica',
+  robots
 }) => {
   const location = useLocation();
   const baseUrl = getBaseUrl();
   const fullCanonical = canonical || `${baseUrl}${location.pathname || '/'}`;
   const defaultImage = `${baseUrl}/images/logo.webp`;
   const ogImage = image || defaultImage;
+  const robotsValue = robots || 'index, follow';
   const fullTitle = title ? `${title} | Karell Premium` : 'Karell Premium - Tecnología y Accesorios Premium';
 
   useEffect(() => {
@@ -56,7 +58,7 @@ const SEO = ({
     setMeta('description', description);
     setMeta('keywords', keywords);
     setMeta('author', 'Karell Premium');
-    setMeta('robots', 'index, follow');
+    setMeta('robots', robotsValue);
     setMeta('language', 'es');
     setMeta('revisit-after', '7 days');
 
@@ -101,7 +103,7 @@ const SEO = ({
     }
     linkAlternate.setAttribute('href', fullCanonical);
 
-  }, [fullTitle, description, fullCanonical, ogImage, type, keywords]);
+  }, [fullTitle, description, fullCanonical, ogImage, type, keywords, robotsValue]);
 
   return null;
 };

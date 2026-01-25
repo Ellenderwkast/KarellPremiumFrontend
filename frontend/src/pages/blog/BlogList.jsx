@@ -40,6 +40,27 @@ function BlogList() {
     ]
   };
 
+  const blogListData = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    url: `${baseUrl}/blog`,
+    name: 'Blog de tecnología y audífonos Karell Premium',
+    description:
+      'Artículos, guías y consejos sobre audífonos, gadgets y tecnología premium en Colombia de Karell Premium.',
+    blogPost: posts.map(post => {
+      const plainText = (post.excerpt || post.content?.replace(/<[^>]+>/g, '') || '').trim();
+      const description = plainText ? `${plainText.slice(0, 155)}${plainText.length > 155 ? '…' : ''}` : undefined;
+      return {
+        '@type': 'BlogPosting',
+        headline: post.seoTitle || post.title,
+        url: `${baseUrl}/blog/${post.slug || post.id}`,
+        image: getStaticUrl(post.cover),
+        datePublished: post.publishDate,
+        description
+      };
+    })
+  };
+
   return (
     <>
       <SEO
@@ -47,6 +68,7 @@ function BlogList() {
         description="Artículos, guías y consejos sobre audífonos, gadgets y tecnología premium en Colombia. Descubre cómo sacar el máximo provecho a tus productos Karell Premium."
       />
       <StructuredData type="breadcrumb-blog" data={breadcrumbData} />
+      <StructuredData type="blog-list" data={blogListData} />
       <div className="blog-list-page container">
         <h1>Blog</h1>
         <div className="blog-list-grid" style={{

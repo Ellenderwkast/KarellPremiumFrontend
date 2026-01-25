@@ -11,6 +11,7 @@ import { useAuthStore } from '../store/authStore';
 import '../styles/orders.css';
 import { formatCOPFromUnits } from '../utils/currency';
 import { PAYMENT_REJECTED_TITLE, PAYMENT_REJECTED_BODY } from '../constants/paymentMessages';
+import SEO from '../components/SEO';
 
 function Orders() {
   const navigate = useNavigate();
@@ -91,6 +92,11 @@ function Orders() {
   if (orders.length === 0) {
     return (
       <div className="orders-empty">
+        <SEO
+          title="Mis pedidos"
+          description="Revisa el estado y el historial de tus pedidos en Karell Premium."
+          robots="noindex, nofollow"
+        />
         <div className="container">
           <h2>No tienes pedidos aún</h2>
           <p>Comienza a comprar en nuestra tienda</p>
@@ -101,6 +107,11 @@ function Orders() {
 
   return (
     <div className="orders-page">
+      <SEO
+        title="Mis pedidos"
+        description="Consulta el historial y estado de tus pedidos en Karell Premium."
+        robots="noindex, nofollow"
+      />
       <div className="container">
         <div className="page-header">
           <button onClick={() => navigate('/')} className="btn-back">
