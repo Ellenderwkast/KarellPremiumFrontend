@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { getStaticUrl } from '../../services/api';
+import api, { getStaticUrl } from '../../services/api';
 import SEO from '../../components/SEO';
 import StructuredData from '../../components/StructuredData';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
 function BlogList() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${API_URL}/blog`)
+    api.get('/blog')
       .then(res => setPosts(res.data))
       .catch(() => setPosts([]))
       .finally(() => setLoading(false));

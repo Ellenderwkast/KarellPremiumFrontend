@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { getStaticUrl } from '../../services/api';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+import api, { getStaticUrl } from '../../services/api';
 
 function ProductSelector({ selectedProducts, setSelectedProducts }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${API_URL}/products`)
+    api.get('/products')
       .then(res => setProducts(res.data))
       .catch(() => setProducts([]))
       .finally(() => setLoading(false));

@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
-import { getStaticUrl } from '../../services/api';
+import api, { getStaticUrl } from '../../services/api';
 import SEO from '../../components/SEO';
 import StructuredData from '../../components/StructuredData';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
 function BlogPost() {
   const { slug } = useParams();
@@ -14,11 +11,11 @@ function BlogPost() {
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API_URL}/blog/${slug}`)
+    api.get(`/blog/${slug}`)
       .then(res => {
         setPost(res.data);
         if (res.data.products && res.data.products.length) {
-          axios.get(`${API_URL}/products`, { params: { ids: res.data.products.join(',') } })
+          api.get('/products', { params: { ids: res.data.products.join(',') } })
             .then(r => setRelatedProducts(r.data))
             .catch(() => setRelatedProducts([]));
         }

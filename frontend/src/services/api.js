@@ -57,8 +57,10 @@ if (isDev) console.log('API_URL configurada:', API_URL);
 // Helper para obtener URL completa de archivos estáticos
 export const getStaticUrl = path => {
   if (!path) return '';
-  // Si es una URL completa pero apunta a las rutas locales de uploads/images,
-  // reescribirla para usar la base de `VITE_API_URL` (útil cuando el backend guarda URLs con IPs LAN)
+
+  // 1) URLs absolutas (http/https):
+  //    - Si apuntan a /uploads o /images en una IP/LAN antigua, normalizamos
+  //      a la base de VITE_API_URL cuando esté definida.
   if (path.startsWith('http://') || path.startsWith('https://')) {
     try {
       const parsed = new URL(path);
@@ -66,7 +68,9 @@ export const getStaticUrl = path => {
       if (pathname.startsWith('/uploads') || pathname.startsWith('/images')) {
         if (import.meta.env.VITE_API_URL) {
           const base = import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '');
-          return `${base}${pathname}`;
+          const fullUrl = `${base}${pathname}`;
+          if (isDev) console.log(`getStaticUrl(absolute-normalized) '${path}' => '${fullUrl}'`);
+          return fullUrl;
         }
         // si no hay VITE_API_URL, devolver la ruta tal cual
         return path;
@@ -74,32 +78,50 @@ export const getStaticUrl = path => {
     } catch (e) {
       return path;
     }
-    return path; // otras URLs externas
+    return path; // otras URLs externas se respetan tal cual
   }
-  if (path.startsWith('data:')) return path; // Data URI (preview local)
+
+  // 2) Data URI (previews locales)
+  if (path.startsWith('data:')) return path;
+
+  // 3) Rutas absolutas manejadas por nuestros servidores
   if (path.startsWith('/')) {
-    // Es una ruta absoluta del servidor
-    // Para imágenes en /images/:
-    // - Si `VITE_API_URL` está definido, usar su base (más explícito para LAN)
-    // - Si estamos en localhost (dev local), usar el servidor del frontend (Vite)
-    // - En otros casos (dispositivos en la LAN), construir URL apuntando al
-    //   mismo hostname con puerto 4000 (backend), p.ej. http://192.168.1.6:4000/images/...
+    const origin = window.location.origin;
+
+    // 3.a) /images/... → normalmente estáticos del frontend (Vite / Vercel)
+    //     pero conservando compatibilidad con escenarios LAN antiguos.
     if (path.startsWith('/images/')) {
       try {
-        // Priorizar variable de entorno si está definida
-        if (import.meta.env.VITE_API_URL) {
-          const base = import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '');
-          const fullUrl = `${base}${path}`;
-          if (isDev) console.log(`getStaticUrl(VITE_API_URL) '${path}' => '${fullUrl}'`);
-          return fullUrl;
+        const envApiUrl = import.meta.env.VITE_API_URL;
+
+        if (envApiUrl) {
+          // Si tenemos VITE_API_URL, decidimos según el host:
+          // - Si API y frontend comparten origen → usar ese origen.
+          // - Si son distintos (ej: Vercel + Render) → servir desde el origen del frontend.
+          try {
+            const apiUrl = new URL(envApiUrl);
+            const apiOrigin = apiUrl.origin;
+            if (apiOrigin === origin) {
+              const fullUrl = `${apiOrigin}${path}`;
+              if (isDev) console.log(`getStaticUrl(images same-origin) '${path}' => '${fullUrl}'`);
+              return fullUrl;
+            }
+            const fullUrl = `${origin}${path}`;
+            if (isDev) console.log(`getStaticUrl(images frontend-origin) '${path}' => '${fullUrl}'`);
+            return fullUrl;
+          } catch {
+            const fullUrl = `${origin}${path}`;
+            if (isDev) console.log(`getStaticUrl(images origin-fallback) '${path}' => '${fullUrl}'`);
+            return fullUrl;
+          }
         }
 
+        // Sin VITE_API_URL: mantener el comportamiento previo
         const hostname = window.location.hostname;
         // Cuando el navegador está en 'localhost' preferimos servir desde Vite
         if (hostname === 'localhost' || hostname === '127.0.0.1') {
-          const origin = window.location.origin;
           const fullUrl = `${origin}${path}`;
-          if (isDev) console.log(`getStaticUrl(dev) '${path}' => '${fullUrl}'`);
+          if (isDev) console.log(`getStaticUrl(images dev-localhost) '${path}' => '${fullUrl}'`);
           return fullUrl;
         }
 
@@ -107,24 +129,27 @@ export const getStaticUrl = path => {
         // asumir que el backend escucha en el puerto 4000 en la misma IP del host.
         const proto = window.location.protocol;
         const fullUrl = `${proto}//${hostname}:4000${path}`;
-        if (isDev) console.log(`getStaticUrl(lan) '${path}' => '${fullUrl}'`);
+        if (isDev) console.log(`getStaticUrl(images lan-4000) '${path}' => '${fullUrl}'`);
         return fullUrl;
       } catch (e) {
         const hostname = window.location.hostname;
         const port = window.location.port || (window.location.protocol === 'https:' ? 443 : 80);
         const baseUrl = `${window.location.protocol}//${hostname}${port && port !== '80' && port !== '443' ? ':' + port : ''}`;
         const fullUrl = `${baseUrl}${path}`;
-        if (isDev) console.log(`getStaticUrl fallback('${path}') => '${fullUrl}'`);
+        if (isDev) console.log(`getStaticUrl(images-fallback) '${path}' => '${fullUrl}'`);
         return fullUrl;
       }
     }
-    // Para otras rutas, construir desde el backend
+
+    // 3.b) /uploads/... y otras rutas absolutas → siempre desde el backend
     const baseUrl = API_URL.replace('/api', ''); // Quitar /api del final
     const fullUrl = `${baseUrl}${path}`;
     if (isDev) console.log(`getStaticUrl('${path}') => '${fullUrl}'`);
     return fullUrl;
   }
-  return path; // Ruta relativa, devolverla tal cual
+
+  // 4) Rutas relativas: se devuelven tal cual (útil en algunos editores/admin)
+  return path;
 };
 
 const api = axios.create({
