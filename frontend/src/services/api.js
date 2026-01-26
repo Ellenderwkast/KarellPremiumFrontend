@@ -148,7 +148,21 @@ export const getStaticUrl = path => {
     return fullUrl;
   }
 
-  // 4) Rutas relativas: se devuelven tal cual (útil en algunos editores/admin)
+  // 4) Rutas relativas conocidas: normalizar prefijos "uploads/" o "images/" a rutas absolutas
+  //    para que se beneficien de la lógica anterior.
+  const cleaned = path.replace(/^\.\//, '');
+  if (cleaned.startsWith('uploads/')) {
+    const normalized = `/${cleaned}`;
+    if (isDev) console.log(`getStaticUrl(relative-uploads) '${path}' => '${normalized}'`);
+    return getStaticUrl(normalized);
+  }
+  if (cleaned.startsWith('images/')) {
+    const normalized = `/${cleaned}`;
+    if (isDev) console.log(`getStaticUrl(relative-images) '${path}' => '${normalized}'`);
+    return getStaticUrl(normalized);
+  }
+
+  // 5) Otras rutas relativas: se devuelven tal cual (útil en algunos editores/admin)
   return path;
 };
 
