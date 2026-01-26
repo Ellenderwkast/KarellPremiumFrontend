@@ -140,7 +140,8 @@
 
   /* En móvil la imagen se muestra un poco más pequeña y centrada */
   .carousel-image-wrap img {
-    max-height: 70%;
+    max-height: 50%;
+    max-width: 80%;
     height: auto;
   }
 }
