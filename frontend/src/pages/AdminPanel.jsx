@@ -1930,6 +1930,9 @@ export default function AdminPanel() {
                       const galleryArr = Array.isArray(product.attributes?.gallery) ? product.attributes.gallery : (Array.isArray(product.attributes?.images) ? product.attributes.images : []);
                       imagePath = (Array.isArray(galleryArr) ? galleryArr.find(Boolean) : null) || null;
                     }
+                    if (!imagePath) {
+                      imagePath = product.image || null;
+                    }
                     let imageUrl = placeholderSvg;
                     if (typeof imagePath === 'string') {
                       // Cadena simple: puede ser relativa o absoluta; delegar en getStaticUrl
