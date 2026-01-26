@@ -91,8 +91,10 @@
 /* Center content and avoid forced stretching so portrait images won't be cropped */
 .carousel-image-wrap {
   width: 100%;
-  /* Un poco más alta para darle más presencia */
-  height: 360px;
+  /* Altura base pensada para desktop/tablet */
+  height: 320px;
+  /* Nunca ocupar más de ~65% del alto de pantalla, útil cuando el usuario cambia el zoom en móviles */
+  max-height: 65vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,14 +113,14 @@
 }
 
 @media (min-width: 1200px) {
-  .carousel-image-wrap { height: 400px; }
+  .carousel-image-wrap { height: 380px; }
 }
 
 @media (max-width: 880px) {
-  .carousel-image-wrap { height: 320px; }
+  .carousel-image-wrap { height: 240px; }
 }
 @media (max-width: 520px) {
-  .carousel-image-wrap { height: 260px; }
+  .carousel-image-wrap { height: 190px; }
 }
 
 /* Match product-card min-height on large screens */
