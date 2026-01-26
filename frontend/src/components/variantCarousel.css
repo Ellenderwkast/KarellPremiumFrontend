@@ -117,10 +117,10 @@
 }
 
 @media (max-width: 880px) {
-  .carousel-image-wrap { height: 240px; }
+  .carousel-image-wrap { height: 270px; }
 }
 @media (max-width: 520px) {
-  .carousel-image-wrap { height: 190px; }
+  .carousel-image-wrap { height: 220px; }
 }
 
 /* Match product-card min-height on large screens */
