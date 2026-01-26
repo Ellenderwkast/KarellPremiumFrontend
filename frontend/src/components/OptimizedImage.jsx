@@ -171,7 +171,7 @@ const OptimizedImage = ({
           transition: 'opacity 0.3s ease-in-out',
           // Ajuste especial para tarjetas de producto: evitar recortes en móviles
           ...(fitMode === 'contain'
-            ? (className?.includes('product-card-image')
+            ? (className?.includes('product-card-image') || className?.includes('cart-item-image')
                 ? { width: '100%', height: 'auto', maxHeight: '100%' }
                 : { width: 'auto', height: '100%' }
               )

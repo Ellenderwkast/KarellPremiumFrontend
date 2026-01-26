@@ -51,6 +51,7 @@ function Cart() {
                 <OptimizedImage 
                   src={item.image || 'https://via.placeholder.com/100'} 
                   alt={item.title}
+                  className="cart-item-image"
                   width="100"
                   height="100"
                   objectFit="cover"
