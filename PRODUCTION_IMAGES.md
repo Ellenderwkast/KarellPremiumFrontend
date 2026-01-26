@@ -29,10 +29,16 @@ Comportamiento resumido:
   - Sin `VITE_API_URL` (modo dev/LAN):
     - En `localhost` o `127.0.0.1`, se sirven desde el origen del frontend (Vite).
     - Para otras IPs de LAN se mantienen las URLs antiguas apuntando a `http(s)://<host>:4000/images/...`.
-- **Rutas que empiezan por `/uploads/` (y resto de rutas absolutas)**:
+- **Rutas que empiezan por `/uploads/` (y resto de rutas absolutas distintas de `/images/`)**:
   - Se construyen SIEMPRE a partir de la base del backend: `API_URL.replace('/api', '') + path`.
   - Ejemplo en producción:
     - `getStaticUrl('/uploads/foo.jpg')` → `https://karellpremiumbackend.onrender.com/uploads/foo.jpg`.
+- **Rutas relativas** (no empiezan por `http`, `data:` ni `/`):
+  - Si comienzan por `uploads/` o `images/`, primero se normalizan a `/uploads/...` o `/images/...` y luego se aplica la lógica anterior.
+  - Para cualquier otro prefijo (por ejemplo `avatars/`, `profile-images/`, etc.), se asume que viven en el backend y se construye:
+    - `API_URL.replace('/api', '') + '/' + pathNormalizado`.
+  - Ejemplo:
+    - `getStaticUrl('avatars/u123.png')` → `https://karellpremiumbackend.onrender.com/avatars/u123.png`.
 
 ### 3. Componentes que usan `getStaticUrl`
 

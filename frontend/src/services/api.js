@@ -162,8 +162,14 @@ export const getStaticUrl = path => {
     return getStaticUrl(normalized);
   }
 
-  // 5) Otras rutas relativas: se devuelven tal cual (útil en algunos editores/admin)
-  return path;
+  // 5) Otras rutas relativas: asumir que apuntan al backend (por ejemplo
+  //    "avatars/..", "profile-images/..."), construyendo la URL con la
+  //    base de API_URL sin el sufijo "/api".
+  const baseUrl = API_URL.replace('/api', '');
+  const normalizedRelative = cleaned.replace(/^\/+/, '');
+  const fullUrl = `${baseUrl}/${normalizedRelative}`;
+  if (isDev) console.log(`getStaticUrl(relative-backend) '${path}' => '${fullUrl}'`);
+  return fullUrl;
 };
 
 const api = axios.create({
