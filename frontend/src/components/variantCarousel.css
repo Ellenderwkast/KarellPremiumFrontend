@@ -137,15 +137,15 @@
 @media (max-width: 768px) {
   .carousel-card {
     min-height: 360px; /* un poco más alta la card en móvil */
-    max-width: 88%;    /* quitamos algo de ancho sólo en móvil */
+    max-width: 100%;   /* que la card use casi todo el ancho en móvil */
     margin: 0 auto;
     padding: 10px 0 14px;
   }
 
   /* En móvil la imagen se muestra un poco más pequeña y centrada */
   .carousel-image-wrap img {
-    max-height: 65%;
-    max-width: 90%;
+    max-height: 75%;
+    max-width: 95%;
     height: auto;
   }
 }
