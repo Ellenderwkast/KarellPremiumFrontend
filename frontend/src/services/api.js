@@ -58,39 +58,79 @@ if (isDev) console.log('API_URL configurada:', API_URL);
 export const getStaticUrl = path => {
   if (!path) return '';
 
+  // 0) Si viene como objeto (por ejemplo { url, path } desde backend),
+  //    intentar extraer una cadena útil antes de continuar.
+  if (typeof path === 'object') {
+    try {
+      const isFileLike = typeof File !== 'undefined' && (path instanceof File || path instanceof Blob);
+      if (!isFileLike) {
+        const candidates = ['url', 'path', 'image', 'src'];
+        for (const key of candidates) {
+          const v = path[key];
+          if (typeof v === 'string' && v.trim()) {
+            return getStaticUrl(v.trim());
+          }
+        }
+        const firstString = Object.values(path).find(v => typeof v === 'string' && v.trim());
+        if (firstString) {
+          return getStaticUrl(firstString.trim());
+        }
+      }
+    } catch (e) {
+      // continuar con el flujo normal abajo
+    }
+  }
+
+  let p = typeof path === 'string' ? path : String(path || '');
+  p = p.trim();
+  if (!p) return '';
+
+  // Normalizar posibles rutas tipo Windows (backslashes, paths absolutos del servidor)
+  if (p.includes('\\')) {
+    p = p.replace(/\\/g, '/');
+  }
+  const lower = p.toLowerCase();
+  const idxUploads = lower.indexOf('/uploads/');
+  const idxImages = lower.indexOf('/images/');
+  if (idxUploads !== -1) {
+    p = p.slice(idxUploads);
+  } else if (idxImages !== -1) {
+    p = p.slice(idxImages);
+  }
+
   // 1) URLs absolutas (http/https):
   //    - Si apuntan a /uploads o /images en una IP/LAN antigua, normalizamos
   //      a la base de VITE_API_URL cuando esté definida.
-  if (path.startsWith('http://') || path.startsWith('https://')) {
+  if (p.startsWith('http://') || p.startsWith('https://')) {
     try {
-      const parsed = new URL(path);
+      const parsed = new URL(p);
       const pathname = parsed.pathname || '';
       if (pathname.startsWith('/uploads') || pathname.startsWith('/images')) {
         if (import.meta.env.VITE_API_URL) {
           const base = import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '');
           const fullUrl = `${base}${pathname}`;
-          if (isDev) console.log(`getStaticUrl(absolute-normalized) '${path}' => '${fullUrl}'`);
+          if (isDev) console.log(`getStaticUrl(absolute-normalized) '${p}' => '${fullUrl}'`);
           return fullUrl;
         }
         // si no hay VITE_API_URL, devolver la ruta tal cual
-        return path;
+        return p;
       }
     } catch (e) {
-      return path;
+      return p;
     }
-    return path; // otras URLs externas se respetan tal cual
+    return p; // otras URLs externas se respetan tal cual
   }
 
   // 2) Data URI (previews locales)
-  if (path.startsWith('data:')) return path;
+  if (p.startsWith('data:')) return p;
 
   // 3) Rutas absolutas manejadas por nuestros servidores
-  if (path.startsWith('/')) {
+  if (p.startsWith('/')) {
     const origin = window.location.origin;
 
     // 3.a) /images/... → normalmente estáticos del frontend (Vite / Vercel)
     //     pero conservando compatibilidad con escenarios LAN antiguos.
-    if (path.startsWith('/images/')) {
+    if (p.startsWith('/images/')) {
       try {
         const envApiUrl = import.meta.env.VITE_API_URL;
 
@@ -102,16 +142,16 @@ export const getStaticUrl = path => {
             const apiUrl = new URL(envApiUrl);
             const apiOrigin = apiUrl.origin;
             if (apiOrigin === origin) {
-              const fullUrl = `${apiOrigin}${path}`;
-              if (isDev) console.log(`getStaticUrl(images same-origin) '${path}' => '${fullUrl}'`);
+              const fullUrl = `${apiOrigin}${p}`;
+              if (isDev) console.log(`getStaticUrl(images same-origin) '${p}' => '${fullUrl}'`);
               return fullUrl;
             }
-            const fullUrl = `${origin}${path}`;
-            if (isDev) console.log(`getStaticUrl(images frontend-origin) '${path}' => '${fullUrl}'`);
+            const fullUrl = `${origin}${p}`;
+            if (isDev) console.log(`getStaticUrl(images frontend-origin) '${p}' => '${fullUrl}'`);
             return fullUrl;
           } catch {
-            const fullUrl = `${origin}${path}`;
-            if (isDev) console.log(`getStaticUrl(images origin-fallback) '${path}' => '${fullUrl}'`);
+            const fullUrl = `${origin}${p}`;
+            if (isDev) console.log(`getStaticUrl(images origin-fallback) '${p}' => '${fullUrl}'`);
             return fullUrl;
           }
         }
@@ -120,45 +160,45 @@ export const getStaticUrl = path => {
         const hostname = window.location.hostname;
         // Cuando el navegador está en 'localhost' preferimos servir desde Vite
         if (hostname === 'localhost' || hostname === '127.0.0.1') {
-          const fullUrl = `${origin}${path}`;
-          if (isDev) console.log(`getStaticUrl(images dev-localhost) '${path}' => '${fullUrl}'`);
+          const fullUrl = `${origin}${p}`;
+          if (isDev) console.log(`getStaticUrl(images dev-localhost) '${p}' => '${fullUrl}'`);
           return fullUrl;
         }
 
         // Para dispositivos en la LAN que visitan la web a través de la IP del host,
         // asumir que el backend escucha en el puerto 4000 en la misma IP del host.
         const proto = window.location.protocol;
-        const fullUrl = `${proto}//${hostname}:4000${path}`;
-        if (isDev) console.log(`getStaticUrl(images lan-4000) '${path}' => '${fullUrl}'`);
+        const fullUrl = `${proto}//${hostname}:4000${p}`;
+        if (isDev) console.log(`getStaticUrl(images lan-4000) '${p}' => '${fullUrl}'`);
         return fullUrl;
       } catch (e) {
         const hostname = window.location.hostname;
         const port = window.location.port || (window.location.protocol === 'https:' ? 443 : 80);
         const baseUrl = `${window.location.protocol}//${hostname}${port && port !== '80' && port !== '443' ? ':' + port : ''}`;
-        const fullUrl = `${baseUrl}${path}`;
-        if (isDev) console.log(`getStaticUrl(images-fallback) '${path}' => '${fullUrl}'`);
+        const fullUrl = `${baseUrl}${p}`;
+        if (isDev) console.log(`getStaticUrl(images-fallback) '${p}' => '${fullUrl}'`);
         return fullUrl;
       }
     }
 
     // 3.b) /uploads/... y otras rutas absolutas → siempre desde el backend
     const baseUrl = API_URL.replace('/api', ''); // Quitar /api del final
-    const fullUrl = `${baseUrl}${path}`;
-    if (isDev) console.log(`getStaticUrl('${path}') => '${fullUrl}'`);
+    const fullUrl = `${baseUrl}${p}`;
+    if (isDev) console.log(`getStaticUrl('${p}') => '${fullUrl}'`);
     return fullUrl;
   }
 
   // 4) Rutas relativas conocidas: normalizar prefijos "uploads/" o "images/" a rutas absolutas
   //    para que se beneficien de la lógica anterior.
-  const cleaned = path.replace(/^\.\//, '');
+  const cleaned = p.replace(/^\.\//, '');
   if (cleaned.startsWith('uploads/')) {
     const normalized = `/${cleaned}`;
-    if (isDev) console.log(`getStaticUrl(relative-uploads) '${path}' => '${normalized}'`);
+    if (isDev) console.log(`getStaticUrl(relative-uploads) '${p}' => '${normalized}'`);
     return getStaticUrl(normalized);
   }
   if (cleaned.startsWith('images/')) {
     const normalized = `/${cleaned}`;
-    if (isDev) console.log(`getStaticUrl(relative-images) '${path}' => '${normalized}'`);
+    if (isDev) console.log(`getStaticUrl(relative-images) '${p}' => '${normalized}'`);
     return getStaticUrl(normalized);
   }
 
@@ -168,7 +208,7 @@ export const getStaticUrl = path => {
   const baseUrl = API_URL.replace('/api', '');
   const normalizedRelative = cleaned.replace(/^\/+/, '');
   const fullUrl = `${baseUrl}/${normalizedRelative}`;
-  if (isDev) console.log(`getStaticUrl(relative-backend) '${path}' => '${fullUrl}'`);
+  if (isDev) console.log(`getStaticUrl(relative-backend) '${p}' => '${fullUrl}'`);
   return fullUrl;
 };
 
