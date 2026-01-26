@@ -136,4 +136,10 @@
     margin: 0 auto;
     padding: 10px 0 14px;
   }
+
+  /* En móvil la imagen se muestra un poco más pequeña y centrada */
+  .carousel-image-wrap img {
+    max-height: 80%;
+    height: auto;
+  }
 }
