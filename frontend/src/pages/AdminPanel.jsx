@@ -1932,9 +1932,19 @@ export default function AdminPanel() {
                     }
                     let imageUrl = placeholderSvg;
                     if (typeof imagePath === 'string') {
+                      // Cadena simple: puede ser relativa o absoluta; delegar en getStaticUrl
                       imageUrl = getStaticUrl(imagePath) || placeholderSvg;
                     } else if (imagePath instanceof File || (imagePath && typeof imagePath === 'object' && imagePath.type && imagePath.size)) {
+                      // Archivo local (aún no subido): usar URL.createObjectURL para preview
                       try { imageUrl = URL.createObjectURL(imagePath); } catch (err) { imageUrl = placeholderSvg; }
+                    } else if (imagePath && typeof imagePath === 'object') {
+                      // Objeto devuelto por backend (por ejemplo { url, path }): dejar que getStaticUrl
+                      // extraiga el valor correcto
+                      try {
+                        imageUrl = getStaticUrl(imagePath) || placeholderSvg;
+                      } catch (err) {
+                        imageUrl = placeholderSvg;
+                      }
                     }
                     const isHidden = Boolean(product.attributes?.isHidden);
                     if (import.meta.env.DEV) {
