@@ -1066,7 +1066,7 @@ function Checkout() {
                     // Buscar la entrada por nombre de ciudad (normalizando)
                     const findNormalize = s => (s || '').trim().toLowerCase();
                     const normV = findNormalize(v)
-                    const entry = shippingRates.find(r => findNormalize(r.ciudad) === normV)
+                    const entry = fixedShippingRates.find(r => findNormalize(r.ciudad) === normV)
                     if (entry) {
                       // Resolver departamento canónico pero NO sobrescribir el departamento
                       // si el usuario ya lo seleccionó — eso puede hacer que la ciudad
