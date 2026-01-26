@@ -117,15 +117,10 @@
 }
 
 @media (max-width: 880px) {
-  /* En móviles y tablets pequeñas, altura más adaptable al viewport */
-  .carousel-image-wrap {
-    height: clamp(180px, 34vh, 260px);
-  }
+  .carousel-image-wrap { height: 300px; }
 }
 @media (max-width: 520px) {
-  .carousel-image-wrap {
-    height: clamp(160px, 32vh, 220px);
-  }
+  .carousel-image-wrap { height: 240px; }
 }
 
 /* Match product-card min-height on large screens */
@@ -137,15 +132,14 @@
 @media (max-width: 768px) {
   .carousel-card {
     min-height: 360px; /* un poco más alta la card en móvil */
-    max-width: 100%;   /* que la card use casi todo el ancho en móvil */
+    max-width: 88%;    /* quitamos algo de ancho sólo en móvil */
     margin: 0 auto;
     padding: 10px 0 14px;
   }
 
   /* En móvil la imagen se muestra un poco más pequeña y centrada */
   .carousel-image-wrap img {
-    max-height: 75%;
-    max-width: 95%;
+    max-height: 80%;
     height: auto;
   }
 }
