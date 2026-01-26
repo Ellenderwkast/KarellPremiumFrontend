@@ -20,10 +20,6 @@
     padding-bottom: 0.4rem !important;
     /* Evitar que contenido absoluto (flechas/puntos) se salga y tape otras cards */
     overflow: hidden !important;
-    /* En móvil no ocupar todo el ancho para que no se vean tan "aplastadas" */
-    max-width: 340px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .product-info {
@@ -42,8 +38,8 @@
   .product-image {
     /* En móvil: imagen visible, tamaño moderado y sin solaparse */
     aspect-ratio: 4 / 3 !important;
-    max-height: 170px !important;
-    min-height: 125px !important;
+    max-height: 200px !important;
+    min-height: 140px !important;
     overflow: hidden !important;
     padding: 0.14rem !important;
   }

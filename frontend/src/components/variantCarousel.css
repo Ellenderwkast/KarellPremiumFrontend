@@ -91,8 +91,8 @@
 /* Center content and avoid forced stretching so portrait images won't be cropped */
 .carousel-image-wrap {
   width: 100%;
-  /* Altura ajustada para que en general no ocupe tanto, especialmente en móvil */
-  height: 280px;
+  /* Un poco más alta para darle más presencia */
+  height: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,14 +111,14 @@
 }
 
 @media (min-width: 1200px) {
-  .carousel-image-wrap { height: 360px; }
+  .carousel-image-wrap { height: 400px; }
 }
 
 @media (max-width: 880px) {
-  .carousel-image-wrap { height: 220px; }
+  .carousel-image-wrap { height: 320px; }
 }
 @media (max-width: 520px) {
-  .carousel-image-wrap { height: 170px; }
+  .carousel-image-wrap { height: 260px; }
 }
 
 /* Match product-card min-height on large screens */
