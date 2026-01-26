@@ -37,9 +37,9 @@
 
   .product-image {
     /* En móvil: imagen visible, tamaño moderado y sin solaparse */
-    aspect-ratio: 4 / 3 !important;
-    max-height: 200px !important;
-    min-height: 140px !important;
+    aspect-ratio: 1 / 1 !important;
+    max-height: 160px !important;
+    min-height: 120px !important;
     overflow: hidden !important;
     padding: 0.14rem !important;
   }
