@@ -117,10 +117,11 @@
 }
 
 @media (max-width: 880px) {
-  .carousel-image-wrap { height: 300px; }
+  /* En móviles y tablets pequeñas bajamos un poco la altura fija */
+  .carousel-image-wrap { height: 240px; }
 }
 @media (max-width: 520px) {
-  .carousel-image-wrap { height: 240px; }
+  .carousel-image-wrap { height: 210px; }
 }
 
 /* Match product-card min-height on large screens */
@@ -131,15 +132,15 @@
 /* On small screens collapse to auto (like product-card rules) */
 @media (max-width: 768px) {
   .carousel-card {
-    min-height: 360px; /* un poco más alta la card en móvil */
-    max-width: 88%;    /* quitamos algo de ancho sólo en móvil */
+    min-height: 320px; /* un poco menos alta para reducir bloque total */
+    max-width: 84%;    /* algo más estrecha en móvil */
     margin: 0 auto;
-    padding: 10px 0 14px;
+    padding: 8px 0 12px;
   }
 
   /* En móvil la imagen se muestra un poco más pequeña y centrada */
   .carousel-image-wrap img {
-    max-height: 80%;
+    max-height: 70%;
     height: auto;
   }
 }
