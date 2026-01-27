@@ -80,6 +80,7 @@ export default function AdminPanel() {
   const [saveAlert, setSaveAlert] = useState(null); // { type: 'success'|'error', message: string }
   const [_imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [removeMainImage, setRemoveMainImage] = useState(false);
   const [additionalImageFiles, setAdditionalImageFiles] = useState([null, null]);
   const [colorVariants, setColorVariants] = useState([]);
   const [formData, setFormData] = useState({
@@ -424,6 +425,7 @@ export default function AdminPanel() {
     setAdditionalImageFiles([null, null]);
     setEditingProduct(null);
     setShowForm(true);
+    setRemoveMainImage(false);
   };
 
   // auto-hide save alerts
@@ -457,6 +459,9 @@ export default function AdminPanel() {
 
       // subir imagen principal si el usuario seleccionó un archivo
       let uploadedMain = baseAttrs.image || null;
+      // Si el usuario marcó eliminar la imagen principal en el editor,
+      // forzamos uploadedMain a null para que el backend la borre/limpie.
+      if (removeMainImage) uploadedMain = null;
       if (_imageFile) {
         const up = await uploadSingle(_imageFile);
         if (up) uploadedMain = up;
@@ -488,6 +493,16 @@ export default function AdminPanel() {
           if (p) imgs[ii] = p;
         }
         nextColorVariants[vi].images = imgs;
+      }
+      // Si no se proporcionó una imagen principal, intentar usar la primera imagen
+      // válida de la primera variante para evitar dejar una ruta local en attributes.image.
+      if (!uploadedMain) {
+        const firstVariantImg = (Array.isArray(nextColorVariants) && nextColorVariants.length > 0)
+          ? (Array.isArray(nextColorVariants[0].images) ? nextColorVariants[0].images.find(Boolean) : (nextColorVariants[0].image || null))
+          : null;
+        if (firstVariantImg && typeof firstVariantImg === 'string') {
+          uploadedMain = firstVariantImg;
+        }
       }
       // Construir atributos sin sobreescribir campos de "coordinadora" existentes
       const mergedCoordinadora = { ...(baseAttrs.coordinadora || {}) };
@@ -539,6 +554,7 @@ export default function AdminPanel() {
       // cerrar formulario y refrescar datos brevemente
       setShowForm(false);
       setEditingProduct(null);
+        setRemoveMainImage(false);
       await loadData();
     } catch (err) {
       console.error('handleSaveProduct error', err);
@@ -555,12 +571,20 @@ export default function AdminPanel() {
     const file = e?.target?.files && e.target.files[0];
     if (!file) return;
     setImageFile(file);
+    setRemoveMainImage(false);
     try {
       const url = URL.createObjectURL(file);
       setImagePreview(url);
     } catch (err) {
       setImagePreview('');
     }
+  };
+
+  const handleRemoveMainImage = () => {
+    if (!window.confirm('¿Eliminar la portada? Esta acción quitará la imagen del producto (no la borrará del servidor).')) return;
+    setImageFile(null);
+    setImagePreview(null);
+    setRemoveMainImage(true);
   };
 
   const handleAdditionalImagesChange = (e) => {
@@ -595,12 +619,41 @@ export default function AdminPanel() {
 
   const handleVariantImageChange = (variantIndex, imgIndex, file) => {
     if (file === undefined) return;
+
+    // Optimistic: set the selected file locally for immediate preview
     setColorVariants(prev => (Array.isArray(prev) ? prev.map((v, i) => {
       if (i !== variantIndex) return v;
       const images = Array.isArray(v.images) ? [...v.images] : [];
       images[imgIndex] = file;
       return { ...v, images };
     }) : prev));
+
+    // If the value is a File, upload it immediately and replace with the returned URL
+    if (file && typeof file !== 'string') {
+      (async () => {
+        try {
+          const form = new FormData();
+          form.append('image', file);
+          const resp = await productService.uploadImage(form, { headers: { 'Content-Type': 'multipart/form-data' } });
+          const url = resp?.data?.url || resp?.url || resp;
+          if (url) {
+            setColorVariants(prev => (Array.isArray(prev) ? prev.map((v, i) => {
+              if (i !== variantIndex) return v;
+              const images = Array.isArray(v.images) ? [...v.images] : [];
+              images[imgIndex] = url;
+              return { ...v, images };
+            }) : prev));
+
+            // Si no hay imagen principal definida en el editor, usar esta como preview principal
+            if (!imagePreview) {
+              try { setImagePreview(url); } catch (e) { /* ignore */ }
+            }
+          }
+        } catch (err) {
+          console.error('Error subiendo imagen de variante:', err);
+        }
+      })();
+    }
   };
   const addColorVariant = () => setColorVariants(prev => [...prev, { name: '', hex: '#ffffff', stock: 0, images: [] }]);
   const updateColorVariant = (i, key, val) => setColorVariants(prev => prev.map((v, idx) => idx === i ? { ...v, [key]: val } : v));
@@ -1774,13 +1827,23 @@ export default function AdminPanel() {
                             </Typography>
                             {/* Campos de imagen principal y galería para productos sin variantes */}
                             <Grid container spacing={2} className="mui-form-row">
-                              <Grid item xs={12} sm={6}>
-                                <InputLabel shrink>Imagen principal</InputLabel>
-                                <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: 8 }} />
-                                {imagePreview && (
-                                  <img src={typeof imagePreview === 'string' ? imagePreview : ''} alt="Preview" className="mui-image-preview" />
-                                )}
-                              </Grid>
+                                  <Grid item xs={12} sm={6}>
+                                    <InputLabel shrink>Imagen principal</InputLabel>
+                                    <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: 8 }} />
+                                    {imagePreview && (
+                                      <>
+                                        <img src={typeof imagePreview === 'string' ? imagePreview : ''} alt="Preview" className="mui-image-preview" />
+                                        <div style={{ marginTop: 8 }}>
+                                          <button type="button" className="btn-delete" onClick={handleRemoveMainImage}>Eliminar portada</button>
+                                        </div>
+                                      </>
+                                    )}
+                                    {!imagePreview && editingProduct && editingProduct.attributes && editingProduct.attributes.image && (
+                                      <div style={{ marginTop: 8 }}>
+                                        <button type="button" className="btn-delete" onClick={handleRemoveMainImage}>Eliminar portada</button>
+                                      </div>
+                                    )}
+                                  </Grid>
                               <Grid item xs={12} sm={6}>
                                 <InputLabel shrink>Galería (máx. 2 imágenes)</InputLabel>
                                 <div className="gallery-grid">
@@ -1905,6 +1968,7 @@ export default function AdminPanel() {
                               stock: '',
                               sku: ''
                             });
+                            setRemoveMainImage(false);
                           }}>Cancelar</Button>
                         </div>
                       </form>
