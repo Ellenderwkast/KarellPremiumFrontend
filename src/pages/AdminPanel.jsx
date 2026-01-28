@@ -1163,6 +1163,11 @@ export default function AdminPanel() {
       return d && d >= monthStart;
     }).length;
 
+    // Ingreso solo por productos (sin envío)
+    const productRevenue = nonCancelledOrders.reduce((sum, o) => sum + (Number(o.subtotal) || 0), 0);
+    // Ingreso solo por envíos
+    const shippingRevenue = nonCancelledOrders.reduce((sum, o) => sum + (Number(o.shippingCost) || 0), 0);
+    // Ingreso total (productos + envío, para referencia)
     const totalRevenue = nonCancelledOrders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
 
     const pendingStatuses = new Set(['pending', 'paid', 'processing']);
@@ -1238,6 +1243,8 @@ export default function AdminPanel() {
       salesToday,
       salesWeek,
       salesMonth,
+      productRevenue,
+      shippingRevenue,
       totalRevenue,
       pendingOrders,
       outOfStockProducts,
@@ -1398,10 +1405,19 @@ export default function AdminPanel() {
                   <div className="dash-kpi-card dash-kpi-card--featured">
                     <div className="dash-kpi-label">
                       <span className="dash-kpi-icon" aria-hidden="true"><DollarSign /></span>
-                      Ingresos totales
+                      Ingresos productos
                     </div>
                     <div className="dash-kpi-value">
-                      ${Number(dashboard.totalRevenue).toLocaleString('es-CO')}
+                      ${Number(dashboard.productRevenue).toLocaleString('es-CO')}
+                    </div>
+                  </div>
+                  <div className="dash-kpi-card dash-kpi-card--secondary">
+                    <div className="dash-kpi-label">
+                      <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
+                      Ingresos envíos
+                    </div>
+                    <div className="dash-kpi-value">
+                      ${Number(dashboard.shippingRevenue).toLocaleString('es-CO')}
                     </div>
                   </div>
                 </div>

@@ -5,7 +5,7 @@ export const validateEmail = email => {
 };
 
 export const getEmailError = email => {
-  if (!email) return 'Email requerido';
-  if (!validateEmail(email)) return 'Email inválido. Usa formato: usuario@dominio.com';
+  if (!email) return 'Correo requerido';
+  if (!validateEmail(email)) return 'Correo inválido. Usa formato: usuario@correo.com';
   return '';
 };

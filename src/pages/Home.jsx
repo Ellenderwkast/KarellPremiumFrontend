@@ -36,7 +36,7 @@ function Home() {
 
   return (
     <div className="home">
-      <SEO title="Inicio" description="Descubre los mejores productos tecnológicos y accesorios premium en Karell Premium. Calidad garantizada y envíos a toda Colombia." />
+        <SEO title="Audífonos Inalámbricos a Bluetooth y más Accesorios" description="Descubre los mejores productos tecnológicos y accesorios premium en Karell Premium. Calidad garantizada y envíos a toda Colombia." />
       <StructuredData type="organization" data={organizationData} />
       <StructuredData type="breadcrumb" data={breadcrumbData} />
       <video className="video-bg" src="descubre/video22.mp4" autoPlay muted loop playsInline />
