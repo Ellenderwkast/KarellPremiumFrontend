@@ -44,12 +44,15 @@ function BlogPost() {
   const plainText = (post.excerpt || post.content?.replace(/<[^>]+>/g, '') || '').trim();
   const metaDescription = (post.seoDescription || plainText).slice(0, 155);
 
+  // Fallback para imagen de portada
+  const placeholder = 'https://via.placeholder.com/600x340?text=Sin+imagen';
+  const coverUrl = post.cover ? getStaticUrl(post.cover) : placeholder;
   const articleData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.seoTitle || post.title,
     description: metaDescription,
-    image: getStaticUrl(post.cover),
+    image: coverUrl,
     author: post.author ? {
       '@type': 'Person',
       name: post.author
@@ -91,7 +94,7 @@ function BlogPost() {
         title={post.seoTitle || post.title}
         description={metaDescription}
         canonical={canonicalUrl}
-        image={getStaticUrl(post.cover)}
+        image={coverUrl}
         type="article"
       />
       <StructuredData type="blog-post" data={articleData} />
@@ -114,17 +117,22 @@ function BlogPost() {
         marginBottom: '2em',
         borderRadius: 12
       }}>
-        <img src={getStaticUrl(post.cover)} alt={post.title} style={{
-          maxWidth: '100%',
-          maxHeight: '100%',
-          objectFit: 'contain',
-          background: '#f8fafc',
-          borderRadius: 12,
-          width: 'auto',
-          height: 'auto',
-          aspectRatio: '16/9',
-          display: 'block'
-        }} />
+        <img
+          src={coverUrl}
+          alt={post.title}
+          style={{
+            maxWidth: '100%',
+            maxHeight: '100%',
+            objectFit: 'contain',
+            background: '#f8fafc',
+            borderRadius: 12,
+            width: 'auto',
+            height: 'auto',
+            aspectRatio: '16/9',
+            display: 'block'
+          }}
+          onError={e => { e.target.onerror = null; e.target.src = placeholder; }}
+        />
       </div>
       <div className="blog-content" dangerouslySetInnerHTML={{__html: normalizedContent}} style={{fontSize:'1.15em',lineHeight:1.7,marginBottom:'2em'}} />
       {relatedProducts.length > 0 && (
