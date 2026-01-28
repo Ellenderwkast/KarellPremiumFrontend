@@ -320,6 +320,77 @@ export default function PaymentResult() {
         </>
       );
     }
+    // Mostrar modal de reintento para cualquier status fallido
+    if (["error", "failed", "rejected", "cancelled"].includes(status)) {
+      return (
+        <>
+          <div className="modal-header error">
+            <div className="status-icon error" aria-hidden>
+              <svg viewBox="0 0 24 24" width="28" height="28">
+                <circle cx="12" cy="12" r="11" fill="#DC2626" />
+                <g
+                  transform="translate(12,12)"
+                  stroke="#fff"
+                  strokeWidth="2.8"
+                  strokeLinecap="round"
+                >
+                  <line x1="-4.5" y1="-4.5" x2="4.5" y2="4.5" />
+                  <line x1="4.5" y1="-4.5" x2="-4.5" y2="4.5" />
+                </g>
+              </svg>
+            </div>
+            <div className="modal-title-text">
+              <h2>{PAYMENT_REJECTED_TITLE}</h2>
+            </div>
+            <button
+              type="button"
+              className="payment-modal-close"
+              aria-label="Cerrar"
+              onClick={() => navigate('/')}
+            >
+              ×
+            </button>
+          </div>
+          <div className="modal-body">
+            <p className="body-intro">{PAYMENT_REJECTED_BODY}</p>
+          </div>
+          <div className="modal-actions">
+            <button className="btn-primary" onClick={handleRetryPayment} disabled={retryLoading}>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+              </svg>
+              {retryLoading ? 'Redirigiendo a Wompi...' : 'Reintentar pago'}
+            </button>
+            <button className="btn-secondary" onClick={() => navigate('/')}> 
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              Ir al inicio
+            </button>
+          </div>
+        </>
+      );
+    }
     if (status === 'cash') {
       return (
         <>
