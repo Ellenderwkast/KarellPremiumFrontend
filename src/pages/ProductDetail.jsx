@@ -291,12 +291,26 @@ function ProductDetail() {
     : Number(product.stock ?? 0);
   const isOutOfStock = Number(availableStock) <= 0;
 
+  // Construir array de URLs absolutas de imágenes públicas
+  const baseUrl = window.location.origin;
+  let productImages = [];
+  if (hasColorVariants && selectedColor && Array.isArray(selectedColor.images) && selectedColor.images.length > 0) {
+    productImages = selectedColor.images.map(img => img.startsWith('http') ? img : `${baseUrl}/images/${img.replace(/^.*[\\\/]/, '')}`);
+  } else if (Array.isArray(product.attributes?.images) && product.attributes.images.length > 0) {
+    productImages = product.attributes.images.map(img => img.startsWith('http') ? img : `${baseUrl}/images/${img.replace(/^.*[\\\/]/, '')}`);
+  } else if (product.image || product.attributes?.image) {
+    const img = product.image || product.attributes?.image;
+    productImages = [img.startsWith('http') ? img : `${baseUrl}/images/${img.replace(/^.*[\\\/]/, '')}`];
+  } else if (currentImage) {
+    productImages = [currentImage.startsWith('http') ? currentImage : `${baseUrl}/images/${currentImage.replace(/^.*[\\\/]/, '')}`];
+  }
+
   const productData = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.title || product.name,
     description: product.description,
-    image: currentImage || product.image || product.attributes?.image,
+    image: productImages,
     brand: {
       '@type': 'Brand',
       name: 'Karell Premium'
