@@ -16,9 +16,18 @@ const StructuredData = ({ type, data }) => {
     const cleanData = JSON.parse(JSON.stringify(data, (key, value) => {
       // Remover valores undefined o null
       if (value === undefined || value === null) return undefined;
-      // Asegurar que URLs sean válidas
+      // Asegurar que URLs sean válidas, soportando arrays
       if (key === 'url' || key === 'image') {
-        return value.startsWith('http') ? value : `${window.location.origin}${value}`;
+        if (Array.isArray(value)) {
+          return value.map(v =>
+            typeof v === 'string' && v.startsWith('http')
+              ? v
+              : `${window.location.origin}${v}`
+          );
+        }
+        if (typeof value === 'string') {
+          return value.startsWith('http') ? value : `${window.location.origin}${value}`;
+        }
       }
       return value;
     }));
