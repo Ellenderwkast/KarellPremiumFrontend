@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 
 // Componente reutilizable para inputs
 function InputField({ label, id, name, value, onChange, error, wrapperStyle, wrapperClassName, ...props }) {

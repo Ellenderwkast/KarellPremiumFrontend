@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { BadgePercent, Headset, ShieldCheck, Truck } from 'lucide-react';
