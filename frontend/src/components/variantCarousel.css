@@ -159,10 +159,10 @@
   }
 
   .carousel-image-wrap img {
-    width: 100% !important;
+    width: 80% !important;
     height: auto !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
+    max-width: 80% !important;
+    max-height: 80% !important;
     object-fit: contain !important;
     display: block;
     margin: auto;
