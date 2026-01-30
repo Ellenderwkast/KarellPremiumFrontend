@@ -1,11 +1,8 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/.*",
-      "status": 503
+      "source": "/(.*)",
+      "destination": "/maintenance.html"
     }
   ]
 }
