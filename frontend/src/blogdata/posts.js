@@ -13,7 +13,7 @@ export const blogPosts = [
         <li><b>¿En qué ciudades está disponible el servicio?</b> Enviamos a toda Colombia.</li>
         <li><b>¿Cuánto tarda el envío?</b> Generalmente entre 1 y 3 días hábiles.</li>
       </ul>
-      <p>¿Te interesa conocer los <a href="/blog/mejores-auriculares-bluetooth-2026">mejores auriculares Bluetooth 2026</a>? Lee nuestra guía.</p>
+      <p>¿Te interesa conocer los <a href="/products">mejores auriculares Bluetooth 2026</a>? Descúbrelos en nuestro catálogo.</p>
     `
   },
   {
@@ -29,7 +29,7 @@ export const blogPosts = [
         <li><b>¿Son compatibles con todos los celulares?</b> Sí, funcionan con Android y iPhone.</li>
         <li><b>¿Tienen garantía?</b> Todos nuestros productos tienen garantía en Colombia.</li>
       </ul>
-      <p>¿Buscas audífonos para teletrabajo? Lee nuestra <a href="/blog/guia-elegir-audifonos-teletrabajo-estudio">guía para elegir audífonos para teletrabajo y estudio</a>.</p>
+      <p>¿Buscas audífonos para teletrabajo? Descubre <a href="/products">nuestras opciones recomendadas</a>.</p>
     `
   },
   {
@@ -45,7 +45,7 @@ export const blogPosts = [
         <li><b>¿Qué opción es más cómoda?</b> Los inalámbricos ofrecen mayor libertad de movimiento.</li>
         <li><b>¿Cuál es más duradero?</b> Los de cable pueden dañarse por tirones, pero los inalámbricos requieren cuidar la batería.</li>
       </ul>
-      <p>¿Quieres ver los <a href="/blog/top-10-audifonos-deporte-colombia">mejores audífonos para deporte</a>? Descúbrelos aquí.</p>
+      <p>¿Quieres ver los <a href="/products">mejores audífonos para deporte</a>? Descúbrelos aquí.</p>
     `
   },
   {
@@ -61,7 +61,7 @@ export const blogPosts = [
         <li><b>¿Cuánto dura la batería?</b> Entre 6 y 30 horas según el modelo.</li>
         <li><b>¿Tienen garantía?</b> Todos los audífonos de Karell Premium tienen garantía en Colombia.</li>
       </ul>
-      <p>¿Buscas <a href="/blog/mejores-auriculares-bluetooth-2026">auriculares Bluetooth recomendados?</a> Lee nuestra guía.</p>
+      <p>¿Buscas <a href="/products">auriculares Bluetooth recomendados?</a> Mira nuestro catálogo.</p>
     `
   },
   {
@@ -77,7 +77,7 @@ export const blogPosts = [
         <li><b>¿Son cómodos para deporte?</b> Sí, son ligeros y estables.</li>
         <li><b>¿Qué modelos recomiendan?</b> Consulta nuestro <a href="/blog/top-10-audifonos-deporte-colombia">top de audífonos deportivos</a>.</li>
       </ul>
-      <p>¿Quieres saber cómo cuidar tus audífonos? Lee <a href="/blog/como-cuidar-limpiar-audifonos-inalambricos">estos consejos</a>.</p>
+      <p>¿Quieres saber cómo cuidar tus audífonos? Descubre <a href="/products">nuestros productos y accesorios</a>.</p>
     `
   },
   {
@@ -109,7 +109,7 @@ export const blogPosts = [
         <li><b>¿Cómo guardarlos?</b> En su estuche original, lejos de humedad y calor.</li>
         <li><b>¿Cada cuánto debo limpiarlos?</b> Al menos una vez por semana.</li>
       </ul>
-      <p>¿Buscas accesorios? Descubre <a href="/blog/mejores-accesorios-audifonos-inalambricos">los mejores accesorios para audífonos inalámbricos</a>.</p>
+      <p>¿Buscas accesorios? Descubre <a href="/products">los mejores accesorios para audífonos inalámbricos</a>.</p>
     `
   },
   {
@@ -125,7 +125,7 @@ export const blogPosts = [
         <li><b>¿Puedo rastrear mi pedido?</b> Sí, te enviamos el número de guía.</li>
         <li><b>¿Qué pasa si no estoy en casa?</b> Coordinamos una nueva entrega sin costo adicional.</li>
       </ul>
-      <p>¿Quieres comprar con pago contraentrega? Lee <a href="/blog/como-comprar-audifonos-con-domicilio-contraentrega-colombia">cómo hacerlo aquí</a>.</p>
+      <p>¿Quieres comprar con pago contraentrega? <a href="/products">Compra aquí</a>.</p>
     `
   },
   {
@@ -141,7 +141,7 @@ export const blogPosts = [
         <li><b>¿Sirven para consolas?</b> Sí, son compatibles con PlayStation, Xbox y PC.</li>
         <li><b>¿Cuál es el más cómodo para largas sesiones?</b> Revisa nuestra <a href="/blog/top-10-audifonos-deporte-colombia">selección de audífonos cómodos</a>.</li>
       </ul>
-      <p>¿Buscas audífonos para teletrabajo? Lee nuestra <a href="/blog/guia-elegir-audifonos-teletrabajo-estudio">guía para elegir audífonos para teletrabajo y estudio</a>.</p>
+      <p>¿Buscas audífonos para teletrabajo? <a href="/products">Encuentra el ideal aquí</a>.</p>
     `
   },
   {
@@ -157,7 +157,7 @@ export const blogPosts = [
         <li><b>¿Puedo pagar contraentrega?</b> Sí, es una de nuestras opciones más populares.</li>
         <li><b>¿Tienen tienda física?</b> Somos tienda online con atención personalizada.</li>
       </ul>
-      <p>¿Quieres saber cómo funciona el <a href="/blog/como-funciona-domicilio-contraentrega-karell-premium">servicio de domicilio contraentrega</a>? Descúbrelo aquí.</p>
+      <p>¿Quieres saber cómo funciona el <a href="/products">servicio de domicilio contraentrega</a>? Descúbrelo aquí.</p>
     `
   },
   {
@@ -173,7 +173,7 @@ export const blogPosts = [
         <li><b>¿Es seguro?</b> Sí, trabajamos con transportadoras confiables.</li>
         <li><b>¿Puedo rechazar el pedido?</b> Sí, si el producto no es lo que esperabas.</li>
       </ul>
-      <p>¿Quieres ver los <a href="/blog/top-10-audifonos-deporte-colombia">mejores audífonos para deporte</a>? Descúbrelos aquí.</p>
+      <p>¿Quieres ver los <a href="/products">mejores audífonos para deporte</a>? Descúbrelos aquí.</p>
     `
   },
   {
@@ -189,7 +189,7 @@ export const blogPosts = [
         <li><b>¿Qué modelos tienen mejor autonomía?</b> Consulta nuestra <a href="/blog/mejores-auriculares-bluetooth-2026">guía de auriculares Bluetooth</a>.</li>
         <li><b>¿Son resistentes a golpes?</b> Sí, muchos modelos incluyen estuche rígido.</li>
       </ul>
-      <p>¿Quieres saber cómo cuidar tus audífonos? Lee <a href="/blog/como-cuidar-limpiar-audifonos-inalambricos">estos consejos</a>.</p>
+      <p>¿Quieres saber cómo cuidar tus audífonos? Descubre <a href="/products">nuestros productos y accesorios</a>.</p>
     `
   },
   {
@@ -205,7 +205,7 @@ export const blogPosts = [
         <li><b>¿Afectan la calidad del sonido?</b> No, mejoran la experiencia auditiva.</li>
         <li><b>¿Qué modelos recomiendan?</b> Consulta nuestra <a href="/blog/mejores-auriculares-bluetooth-2026">guía de auriculares Bluetooth</a>.</li>
       </ul>
-      <p>¿Buscas audífonos para regalar? Mira <a href="/blog/que-audifonos-regalar-2026">estas opciones</a>.</p>
+      <p>¿Buscas audífonos para regalar? Mira <a href="/products">estas opciones</a>.</p>
     `
   },
   {
@@ -221,7 +221,7 @@ export const blogPosts = [
         <li><b>¿Qué hago si recibo una imitación?</b> Contacta a nuestro soporte para devolución.</li>
         <li><b>¿Tienen garantía?</b> Sí, todos los productos originales la incluyen.</li>
       </ul>
-      <p>¿Quieres ver opiniones de clientes? Lee <a href="/blog/opiniones-clientes-karell-premium">experiencias reales aquí</a>.</p>
+      <p>¿Quieres ver opiniones de clientes? Descubre <a href="/products">nuestra tienda y productos</a>.</p>
     `
   },
   {
@@ -253,7 +253,7 @@ export const blogPosts = [
         <li><b>¿Qué cubre la garantía?</b> Defectos de fábrica y funcionamiento.</li>
         <li><b>¿Cómo solicito soporte?</b> Contáctanos por WhatsApp o correo.</li>
       </ul>
-      <p>¿Quieres saber cómo identificar productos originales? Lee <a href="/blog/como-identificar-audifonos-originales">esta guía</a>.</p>
+      <p>¿Quieres saber cómo identificar productos originales? Descubre <a href="/products">nuestros productos certificados</a>.</p>
     `
   },
   {
@@ -269,7 +269,7 @@ export const blogPosts = [
         <li><b>¿Dónde comprar repuestos?</b> En nuestra tienda online y puntos autorizados.</li>
         <li><b>¿Sirven para cualquier marca?</b> Tenemos opciones universales y específicas.</li>
       </ul>
-      <p>¿Quieres saber cómo cuidar tus audífonos? Lee <a href="/blog/como-cuidar-limpiar-audifonos-inalambricos">estos consejos</a>.</p>
+      <p>¿Quieres saber cómo cuidar tus audífonos? Descubre <a href="/products">nuestros productos y accesorios</a>.</p>
     `
   },
   {
@@ -285,7 +285,7 @@ export const blogPosts = [
         <li><b>¿Puedo pagar con tarjeta al recibir?</b> En algunas ciudades sí, consulta disponibilidad.</li>
         <li><b>¿Qué pasa si no recibo el pedido?</b> No pagas nada, solo se cancela el envío.</li>
       </ul>
-      <p>¿Quieres ver opiniones de clientes? Lee <a href="/blog/opiniones-clientes-karell-premium">experiencias reales aquí</a>.</p>
+      <p>¿Quieres ver opiniones de clientes? Descubre <a href="/products">nuestra tienda y productos</a>.</p>
     `
   },
   {
@@ -301,7 +301,7 @@ export const blogPosts = [
         <li><b>¿Publican todas las opiniones?</b> Sí, siempre que sean reales y respetuosas.</li>
         <li><b>¿Puedo ver fotos de otros clientes?</b> Sí, en nuestras redes sociales.</li>
       </ul>
-      <p>¿Quieres saber qué audífonos regalar? Mira <a href="/blog/que-audifonos-regalar-2026">estas opciones</a>.</p>
+      <p>¿Quieres saber qué audífonos regalar? Mira <a href="/products">estas opciones</a>.</p>
     `
   },
   {
@@ -317,7 +317,7 @@ export const blogPosts = [
         <li><b>¿Tienen opciones económicas?</b> Sí, consulta nuestra <a href="/blog/mejores-auriculares-bluetooth-2026">guía de auriculares Bluetooth</a>.</li>
         <li><b>¿Puedo pedir envoltura de regalo?</b> Sí, solicítalo al comprar.</li>
       </ul>
-      <p>¿Quieres saber cómo funciona el <a href="/blog/como-funciona-domicilio-contraentrega-karell-premium">servicio de domicilio contraentrega</a>? Descúbrelo aquí.</p>
+      <p>¿Quieres saber cómo funciona el <a href="/products">servicio de domicilio contraentrega</a>? Descúbrelo aquí.</p>
     `
   }
 ];
