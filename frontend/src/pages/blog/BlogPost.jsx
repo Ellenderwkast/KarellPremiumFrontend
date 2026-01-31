@@ -162,10 +162,47 @@ function BlogPost() {
         <section style={{margin:'2em 0'}}>
           <h2 style={{fontSize:'1.2em',marginBottom:16}}>Productos relacionados</h2>
           {relatedProducts.length > 0 ? (
-            <div style={{display:'flex',flexWrap:'wrap',gap:24}}>
-              {relatedProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+            <div style={{display:'flex',flexWrap:'wrap',gap:12,overflowX:'auto',paddingBottom:8}}>
+              {relatedProducts.map(product => {
+                const title = product.title || product.name || product.attributes?.name || product.attributes?.title || product.attributes?.imageAlt || 'Sin título';
+                const img = product.attributes?.image || product.image || (product.images && product.images[0]) || null;
+                const sku = product.sku || product.code || '';
+                return (
+                  <Link
+                    key={product.id}
+                    to={`/products/${product.id}`}
+                    style={{
+                      border: '1.5px solid #ccc',
+                      background: '#fff',
+                      borderRadius: 10,
+                      padding: '0.6em 1em',
+                      cursor: 'pointer',
+                      fontWeight: 500,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 10,
+                      minWidth: 140,
+                      textAlign: 'left',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      boxShadow: '0 1px 6px #0001',
+                      transition: 'border 0.2s, box-shadow 0.2s',
+                    }}
+                    onMouseOver={e => e.currentTarget.style.border = '2px solid #16a34a'}
+                    onMouseOut={e => e.currentTarget.style.border = '1.5px solid #ccc'}
+                  >
+                    {img ? (
+                      <img src={getStaticUrl(img)} alt={title} style={{width:48,height:48,objectFit:'cover',borderRadius:6,background:'#f3f4f6'}} />
+                    ) : (
+                      <div style={{width:48,height:48,background:'#f3f4f6',borderRadius:6,display:'inline-block'}} />
+                    )}
+                    <div style={{display:'flex',flexDirection:'column',justifyContent:'center'}}>
+                      <div style={{fontSize:14, fontWeight:600,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',maxWidth:110}}>{title}</div>
+                      <div style={{fontSize:12, color:'var(--gray-600)'}}>{sku}</div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           ) : (
             <div style={{color:'#888',fontSize:'1em'}}>No hay productos relacionados para este artículo o no se pudieron cargar.</div>
