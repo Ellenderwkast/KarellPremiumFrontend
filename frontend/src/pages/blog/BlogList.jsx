@@ -6,7 +6,7 @@ import api from '../../services/api';
 import SEO from '../../components/SEO';
 import StructuredData from '../../components/StructuredData';
 
-
+function BlogList() {
   const [apiPosts, setApiPosts] = useState([]);
   useEffect(() => {
     api.get('/blog')
