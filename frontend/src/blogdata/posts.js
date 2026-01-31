@@ -36,37 +36,97 @@ export const blogPosts = [
     slug: "audifonos-inalambricos-vs-cable",
     title: "Audífonos inalámbricos vs. auriculares con cable: ¿Cuál elegir?",
     excerpt: "Analizamos las ventajas y desventajas de cada tipo para que tomes la mejor decisión de compra.",
-    content: "<p>¿No sabes si elegir audífonos inalámbricos o con cable? Aquí te explicamos las diferencias en calidad, comodidad y precio para que elijas el que más se adapta a tu estilo de vida.</p>"
+    cover: "/images/lenovo_negro.webp",
+    content: `
+      <p>¿No sabes si elegir audífonos inalámbricos o con cable? Aquí te explicamos las diferencias en calidad, comodidad y precio para que elijas el que más se adapta a tu estilo de vida.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Cuál tiene mejor calidad de sonido?</b> Ambos pueden ofrecer excelente calidad, pero los inalámbricos modernos igualan a los de cable.</li>
+        <li><b>¿Qué opción es más cómoda?</b> Los inalámbricos ofrecen mayor libertad de movimiento.</li>
+        <li><b>¿Cuál es más duradero?</b> Los de cable pueden dañarse por tirones, pero los inalámbricos requieren cuidar la batería.</li>
+      </ul>
+      <p>¿Quieres ver los <a href="/blog/top-10-audifonos-deporte-colombia">mejores audífonos para deporte</a>? Descúbrelos aquí.</p>
+    `
   },
   {
     slug: "top-10-audifonos-deporte-colombia",
     title: "Top 10 audífonos para hacer deporte en Colombia",
     excerpt: "Nuestra selección de los mejores audífonos para entrenar, correr o ir al gimnasio en Colombia.",
-    content: "<p>Descubre los audífonos más resistentes al sudor, con mejor ajuste y sonido para tus rutinas deportivas. Todos disponibles en Karell Premium con envío a todo el país.</p>"
+    cover: "/images/F9_2.webp",
+    content: `
+      <p>Descubre los audífonos más resistentes al sudor, con mejor ajuste y sonido para tus rutinas deportivas. Todos disponibles en Karell Premium con envío a todo el país.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Son resistentes al agua?</b> Sí, muchos modelos tienen certificación IPX.</li>
+        <li><b>¿Cuánto dura la batería?</b> Entre 6 y 30 horas según el modelo.</li>
+        <li><b>¿Tienen garantía?</b> Todos los audífonos de Karell Premium tienen garantía en Colombia.</li>
+      </ul>
+      <p>¿Buscas <a href="/blog/mejores-auriculares-bluetooth-2026">auriculares Bluetooth recomendados?</a> Lee nuestra guía.</p>
+    `
   },
   {
     slug: "que-son-audifonos-tws",
     title: "¿Qué son los audífonos TWS y por qué están de moda?",
     excerpt: "Te explicamos qué significa TWS y por qué estos audífonos inalámbricos son tendencia en Colombia.",
-    content: "<p>Los audífonos TWS (True Wireless Stereo) ofrecen libertad total de cables y excelente calidad de sonido. Descubre sus ventajas y los modelos más populares en nuestra tienda.</p>"
+    cover: "/images/lenovorosa2.webp",
+    content: `
+      <p>Los audífonos TWS (True Wireless Stereo) ofrecen libertad total de cables y excelente calidad de sonido. Descubre sus ventajas y los modelos más populares en nuestra tienda.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Qué significa TWS?</b> True Wireless Stereo, sin cables entre los audífonos.</li>
+        <li><b>¿Son cómodos para deporte?</b> Sí, son ligeros y estables.</li>
+        <li><b>¿Qué modelos recomiendan?</b> Consulta nuestro <a href="/blog/top-10-audifonos-deporte-colombia">top de audífonos deportivos</a>.</li>
+      </ul>
+      <p>¿Quieres saber cómo cuidar tus audífonos? Lee <a href="/blog/como-cuidar-limpiar-audifonos-inalambricos">estos consejos</a>.</p>
+    `
   },
   {
     slug: "guia-elegir-audifonos-teletrabajo-estudio",
     title: "Guía para elegir audífonos para teletrabajo y estudio",
     excerpt: "Consejos para seleccionar los mejores audífonos para trabajar o estudiar desde casa en Colombia.",
-    content: "<p>Elige audífonos cómodos, con micrófono y buena cancelación de ruido para tus videollamadas y clases virtuales. En Karell Premium tenemos opciones para todos los presupuestos.</p>"
+    cover: "/images/lenovo_beig.webp",
+    content: `
+      <p>Elige audífonos cómodos, con micrófono y buena cancelación de ruido para tus videollamadas y clases virtuales. En Karell Premium tenemos opciones para todos los presupuestos.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Qué audífonos son mejores para clases virtuales?</b> Los de diadema con micrófono y cancelación de ruido.</li>
+        <li><b>¿Sirven para llamadas por WhatsApp?</b> Sí, todos nuestros modelos son compatibles.</li>
+        <li><b>¿Hay opciones económicas?</b> Sí, revisa nuestra <a href="/blog/mejores-auriculares-bluetooth-2026">guía de auriculares Bluetooth 2026</a>.</li>
+      </ul>
+      <p>¿Quieres saber cómo cuidar tus audífonos? Lee <a href="/blog/como-cuidar-limpiar-audifonos-inalambricos">estos consejos</a>.</p>
+    `
   },
   {
     slug: "como-cuidar-limpiar-audifonos-inalambricos",
     title: "¿Cómo cuidar y limpiar tus audífonos inalámbricos?",
     excerpt: "Aprende a mantener tus audífonos en perfecto estado y prolongar su vida útil.",
-    content: "<p>Te damos los mejores tips para limpiar tus audífonos sin dañarlos y recomendaciones para guardarlos correctamente. Así disfrutarás de un sonido impecable por más tiempo.</p>"
+    cover: "/images/lenovorosa3.webp",
+    content: `
+      <p>Te damos los mejores tips para limpiar tus audífonos sin dañarlos y recomendaciones para guardarlos correctamente. Así disfrutarás de un sonido impecable por más tiempo.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Con qué limpiar los audífonos?</b> Usa un paño suave y seco, evita líquidos.</li>
+        <li><b>¿Cómo guardarlos?</b> En su estuche original, lejos de humedad y calor.</li>
+        <li><b>¿Cada cuánto debo limpiarlos?</b> Al menos una vez por semana.</li>
+      </ul>
+      <p>¿Buscas accesorios? Descubre <a href="/blog/mejores-accesorios-audifonos-inalambricos">los mejores accesorios para audífonos inalámbricos</a>.</p>
+    `
   },
   {
     slug: "ventajas-comprar-auriculares-envio-rapido-colombia",
     title: "Ventajas de comprar auriculares con envío rápido en Colombia",
     excerpt: "Descubre por qué el envío rápido es clave al comprar tecnología online.",
-    content: "<p>En Karell Premium garantizamos entregas ágiles y seguras en todo el país. Conoce los beneficios de recibir tus auriculares en tiempo récord y sin complicaciones.</p>"
+    cover: "/images/SP16.webp",
+    content: `
+      <p>En Karell Premium garantizamos entregas ágiles y seguras en todo el país. Conoce los beneficios de recibir tus auriculares en tiempo récord y sin complicaciones.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Cuánto tarda el envío?</b> Entre 1 y 3 días hábiles.</li>
+        <li><b>¿Puedo rastrear mi pedido?</b> Sí, te enviamos el número de guía.</li>
+        <li><b>¿Qué pasa si no estoy en casa?</b> Coordinamos una nueva entrega sin costo adicional.</li>
+      </ul>
+      <p>¿Quieres comprar con pago contraentrega? Lee <a href="/blog/como-comprar-audifonos-con-domicilio-contraentrega-colombia">cómo hacerlo aquí</a>.</p>
+    `
   },
   {
     slug: "mejores-audifonos-gamers-2026",
