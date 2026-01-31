@@ -132,72 +132,192 @@ export const blogPosts = [
     slug: "mejores-audifonos-gamers-2026",
     title: "Los mejores audífonos para gamers en 2026",
     excerpt: "Recomendaciones de audífonos ideales para videojuegos, con micrófono y sonido envolvente.",
-    content: "<p>Si eres gamer, necesitas audífonos con gran calidad de audio y micrófono. Te mostramos los modelos más destacados para jugar en PC, consola o móvil.</p>"
+    cover: "/images/lenovo_negro2.webp",
+    content: `
+      <p>Si eres gamer, necesitas audífonos con gran calidad de audio y micrófono. Te mostramos los modelos más destacados para jugar en PC, consola o móvil.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Tienen micrófono incorporado?</b> Sí, la mayoría de modelos gamer lo incluyen.</li>
+        <li><b>¿Sirven para consolas?</b> Sí, son compatibles con PlayStation, Xbox y PC.</li>
+        <li><b>¿Cuál es el más cómodo para largas sesiones?</b> Revisa nuestra <a href="/blog/top-10-audifonos-deporte-colombia">selección de audífonos cómodos</a>.</li>
+      </ul>
+      <p>¿Buscas audífonos para teletrabajo? Lee nuestra <a href="/blog/guia-elegir-audifonos-teletrabajo-estudio">guía para elegir audífonos para teletrabajo y estudio</a>.</p>
+    `
   },
   {
     slug: "por-que-elegir-karell-premium",
     title: "¿Por qué elegir Karell Premium para comprar tus audífonos?",
     excerpt: "Te contamos las ventajas de comprar en nuestra tienda: calidad, garantía y atención personalizada.",
-    content: "<p>En Karell Premium te ofrecemos productos originales, asesoría experta y múltiples métodos de pago, incluyendo contraentrega. ¡Tu satisfacción es nuestra prioridad!</p>"
+    cover: "/images/logo.webp",
+    content: `
+      <p>En Karell Premium te ofrecemos productos originales, asesoría experta y múltiples métodos de pago, incluyendo contraentrega. ¡Tu satisfacción es nuestra prioridad!</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Ofrecen garantía?</b> Sí, todos los productos tienen garantía en Colombia.</li>
+        <li><b>¿Puedo pagar contraentrega?</b> Sí, es una de nuestras opciones más populares.</li>
+        <li><b>¿Tienen tienda física?</b> Somos tienda online con atención personalizada.</li>
+      </ul>
+      <p>¿Quieres saber cómo funciona el <a href="/blog/como-funciona-domicilio-contraentrega-karell-premium">servicio de domicilio contraentrega</a>? Descúbrelo aquí.</p>
+    `
   },
   {
     slug: "preguntas-frecuentes-audifonos-contraentrega",
     title: "Preguntas frecuentes sobre compra de audífonos con pago contraentrega",
     excerpt: "Resolvemos las dudas más comunes sobre el proceso de compra y entrega en Colombia.",
-    content: "<p>¿Tienes dudas sobre cómo funciona el pago contraentrega? Aquí respondemos las preguntas más frecuentes para que compres con total confianza.</p>"
+    cover: "/images/F9_3.webp",
+    content: `
+      <p>¿Tienes dudas sobre cómo funciona el pago contraentrega? Aquí respondemos las preguntas más frecuentes para que compres con total confianza.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Qué es el pago contraentrega?</b> Pagas solo cuando recibes el producto en tu casa.</li>
+        <li><b>¿Es seguro?</b> Sí, trabajamos con transportadoras confiables.</li>
+        <li><b>¿Puedo rechazar el pedido?</b> Sí, si el producto no es lo que esperabas.</li>
+      </ul>
+      <p>¿Quieres ver los <a href="/blog/top-10-audifonos-deporte-colombia">mejores audífonos para deporte</a>? Descúbrelos aquí.</p>
+    `
   },
   {
     slug: "audifonos-para-viajar-comparativa-2026",
     title: "¿Qué audífonos son mejores para viajar? Comparativa 2026",
     excerpt: "Analizamos los mejores modelos para llevar en tus viajes, por comodidad y autonomía.",
-    content: "<p>Si viajas mucho, necesitas audífonos ligeros, con buena batería y estuche compacto. Descubre nuestras recomendaciones para viajeros frecuentes.</p>"
+    cover: "/images/SP16_2.webp",
+    content: `
+      <p>Si viajas mucho, necesitas audífonos ligeros, con buena batería y estuche compacto. Descubre nuestras recomendaciones para viajeros frecuentes.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Cuáles son los más compactos?</b> Los TWS y los de diadema plegable.</li>
+        <li><b>¿Qué modelos tienen mejor autonomía?</b> Consulta nuestra <a href="/blog/mejores-auriculares-bluetooth-2026">guía de auriculares Bluetooth</a>.</li>
+        <li><b>¿Son resistentes a golpes?</b> Sí, muchos modelos incluyen estuche rígido.</li>
+      </ul>
+      <p>¿Quieres saber cómo cuidar tus audífonos? Lee <a href="/blog/como-cuidar-limpiar-audifonos-inalambricos">estos consejos</a>.</p>
+    `
   },
   {
     slug: "auriculares-cancelacion-ruido-funcionan",
     title: "Auriculares con cancelación de ruido: ¿realmente funcionan?",
     excerpt: "Explicamos cómo funciona la tecnología de cancelación de ruido y sus beneficios.",
-    content: "<p>La cancelación de ruido activa te permite disfrutar tu música sin distracciones. Aprende cómo funciona y qué modelos ofrecen la mejor experiencia.</p>"
+    cover: "/images/lenovo_beig2.webp",
+    content: `
+      <p>La cancelación de ruido activa te permite disfrutar tu música sin distracciones. Aprende cómo funciona y qué modelos ofrecen la mejor experiencia.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Sirven para viajar?</b> Sí, son ideales para aviones y buses.</li>
+        <li><b>¿Afectan la calidad del sonido?</b> No, mejoran la experiencia auditiva.</li>
+        <li><b>¿Qué modelos recomiendan?</b> Consulta nuestra <a href="/blog/mejores-auriculares-bluetooth-2026">guía de auriculares Bluetooth</a>.</li>
+      </ul>
+      <p>¿Buscas audífonos para regalar? Mira <a href="/blog/que-audifonos-regalar-2026">estas opciones</a>.</p>
+    `
   },
   {
     slug: "como-identificar-audifonos-originales",
     title: "¿Cómo identificar audífonos originales y evitar imitaciones?",
     excerpt: "Consejos para reconocer productos originales y comprar seguro en Colombia.",
-    content: "<p>Evita fraudes y compra solo audífonos originales. Te enseñamos a identificar sellos, empaques y garantías para que tu compra sea segura.</p>"
+    cover: "/images/lenovo_beig3.webp",
+    content: `
+      <p>Evita fraudes y compra solo audífonos originales. Te enseñamos a identificar sellos, empaques y garantías para que tu compra sea segura.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Cómo sé si son originales?</b> Compra en tiendas oficiales y revisa sellos de garantía.</li>
+        <li><b>¿Qué hago si recibo una imitación?</b> Contacta a nuestro soporte para devolución.</li>
+        <li><b>¿Tienen garantía?</b> Sí, todos los productos originales la incluyen.</li>
+      </ul>
+      <p>¿Quieres ver opiniones de clientes? Lee <a href="/blog/opiniones-clientes-karell-premium">experiencias reales aquí</a>.</p>
+    `
   },
   {
     slug: "resena-audifonos-diadema-bluetooth-colombia",
     title: "Reseña: Audífonos diadema Bluetooth más vendidos en Colombia",
     excerpt: "Analizamos los modelos favoritos de nuestros clientes y sus características.",
-    content: "<p>Conoce los audífonos diadema Bluetooth más populares, sus ventajas y opiniones de usuarios reales en Colombia.</p>"
+    cover: "/images/lenovorosa2-medium.webp",
+    content: `
+      <p>Conoce los audífonos diadema Bluetooth más populares, sus ventajas y opiniones de usuarios reales en Colombia.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Cuál es el más vendido?</b> Consulta nuestro ranking actualizado en la tienda.</li>
+        <li><b>¿Qué ventajas tienen los de diadema?</b> Mayor comodidad y mejor aislamiento.</li>
+        <li><b>¿Son aptos para niños?</b> Sí, hay modelos ajustables y seguros.</li>
+      </ul>
+      <p>¿Buscas accesorios? Descubre <a href="/blog/mejores-accesorios-audifonos-inalambricos">los mejores accesorios para audífonos inalámbricos</a>.</p>
+    `
   },
   {
     slug: "garantia-audifonos-karell-premium",
     title: "¿Qué garantía ofrecen los audífonos de Karell Premium?",
     excerpt: "Te explicamos cómo funciona la garantía y el soporte postventa en nuestra tienda.",
-    content: "<p>Todos nuestros audífonos cuentan con garantía real en Colombia. Descubre cómo solicitar soporte y los beneficios de comprar en Karell Premium.</p>"
+    cover: "/images/lenovorosa2-thumbnail.webp",
+    content: `
+      <p>Todos nuestros audífonos cuentan con garantía real en Colombia. Descubre cómo solicitar soporte y los beneficios de comprar en Karell Premium.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Cuánto dura la garantía?</b> Mínimo 6 meses, según el modelo.</li>
+        <li><b>¿Qué cubre la garantía?</b> Defectos de fábrica y funcionamiento.</li>
+        <li><b>¿Cómo solicito soporte?</b> Contáctanos por WhatsApp o correo.</li>
+      </ul>
+      <p>¿Quieres saber cómo identificar productos originales? Lee <a href="/blog/como-identificar-audifonos-originales">esta guía</a>.</p>
+    `
   },
   {
     slug: "mejores-accesorios-audifonos-inalambricos",
     title: "Los mejores accesorios para tus audífonos inalámbricos",
     excerpt: "Descubre fundas, estuches, cables y más para proteger y mejorar tus audífonos.",
-    content: "<p>Protege y personaliza tus audífonos con accesorios originales. Te mostramos los más útiles y dónde conseguirlos en Colombia.</p>"
+    cover: "/images/lenovorosa3-medium.webp",
+    content: `
+      <p>Protege y personaliza tus audífonos con accesorios originales. Te mostramos los más útiles y dónde conseguirlos en Colombia.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Qué accesorios son imprescindibles?</b> Fundas, estuches y cables de carga.</li>
+        <li><b>¿Dónde comprar repuestos?</b> En nuestra tienda online y puntos autorizados.</li>
+        <li><b>¿Sirven para cualquier marca?</b> Tenemos opciones universales y específicas.</li>
+      </ul>
+      <p>¿Quieres saber cómo cuidar tus audífonos? Lee <a href="/blog/como-cuidar-limpiar-audifonos-inalambricos">estos consejos</a>.</p>
+    `
   },
   {
     slug: "como-funciona-domicilio-contraentrega-karell-premium",
     title: "¿Cómo funciona el servicio de domicilio contraentrega en Karell Premium?",
     excerpt: "Te explicamos paso a paso cómo comprar y recibir tu pedido pagando al recibirlo.",
-    content: "<p>Comprar con domicilio contraentrega es fácil y seguro. Sigue estos pasos y recibe tus productos en casa sin preocuparte por anticipos.</p>"
+    cover: "/images/F9_3-thumbnail.webp",
+    content: `
+      <p>Comprar con domicilio contraentrega es fácil y seguro. Sigue estos pasos y recibe tus productos en casa sin preocuparte por anticipos.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Cuánto cuesta el envío?</b> El valor depende de la ciudad, consulta al comprar.</li>
+        <li><b>¿Puedo pagar con tarjeta al recibir?</b> En algunas ciudades sí, consulta disponibilidad.</li>
+        <li><b>¿Qué pasa si no recibo el pedido?</b> No pagas nada, solo se cancela el envío.</li>
+      </ul>
+      <p>¿Quieres ver opiniones de clientes? Lee <a href="/blog/opiniones-clientes-karell-premium">experiencias reales aquí</a>.</p>
+    `
   },
   {
     slug: "opiniones-clientes-karell-premium",
     title: "Opiniones de clientes: Experiencias comprando audífonos en Karell Premium",
     excerpt: "Lee testimonios reales de quienes ya compraron en nuestra tienda.",
-    content: "<p>La satisfacción de nuestros clientes es lo más importante. Conoce sus opiniones y experiencias comprando audífonos y accesorios en Karell Premium.</p>"
+    cover: "/images/lenovo_negro3.webp",
+    content: `
+      <p>La satisfacción de nuestros clientes es lo más importante. Conoce sus opiniones y experiencias comprando audífonos y accesorios en Karell Premium.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Dónde puedo dejar mi opinión?</b> En Google, Facebook o nuestra web.</li>
+        <li><b>¿Publican todas las opiniones?</b> Sí, siempre que sean reales y respetuosas.</li>
+        <li><b>¿Puedo ver fotos de otros clientes?</b> Sí, en nuestras redes sociales.</li>
+      </ul>
+      <p>¿Quieres saber qué audífonos regalar? Mira <a href="/blog/que-audifonos-regalar-2026">estas opciones</a>.</p>
+    `
   },
   {
     slug: "que-audifonos-regalar-2026",
     title: "¿Qué audífonos regalar en 2026? Opciones para todos los presupuestos",
     excerpt: "Ideas de regalos tecnológicos para sorprender a tus seres queridos este año.",
-    content: "<p>Regala tecnología y calidad de sonido. Te recomendamos los mejores audífonos para regalar en 2026, con opciones para todos los gustos y bolsillos.</p>"
+    cover: "/images/SP16_3.webp",
+    content: `
+      <p>Regala tecnología y calidad de sonido. Te recomendamos los mejores audífonos para regalar en 2026, con opciones para todos los gustos y bolsillos.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Qué audífonos son ideales para regalar?</b> Los inalámbricos y de diadema son los favoritos.</li>
+        <li><b>¿Tienen opciones económicas?</b> Sí, consulta nuestra <a href="/blog/mejores-auriculares-bluetooth-2026">guía de auriculares Bluetooth</a>.</li>
+        <li><b>¿Puedo pedir envoltura de regalo?</b> Sí, solicítalo al comprar.</li>
+      </ul>
+      <p>¿Quieres saber cómo funciona el <a href="/blog/como-funciona-domicilio-contraentrega-karell-premium">servicio de domicilio contraentrega</a>? Descúbrelo aquí.</p>
+    `
   }
 ];
