@@ -30,26 +30,29 @@ function BlogPost() {
         .then(async res => {
           setPost(res.data);
           setNotFound(false);
-          // Si el post del API tiene productos relacionados, obtenerlos
+          // Debug: mostrar en consola el post recibido
+          console.log('BlogPost API response:', res.data);
           if (res.data && Array.isArray(res.data.relatedProducts) && res.data.relatedProducts.length > 0) {
             try {
-              // Siempre hacer fetch individual por cada ID para máxima compatibilidad
               let products = await Promise.all(
                 res.data.relatedProducts.map(id => productService.getById(id).then(r => r.data).catch(() => null))
               );
               products = products.filter(Boolean).map(product => {
-                // Forzar imagen principal desde cualquier campo posible
                 let img = product.image || (product.attributes && product.attributes.image);
                 if (!img && Array.isArray(product.images) && product.images.length > 0) img = product.images[0];
                 if (!img && product.attributes && Array.isArray(product.attributes.images) && product.attributes.images.length > 0) img = product.attributes.images[0];
                 if (!img && Array.isArray(product.gallery) && product.gallery.length > 0) img = product.gallery[0];
                 return { ...product, image: getStaticUrl(img) };
               });
+              // Debug: mostrar en consola los productos relacionados obtenidos
+              console.log('Productos relacionados obtenidos:', products);
               setRelatedProducts(products);
-            } catch {
+            } catch (err) {
+              console.error('Error obteniendo productos relacionados:', err);
               setRelatedProducts([]);
             }
           } else {
+            console.warn('No hay relatedProducts en el post o está vacío.');
             setRelatedProducts([]);
           }
         })
@@ -155,19 +158,18 @@ function BlogPost() {
           />
         </div>
         <div className="blog-content" dangerouslySetInnerHTML={{__html: normalizedContent}} style={{fontSize:'1.15em',lineHeight:1.7,marginBottom:'2em'}} />
-        {relatedProducts.length > 0 && (
-          <section style={{margin:'2em 0'}}>
-            <h2 style={{fontSize:'1.2em',marginBottom:16}}>Productos relacionados</h2>
+        <section style={{margin:'2em 0'}}>
+          <h2 style={{fontSize:'1.2em',marginBottom:16}}>Productos relacionados</h2>
+          {relatedProducts.length > 0 ? (
             <div style={{display:'flex',flexWrap:'wrap',gap:24}}>
               {relatedProducts.map(product => (
-                <ProductCard key={product.id} product={{
-                  ...product,
-                  image: getStaticUrl(product.image || (product.attributes && product.attributes.image)),
-                }} />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
-          </section>
-        )}
+          ) : (
+            <div style={{color:'#888',fontSize:'1em'}}>No hay productos relacionados para este artículo o no se pudieron cargar.</div>
+          )}
+        </section>
         <div style={{marginTop:'2em'}}>
           <Link to="/blog" style={{color:'#38bdf8',fontWeight:600}}>&larr; Volver al blog</Link>
         </div>
