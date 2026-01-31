@@ -7,6 +7,7 @@ import api from '../../services/api';
 import SEO from '../../components/SEO';
 import StructuredData from '../../components/StructuredData';
 import ProductCard from '../../components/ProductCard';
+import { getStaticUrl, productService } from '../../services/api';
 
 
 
@@ -26,14 +27,24 @@ function BlogPost() {
       setRelatedProducts([]); // No mostrar productos relacionados para posts locales
     } else {
       api.get(`/blog/${slug}`)
-        .then(res => {
+        .then(async res => {
           setPost(res.data);
           setNotFound(false);
           // Si el post del API tiene productos relacionados, obtenerlos
           if (res.data && Array.isArray(res.data.relatedProducts) && res.data.relatedProducts.length > 0) {
-            api.get('/products', { params: { ids: res.data.relatedProducts.join(',') } })
-              .then(prodRes => setRelatedProducts(prodRes.data))
-              .catch(() => setRelatedProducts([]));
+            try {
+              // Intentar obtener todos los productos relacionados de una vez
+              const prodRes = await api.get('/products', { params: { ids: res.data.relatedProducts.join(',') } });
+              let products = prodRes.data;
+              // Si la respuesta no es un array válido, hacer fetch individual
+              if (!Array.isArray(products) || products.length === 0) {
+                products = await Promise.all(res.data.relatedProducts.map(id => productService.getById(id).then(r => r.data).catch(() => null)));
+                products = products.filter(Boolean);
+              }
+              setRelatedProducts(products);
+            } catch {
+              setRelatedProducts([]);
+            }
           } else {
             setRelatedProducts([]);
           }
@@ -145,7 +156,10 @@ function BlogPost() {
             <h2 style={{fontSize:'1.2em',marginBottom:16}}>Productos relacionados</h2>
             <div style={{display:'flex',flexWrap:'wrap',gap:24}}>
               {relatedProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.id} product={{
+                  ...product,
+                  image: getStaticUrl(product.image || (product.attributes && product.attributes.image)),
+                }} />
               ))}
             </div>
           </section>
