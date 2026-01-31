@@ -40,6 +40,27 @@ function Home() {
         <SEO title="Audífonos Inalámbricos a Bluetooth y más Accesorios" description="Compre audífonos diademas inalámbricos, Bluetooth y accesorios tecnológicos con excelente calidad de sonido, diseños moderno diadema y auricular a precios increíbles. Envíos rápidos a todo Colombia, y domicilios contraentrega." />
       <StructuredData type="organization" data={organizationData} />
       <StructuredData type="breadcrumb" data={breadcrumbData} />
+      {/* Datos estructurados de producto para rich snippets en Google */}
+      <StructuredData
+        type="product"
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "Audífonos Inalámbricos Karell Premium",
+          "image": [
+            "https://www.karellpremium.com.co/images/products/audifono1.jpg",
+            "https://www.karellpremium.com.co/images/products/audifono2.jpg"
+          ],
+          "description": "Compre audífonos diademas inalámbricos, Bluetooth y accesorios tecnológicos con excelente calidad de sonido, diseños moderno diadema y auricular a precios increíbles. Envíos rápidos a todo Colombia y domicilios contraentrega.",
+          "brand": "Karell Premium",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "COP",
+            "price": "199000",
+            "availability": "https://schema.org/InStock"
+          }
+        }}
+      />
       <video className="video-bg" src="descubre/video22.mp4" autoPlay muted loop playsInline />
 
       <section className="hero">
