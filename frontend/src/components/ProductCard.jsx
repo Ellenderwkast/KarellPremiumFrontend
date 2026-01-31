@@ -95,7 +95,7 @@ function ProductCard({ product }) {
         >
           <OptimizedImage 
             src={images[currentImageIndex] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E'} 
-            alt={product.title || product.name}
+            alt={`Comprar ${product.title || product.name} en Colombia | Audífonos y accesorios Karell Premium`}
             className="product-card-image"
             width="300"
             height="300"
