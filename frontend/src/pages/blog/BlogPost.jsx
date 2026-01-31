@@ -1,19 +1,19 @@
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { blogPosts } from '../../blogdata/posts';
+import SEO from '../../components/SEO';
+import StructuredData from '../../components/StructuredData';
+
+function BlogPost() {
   const { slug } = useParams();
   const post = blogPosts.find(p => p.slug === slug);
   if (!post) return <div>Artículo no encontrado.</div>;
 
-  // Normalizar URLs dentro del contenido del post para evitar referencias a 'localhost' o rutas
-  // que resuelvan al origen del cliente. Reescribimos:
-  // - src="/uploads/..."  ->  src="<backendBase>/uploads/..."
-  // - http://localhost:...  ->  <backendBase>
   const normalizedContent = post.content;
-
   const baseUrl = window.location.origin;
   const canonicalUrl = `${baseUrl}/blog/${post.slug || post.id}`;
   const plainText = (post.excerpt || post.content?.replace(/<[^>]+>/g, '') || '').trim();
   const metaDescription = (post.seoDescription || plainText).slice(0, 155);
-
-  // Fallback para imagen de portada
   const placeholder = 'https://via.placeholder.com/600x340?text=Sin+imagen';
   const coverUrl = post.cover || placeholder;
   const articleData = {
@@ -31,7 +31,6 @@
     mainEntityOfPage: canonicalUrl,
     url: canonicalUrl
   };
-
   const breadcrumbData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -56,7 +55,6 @@
       }
     ]
   };
-
   return (
     <>
       <SEO
