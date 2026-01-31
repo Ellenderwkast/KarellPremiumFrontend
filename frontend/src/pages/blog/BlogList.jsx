@@ -1,13 +1,20 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../../blogdata/posts';
+import api from '../../services/api';
 import SEO from '../../components/SEO';
 import StructuredData from '../../components/StructuredData';
 
 
-function BlogList() {
-  const posts = blogPosts;
+  const [apiPosts, setApiPosts] = useState([]);
+  useEffect(() => {
+    api.get('/blog')
+      .then(res => setApiPosts(res.data))
+      .catch(() => setApiPosts([]));
+  }, []);
+  // Combinar ambos orígenes, priorizando los locales si hay duplicados por slug
+  const allPosts = [...blogPosts, ...apiPosts.filter(apiPost => !blogPosts.some(local => local.slug === (apiPost.slug || apiPost.id)) )];
 
   const baseUrl = window.location.origin;
   const breadcrumbData = {
@@ -36,7 +43,7 @@ function BlogList() {
     name: 'Blog de tecnología y audífonos Karell Premium',
     description:
       'Artículos, guías y consejos sobre audífonos, gadgets y tecnología premium en Colombia de Karell Premium.',
-    blogPost: posts.map(post => {
+    blogPost: allPosts.map(post => {
       const plainText = (post.excerpt || post.content?.replace(/<[^>]+>/g, '') || '').trim();
       const description = plainText ? `${plainText.slice(0, 155)}${plainText.length > 155 ? '…' : ''}` : undefined;
       return {
@@ -67,8 +74,8 @@ function BlogList() {
         marginTop: '2em',
         alignItems: 'stretch'
       }}>
-        {posts.map(post => (
-          <div key={post.slug} className="blog-card" style={{
+        {allPosts.map(post => (
+          <div key={post.slug || post.id} className="blog-card" style={{
             background: '#fff',
             borderRadius: 12,
             boxShadow: '0 2px 12px #0001',
@@ -80,7 +87,7 @@ function BlogList() {
             minHeight: 0,
             height: '100%'
           }}>
-            <Link to={`/blog/${post.slug}`} style={{textDecoration:'none',color:'inherit'}}>
+            <Link to={`/blog/${post.slug || post.id}`} style={{textDecoration:'none',color:'inherit'}}>
               <div style={{
                 width: '100%',
                 background: '#f8fafc',
