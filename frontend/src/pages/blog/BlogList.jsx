@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react';
+
+import React from 'react';
 import { Link } from 'react-router-dom';
-import api, { getStaticUrl } from '../../services/api';
+import { blogPosts } from '../../blogdata/posts';
 import SEO from '../../components/SEO';
 import StructuredData from '../../components/StructuredData';
 
+
 function BlogList() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api.get('/blog')
-      .then(res => setPosts(res.data))
-      .catch(() => setPosts([]))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) return <div>Cargando artículos...</div>;
+  const posts = blogPosts;
 
   const baseUrl = window.location.origin;
   const breadcrumbData = {
@@ -49,10 +41,10 @@ function BlogList() {
       const description = plainText ? `${plainText.slice(0, 155)}${plainText.length > 155 ? '…' : ''}` : undefined;
       return {
         '@type': 'BlogPosting',
-        headline: post.seoTitle || post.title,
-        url: `${baseUrl}/blog/${post.slug || post.id}`,
-        image: getStaticUrl(post.cover),
-        datePublished: post.publishDate,
+        headline: post.title,
+        url: `${baseUrl}/blog/${post.slug}`,
+        image: post.cover || '',
+        datePublished: post.publishDate || '',
         description
       };
     })
@@ -76,7 +68,7 @@ function BlogList() {
         alignItems: 'stretch'
       }}>
         {posts.map(post => (
-          <div key={post.id} className="blog-card" style={{
+          <div key={post.slug} className="blog-card" style={{
             background: '#fff',
             borderRadius: 12,
             boxShadow: '0 2px 12px #0001',
@@ -88,7 +80,7 @@ function BlogList() {
             minHeight: 0,
             height: '100%'
           }}>
-            <Link to={`/blog/${post.slug || post.id}`} style={{textDecoration:'none',color:'inherit'}}>
+            <Link to={`/blog/${post.slug}`} style={{textDecoration:'none',color:'inherit'}}>
               <div style={{
                 width: '100%',
                 background: '#f8fafc',
@@ -99,7 +91,7 @@ function BlogList() {
                 minHeight: 140,
                 maxHeight: 220
               }}>
-              <img src={getStaticUrl(post.cover)} alt={post.title} style={{
+              <img src={post.cover || 'https://via.placeholder.com/600x340?text=Blog+Karell+Premium'} alt={post.title} style={{
                   maxWidth: '100%',
                   maxHeight: '100%',
                   objectFit: 'contain',
@@ -111,9 +103,7 @@ function BlogList() {
                 }} />
               </div>
               <div style={{padding:'1.2em'}}>
-                <div style={{fontSize:'0.95em',color:'#38bdf8',fontWeight:600}}>{post.category}</div>
                 <h2 style={{fontSize:'1.25em',margin:'0.5em 0 0.2em'}}>{post.title}</h2>
-                <div style={{color:'#888',fontSize:'0.95em',marginBottom:'0.7em'}}>{new Date(post.publishDate).toLocaleDateString()}</div>
                 <div style={{color:'#444',fontSize:'1em',marginBottom:'1em'}}>{post.excerpt || (post.content?.replace(/<[^>]+>/g,'').slice(0,120)+'...')}</div>
                 <span style={{color:'#16a34a',fontWeight:600}}>Leer más →</span>
               </div>
