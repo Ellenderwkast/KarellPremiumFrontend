@@ -1,10 +1,13 @@
 
+
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { blogPosts } from '../../blogdata/posts';
 import api from '../../services/api';
 import SEO from '../../components/SEO';
 import StructuredData from '../../components/StructuredData';
+import ProductCard from '../../components/ProductCard';
+
 
 
 function BlogPost() {
@@ -12,20 +15,28 @@ function BlogPost() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    // Buscar primero en los posts locales
     const localPost = blogPosts.find(p => p.slug === slug);
     if (localPost) {
       setPost(localPost);
       setLoading(false);
       setNotFound(false);
+      setRelatedProducts([]); // No mostrar productos relacionados para posts locales
     } else {
-      // Si no está localmente, buscar en el API
       api.get(`/blog/${slug}`)
         .then(res => {
           setPost(res.data);
           setNotFound(false);
+          // Si el post del API tiene productos relacionados, obtenerlos
+          if (res.data && Array.isArray(res.data.relatedProducts) && res.data.relatedProducts.length > 0) {
+            api.get('/products', { params: { ids: res.data.relatedProducts.join(',') } })
+              .then(prodRes => setRelatedProducts(prodRes.data))
+              .catch(() => setRelatedProducts([]));
+          } else {
+            setRelatedProducts([]);
+          }
         })
         .catch(() => {
           setNotFound(true);
@@ -129,6 +140,16 @@ function BlogPost() {
           />
         </div>
         <div className="blog-content" dangerouslySetInnerHTML={{__html: normalizedContent}} style={{fontSize:'1.15em',lineHeight:1.7,marginBottom:'2em'}} />
+        {relatedProducts.length > 0 && (
+          <section style={{margin:'2em 0'}}>
+            <h2 style={{fontSize:'1.2em',marginBottom:16}}>Productos relacionados</h2>
+            <div style={{display:'flex',flexWrap:'wrap',gap:24}}>
+              {relatedProducts.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </section>
+        )}
         <div style={{marginTop:'2em'}}>
           <Link to="/blog" style={{color:'#38bdf8',fontWeight:600}}>&larr; Volver al blog</Link>
         </div>
