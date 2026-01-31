@@ -4,13 +4,33 @@ export const blogPosts = [
     slug: "como-comprar-audifonos-con-domicilio-contraentrega-colombia",
     title: "¿Cómo comprar audífonos con domicilio contraentrega en Colombia?",
     excerpt: "Descubre el proceso fácil y seguro para comprar audífonos y recibirlos en tu casa pagando contraentrega en cualquier ciudad de Colombia.",
-    content: "<p>En Karell Premium puedes comprar audífonos y accesorios tecnológicos con la comodidad de pagar al recibir tu pedido. Solo elige tu producto, selecciona la opción de domicilio contraentrega y disfruta de envíos rápidos y seguros en todo el país.</p>"
+    cover: "/images/F9.webp",
+    content: `
+      <p>En Karell Premium puedes comprar audífonos y accesorios tecnológicos con la comodidad de pagar al recibir tu pedido. Solo elige tu producto, selecciona la opción de domicilio contraentrega y disfruta de envíos rápidos y seguros en todo el país.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Puedo pagar con tarjeta?</b> Sí, aceptamos múltiples métodos de pago, incluyendo contraentrega.</li>
+        <li><b>¿En qué ciudades está disponible el servicio?</b> Enviamos a toda Colombia.</li>
+        <li><b>¿Cuánto tarda el envío?</b> Generalmente entre 1 y 3 días hábiles.</li>
+      </ul>
+      <p>¿Te interesa conocer los <a href="/blog/mejores-auriculares-bluetooth-2026">mejores auriculares Bluetooth 2026</a>? Lee nuestra guía.</p>
+    `
   },
   {
     slug: "mejores-auriculares-bluetooth-2026",
     title: "Mejores auriculares Bluetooth 2026: Guía de compra definitiva",
     excerpt: "Conoce los modelos más recomendados de auriculares Bluetooth para este año y cómo elegir el ideal según tus necesidades.",
-    content: "<p>Te presentamos los mejores auriculares Bluetooth de 2026, con comparativas de calidad de sonido, batería, comodidad y precio. Encuentra el modelo perfecto para ti en Karell Premium.</p>"
+    cover: "/images/lenovorosa.webp",
+    content: `
+      <p>Te presentamos los mejores auriculares Bluetooth de 2026, con comparativas de calidad de sonido, batería, comodidad y precio. Encuentra el modelo perfecto para ti en Karell Premium.</p>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><b>¿Qué audífono tiene mejor batería?</b> Consulta nuestra <a href="/blog/top-10-audifonos-deporte-colombia">comparativa de audífonos deportivos</a>.</li>
+        <li><b>¿Son compatibles con todos los celulares?</b> Sí, funcionan con Android y iPhone.</li>
+        <li><b>¿Tienen garantía?</b> Todos nuestros productos tienen garantía en Colombia.</li>
+      </ul>
+      <p>¿Buscas audífonos para teletrabajo? Lee nuestra <a href="/blog/guia-elegir-audifonos-teletrabajo-estudio">guía para elegir audífonos para teletrabajo y estudio</a>.</p>
+    `
   },
   {
     slug: "audifonos-inalambricos-vs-cable",
