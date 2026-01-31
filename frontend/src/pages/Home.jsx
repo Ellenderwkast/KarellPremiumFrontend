@@ -111,9 +111,7 @@ function Home() {
         }}
       />
       {/* ...header principal eliminado, solo botón de catálogo... */}
-      <div style={{textAlign: 'center', margin: '2rem 0'}}>
-        <Link to="/products" className="btn btn-primary btn-lg hero-cta">Ver catálogo completo</Link>
-      </div>
+      {/* Botón de catálogo principal eliminado por solicitud */}
       <video className="video-bg" src="descubre/video22.mp4" autoPlay muted loop playsInline />
 
       <section className="hero">
