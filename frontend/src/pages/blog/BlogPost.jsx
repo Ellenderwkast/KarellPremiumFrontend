@@ -1,13 +1,41 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { blogPosts } from '../../blogdata/posts';
+import api from '../../services/api';
 import SEO from '../../components/SEO';
 import StructuredData from '../../components/StructuredData';
 
+
 function BlogPost() {
   const { slug } = useParams();
-  const post = blogPosts.find(p => p.slug === slug);
-  if (!post) return <div>Artículo no encontrado.</div>;
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    // Buscar primero en los posts locales
+    const localPost = blogPosts.find(p => p.slug === slug);
+    if (localPost) {
+      setPost(localPost);
+      setLoading(false);
+      setNotFound(false);
+    } else {
+      // Si no está localmente, buscar en el API
+      api.get(`/blog/${slug}`)
+        .then(res => {
+          setPost(res.data);
+          setNotFound(false);
+        })
+        .catch(() => {
+          setNotFound(true);
+        })
+        .finally(() => setLoading(false));
+    }
+  }, [slug]);
+
+  if (loading) return <div>Cargando artículo...</div>;
+  if (notFound || !post) return <div>Artículo no encontrado.</div>;
 
   const normalizedContent = post.content;
   const baseUrl = window.location.origin;
