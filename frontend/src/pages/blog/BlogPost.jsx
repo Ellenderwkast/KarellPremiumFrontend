@@ -32,10 +32,11 @@ function BlogPost() {
           setNotFound(false);
           // Debug: mostrar en consola el post recibido
           console.log('BlogPost API response:', res.data);
-          if (res.data && Array.isArray(res.data.relatedProducts) && res.data.relatedProducts.length > 0) {
+          const relatedIds = Array.isArray(res.data.products) ? res.data.products : [];
+          if (relatedIds.length > 0) {
             try {
               let products = await Promise.all(
-                res.data.relatedProducts.map(id => productService.getById(id).then(r => r.data).catch(() => null))
+                relatedIds.map(id => productService.getById(id).then(r => r.data).catch(() => null))
               );
               products = products.filter(Boolean).map(product => {
                 let img = product.image || (product.attributes && product.attributes.image);
@@ -52,7 +53,7 @@ function BlogPost() {
               setRelatedProducts([]);
             }
           } else {
-            console.warn('No hay relatedProducts en el post o está vacío.');
+            console.warn('No hay productos relacionados en el post o está vacío.');
             setRelatedProducts([]);
           }
         })
