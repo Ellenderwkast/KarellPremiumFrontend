@@ -110,14 +110,10 @@ function Home() {
           }
         }}
       />
-      {/* Encabezado principal optimizado para SEO y ventas */}
-      <header className="main-header">
-        <h1>Audífonos inalámbricos y accesorios tecnológicos en Colombia</h1>
-        <p className="main-header-desc">
-          Descubre la mejor tienda online de audífonos diadema, Bluetooth y accesorios premium. Calidad, garantía y envío rápido a todo el país. ¡Compra hoy y recibe en casa!
-        </p>
+      {/* ...header principal eliminado, solo botón de catálogo... */}
+      <div style={{textAlign: 'center', margin: '2rem 0'}}>
         <Link to="/products" className="btn btn-primary btn-lg hero-cta">Ver catálogo completo</Link>
-      </header>
+      </div>
       <video className="video-bg" src="descubre/video22.mp4" autoPlay muted loop playsInline />
 
       <section className="hero">
