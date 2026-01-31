@@ -1,10 +1,3 @@
-}
-
-export default BlogPost;
-import { blogPosts } from '../../blogdata/posts';
-import SEO from '../../components/SEO';
-import StructuredData from '../../components/StructuredData';
-
   const { slug } = useParams();
   const post = blogPosts.find(p => p.slug === slug);
   if (!post) return <div>Artículo no encontrado.</div>;
