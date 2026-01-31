@@ -22,9 +22,26 @@ function BlogPost() {
     const localPost = blogPosts.find(p => p.slug === slug);
     if (localPost) {
       setPost(localPost);
-      setLoading(false);
+      setLoading(true);
       setNotFound(false);
-      setRelatedProducts([]); // No mostrar productos relacionados para posts locales
+      // Si el post local tiene campo 'products', buscar productos relacionados
+      if (Array.isArray(localPost.products) && localPost.products.length > 0) {
+        productService.getAll().then(res => {
+          const allProducts = Array.isArray(res.data) ? res.data : [];
+          // Filtrar productos por los IDs en localPost.products
+          const related = localPost.products.map(id => allProducts.find(p => String(p.id) === String(id))).filter(Boolean).map(product => {
+            let img = product.image || (product.attributes && product.attributes.image);
+            if (!img && Array.isArray(product.images) && product.images.length > 0) img = product.images[0];
+            if (!img && product.attributes && Array.isArray(product.attributes.images) && product.attributes.images.length > 0) img = product.attributes.images[0];
+            if (!img && Array.isArray(product.gallery) && product.gallery.length > 0) img = product.gallery[0];
+            return { ...product, image: getStaticUrl(img) };
+          });
+          setRelatedProducts(related);
+        }).catch(() => setRelatedProducts([])).finally(() => setLoading(false));
+      } else {
+        setRelatedProducts([]);
+        setLoading(false);
+      }
     } else {
       api.get(`/blog/${slug}`)
         .then(async res => {
