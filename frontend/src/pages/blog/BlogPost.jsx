@@ -90,7 +90,7 @@ function BlogPost() {
   const plainText = (post.excerpt || post.content?.replace(/<[^>]+>/g, '') || '').trim();
   const metaDescription = (post.seoDescription || plainText).slice(0, 155);
   const placeholder = 'https://via.placeholder.com/600x340?text=Sin+imagen';
-  const coverUrl = post.cover?.src || placeholder;
+  const coverUrl = (typeof post.cover === 'string' ? post.cover : post.cover?.src) || placeholder;
   const articleData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -160,7 +160,7 @@ function BlogPost() {
         }}>
           <img
             src={coverUrl}
-            alt={post.cover?.alt || post.title}
+            alt={(typeof post.cover === 'object' ? post.cover?.alt : post.title) || post.title}
             style={{
               maxWidth: '100%',
               maxHeight: '100%',

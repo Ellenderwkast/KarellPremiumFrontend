@@ -98,7 +98,7 @@ function BlogList() {
                 minHeight: 140,
                 maxHeight: 220
               }}>
-              <img src={post.cover?.src || 'https://via.placeholder.com/600x340?text=Blog+Karell+Premium'} alt={post.cover?.alt || post.title} style={{
+              <img src={(typeof post.cover === 'string' ? post.cover : post.cover?.src) || 'https://via.placeholder.com/600x340?text=Blog+Karell+Premium'} alt={(typeof post.cover === 'object' ? post.cover?.alt : post.title) || post.title} style={{
                   maxWidth: '100%',
                   maxHeight: '100%',
                   objectFit: 'contain',
