@@ -33,14 +33,18 @@ function BlogPost() {
           // Si el post del API tiene productos relacionados, obtenerlos
           if (res.data && Array.isArray(res.data.relatedProducts) && res.data.relatedProducts.length > 0) {
             try {
-              // Intentar obtener todos los productos relacionados de una vez
-              const prodRes = await api.get('/products', { params: { ids: res.data.relatedProducts.join(',') } });
-              let products = prodRes.data;
-              // Si la respuesta no es un array válido, hacer fetch individual
-              if (!Array.isArray(products) || products.length === 0) {
-                products = await Promise.all(res.data.relatedProducts.map(id => productService.getById(id).then(r => r.data).catch(() => null)));
-                products = products.filter(Boolean);
-              }
+              // Siempre hacer fetch individual por cada ID para máxima compatibilidad
+              let products = await Promise.all(
+                res.data.relatedProducts.map(id => productService.getById(id).then(r => r.data).catch(() => null))
+              );
+              products = products.filter(Boolean).map(product => {
+                // Forzar imagen principal desde cualquier campo posible
+                let img = product.image || (product.attributes && product.attributes.image);
+                if (!img && Array.isArray(product.images) && product.images.length > 0) img = product.images[0];
+                if (!img && product.attributes && Array.isArray(product.attributes.images) && product.attributes.images.length > 0) img = product.attributes.images[0];
+                if (!img && Array.isArray(product.gallery) && product.gallery.length > 0) img = product.gallery[0];
+                return { ...product, image: getStaticUrl(img) };
+              });
               setRelatedProducts(products);
             } catch {
               setRelatedProducts([]);
