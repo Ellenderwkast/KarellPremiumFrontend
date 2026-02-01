@@ -238,7 +238,9 @@ export const authService = {
   getAllUsers: () => api.get('/auth/users'),
   createUser: data => api.post('/auth/users', data),
   updateUserRole: (id, isAdmin) => api.patch(`/auth/users/${id}/role`, { isAdmin }),
-  deleteUser: id => api.delete(`/auth/users/${id}`)
+  deleteUser: id => api.delete(`/auth/users/${id}`),
+  // Login con Google
+  loginWithGoogle: credential => api.post('/auth/google', { credential })
 };
 
 export const productService = {

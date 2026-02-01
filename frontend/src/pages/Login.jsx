@@ -47,14 +47,12 @@ function Login() {
     try {
       setLoading(true);
       setError(null);
-      // Aquí deberías enviar credentialResponse.credential a tu backend para validar y autenticar
-      // Ejemplo:
-      // const response = await authService.loginWithGoogle(credentialResponse.credential);
-      // login(response.data.user, response.data.token);
-      // navigate('/');
-      alert('Google login exitoso (simulado). Implementa la lógica de backend.');
+      // Lógica real: enviar el token de Google al backend
+      const response = await authService.loginWithGoogle(credentialResponse.credential);
+      login(response.data.user, response.data.token);
+      navigate('/');
     } catch (err) {
-      setError('No se pudo iniciar sesión con Google');
+      setError(err.response?.data?.error || 'No se pudo iniciar sesión con Google');
     } finally {
       setLoading(false);
     }
