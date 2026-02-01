@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import GoogleLoginButton from '../components/GoogleLoginButton';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { authService } from '../services/api';
@@ -65,6 +66,25 @@ function Register() {
     }
   };
 
+  // Manejo de Google login
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      setLoading(true);
+      setError(null);
+      // Aquí deberías enviar credentialResponse.credential a tu backend para validar y autenticar
+      // Ejemplo:
+      // const response = await authService.loginWithGoogle(credentialResponse.credential);
+      // login(response.data.user, response.data.token);
+      // navigate('/');
+      alert('Google registro/login exitoso (simulado). Implementa la lógica de backend.');
+    } catch (err) {
+      setError('No se pudo registrar con Google');
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleGoogleError = () => setError('No se pudo registrar con Google');
+
   return (
     <div className="auth-container">
       <SEO
@@ -79,6 +99,7 @@ function Register() {
 
         {error && <div className="auth-alert error">{error}</div>}
 
+        <GoogleLoginButton onSuccess={handleGoogleSuccess} onError={handleGoogleError} text="Registrarse con Google" />
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="form-field">
             <label htmlFor="name">Nombre</label>
