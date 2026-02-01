@@ -305,6 +305,75 @@ function ProductDetail() {
     productImages = [currentImage.startsWith('http') ? currentImage : `${baseUrl}/images/${currentImage.replace(/^.*[\\\/]/, '')}`];
   }
 
+  // Calcular fecha de validez del precio (1 mes por defecto)
+  const priceValidUntil = (() => {
+    const d = new Date();
+    d.setMonth(d.getMonth() + 1);
+    return d.toISOString().split('T')[0];
+  })();
+
+  // Política de devoluciones ejemplo (ajusta según tu negocio)
+  const merchantReturnPolicy = {
+    '@type': 'MerchantReturnPolicy',
+    'applicableCountry': 'CO',
+    'returnPolicyCategory': 'https://schema.org/RefundPolicy',
+    'returnPolicySeasonalOverride': 'No',
+    'returnMethod': 'https://schema.org/ReturnByMail',
+    'returnFees': 'https://schema.org/FreeReturn',
+    'returnWindow': '30 días'
+  };
+
+  // Detalles de envío ejemplo (ajusta según tu negocio)
+  const shippingDetails = {
+    '@type': 'OfferShippingDetails',
+    'shippingRate': {
+      '@type': 'MonetaryAmount',
+      'value': '0',
+      'currency': 'COP'
+    },
+    'shippingDestination': {
+      '@type': 'DefinedRegion',
+      'addressCountry': 'CO'
+    },
+    'deliveryTime': {
+      '@type': 'ShippingDeliveryTime',
+      'handlingTime': {
+        '@type': 'QuantitativeValue',
+        'minValue': 1,
+        'maxValue': 2,
+        'unitCode': 'd'
+      },
+      'transitTime': {
+        '@type': 'QuantitativeValue',
+        'minValue': 2,
+        'maxValue': 5,
+        'unitCode': 'd'
+      }
+    }
+  };
+
+  // Reseñas y ratings
+  const aggregateRating = (reviewsSummary && reviewsSummary.count > 0) ? {
+    '@type': 'AggregateRating',
+    'ratingValue': reviewsSummary.average,
+    'reviewCount': reviewsSummary.count
+  } : undefined;
+
+  const reviewList = (reviews && reviews.length > 0)
+    ? reviews.slice(0, 5).map(r => ({
+        '@type': 'Review',
+        'author': r.userName || 'Usuario',
+        'datePublished': r.createdAt ? r.createdAt.split('T')[0] : undefined,
+        'reviewBody': r.comment,
+        'reviewRating': {
+          '@type': 'Rating',
+          'ratingValue': r.rating,
+          'bestRating': 5,
+          'worstRating': 1
+        }
+      }))
+    : undefined;
+
   const productData = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -321,8 +390,13 @@ function ProductDetail() {
       priceCurrency: 'COP',
       price: Number(product.price).toFixed(2),
       availability: availableStock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      itemCondition: 'https://schema.org/NewCondition'
-    }
+      itemCondition: 'https://schema.org/NewCondition',
+      priceValidUntil,
+      hasMerchantReturnPolicy: merchantReturnPolicy,
+      shippingDetails: shippingDetails
+    },
+    ...(aggregateRating && { aggregateRating }),
+    ...(reviewList && { review: reviewList })
   };
 
   const breadcrumbData = {
