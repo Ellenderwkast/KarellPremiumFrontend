@@ -1133,7 +1133,8 @@ function Checkout() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        error={fieldErrors.email}
+                        onBlur={() => setEmailTouched(true)}
+                        error={emailTouched && formData.email && !validateEmail(formData.email) ? "El correo ingresado no es válido. Verifica el formato: usuario@correo.com." : fieldErrors.email}
                         required
                         disabled={loading}
                         type="email"

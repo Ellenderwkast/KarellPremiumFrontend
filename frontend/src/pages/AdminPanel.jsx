@@ -2749,9 +2749,13 @@ export default function AdminPanel() {
                       type="email"
                       value={createUserData.email}
                       onChange={(e) => setCreateUserData(prev => ({ ...prev, email: e.target.value }))}
+                      onBlur={() => setCreateUserEmailTouched(true)}
                       required
                       disabled={creatingUser}
                     />
+                    {createUserEmailTouched && createUserData.email && !validateEmail(createUserData.email) && (
+                      <small className="error">El correo ingresado no es válido. Verifica el formato: usuario@correo.com.</small>
+                    )}
                   </div>
                   <div className="form-group">
                     <label>Contraseña *</label>
@@ -2863,8 +2867,12 @@ export default function AdminPanel() {
                       type="email"
                       value={editOrderData.customerEmail}
                       onChange={(e) => setEditOrderData(prev => ({ ...prev, customerEmail: e.target.value }))}
+                      onBlur={() => setEditOrderEmailTouched(true)}
                       disabled={savingOrderEdit}
                     />
+                    {editOrderEmailTouched && editOrderData.customerEmail && !validateEmail(editOrderData.customerEmail) && (
+                      <small className="error">El correo ingresado no es válido. Verifica el formato: usuario@correo.com.</small>
+                    )}
                   </div>
                   <div className="form-group">
                     <label>Canal</label>
@@ -3064,9 +3072,13 @@ export default function AdminPanel() {
                       type="email"
                       value={manualOrderData.customerEmail}
                       onChange={(e) => setManualOrderData(prev => ({ ...prev, customerEmail: e.target.value }))}
+                      onBlur={() => setManualOrderEmailTouched(true)}
                       disabled={creatingManualOrder}
                       placeholder="Email (opcional)"
                     />
+                    {manualOrderEmailTouched && manualOrderData.customerEmail && !validateEmail(manualOrderData.customerEmail) && (
+                      <small className="error">El correo ingresado no es válido. Verifica el formato: usuario@correo.com.</small>
+                    )}
                   </div>
 
                   <div className="form-group">

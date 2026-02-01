@@ -113,11 +113,12 @@ function Register() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              onBlur={() => setEmailTouched(true)}
               required
               disabled={loading}
             />
-            {formData.email && !validateEmail(formData.email) && (
-              <small className="error">{getEmailError(formData.email)}</small>
+            {emailTouched && formData.email && !validateEmail(formData.email) && (
+              <small className="error">El correo ingresado no es válido. Verifica el formato: usuario@correo.com.</small>
             )}
           </div>
 

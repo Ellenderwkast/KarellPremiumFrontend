@@ -9,6 +9,7 @@ import '../styles/auth.css';
 
 function Login() {
   const [email, setEmail] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
@@ -62,10 +63,13 @@ function Login() {
               id="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              onBlur={() => setEmailTouched(true)}
               required
               disabled={loading}
             />
-            {email && !validateEmail(email) && <small className="error">{getEmailError(email)}</small>}
+            {emailTouched && email && !validateEmail(email) && (
+              <small className="error">El correo ingresado no es válido. Verifica el formato: usuario@correo.com.</small>
+            )}
           </div>
 
           <div className="form-field">
