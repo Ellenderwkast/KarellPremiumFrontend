@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { guideErrorService } from '../services/guideErrorService';
 import PageSizeSelect from './ui/PageSizeSelect';
 import TableContainer from './TableContainer';
+import './adminForms.css';
 
 export default function GuideErrorManager() {
   const [errors, setErrors] = useState([]);
@@ -94,13 +95,13 @@ export default function GuideErrorManager() {
     <div>
       <h3>Errores de guía</h3>
       <div className="admin-filters-row">
-        <select value={filter} onChange={e => setFilter(e.target.value)} className="admin-filter-select">
+        <select value={filter} onChange={e => setFilter(e.target.value)} className="form-input admin-filter-select">
           <option value="all">Todos</option>
           <option value="unresolved">No resueltos</option>
           <option value="resolved">Resueltos</option>
         </select>
         <PageSizeSelect compact pageSize={pageSize} setPageSize={(v) => { setPageSize(v); setPage(1); }} storageKey="guide_errors_page_size" />
-        <button onClick={fetchErrors} disabled={loading} className="admin-refresh-btn">Refrescar</button>
+        <button onClick={fetchErrors} disabled={loading} className="form-button admin-refresh-btn">Refrescar</button>
       </div>
       {error && <div className="admin-error-text">{error}</div>}
       <TableContainer tableClassName="admin-table admin-guide-errors-table" minWidth={320}>

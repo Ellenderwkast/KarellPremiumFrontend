@@ -4,6 +4,7 @@ import { retryService } from '../services/retryService';
 import PageSizeSelect from './ui/PageSizeSelect';
 import TableContainer from './TableContainer';
 import './retryManager.css';
+import './adminForms.css';
 
 export default function RetryManager() {
   const [retries, setRetries] = useState([]);
@@ -100,23 +101,23 @@ export default function RetryManager() {
     <div>
       <h3>Reintentos de guías/tracking</h3>
       <div className="retry-filters-row">
-        <select name="type" value={filter.type} onChange={handleInput} className="retry-select">
+        <select name="type" className="form-input retry-select" value={filter.type} onChange={handleInput}>
           <option value="">Tipo</option>
           <option value="guide">Guía</option>
           <option value="tracking">Tracking</option>
         </select>
-        <select name="status" value={filter.status} onChange={handleInput} className="retry-select">
+        <select name="status" className="form-input retry-select" value={filter.status} onChange={handleInput}>
           <option value="">Estado</option>
           <option value="pending">Pendiente</option>
           <option value="success">Éxito</option>
           <option value="failed">Fallido</option>
         </select>
-        <select name="success" value={filter.success} onChange={handleInput} className="retry-select">
+        <select name="success" className="form-input retry-select" value={filter.success} onChange={handleInput}>
           <option value="">¿Exitoso?</option>
           <option value="true">Sí</option>
           <option value="false">No</option>
         </select>
-        <button onClick={fetchRetries} disabled={loading} className="retry-refresh-btn">Refrescar</button>
+        <button onClick={fetchRetries} className="form-button retry-refresh-btn" disabled={loading}>Refrescar</button>
         <PageSizeSelect compact pageSize={pageSize} setPageSize={(v) => { setPageSize(v); setPage(1); }} storageKey="retry_page_size" />
       </div>
       {error && <div className="retry-error">{error}</div>}

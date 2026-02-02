@@ -3,6 +3,7 @@ import { shippingStatusService } from '../services/shippingStatusService';
 import PageSizeSelect from './ui/PageSizeSelect';
 import TableContainer from './TableContainer';
 import './ShippingStatusManager.css';
+import './adminForms.css';
 
 export default function ShippingStatusManager() {
   const [statuses, setStatuses] = useState([]);
@@ -110,15 +111,15 @@ export default function ShippingStatusManager() {
   return (
     <div>
       <h3>Estados de envío</h3>
-      <form onSubmit={handleSubmit} style={{ marginBottom: 24, background: '#f8fafc', padding: 16, borderRadius: 8 }}>
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-          <input name="name" value={form.name} onChange={handleInput} placeholder="Nombre" required style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc', minWidth: 120 }} />
-          <input name="code" value={form.code} onChange={handleInput} placeholder="Código" required style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc', minWidth: 80 }} />
-          <input name="description" value={form.description} onChange={handleInput} placeholder="Descripción" style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc', minWidth: 180 }} />
-          <input name="color" value={form.color} onChange={handleInput} placeholder="Color (ej: #4ade80)" style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc', minWidth: 120 }} />
-          <input name="order" type="number" value={form.order} onChange={handleInput} placeholder="Orden" style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc', width: 70 }} />
-          <button type="submit" disabled={loading} style={{ padding: '6px 16px', borderRadius: 5, background: '#4ade80', border: 'none', color: '#fff', fontWeight: 'bold' }}>{editing ? 'Actualizar' : 'Crear'}</button>
-          {editing && <button type="button" onClick={handleCancel} style={{ padding: '6px 12px', borderRadius: 5, background: '#fbbf24', border: 'none', color: '#fff', fontWeight: 'bold' }}>Cancelar</button>}
+      <form onSubmit={handleSubmit} style={{ marginBottom: 24 }}>
+        <div className="admin-form-row" style={{ background: '#f8fafc', padding: 16, borderRadius: 8 }}>
+          <input name="name" className="form-input" value={form.name} onChange={handleInput} placeholder="Nombre" required style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
+          <input name="code" className="form-input small" value={form.code} onChange={handleInput} placeholder="Código" required style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
+          <input name="description" className="form-input" value={form.description} onChange={handleInput} placeholder="Descripción" style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
+          <input name="color" className="form-input small" value={form.color} onChange={handleInput} placeholder="Color (ej: #4ade80)" style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
+          <input name="order" className="form-input small" type="number" value={form.order} onChange={handleInput} placeholder="Orden" style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc', width: 70 }} />
+          <button type="submit" className="form-button" disabled={loading} style={{ padding: '6px 16px', borderRadius: 5, background: '#4ade80', border: 'none', color: '#fff', fontWeight: 'bold' }}>{editing ? 'Actualizar' : 'Crear'}</button>
+          {editing && <button type="button" onClick={handleCancel} className="form-button" style={{ padding: '6px 12px', borderRadius: 5, background: '#fbbf24', border: 'none', color: '#fff', fontWeight: 'bold' }}>Cancelar</button>}
         </div>
       </form>
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 8 }}>

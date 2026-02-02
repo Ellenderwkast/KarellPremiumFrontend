@@ -3,6 +3,7 @@ import { shipmentService } from '../services/shipmentService';
 import InlineSpinner from './InlineSpinner';
 import PageSizeSelect from './ui/PageSizeSelect';
 import TableContainer from './TableContainer';
+import './adminForms.css';
 
 import { shippingStatusService } from '../services/shippingStatusService';
 
@@ -89,20 +90,21 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
           ) : null}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <form onSubmit={e => { e.preventDefault(); triggerSearch(); }} style={{ display: 'flex', gap: 8 }}>
-          <input
-            type="text"
-            placeholder="Buscar por # orden, guía, estado..."
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-            style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #ccc', minWidth: 180, height: 36, fontSize: 15, boxSizing: 'border-box' }}
-            disabled={loading}
-            autoComplete="off"
-          />
-          <button type="submit" disabled={loading} title="Buscar" style={{ padding: '0 16px', height: 36, borderRadius: 8, background: '#e0e7ff', border: 'none', fontWeight: 'bold', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, boxSizing: 'border-box' }}>
-            {loading ? <InlineSpinner size={14} color="#0f172a" /> : null}
-            Buscar
-          </button>
+          <form onSubmit={e => { e.preventDefault(); triggerSearch(); }} className="admin-form-row" style={{ margin: 0 }}>
+            <input
+              type="text"
+              placeholder="Buscar por # orden, guía, estado..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="form-input"
+              style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #ccc', height: 36, fontSize: 15, boxSizing: 'border-box' }}
+              disabled={loading}
+              autoComplete="off"
+            />
+            <button type="submit" className="form-button" disabled={loading} title="Buscar" style={{ padding: '0 16px', height: 36, borderRadius: 8, background: '#e0e7ff', border: 'none', fontWeight: 'bold', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, boxSizing: 'border-box' }}>
+              {loading ? <InlineSpinner size={14} color="#0f172a" /> : null}
+              Buscar
+            </button>
           </form>
         </div>
       </div>

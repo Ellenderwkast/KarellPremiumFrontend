@@ -1,0 +1,38 @@
+.admin-form-row, .admin-filters-row, .retry-filters-row, .tm-toolbar, .form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.admin-form-row .form-input,
+.admin-filters-row .form-input,
+.retry-filters-row .form-input,
+.tm-toolbar .tm-input,
+.form-row .form-input {
+  flex: 1 1 140px; /* allow inputs to shrink but stay usable */
+  min-width: 0; /* critical to allow flex children to shrink under overflow/zoom */
+  box-sizing: border-box;
+}
+
+.admin-form-row .form-input.small,
+.admin-filters-row .form-input.small,
+.retry-filters-row .form-input.small {
+  flex: 0 1 90px;
+}
+
+.admin-form-row .form-button,
+.admin-filters-row .form-button,
+.retry-filters-row .form-button,
+.tm-toolbar .tm-btn {
+  flex: 0 0 auto; /* buttons keep their intrinsic size */
+}
+
+/* Reduce gaps/paddings on very small screens */
+@media (max-width: 420px) {
+  .admin-form-row, .admin-filters-row, .retry-filters-row, .tm-toolbar { gap: 8px; }
+  .admin-form-row .form-input, .admin-filters-row .form-input, .retry-filters-row .form-input { flex-basis: 120px; }
+}
+
+/* Helper to force inputs to break long content if needed */
+.form-input { max-width: 100%; }

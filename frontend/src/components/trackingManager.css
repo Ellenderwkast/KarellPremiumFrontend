@@ -9,6 +9,8 @@
   align-items: center;
   flex-wrap: nowrap;
 }
+/* Ensure toolbar inputs can shrink when space is limited */
+.tm-toolbar .tm-input { flex: 1 1 140px; min-width: 0; }
 @media (max-width: 800px) {
   .tm-toolbar {
     flex-wrap: wrap;

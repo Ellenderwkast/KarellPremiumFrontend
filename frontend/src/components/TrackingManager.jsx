@@ -3,6 +3,7 @@ import { shipmentService } from '../services/shipmentService';
 import api from '../services/api';
 import InlineSpinner from './InlineSpinner';
 import TableContainer from './TableContainer';
+import './adminForms.css';
 import PageSizeSelect from './ui/PageSizeSelect';
 import './trackingManager.css';
 
@@ -161,9 +162,9 @@ export default function TrackingManager() {
     <div className="tracking-manager">
       <h3>Tracking de envíos</h3>
       <div className="tm-toolbar">
-        <input name="status" value={statusInput} onChange={e => setStatusInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') { setPage(1); setFilter({ status: statusInput, carrier: carrierInput, guide: guideInput }); } }} placeholder="Último evento" className="tm-input" />
-        <input name="carrier" value={carrierInput} onChange={e => setCarrierInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') { setPage(1); setFilter({ status: statusInput, carrier: carrierInput, guide: guideInput }); } }} placeholder="Transportadora" className="tm-input" />
-        <input name="guide" value={guideInput} onChange={e => setGuideInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') { setPage(1); setFilter({ status: statusInput, carrier: carrierInput, guide: guideInput }); } }} placeholder="Guía" className="tm-input" />
+        <input name="status" className="form-input tm-input" value={statusInput} onChange={e => setStatusInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') { setPage(1); setFilter({ status: statusInput, carrier: carrierInput, guide: guideInput }); } }} placeholder="Último evento" />
+        <input name="carrier" className="form-input tm-input" value={carrierInput} onChange={e => setCarrierInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') { setPage(1); setFilter({ status: statusInput, carrier: carrierInput, guide: guideInput }); } }} placeholder="Transportadora" />
+        <input name="guide" className="form-input tm-input" value={guideInput} onChange={e => setGuideInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') { setPage(1); setFilter({ status: statusInput, carrier: carrierInput, guide: guideInput }); } }} placeholder="Guía" />
         <PageSizeSelect compact pageSize={pageSize} setPageSize={(v) => { setPageSize(v); setPage(1); }} storageKey="tracking_page_size" />
         <button onClick={handleRefreshAll} disabled={loading} title="Refrescar todos los trackings mostrados" className="tm-btn tm-btn--ghost tm-btn--refresh">
           {loading ? (
