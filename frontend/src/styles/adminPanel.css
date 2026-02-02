@@ -510,15 +510,15 @@ textarea[name="description"], .product-description-textarea {
 @media (max-width: 600px) {
   .admin-content {
     /* reduce internal padding and extend a bit horizontally */
-    padding: 0.5rem;
-    margin-left: -8px;
-    margin-right: -8px;
-    width: calc(100% + 16px);
+    padding: 0.45rem;
+    margin-left: -16px;
+    margin-right: -16px;
+    width: calc(100% + 32px);
   }
   /* reduce global gaps around main to maximize content area */
   .admin-main {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
   /* tighten the ship-submodules spacing for small screens */
   .ship-submodules { gap: 6px; }
@@ -526,12 +526,12 @@ textarea[name="description"], .product-description-textarea {
 
 @media (max-width: 420px) {
   .admin-content {
-    padding: 0.35rem;
-    margin-left: -12px;
-    margin-right: -12px;
-    width: calc(100% + 24px);
+    padding: 0.3rem;
+    margin-left: -24px;
+    margin-right: -24px;
+    width: calc(100% + 48px);
   }
-  .admin-main { padding-left: 4px; padding-right: 4px; }
+  .admin-main { padding-left: 10px; padding-right: 10px; }
 }
 
 .tab-content h2 {
