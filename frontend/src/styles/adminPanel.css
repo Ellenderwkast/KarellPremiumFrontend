@@ -1001,6 +1001,7 @@ textarea[name="description"], .product-description-textarea {
   max-width: 100%;
   word-break: break-word;
   white-space: normal;
+  transition: padding 0.2s, border-radius 0.2s;
 }
 @media (max-width: 700px), (max-width: 900px) and (max-zoom: 120%) {
   .admin-contents-dashboard .contents-actions {
@@ -1015,8 +1016,10 @@ textarea[name="description"], .product-description-textarea {
     min-width: 0;
     width: 100%;
     max-width: 100%;
-    padding: 0.55rem 0.7rem;
-    font-size: 1rem;
+    padding: 0.38rem 0.5rem;
+    font-size: 0.98rem;
+    border-radius: 14px;
+    line-height: 1.2;
   }
 }
 
