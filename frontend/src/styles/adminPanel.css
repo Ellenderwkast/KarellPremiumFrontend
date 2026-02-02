@@ -506,6 +506,34 @@ textarea[name="description"], .product-description-textarea {
   }
 }
 
+/* Make admin content slightly wider on small devices so forms and tables have extra room when zoomed */
+@media (max-width: 600px) {
+  .admin-content {
+    /* reduce internal padding and extend a bit horizontally */
+    padding: 0.5rem;
+    margin-left: -8px;
+    margin-right: -8px;
+    width: calc(100% + 16px);
+  }
+  /* reduce global gaps around main to maximize content area */
+  .admin-main {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  /* tighten the ship-submodules spacing for small screens */
+  .ship-submodules { gap: 6px; }
+}
+
+@media (max-width: 420px) {
+  .admin-content {
+    padding: 0.35rem;
+    margin-left: -12px;
+    margin-right: -12px;
+    width: calc(100% + 24px);
+  }
+  .admin-main { padding-left: 4px; padding-right: 4px; }
+}
+
 .tab-content h2 {
   font-size: 1.8rem;
   color: var(--gray-900);
