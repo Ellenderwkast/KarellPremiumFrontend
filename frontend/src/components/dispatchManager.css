@@ -33,9 +33,14 @@
 		align-items: stretch;
 	}
 	.dispatch-form button {
-		font-size: 1.1em;
-		width: 100%;
-		padding: 12px 0;
+		font-size: 0.97em;
+		width: 70vw;
+		max-width: 160px;
+		min-width: 0;
+		padding: 6px 0.5rem;
+		border-radius: 12px;
+		margin: 0 auto;
+		display: block;
 	}
 	.result {
 		font-size: 1em;
