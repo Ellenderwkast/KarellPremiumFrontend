@@ -61,33 +61,44 @@ export default function GuideErrorManager() {
   };
 
   const handleShowDetail = (raw) => {
+
+  // Responsividad profesional para tabla de errores
+  const TableContainer = ({ children }) => (
+    <div style={{ width: '100%', overflowX: 'auto', marginBottom: 12 }}>
+      <table style={{ minWidth: 600, width: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
+        {children}
+      </table>
+    </div>
+  );
+
+  // ...existing code...
     if (!raw) return;
     // raw may be an object, a JSON string, or some other string (e.g., XML)
     let content = null;
     try {
       if (typeof raw === 'string') {
-        // try parse JSON
-        const parsed = JSON.parse(raw);
-        content = JSON.stringify(parsed, null, 2);
-      } else {
-        // object/other
-        content = JSON.stringify(raw, null, 2);
-      }
-    } catch (e) {
-      // not JSON — show raw as-is
-      content = String(raw);
-    }
-    setDetailModal({ open: true, content, title: 'Detalles de error' });
-  };
-
-  const handleCloseDetail = () => setDetailModal({ open: false, content: null, title: '' });
-
-  const handleCopyDetail = async () => {
-    try {
-      await navigator.clipboard.writeText(detailModal.content || '');
-      // small feedback — simple alert (could be improved)
-      window.alert('Detalle copiado al portapapeles');
-    } catch (err) {
+      <TableContainer>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Resuelto</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pagedErrors.map(err => (
+            <tr key={err.id}>
+              <td>{err.id}</td>
+              <td>{err.description}</td>
+              <td>{err.resolved ? 'Sí' : 'No'}</td>
+              <td>
+                {/* ...acciones... */}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </TableContainer>
       window.alert('No se pudo copiar');
     }
   };

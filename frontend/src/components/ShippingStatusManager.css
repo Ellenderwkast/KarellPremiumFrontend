@@ -7,6 +7,31 @@
   overflow: hidden;
 }
 
+.shipping-status-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.shipping-status-table {
+  min-width: 600px;
+  width: 100%;
+}
+.shipping-status-table th, .shipping-status-table td {
+  padding: 10px 8px;
+  font-size: 1em;
+  text-align: left;
+}
+@media (max-width: 600px) {
+  .shipping-status-table th, .shipping-status-table td {
+    font-size: 0.95em;
+    padding: 8px 4px;
+  }
+  .shipping-status-table {
+    min-width: 400px;
+  }
+}
+
 .shipping-status-table th,
 .shipping-status-table td {
   padding: 12px 16px;
