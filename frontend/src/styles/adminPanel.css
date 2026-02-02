@@ -1047,11 +1047,15 @@ textarea[name="description"], .product-description-textarea {
   margin-bottom: 1rem;
 }
 
-.admin-contents-list .list-actions .btn {
-  padding: 0.6rem 1rem;
-  min-width: 140px;
-  font-weight: 700;
-  border-radius: 8px;
+  .admin-contents-list .list-actions .btn {
+    padding: 0.38rem 0.7rem;
+    min-width: 90px;
+    font-weight: 700;
+    border-radius: 12px;
+    max-width: 180px;
+    width: auto;
+    transition: padding 0.2s, border-radius 0.2s, max-width 0.2s;
+  }
 }
 
 .admin-contents-list .list-actions .btn-primary {
@@ -1063,7 +1067,15 @@ textarea[name="description"], .product-description-textarea {
     flex-direction: column;
     align-items: stretch;
   }
-  .admin-contents-list .list-actions .btn { width: 100%; }
+  .admin-contents-list .list-actions .btn {
+    width: 70vw;
+    max-width: 160px;
+    min-width: 0;
+    padding: 0.22rem 0.5rem;
+    font-size: 0.95rem;
+    border-radius: 14px;
+    margin: 0 auto;
+  }
 }
 
 /* ===== Historial (Audit) ===== */
