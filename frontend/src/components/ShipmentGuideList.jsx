@@ -73,6 +73,15 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
     if (typeof onFilterChange === 'function') onFilterChange(searchTerm);
   };
 
+  // Contenedor que añade scroll horizontal y min-width profesional para tablas
+  const TableContainer = ({ children }) => (
+    <div style={{ width: '100%', overflowX: 'auto', marginBottom: 12 }}>
+      <table style={{ minWidth: 600, width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8, overflow: 'hidden' }}>
+        {children}
+      </table>
+    </div>
+  );
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
@@ -104,7 +113,7 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
         </div>
       </div>
       {error && <div style={{ color: 'red', marginBottom: 12 }}>{error}</div>}
-      <table style={{ width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8, overflow: 'hidden' }}>
+      <TableContainer>
         <thead style={{ background: '#f1f5f9' }}>
           <tr>
             <th style={{ padding: 8, borderBottom: '1px solid #e5e7eb', textAlign: 'center' }}># Orden</th>
@@ -298,7 +307,7 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
             <tr><td colSpan={7} style={{ padding: 16, textAlign: 'center', color: '#888' }}>No hay guías registradas.</td></tr>
           )}
         </tbody>
-      </table>
+      </TableContainer>
       {/* Paginación */}
       {total > pageSize && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18, gap: 8 }}>
