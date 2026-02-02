@@ -38,7 +38,7 @@ function Home() {
   return (
     <div className="home">
       <SEO
-        title="Audífonos inalámbricos en Colombia | Karell Premium"
+        title="Audífonos Inalámbricos a Bluetooth y más Accesorios | Karell Premium"
         description="Compra audífonos diademas inalámbricos, Bluetooth y accesorios tecnológicos con excelente calidad de sonido, diseños modernos y precios increíbles. Envíos rápidos a toda Colombia y domicilios contraentrega. Garantía y atención personalizada."
       />
       <StructuredData type="organization" data={organizationData} />
