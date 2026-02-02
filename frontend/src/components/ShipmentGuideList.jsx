@@ -76,7 +76,7 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
   // Contenedor que añade scroll horizontal y min-width profesional para tablas
   const TableContainer = ({ children }) => (
     <div style={{ width: '100%', overflowX: 'auto', marginBottom: 12 }}>
-      <table style={{ minWidth: 600, width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8, overflow: 'hidden' }}>
+      <table style={{ minWidth: 420, width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8, overflow: 'hidden', tableLayout: 'auto' }}>
         {children}
       </table>
     </div>

@@ -35,7 +35,7 @@
   margin-bottom: 12px;
 }
 .tracking-table {
-  min-width: 600px;
+  min-width: 420px;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -51,9 +51,12 @@
     padding: 8px 4px;
   }
   .tracking-table {
-    min-width: 400px;
+    min-width: 360px;
   }
 }
+
+/* table cell wrapping */
+.tracking-table th, .tracking-table td { white-space: normal; word-break: break-word; }
 
 .tm-input {
   padding: 6px 10px;

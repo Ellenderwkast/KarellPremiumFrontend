@@ -27,6 +27,11 @@
   min-width: 100px;
 }
 
+@media (max-width: 700px) {
+  .carrier-table { min-width: 420px; }
+  .carrier-table th, .carrier-table td { white-space: normal; word-break: break-word; padding: 8px 10px; }
+}
+
 .carrier-table .acciones {
   display: flex;
   gap: 8px;

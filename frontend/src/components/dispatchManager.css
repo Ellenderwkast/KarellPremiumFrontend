@@ -102,10 +102,10 @@
   margin-bottom: 12px;
 }
 .dispatch-table {
-  min-width: 600px;
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+	min-width: 420px;
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
 }
 .dispatch-table th, .dispatch-table td {
   padding: 10px 8px;
@@ -117,9 +117,71 @@
     font-size: 0.95em;
     padding: 8px 4px;
   }
-  .dispatch-table {
-    min-width: 400px;
-  }
+	.dispatch-table {
+		min-width: 360px;
+	}
+}
+
+/* Tabs and action group improvements (applies globally within admin module) */
+.dispatch-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 16px;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+.dispatch-tabs button, .dispatch-tabs .tab {
+	flex: 0 0 auto;
+	white-space: nowrap;
+}
+
+.shipment-action-group {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.shipment-action-group .shipment-action-btn {
+	flex: 0 1 auto;
+	min-width: 100px;
+}
+
+@media (max-width: 480px) {
+	.dispatch-tabs { gap: 6px; margin-bottom: 10px; }
+	.dispatch-tabs button, .dispatch-tabs .tab { min-width: 84px; padding: 8px 6px; font-size: 0.95em; }
+	.shipment-action-group { flex-direction: column; gap: 6px; }
+	.shipment-action-group .shipment-action-btn { width: 100%; min-width: 0; }
+	.dispatch-table th, .dispatch-table td { white-space: normal; word-break: break-word; }
+}
+
+/* AdminShipments page tabs */
+.ship-submodules {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	margin-bottom: 12px;
+}
+.submodule-btn {
+	flex: 0 0 auto;
+	padding: 10px 12px;
+	border-radius: 8px;
+	border: 1px solid #e6edf6;
+	background: #fff;
+	color: #0f172a;
+	cursor: pointer;
+	white-space: nowrap;
+}
+.submodule-btn.active {
+	background: #e6eefc;
+	color: #1e40af;
+	border-color: #2563eb;
+}
+@media (max-width: 600px) {
+	.submodule-btn { min-width: 90px; padding: 8px 8px; font-size: 0.95em; }
 }
 	}
 	.result {

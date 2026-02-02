@@ -63,7 +63,7 @@ export default function GuideErrorManager() {
   // Responsividad profesional para tabla de errores
   const TableContainer = ({ children }) => (
     <div style={{ width: '100%', overflowX: 'auto', marginBottom: 12 }}>
-      <table style={{ minWidth: 600, width: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
+      <table style={{ minWidth: 420, width: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
         {children}
       </table>
     </div>

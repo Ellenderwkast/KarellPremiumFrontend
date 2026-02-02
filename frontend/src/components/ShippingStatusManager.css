@@ -14,7 +14,7 @@
 }
 
 .shipping-status-table {
-  min-width: 600px;
+  min-width: 420px;
   width: 100%;
 }
 .shipping-status-table th, .shipping-status-table td {
@@ -28,9 +28,12 @@
     padding: 8px 4px;
   }
   .shipping-status-table {
-    min-width: 400px;
+    min-width: 360px;
   }
 }
+
+/* allow breaking long text inside table cells */
+.shipping-status-table th, .shipping-status-table td { white-space: normal; word-break: break-word; }
 
 .shipping-status-table th,
 .shipping-status-table td {

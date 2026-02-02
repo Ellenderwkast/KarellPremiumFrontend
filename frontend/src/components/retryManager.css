@@ -77,6 +77,9 @@ button[disabled] {
   border-radius: 8px;
   overflow: hidden;
 }
+/* make retry table responsive */
+.retry-table { min-width: 420px; }
+.retry-table th, .retry-table td { word-break: break-word; }
 .retry-table thead { background: #f1f5f9; }
 .retry-table th, .retry-table td {
   padding: 8px;

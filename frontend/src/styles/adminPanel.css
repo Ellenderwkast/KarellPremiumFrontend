@@ -1275,6 +1275,19 @@ orders-header .order-filters .filter-select {
   transform: translateY(-1px);
 }
 
+@media (max-width: 600px) {
+  .ship-submodules {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+  }
+  .ship-submodules .submodule-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    min-width: 84px;
+  }
+}
+
 .order-filters .search-input {
   flex: 1;
   min-width: 250px;
