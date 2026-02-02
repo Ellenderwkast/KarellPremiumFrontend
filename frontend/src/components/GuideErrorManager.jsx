@@ -60,8 +60,6 @@ export default function GuideErrorManager() {
     }
   };
 
-  const handleShowDetail = (raw) => {
-
   // Responsividad profesional para tabla de errores
   const TableContainer = ({ children }) => (
     <div style={{ width: '100%', overflowX: 'auto', marginBottom: 12 }}>
@@ -71,37 +69,32 @@ export default function GuideErrorManager() {
     </div>
   );
 
-  // ...existing code...
+  const handleShowDetail = (raw) => {
     if (!raw) return;
-    // raw may be an object, a JSON string, or some other string (e.g., XML)
-    let content = null;
+    let content = '';
+    let title = 'Detalle';
     try {
       if (typeof raw === 'string') {
-      <TableContainer>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Descripción</th>
-            <th>Resuelto</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pagedErrors.map(err => (
-            <tr key={err.id}>
-              <td>{err.id}</td>
-              <td>{err.description}</td>
-              <td>{err.resolved ? 'Sí' : 'No'}</td>
-              <td>
-                {/* ...acciones... */}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </TableContainer>
-      window.alert('No se pudo copiar');
+        // Try to parse as JSON, otherwise show as plain text
+        try {
+          const parsed = JSON.parse(raw);
+          content = JSON.stringify(parsed, null, 2);
+          title = 'Detalle (JSON)';
+        } catch {
+          content = raw;
+          title = 'Detalle';
+        }
+      } else if (typeof raw === 'object') {
+        content = JSON.stringify(raw, null, 2);
+        title = 'Detalle (objeto)';
+      } else {
+        content = String(raw);
+      }
+    } catch {
+      content = 'No se pudo mostrar el detalle';
     }
-  }
+    setDetailModal({ open: true, content, title });
+  };
 
   return (
     <div>
