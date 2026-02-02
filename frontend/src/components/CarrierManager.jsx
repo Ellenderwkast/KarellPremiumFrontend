@@ -110,7 +110,7 @@ export default function CarrierManager() {
     <div>
       <h3>Transportadoras</h3>
       <form onSubmit={handleSubmit} style={{ marginBottom: 24 }}>
-        <div className="admin-form-row" style={{ background: '#f8fafc', padding: 16, borderRadius: 8 }}>
+        <div className="admin-form-row carrier-form" style={{ background: '#f8fafc', padding: 16, borderRadius: 8 }}>
           <input name="name" className="form-input" value={form.name} onChange={handleInput} placeholder="Nombre" required style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
           <input name="code" className="form-input small" value={form.code} onChange={handleInput} placeholder="Código" required style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
           <input name="config" className="form-input" value={form.config} onChange={handleInput} placeholder="Config (JSON opcional)" style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc', fontFamily: 'monospace' }} />

@@ -32,6 +32,17 @@
 @media (max-width: 420px) {
   .admin-form-row, .admin-filters-row, .retry-filters-row, .tm-toolbar { gap: 8px; }
   .admin-form-row .form-input, .admin-filters-row .form-input, .retry-filters-row .form-input { flex-basis: 120px; }
+  /* Specific small sizes for carrier and status forms to keep inputs compact */
+  .carrier-form .form-input.small { flex: 0 1 64px; }
+  .carrier-form .form-input { flex: 1 1 110px; font-size: 14px; }
+  .status-form .form-input.small { flex: 0 1 64px; }
+  .status-form .form-input { flex: 1 1 110px; font-size: 14px; }
+}
+
+/* Additional tighter adjustments for very small narrow devices */
+@media (max-width: 360px) {
+  .carrier-form .form-input.small, .status-form .form-input.small { flex: 0 1 56px; }
+  .carrier-form .form-input, .status-form .form-input { flex: 1 1 90px; font-size: 13px; }
 }
 
 /* Helper to force inputs to break long content if needed */

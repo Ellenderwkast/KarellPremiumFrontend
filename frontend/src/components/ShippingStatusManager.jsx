@@ -112,7 +112,7 @@ export default function ShippingStatusManager() {
     <div>
       <h3>Estados de envío</h3>
       <form onSubmit={handleSubmit} style={{ marginBottom: 24 }}>
-        <div className="admin-form-row" style={{ background: '#f8fafc', padding: 16, borderRadius: 8 }}>
+        <div className="admin-form-row status-form" style={{ background: '#f8fafc', padding: 16, borderRadius: 8 }}>
           <input name="name" className="form-input" value={form.name} onChange={handleInput} placeholder="Nombre" required style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
           <input name="code" className="form-input small" value={form.code} onChange={handleInput} placeholder="Código" required style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
           <input name="description" className="form-input" value={form.description} onChange={handleInput} placeholder="Descripción" style={{ padding: 6, borderRadius: 5, border: '1px solid #ccc' }} />
