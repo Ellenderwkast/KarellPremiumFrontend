@@ -55,8 +55,12 @@
   }
 }
 
-/* table cell wrapping */
-.tracking-table th, .tracking-table td { white-space: normal; word-break: break-word; }
+/* By default prevent headers from breaking into vertical letters; allow wrapping only on very small screens */
+.tracking-table th, .tracking-table td { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+@media (max-width: 360px) {
+  .tracking-table th, .tracking-table td { white-space: normal; word-break: break-word; }
+}
 
 .tm-input {
   padding: 6px 10px;

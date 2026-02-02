@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { shipmentService } from '../services/shipmentService';
 import api from '../services/api';
 import InlineSpinner from './InlineSpinner';
+import TableContainer from './TableContainer';
 import PageSizeSelect from './ui/PageSizeSelect';
 import './trackingManager.css';
 
@@ -177,7 +178,7 @@ export default function TrackingManager() {
         </button>
       </div>
       {error && <div style={{ color: 'red', marginBottom: 12 }}>{error}</div>}
-      <table style={{ width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8, overflow: 'hidden', textAlign: 'center' }}>
+      <TableContainer minWidth={320} tableStyle={{ borderCollapse: 'collapse', background: '#fff', borderRadius: 8, overflow: 'hidden', textAlign: 'center' }}>
         <thead style={{ background: '#f1f5f9' }}>
           <tr>
             <th style={{ padding: 8, borderBottom: '1px solid #e5e7eb', textAlign: 'center' }}># Orden</th>
@@ -331,7 +332,7 @@ export default function TrackingManager() {
             <tr><td colSpan={10} style={{ padding: 16, textAlign: 'center', color: '#888' }}>No hay trackings registrados.</td></tr>
           )}
         </tbody>
-      </table>
+      </TableContainer>
       {/* Paginación */}
       {total > pageSize && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18, gap: 8 }}>

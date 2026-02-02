@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { retryService } from '../services/retryService';
 import PageSizeSelect from './ui/PageSizeSelect';
+import TableContainer from './TableContainer';
 import './retryManager.css';
 
 export default function RetryManager() {
@@ -119,7 +120,7 @@ export default function RetryManager() {
         <PageSizeSelect compact pageSize={pageSize} setPageSize={(v) => { setPageSize(v); setPage(1); }} storageKey="retry_page_size" />
       </div>
       {error && <div className="retry-error">{error}</div>}
-      <table className="retry-table">
+      <TableContainer tableClassName="retry-table" minWidth={360}>
         <thead>
           <tr>
             <th>Tipo</th>
@@ -194,7 +195,7 @@ export default function RetryManager() {
             <tr><td colSpan={10} className="retry-empty">No hay reintentos registrados.</td></tr>
           )}
         </tbody>
-      </table>
+      </TableContainer>
       {/* Paginación */}
       {total > pageSize && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18, gap: 8 }}>

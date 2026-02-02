@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { guideErrorService } from '../services/guideErrorService';
 import PageSizeSelect from './ui/PageSizeSelect';
+import TableContainer from './TableContainer';
 
 export default function GuideErrorManager() {
   const [errors, setErrors] = useState([]);
@@ -60,14 +61,7 @@ export default function GuideErrorManager() {
     }
   };
 
-  // Responsividad profesional para tabla de errores
-  const TableContainer = ({ children }) => (
-    <div style={{ width: '100%', overflowX: 'auto', marginBottom: 12 }}>
-      <table style={{ minWidth: 420, width: '100%', borderCollapse: 'separate', borderSpacing: 0 }}>
-        {children}
-      </table>
-    </div>
-  );
+  // Usar componente compartido TableContainer para responsividad
 
   const handleShowDetail = (raw) => {
     if (!raw) return;
@@ -109,7 +103,7 @@ export default function GuideErrorManager() {
         <button onClick={fetchErrors} disabled={loading} className="admin-refresh-btn">Refrescar</button>
       </div>
       {error && <div className="admin-error-text">{error}</div>}
-      <table className="admin-table admin-guide-errors-table">
+      <TableContainer tableClassName="admin-table admin-guide-errors-table" minWidth={320}>
         <thead>
           <tr>
             <th># Orden</th>
@@ -144,7 +138,7 @@ export default function GuideErrorManager() {
             <tr><td colSpan={7} className="table-empty">No hay errores registrados.</td></tr>
           )}
         </tbody>
-      </table>
+      </TableContainer>
       {/* Paginación */}
       {total > pageSize && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18, gap: 8 }}>

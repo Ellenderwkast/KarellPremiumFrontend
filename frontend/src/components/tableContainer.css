@@ -1,0 +1,16 @@
+.table-container{width:100%;margin-bottom:12px}
+.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-container table{table-layout:auto;border-collapse:collapse;width:100%}
+.table-container th,.table-container td{padding:8px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Mobile adjustments */
+@media (max-width:600px){
+  .table-container table{min-width:300px;font-size:13px}
+  .table-container th,.table-container td{padding:6px 8px}
+  /* Make action groups wrap on small screens */
+  .shipment-action-group,.retry-actions,.tm-actions,.acciones,.retry-actions,.retry-action-btn{display:flex;gap:6px;flex-wrap:wrap}
+  .shipment-action-btn,.retry-action-btn,.tm-btn,.btn-editar,.btn-eliminar{font-size:13px;padding:6px 8px}
+}
+
+/* Ensure long text can break inside modals/pre */
+.table-container pre{white-space:pre-wrap;word-break:break-word}

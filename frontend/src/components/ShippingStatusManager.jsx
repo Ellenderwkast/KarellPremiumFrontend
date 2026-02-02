@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { shippingStatusService } from '../services/shippingStatusService';
 import PageSizeSelect from './ui/PageSizeSelect';
+import TableContainer from './TableContainer';
 import './ShippingStatusManager.css';
 
 export default function ShippingStatusManager() {
@@ -124,7 +125,7 @@ export default function ShippingStatusManager() {
         <PageSizeSelect compact pageSize={pageSize} setPageSize={(v) => { setPageSize(v); setPage(1); }} storageKey="shipping_status_page_size" selectStyle={{ minWidth: 44, padding: 1 }} />
       </div>
       {error && <div style={{ color: 'red', marginBottom: 12 }}>{error}</div>}
-      <table className="shipping-status-table">
+      <TableContainer tableClassName="shipping-status-table" minWidth={320}>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -164,7 +165,7 @@ export default function ShippingStatusManager() {
             <tr><td colSpan={7} style={{ padding: 16, textAlign: 'center', color: '#888' }}>No hay estados registrados.</td></tr>
           )}
         </tbody>
-      </table>
+      </TableContainer>
       {/* Paginación */}
       {total > pageSize && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18, gap: 8 }}>

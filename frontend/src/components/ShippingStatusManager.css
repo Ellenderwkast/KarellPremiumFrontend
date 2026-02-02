@@ -32,8 +32,13 @@
   }
 }
 
+/* Keep headers and cells on one line to avoid vertical stacking; allow wrapping on very small screens */
+.shipping-status-table th, .shipping-status-table td { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
 /* allow breaking long text inside table cells */
-.shipping-status-table th, .shipping-status-table td { white-space: normal; word-break: break-word; }
+@media (max-width: 360px) {
+  .shipping-status-table th, .shipping-status-table td { white-space: normal; word-break: break-word; }
+}
 
 .shipping-status-table th,
 .shipping-status-table td {

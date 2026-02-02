@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { carrierService } from '../services/carrierService';
 import PageSizeSelect from './ui/PageSizeSelect';
+import TableContainer from './TableContainer';
 import './CarrierManager.css';
 
 export default function CarrierManager() {
@@ -120,7 +121,7 @@ export default function CarrierManager() {
         <PageSizeSelect compact pageSize={pageSize} setPageSize={(v) => { setPageSize(v); setPage(1); }} storageKey="carrier_page_size" selectStyle={{ minWidth: 44, padding: 1 }} />
       </div>
       {error && <div style={{ color: 'red', marginBottom: 12 }}>{error}</div>}
-      <table className="carrier-table">
+      <TableContainer tableClassName="carrier-table" minWidth={320}>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -160,7 +161,7 @@ export default function CarrierManager() {
             <tr><td colSpan={5} style={{ padding: 16, textAlign: 'center', color: '#888' }}>No hay transportadoras registradas.</td></tr>
           )}
         </tbody>
-      </table>
+      </TableContainer>
       {/* Paginación */}
       {total > pageSize && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18, gap: 8 }}>

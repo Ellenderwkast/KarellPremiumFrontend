@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { shipmentService } from '../services/shipmentService';
 import InlineSpinner from './InlineSpinner';
 import PageSizeSelect from './ui/PageSizeSelect';
+import TableContainer from './TableContainer';
 
 import { shippingStatusService } from '../services/shippingStatusService';
 
@@ -73,14 +74,7 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
     if (typeof onFilterChange === 'function') onFilterChange(searchTerm);
   };
 
-  // Contenedor que añade scroll horizontal y min-width profesional para tablas
-  const TableContainer = ({ children }) => (
-    <div style={{ width: '100%', overflowX: 'auto', marginBottom: 12 }}>
-      <table style={{ minWidth: 420, width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8, overflow: 'hidden', tableLayout: 'auto' }}>
-        {children}
-      </table>
-    </div>
-  );
+  // Usar componente compartido TableContainer para responsividad
 
   return (
     <div>
