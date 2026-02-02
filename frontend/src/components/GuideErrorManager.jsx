@@ -101,7 +101,7 @@ export default function GuideErrorManager() {
       </TableContainer>
       window.alert('No se pudo copiar');
     }
-  };
+  }
 
   return (
     <div>
