@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Medir tiempo de respuesta API productos",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"$start = Get-Date; $response = Invoke-WebRequest -Uri 'http://localhost:4000/api/products' -TimeoutSec 30; $end = Get-Date; $elapsed = $end - $start; Write-Host ('Tiempo de respuesta: ' + $elapsed.TotalSeconds + ' segundos')"
+			],
+			"group": "test"
+		}
+	]
+}

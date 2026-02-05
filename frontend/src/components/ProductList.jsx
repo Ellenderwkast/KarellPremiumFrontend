@@ -4,6 +4,17 @@ import { productService } from '../services/api';
 import ProductCard from './ProductCard';
 import '../styles/productList.css';
 
+function ProductSkeleton() {
+  return (
+    <div className="product-card skeleton">
+      <div className="skeleton-image" />
+      <div className="skeleton-title" />
+      <div className="skeleton-price" />
+      <div className="skeleton-btn" />
+    </div>
+  );
+}
+
 const isDev = import.meta.env.DEV;
 
 function ProductList() {
@@ -102,7 +113,16 @@ function ProductList() {
     };
   }, [searchTerm]);
 
-  if (loading) return <div className="loading">Cargando productos...</div>;
+  if (loading) {
+    // Muestra 4 skeletons mientras carga
+    return (
+      <div className="product-list-wrapper">
+        <div className="product-list">
+          {[...Array(4)].map((_, i) => <ProductSkeleton key={i} />)}
+        </div>
+      </div>
+    );
+  }
   if (error) return <div className="error">{error}</div>;
 
   return (
