@@ -75,6 +75,7 @@ function Footer() {
         </div>
 
         <div className="footer-bottom">
+          <p>Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium</p>
           <p>&copy; {currentYear} Karell Premium. Todos los derechos reservados.</p>
           <p style={{ marginTop: '8px', fontSize: '14px' }}>
             <a href="mailto:contactokarellpremium@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>

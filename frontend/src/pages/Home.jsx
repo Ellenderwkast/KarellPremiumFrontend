@@ -38,8 +38,8 @@ function Home() {
   return (
     <div className="home">
       <SEO
-        title="Audífonos Inalámbricos a Bluetooth y más Accesorios | Karell Premium"
-        description="Compra audífonos diademas inalámbricos, Bluetooth y accesorios tecnológicos con excelente calidad de sonido, diseños modernos y precios increíbles. Envíos rápidos a toda Colombia y domicilios contraentrega. Garantía y atención personalizada."
+        title="Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium"
+        description="Compra audífonos inalámbricos Bluetooth, diademas y accesorios tecnológicos con gran calidad de sonido 🔊 , diseño moderno y precios increíbles, 🚚 Envios a todos los municipios de colombia. ¡Compra ahora!."
       />
       <StructuredData type="organization" data={organizationData} />
       <StructuredData type="breadcrumb" data={breadcrumbData} />
@@ -119,7 +119,7 @@ function Home() {
           <div className="hero-content">
             <div className="hero-row-flex">
               <div className="hero-titles">
-                <h1>Bienvenido a Karell Premium</h1>
+                <h1>Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium</h1>
                 <p>Descubre los mejores productos con los mejores precios</p>
               </div>
               <Link to="/products" className="btn btn-primary btn-lg hero-cta">Explorar productos</Link>
@@ -132,7 +132,7 @@ function Home() {
       <section className="featured-products">
         <div className="products-page">
           <div className="container">
-            <div className="products-header"><h1 className="featured-products-title">Productos destacados</h1></div>
+            <div className="products-header"><h2 className="featured-products-title">Productos destacados</h2></div>
             <ProductList />
           </div>
         </div>
