@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GoogleLoginButton from '../components/GoogleLoginButton';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { authService } from '../services/api';
 import { useAuthStore } from '../store/authStore';
@@ -120,7 +120,7 @@ function Login() {
         </form>
 
         <p className="auth-link">
-          ¿No tienes cuenta? <a href="/register">Regístrate aquí</a>
+          ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
         </p>
       </div>
     </div>

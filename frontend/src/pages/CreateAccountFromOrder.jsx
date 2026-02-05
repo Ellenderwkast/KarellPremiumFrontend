@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { authService } from '../services/api';
 import { useAuthStore } from '../store/authStore';
 import '../styles/auth.css';
@@ -76,7 +76,7 @@ export default function CreateAccountFromOrder() {
             {loading ? 'Creando cuenta...' : 'Crear cuenta'}
           </button>
           <p className="auth-note">
-            ¿Ya tienes cuenta? <a href="/login">Inicia sesión</a> para ver tu historial.
+            ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link> para ver tu historial.
           </p>
         </form>
       </div>

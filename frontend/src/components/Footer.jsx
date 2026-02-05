@@ -1,5 +1,6 @@
 import '../styles/footer.css';
 import { Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,13 +18,13 @@ function Footer() {
             <h4>Enlaces rápidos</h4>
             <ul>
               <li>
-                <a href="/">Inicio</a>
+                <Link to="/">Inicio</Link>
               </li>
               <li>
-                <a href="/products">Productos</a>
+                <Link to="/products">Productos</Link>
               </li>
               <li>
-                <a href="/cart">Carrito</a>
+                <Link to="/cart">Carrito</Link>
               </li>
             </ul>
           </div>
@@ -32,10 +33,10 @@ function Footer() {
             <h4>Información legal</h4>
             <ul>
               <li>
-                <a href="/terms">Términos de servicio</a>
+                <Link to="/terms">Términos de servicio</Link>
               </li>
               <li>
-                <a href="/privacy">Política de privacidad</a>
+                <Link to="/privacy">Política de privacidad</Link>
               </li>
               <li>
                 <a
