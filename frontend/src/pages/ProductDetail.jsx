@@ -46,28 +46,29 @@ function ProductDetail() {
   const hasColorVariants = colorVariants.length > 0;
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchReviews = async () => {
+      if (!product?.id) return;
       try {
-        setLoading(true);
-        setError(null);
-        const response = await productService.getById(slug);
-        
-        if (!response.data || !response.data.id) {
-          setError('El producto no existe o no está disponible');
-          setProduct(null);
-          setLoading(false);
-          return;
-        }
-        const fetchedProduct = response.data;
-        setProduct(fetchedProduct);
+        setReviewsLoading(true);
+        setReviewsError('');
+        const res = await reviewService.listByProduct(product.id);
+        const data = res.data || {};
+        setReviews(Array.isArray(data.reviews) ? data.reviews : []);
+        setReviewsSummary(data.summary || { count: 0, average: 0 });
+      } catch (err) {
+        console.error('Error cargando reseñas:', err);
+        setReviewsError(err?.response?.data?.message || 'No se pudieron cargar las reseñas');
+        setReviews([]);
+        setReviewsSummary({ count: 0, average: 0 });
+      } finally {
+        setReviewsLoading(false);
+      }
+    };
 
-        // Leer el color desde query params
-        const colorFromUrl = searchParams.get('color');
-        
-        // Establecer imagen y color por defecto
-        let variants = (fetchedProduct.attributes?.colorVariants || []).map(v => ({
-          ...v,
-          stock: Number(v.stock) || 0
+    useEffect(() => {
+      fetchReviews();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [product?.id]);
         }));
         
         if (variants.length > 0) {
