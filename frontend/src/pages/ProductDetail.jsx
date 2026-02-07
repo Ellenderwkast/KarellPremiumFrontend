@@ -137,7 +137,7 @@ function ProductDetail() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-    }, [slug]); // Use slug instead of id
+      setReviewRating(5);
       setReviewComment('');
       return;
     }
