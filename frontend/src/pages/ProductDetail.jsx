@@ -94,24 +94,7 @@ function ProductDetail() {
   }, [slug, searchParams]);
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      if (!product?.id) return;
-      try {
-        setReviewsLoading(true);
-        setReviewsError('');
-        const res = await reviewService.listByProduct(product.id);
-        const data = res.data || {};
-        setReviews(Array.isArray(data.reviews) ? data.reviews : []);
-        setReviewsSummary(data.summary || { count: 0, average: 0 });
-      } catch (err) {
-        console.error('Error cargando reseñas:', err);
-        setReviewsError(err?.response?.data?.message || 'No se pudieron cargar las reseñas');
-        setReviews([]);
-        setReviewsSummary({ count: 0, average: 0 });
-      } finally {
-        setReviewsLoading(false);
-      }
-    };
+    // ...existing code...
 
     fetchReviews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
