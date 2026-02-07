@@ -67,7 +67,42 @@ function ProductDetail() {
     fetchReviews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product?.id]);
-          const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"/%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await productService.getById(slug);
+        if (!response.data || !response.data.id) {
+          setError('El producto no existe o no está disponible');
+          setProduct(null);
+          setLoading(false);
+          return;
+        }
+        const fetchedProduct = response.data;
+        setProduct(fetchedProduct);
+
+        // Leer el color desde query params
+        const colorFromUrl = searchParams.get('color');
+
+        // Establecer imagen y color por defecto
+        let variants = (fetchedProduct.attributes?.colorVariants || []).map(v => ({
+          ...v,
+          stock: Number(v.stock) || 0
+        }));
+
+        if (variants.length > 0) {
+          const targetColor = colorFromUrl
+            ? variants.find(v => v.name === colorFromUrl) || variants[0]
+            : variants[0];
+          setSelectedColor(targetColor);
+          const colorImages = (targetColor.images || [targetColor.image]).map(getStaticUrl);
+          setImages(colorImages);
+          setCurrentImage(colorImages[0]);
+          setCurrentImageIndex(0);
+        } else {
+          const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
           const rawImages = fetchedProduct.attributes?.images;
           const hasImages = Array.isArray(rawImages) && rawImages.filter(Boolean).length > 0;
           const productImages = (hasImages ? rawImages : [
@@ -91,13 +126,6 @@ function ProductDetail() {
 
     fetchProduct();
   }, [slug, searchParams]);
-
-  useEffect(() => {
-    // ...existing code...
-
-    fetchReviews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product?.id]);
 
   // ...existing code...
 
