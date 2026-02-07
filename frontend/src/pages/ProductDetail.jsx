@@ -46,6 +46,54 @@ function ProductDetail() {
   const hasColorVariants = colorVariants.length > 0;
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await productService.getBySlug(slug);
+        const fetchedProduct = res.data;
+        setProduct(fetchedProduct);
+
+        // Manejo de variantes de color
+        const variants = fetchedProduct.attributes?.colorVariants || [];
+        const colorFromUrl = searchParams.get('color');
+        if (variants.length > 0) {
+          const targetColor = colorFromUrl
+            ? variants.find(v => v.name === colorFromUrl) || variants[0]
+            : variants[0];
+
+          setSelectedColor(targetColor);
+          const colorImages = (targetColor.images || [targetColor.image]).map(getStaticUrl);
+          setImages(colorImages);
+          setCurrentImage(colorImages[0]);
+          setCurrentImageIndex(0);
+        } else {
+          const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"/%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
+          const rawImages = fetchedProduct.attributes?.images;
+          const hasImages = Array.isArray(rawImages) && rawImages.filter(Boolean).length > 0;
+          const productImages = (hasImages ? rawImages : [
+            fetchedProduct.image || fetchedProduct.attributes?.image || placeholder
+          ]).filter(Boolean).map(getStaticUrl);
+          setImages(productImages);
+          setCurrentImage(productImages[0]);
+          setCurrentImageIndex(0);
+        }
+      } catch (err) {
+        const errorMsg = err.response?.status === 404
+          ? 'El producto no existe'
+          : err.message || 'Error al cargar el producto';
+        setError(errorMsg);
+        setProduct(null);
+        console.error('Error cargando producto:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [slug, searchParams]);
+
+  useEffect(() => {
     const fetchReviews = async () => {
       if (!product?.id) return;
       try {
@@ -65,48 +113,9 @@ function ProductDetail() {
       }
     };
 
-    useEffect(() => {
-      fetchReviews();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [product?.id]);
-        }));
-        
-        if (variants.length > 0) {
-          // Buscar el color específico desde la URL o usar el primero
-          const targetColor = colorFromUrl 
-            ? variants.find(v => v.name === colorFromUrl) || variants[0]
-            : variants[0];
-          
-          setSelectedColor(targetColor);
-          const colorImages = (targetColor.images || [targetColor.image]).map(getStaticUrl);
-          setImages(colorImages);
-          setCurrentImage(colorImages[0]);
-          setCurrentImageIndex(0);
-        } else {
-          const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"/%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
-          const rawImages = fetchedProduct.attributes?.images;
-          const hasImages = Array.isArray(rawImages) && rawImages.filter(Boolean).length > 0;
-          const productImages = (hasImages ? rawImages : [
-            fetchedProduct.image || fetchedProduct.attributes?.image || placeholder
-          ]).filter(Boolean).map(getStaticUrl);
-          setImages(productImages);
-          setCurrentImage(productImages[0]);
-          setCurrentImageIndex(0);
-        }
-      } catch (err) {
-        const errorMsg = err.response?.status === 404 
-          ? 'El producto no existe'
-          : err.message || 'Error al cargar el producto';
-        setError(errorMsg);
-        setProduct(null);
-        console.error('Error cargando producto:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
-    }, [slug, searchParams]);
+    fetchReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.id]);
 
   const fetchReviews = async () => {
     try {
