@@ -38,8 +38,8 @@ function Home() {
   return (
     <div className="home">
       <SEO
-        title="Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium"
-        description="Compra audífonos inalámbricos Bluetooth, diademas y accesorios tecnológicos con gran calidad de sonido 🔊 , diseño moderno y precios increíbles, 🚚 Envios a todos los municipios de colombia. ¡Compra ahora!."
+        title="Audífonos Bluetooth, Relojes Inteligentes y Accesorios Tecnológicos al Mejor Precio | Karell Premium"
+        description="Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos con envío a CALI, BOGOTÁ, MEDELLIN y toda Colombia y pago contra entrega. Calidad premium y precios increíbles en Karell Premium. ¡Compra ahora!."
       />
       <StructuredData type="organization" data={organizationData} />
       <StructuredData type="breadcrumb" data={breadcrumbData} />
