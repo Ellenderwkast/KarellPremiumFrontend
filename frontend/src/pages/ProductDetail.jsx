@@ -58,7 +58,7 @@ function ProductDetail() {
           setLoading(false);
           return;
         }
-        
+          const response = await productService.getById(slug); // Ensure slug is used here
         const fetchedProduct = response.data;
         setProduct(fetchedProduct);
 
@@ -120,7 +120,7 @@ function ProductDetail() {
       console.error('Error cargando reseñas:', err);
       setReviewsError(err?.response?.data?.message || 'No se pudieron cargar las reseñas');
       setReviews([]);
-      setReviewsSummary({ count: 0, average: 0 });
+        const res = await reviewService.listByProduct(product?.id || slug); // Ensure slug is used here
     } finally {
       setReviewsLoading(false);
     }
@@ -137,7 +137,7 @@ function ProductDetail() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      setReviewRating(5);
+    }, [slug]); // Use slug instead of id
       setReviewComment('');
       return;
     }

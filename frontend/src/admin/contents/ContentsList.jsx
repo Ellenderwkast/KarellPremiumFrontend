@@ -83,7 +83,11 @@ function ContentsList() {
                 <tr key={post.id} style={{borderBottom:'1px solid #eee'}}>
                   <td>
                     {post.cover ? (
-                      <img src={getStaticUrl(post.cover)} alt={post.title} style={{width:80,borderRadius:8}} />
+                      <img
+                        src={getStaticUrl(typeof post.cover === 'object' ? post.cover?.src : post.cover)}
+                        alt={post.cover?.alt || post.title}
+                        style={{width:80,borderRadius:8}}
+                      />
                     ) : (
                       <div style={{width:80,height:48,background:'#eee',borderRadius:8}} />
                     )}
