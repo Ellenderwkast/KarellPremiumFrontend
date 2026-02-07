@@ -105,7 +105,7 @@ function ProductDetail() {
     };
 
     fetchProduct();
-  }, [id, searchParams]);
+    }, [slug, searchParams]);
 
   const fetchReviews = async () => {
     try {
@@ -128,7 +128,7 @@ function ProductDetail() {
   useEffect(() => {
     fetchReviews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [slug]);
 
   const myReview = isAuthenticated && user?.id
     ? reviews.find(r => Number(r.userId) === Number(user.id))
@@ -247,7 +247,7 @@ function ProductDetail() {
         await reviewService.update(myReview.id, payload);
         setReviewSuccess('Reseña actualizada.');
       } else {
-        await reviewService.createForProduct(id, payload);
+        await reviewService.createForProduct(product?.id || slug, payload);
         setReviewSuccess('Reseña publicada.');
       }
 
