@@ -78,12 +78,11 @@ function ProductCard({ product }) {
     setQuantity(1);
   };
 
-  const productId = product.id || product._id;
-  
+  const productSlug = product.slug || product.id || product._id;
   // Construir URL con color seleccionado como query param
   const productUrl = selectedColor 
-    ? `/products/${productId}?color=${encodeURIComponent(selectedColor.name)}`
-    : `/products/${productId}`;
+    ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
+    : `/products/${productSlug}`;
 
   return (
     <div className="product-card">

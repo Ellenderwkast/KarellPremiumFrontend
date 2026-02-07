@@ -10,7 +10,7 @@ import '../styles/productDetail.css';
 import { renderDescription } from '../utils/renderDescription.jsx';
 
 function ProductDetail() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [product, setProduct] = useState(null);
@@ -50,7 +50,7 @@ function ProductDetail() {
       try {
         setLoading(true);
         setError(null);
-        const response = await productService.getById(id);
+        const response = await productService.getById(slug);
         
         if (!response.data || !response.data.id) {
           setError('El producto no existe o no está disponible');
@@ -112,7 +112,7 @@ function ProductDetail() {
     try {
       setReviewsLoading(true);
       setReviewsError('');
-      const res = await reviewService.listByProduct(id);
+      const res = await reviewService.listByProduct(product?.id || slug);
       const data = res.data || {};
       setReviews(Array.isArray(data.reviews) ? data.reviews : []);
       setReviewsSummary(data.summary || { count: 0, average: 0 });
