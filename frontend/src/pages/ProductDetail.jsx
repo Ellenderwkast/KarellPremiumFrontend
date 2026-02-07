@@ -99,28 +99,7 @@ function ProductDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product?.id]);
 
-  const fetchReviews = async () => {
-    try {
-      setReviewsLoading(true);
-      setReviewsError('');
-      const res = await reviewService.listByProduct(product?.id || slug);
-      const data = res.data || {};
-      setReviews(Array.isArray(data.reviews) ? data.reviews : []);
-      setReviewsSummary(data.summary || { count: 0, average: 0 });
-    } catch (err) {
-      console.error('Error cargando reseñas:', err);
-      setReviewsError(err?.response?.data?.message || 'No se pudieron cargar las reseñas');
-      setReviews([]);
-        const res = await reviewService.listByProduct(product?.id || slug); // Ensure slug is used here
-    } finally {
-      setReviewsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchReviews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug]);
+  // ...existing code...
 
   const myReview = isAuthenticated && user?.id
     ? reviews.find(r => Number(r.userId) === Number(user.id))
