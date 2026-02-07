@@ -58,7 +58,6 @@ function ProductDetail() {
           setLoading(false);
           return;
         }
-          const response = await productService.getById(slug); // Ensure slug is used here
         const fetchedProduct = response.data;
         setProduct(fetchedProduct);
 
