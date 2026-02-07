@@ -18,7 +18,37 @@ function ContentForm({ onSubmit, initialData, submitting = false }) {
     'Preguntas frecuentes',
     'Errores comunes'
   ];
+  // cover: puede venir como string ("/images/x.webp"), como objeto ({src,alt})
+  // o como string JSON ('{"src":"/images/x.webp","alt":"..."}').
   const [cover, setCover] = useState(initialData?.cover || '');
+
+  // Helper: intenta extraer una URL legible desde el valor original para mostrar en el input
+  const resolveInitialCoverInput = (c) => {
+    if (!c) return '';
+    try {
+      if (typeof c === 'string') {
+        const s = c.trim();
+        // caso: string JSON
+        if (s.startsWith('{') && s.endsWith('}')) {
+          try {
+            const parsed = JSON.parse(s);
+            return parsed.src || parsed.url || parsed.image || '';
+          } catch (e) {
+            // no fue JSON válido
+          }
+        }
+        return s;
+      }
+      if (typeof c === 'object') {
+        return c.src || c.url || c.image || '';
+      }
+    } catch (e) {
+      // fallback
+    }
+    return '';
+  };
+
+  const [coverInput, setCoverInput] = useState(resolveInitialCoverInput(initialData?.cover || ''));
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const [previewData, setPreviewData] = useState('');
@@ -85,7 +115,7 @@ function ContentForm({ onSubmit, initialData, submitting = false }) {
         ))}
       </select>
       <label>Portada (URL)</label>
-      <input value={cover} onChange={e => setCover(e.target.value)} />
+      <input value={coverInput} onChange={e => { setCoverInput(e.target.value); setCover(e.target.value); }} />
       <label style={{marginTop:12}}>Estado</label>
       <select value={status} onChange={e => setStatus(e.target.value)}>
         <option value="Publicado">Publicado</option>
@@ -99,9 +129,24 @@ function ContentForm({ onSubmit, initialData, submitting = false }) {
           {uploading ? (
             <div style={{color:'var(--primary-color)'}}>Subiendo...</div>
           ) : (
-            (previewData || cover) && (
-              <img src={previewData || getStaticUrl(cover)} alt="Preview portada" style={{width:120,height:80,objectFit:'cover',borderRadius:6}} />
-            )
+            (() => {
+              const source = previewData || cover || coverInput;
+              // Si es string que parece JSON, parsear
+              let resolved = source;
+              if (typeof source === 'string') {
+                const s = source.trim();
+                if (s.startsWith('{') && s.endsWith('}')) {
+                  try {
+                    const p = JSON.parse(s);
+                    resolved = p.src || p.url || p.image || '';
+                  } catch (e) {
+                    resolved = s;
+                  }
+                }
+              }
+              const url = getStaticUrl(resolved);
+              return url ? (<img src={url} alt="Preview portada" style={{width:120,height:80,objectFit:'cover',borderRadius:6}} />) : null;
+            })()
           )}
           {uploadError && <div style={{color:'var(--danger-color)'}}>{uploadError}</div>}
           {(previewData || cover) && (
