@@ -83,7 +83,7 @@ function ProductDetail() {
           setCurrentImage(colorImages[0]);
           setCurrentImageIndex(0);
         } else {
-          const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
+          const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"/%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
           const rawImages = fetchedProduct.attributes?.images;
           const hasImages = Array.isArray(rawImages) && rawImages.filter(Boolean).length > 0;
           const productImages = (hasImages ? rawImages : [
