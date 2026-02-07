@@ -50,7 +50,7 @@ function ProductDetail() {
       setLoading(true);
       setError(null);
       try {
-        const res = await productService.getBySlug(slug);
+        const res = await productService.getById(slug);
         const fetchedProduct = res.data;
         setProduct(fetchedProduct);
 
