@@ -119,7 +119,7 @@ function Home() {
           <div className="hero-content">
             <div className="hero-row-flex">
               <div className="hero-titles">
-                <h1>Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium</h1>
+                <h1 className="sr-only">Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium</h1>
                 <p>Descubre los mejores productos con los mejores precios</p>
               </div>
               <Link to="/products" className="btn btn-primary btn-lg hero-cta">Explorar productos</Link>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, LogOut, Settings, ShoppingCart, User, X } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
@@ -55,7 +55,17 @@ function Header() {
   return (
     <header className="header">
       <div className="announcement-bar" role="region" aria-label="Anuncio principal">
-        <p className="announcement-text">Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium</p>
+        {typeof window !== 'undefined' && (
+          (() => {
+            const path = (window.location && window.location.pathname) || '/';
+            const text = 'Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium';
+            return path === '/' ? (
+              <h1 className="announcement-text">{text}</h1>
+            ) : (
+              <p className="announcement-text">{text}</p>
+            );
+          })()
+        )}
       </div>
       <div className="header-container">
         <div className={`header-content ${menuOpen ? 'is-open' : ''}`}>
