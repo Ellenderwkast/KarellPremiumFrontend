@@ -103,10 +103,19 @@
 }
 
 /* Ensure headings inside announcement are sized and centered */
-.announcement-text h1,
-.announcement-text p {
+.announcement-bar h1.announcement-text,
+.announcement-text p,
+.announcement-text {
   margin: 0;
   padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+/* Extra: target the case where the H1 itself holds the `announcement-text` class
+   so the global `h1` rule is overridden and the announcement font-size applies. */
+.announcement-bar h1.announcement-text {
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
