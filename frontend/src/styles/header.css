@@ -11,8 +11,8 @@
   color: #fff;
   padding: 0.35rem 0.5rem;
   font-weight: 600;
-  /* Responsive font size: smaller on mobiles, slightly larger on wide screens */
-  font-size: clamp(0.9rem, 1.2vw + 0.2rem, 1.05rem);
+  /* Responsive font size: slightly smaller on all viewports */
+  font-size: clamp(0.8rem, 1vw + 0.15rem, 0.95rem);
   letter-spacing: 0.01em;
   white-space: nowrap;
   overflow: hidden;
