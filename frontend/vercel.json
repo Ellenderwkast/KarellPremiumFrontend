@@ -1,10 +1,8 @@
 {
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "https://karellpremiumbackend.onrender.com/sitemap.xml" },
-    { "source": "/robots.txt", "destination": "https://karellpremiumbackend.onrender.com/robots.txt" }
-  ],
-  "routes": [
-    { "src": "/(.*\\..*)", "dest": "/$1" },
-    { "src": "/.*", "dest": "/index.html" }
+    { "source": "/robots.txt", "destination": "https://karellpremiumbackend.onrender.com/robots.txt" },
+    { "source": "/(.*\\..*)", "destination": "/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
