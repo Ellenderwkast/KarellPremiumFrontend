@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.karellpremium.com.co/</loc>
-    <lastmod>2025-11-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.karellpremium.com.co/products</loc>
-    <lastmod>2025-11-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.karellpremium.com.co/terms</loc>
-    <lastmod>2025-11-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.karellpremium.com.co/privacy</loc>
-    <lastmod>2025-11-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-   <url>
-    <loc>https://www.karellpremium.com.co/blog</loc>
+<!--
+  Este archivo sitemap estático ha sido reemplazado por un índice que
+  redirige a la versión dinámica generada por el backend. Mantener este
+  archivo evita 404s si el servidor de frontend sirve archivos estáticos,
+  pero lo ideal es eliminarlo en producción y dejar que el backend
+  responda en /sitemap.xml o asegurarse de que el servidor proxy reenvíe
+  la ruta al servicio backend.
+-->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://www.karellpremium.com.co/sitemap.xml</loc>
     <lastmod>2026-02-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>
+  </sitemap>
+</sitemapindex>
