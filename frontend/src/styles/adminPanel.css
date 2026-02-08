@@ -17,17 +17,19 @@ textarea[name="description"], .product-description-textarea {
 
 :root {
   --admin-sidebar-width: 260px;
+  /* Altura total aproximada del header (announcement bar + nav) */
+  --admin-header-offset: 6rem;
 }
 
 .admin-sidebar {
   position: fixed;
-  top: 0;
+  top: var(--admin-header-offset);
   left: 0;
-  height: 100vh;
+  height: calc(100vh - var(--admin-header-offset));
   width: var(--admin-sidebar-width);
   background: white;
   border-right: 1px solid var(--gray-200);
-  padding: 3.25rem 0.75rem 0.75rem;
+  padding: 1.5rem 0.75rem 0.75rem;
   overflow-y: auto;
   z-index: 50;
 }
