@@ -72,8 +72,8 @@
 /* Reduce ligeramente el tamaño del H1 en pantallas de escritorio para evitar que sea demasiado grande */
 @media (min-width: 901px) {
   .announcement-bar {
-    /* Reducir aún más el tamaño del H1 en escritorio (usuario pidió más pequeño) */
-    font-size: clamp(0.6rem, 0.6vw + 0.08rem, 0.78rem);
+    /* Ajuste: tamaño intermedio en desktop para mejorar legibilidad sin overflow */
+    font-size: clamp(0.72rem, 0.9vw + 0.12rem, 0.92rem);
   }
 
   .announcement-bar .announcement-text h1 {
