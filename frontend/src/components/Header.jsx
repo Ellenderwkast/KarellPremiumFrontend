@@ -13,6 +13,9 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
+  const annRef = useRef(null);
+  const textRef = useRef(null);
+  const [isMarquee, setIsMarquee] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -52,17 +55,65 @@ function Header() {
     };
   }, [userMenuOpen]);
 
+  // Marquee-on-overflow: enable scrolling animation only when text overflows
+  useEffect(() => {
+    const container = annRef.current;
+    const textEl = textRef.current;
+    if (!container || !textEl) return;
+
+    let rafId = null;
+    const update = () => {
+      if (!container || !textEl) return;
+
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        container.classList.remove('is-scrolling');
+        setIsMarquee(false);
+        return;
+      }
+
+      const cW = container.clientWidth;
+      const tW = textEl.scrollWidth;
+      if (tW > cW + 6) {
+        const distance = tW - cW;
+        const pxPerSec = 60;
+        const duration = Math.max(6, Math.round((tW / pxPerSec) * 10) / 10);
+        textEl.style.setProperty('--marquee-translate', `-${distance}px`);
+        textEl.style.setProperty('--marquee-duration', `${duration}s`);
+        container.classList.add('is-scrolling');
+        setIsMarquee(true);
+      } else {
+        textEl.style.removeProperty('--marquee-translate');
+        textEl.style.removeProperty('--marquee-duration');
+        container.classList.remove('is-scrolling');
+        setIsMarquee(false);
+      }
+    };
+
+    const onResize = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <header className="header">
-      <div className="announcement-bar" role="region" aria-label="Anuncio principal">
+      <div className="announcement-bar" role="region" aria-label="Anuncio principal" ref={annRef}>
         {typeof window !== 'undefined' && (
           (() => {
             const path = (window.location && window.location.pathname) || '/';
             const text = 'Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium';
             return path === '/' ? (
-              <h1 className="announcement-text">{text}</h1>
+              <h1 className="announcement-text"><span className="announcement-inner" ref={textRef}>{text}</span></h1>
             ) : (
-              <p className="announcement-text">{text}</p>
+              <p className="announcement-text"><span className="announcement-inner" ref={textRef}>{text}</span></p>
             );
           })()
         )}

@@ -28,6 +28,40 @@
   display: block;
 }
 
+/* Inner wrapper that will be animated when the text overflows */
+.announcement-inner {
+  display: inline-block;
+  padding: 0;
+  will-change: transform;
+  white-space: nowrap;
+}
+
+/* Active marquee state applied to the container when overflow detected */
+.announcement-bar.is-scrolling .announcement-inner {
+  animation: marquee var(--marquee-duration, 8s) linear infinite;
+  animation-delay: 0.8s;
+}
+
+/* Pause animation on hover or focus for accessibility */
+.announcement-bar.is-scrolling:hover .announcement-inner,
+.announcement-bar.is-scrolling:focus-within .announcement-inner {
+  animation-play-state: paused;
+}
+
+/* Keyframes: translate from 0 to the computed negative distance and back */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(var(--marquee-translate)); }
+  100% { transform: translateX(0); }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .announcement-bar .announcement-inner {
+    animation: none !important;
+  }
+}
+
 /* Ensure headings inside announcement are sized and centered */
 .announcement-text h1,
 .announcement-text p {
