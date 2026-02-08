@@ -9,6 +9,7 @@ import '../styles/header.css';
 
 function Header() {
   const { isAuthenticated, user, logout } = useAuthStore();
+  const location = useLocation();
   const cartCount = useCartStore(state => state.items.reduce((sum, item) => sum + Number(item.quantity || 0), 0));
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -96,6 +97,7 @@ function Header() {
       rafId = requestAnimationFrame(update);
     };
 
+    // run once and whenever the route changes so marquee re-evaluates on SPA navigation
     update();
     window.addEventListener('resize', onResize);
 
@@ -103,7 +105,7 @@ function Header() {
       window.removeEventListener('resize', onResize);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [location.pathname]);
 
   return (
     <header className="header">
