@@ -54,6 +54,9 @@ function Header() {
 
   return (
     <header className="header">
+      <div className="announcement-bar" role="region" aria-label="Anuncio principal">
+        <p className="announcement-text">Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium</p>
+      </div>
       <div className="header-container">
         <div className={`header-content ${menuOpen ? 'is-open' : ''}`}>
           <Link to="/" className="logo">

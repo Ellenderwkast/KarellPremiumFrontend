@@ -1,6 +1,30 @@
 .header-subnav {
   display: none !important;
 }
+/* Announcement / Top bar */
+.announcement-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #111827, #0f172a);
+  color: #fff;
+  padding: 0.45rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.announcement-text {
+  margin: 0;
+  padding: 0 1rem;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
 /* Fila 2: navegación secundaria */
 .header-subnav {
   width: 100%;
