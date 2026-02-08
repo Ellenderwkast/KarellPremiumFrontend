@@ -1056,7 +1056,6 @@ textarea[name="description"], .product-description-textarea {
     width: auto;
     transition: padding 0.2s, border-radius 0.2s, max-width 0.2s;
   }
-}
 
 .admin-contents-list .list-actions .btn-primary {
   box-shadow: 0 6px 16px rgba(31, 111, 235, 0.12);
