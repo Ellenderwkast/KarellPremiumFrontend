@@ -113,7 +113,7 @@ function Header() {
         {typeof window !== 'undefined' && (
           (() => {
             const path = (window.location && window.location.pathname) || '/';
-            const text = 'Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium';
+            const text = 'Audífonos Bluetooth, Relojes Inteligentes y Accesorios Tecnológicos | Karell Premium';
             return path === '/' ? (
               <h1 className="announcement-text"><span className="announcement-inner" ref={textRef}>{text}</span></h1>
             ) : (
