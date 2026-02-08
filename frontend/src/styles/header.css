@@ -47,6 +47,28 @@
   text-align: left;
 }
 
+/* When scrolling, make the announcement occupy the full width and remove side padding
+   so there is no left gap on desktop. We keep a tiny inner padding on the moving element
+   if desired, but the container itself is flushed to the edges. */
+.announcement-bar.is-scrolling {
+  justify-content: flex-start;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.announcement-bar.is-scrolling .announcement-text {
+  max-width: none;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Optionally keep a minimal inner breathing space so text is not flush to pixel edge */
+.announcement-bar.is-scrolling .announcement-inner {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 /* Pause animation on hover or focus for accessibility */
 .announcement-bar.is-scrolling:hover .announcement-inner,
 .announcement-bar.is-scrolling:focus-within .announcement-inner {
