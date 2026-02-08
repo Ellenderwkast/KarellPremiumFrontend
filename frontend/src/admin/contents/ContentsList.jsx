@@ -82,15 +82,38 @@ function ContentsList() {
               {posts.map(post => (
                 <tr key={post.id} style={{borderBottom:'1px solid #eee'}}>
                   <td>
-                    {post.cover ? (
-                      <img
-                        src={getStaticUrl(typeof post.cover === 'object' ? post.cover?.src : post.cover)}
-                        alt={post.cover?.alt || post.title}
-                        style={{width:80,borderRadius:8}}
-                      />
-                    ) : (
-                      <div style={{width:80,height:48,background:'#eee',borderRadius:8}} />
-                    )}
+                    {(() => {
+                      if (!post.cover) return (<div style={{width:80,height:48,background:'#eee',borderRadius:8}} />);
+                      // cover puede ser: objeto {src,alt}, string '/images/x.webp' o string JSON '{"src":"/images/x.webp","alt":"..."}'
+                      try {
+                        let src = '';
+                        let alt = post.title;
+                        if (typeof post.cover === 'object') {
+                          src = post.cover.src || post.cover.url || post.cover.image || '';
+                          alt = post.cover.alt || post.cover.title || alt;
+                        } else if (typeof post.cover === 'string') {
+                          const s = post.cover.trim();
+                          if (s.startsWith('{') && s.endsWith('}')) {
+                            try {
+                              const p = JSON.parse(s);
+                              src = p.src || p.url || p.image || '';
+                              alt = p.alt || p.title || alt;
+                            } catch (e) {
+                              src = s;
+                            }
+                          } else {
+                            src = s;
+                          }
+                        } else {
+                          src = String(post.cover || '');
+                        }
+
+                        const url = getStaticUrl(src);
+                        return url ? (<img src={url} alt={alt} style={{width:80,borderRadius:8}} />) : (<div style={{width:80,height:48,background:'#eee',borderRadius:8}} />);
+                      } catch (e) {
+                        return (<div style={{width:80,height:48,background:'#eee',borderRadius:8}} />);
+                      }
+                    })()}
                   </td>
                   <td>{post.title}</td>
                   <td>{post.category || (post.tags || []).join(', ')}</td>
