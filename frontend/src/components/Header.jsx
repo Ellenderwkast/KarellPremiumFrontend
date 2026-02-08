@@ -71,7 +71,9 @@ function Header() {
         return;
       }
 
-      const cW = container.clientWidth;
+      // Use the immediate text wrapper width (avoids container padding issues)
+      const textWrapper = textEl.parentElement || container;
+      const cW = textWrapper.clientWidth;
       const tW = textEl.scrollWidth;
       if (tW > cW + 6) {
         const distance = tW - cW;

@@ -42,6 +42,11 @@
   animation-delay: 0.8s;
 }
 
+/* When scrolling is active, left-align the text wrapper so animation covers full content */
+.announcement-bar.is-scrolling .announcement-text {
+  text-align: left;
+}
+
 /* Pause animation on hover or focus for accessibility */
 .announcement-bar.is-scrolling:hover .announcement-inner,
 .announcement-bar.is-scrolling:focus-within .announcement-inner {
