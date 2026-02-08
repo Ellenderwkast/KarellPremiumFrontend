@@ -69,6 +69,19 @@
   padding-right: 0.5rem;
 }
 
+/* Reduce ligeramente el tamaño del H1 en pantallas de escritorio para evitar que sea demasiado grande */
+@media (min-width: 901px) {
+  .announcement-bar {
+    /* Reducir un poco el clamp global para escritorio */
+    font-size: clamp(0.75rem, 0.8vw + 0.12rem, 0.9rem);
+  }
+
+  .announcement-bar .announcement-text h1 {
+    font-size: inherit;
+    line-height: 1.05;
+  }
+}
+
 /* Pause animation on hover or focus for accessibility */
 .announcement-bar.is-scrolling:hover .announcement-inner,
 .announcement-bar.is-scrolling:focus-within .announcement-inner {
