@@ -67,6 +67,8 @@
 		padding: 10px 0;
 }
 
+}
+
 /* Mejoras adicionales para responsividad profesional */
 .dispatch-tabs {
   display: flex;
@@ -192,9 +194,8 @@
 @media (max-width: 600px) {
 	.submodule-btn { min-width: 90px; padding: 8px 8px; font-size: 0.95em; }
 }
-	}
-	.result {
-		font-size: 0.97em;
-		padding: 8px 2px;
-	}
+
+.result {
+	font-size: 0.97em;
+	padding: 8px 2px;
 }
