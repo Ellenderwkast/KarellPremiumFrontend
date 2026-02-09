@@ -110,22 +110,19 @@ function Header() {
   return (
     <header className="header">
       <div className="announcement-bar" role="region" aria-label="Anuncio principal" ref={annRef}>
-        {typeof window !== 'undefined' && (
-          (() => {
-            const path = (window.location && window.location.pathname) || '/';
-            const text = 'Audífonos Bluetooth, Relojes Inteligentes y Accesorios Tecnológicos | Karell Premium';
-            return path === '/' ? (
-              <h1 className="announcement-text"><span className="announcement-inner" ref={textRef}>{text}</span></h1>
-            ) : (
-              <p className="announcement-text"><span className="announcement-inner" ref={textRef}>{text}</span></p>
-            );
-          })()
-        )}
+        {typeof window !== 'undefined' && (() => {
+          const text = 'Audífonos Bluetooth, Relojes Inteligentes y Accesorios Tecnológicos | Karell Premium';
+          return (
+            <p className="announcement-text" role="heading" aria-level="2">
+              <span className="announcement-inner" ref={textRef}>{text}</span>
+            </p>
+          );
+        })()}
       </div>
       <div className="header-container">
         <div className={`header-content ${menuOpen ? 'is-open' : ''}`}>
-          <Link to="/" className="logo">
-            <h1>
+          <Link to="/" className="logo" aria-label="Karell Premium inicio">
+            <span className="logo-mark" aria-hidden="true">
               <OptimizedImage 
                 className="logo-image" 
                 src="/images/logo.webp" 
@@ -134,7 +131,7 @@ function Header() {
                 height="50"
                 objectFit="contain"
               />
-            </h1>
+            </span>
           </Link>
 
           <div className="header-search-mobile">
