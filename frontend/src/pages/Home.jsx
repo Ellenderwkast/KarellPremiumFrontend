@@ -38,8 +38,8 @@ function Home() {
   return (
     <div className="home">
       <SEO
-        title="Audífonos Bluetooth, Relojes Inteligentes y Accesorios Tecnológicos al Mejor Precio | Karell Premium"
-        description="Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos con envío a CALI, BOGOTÁ, MEDELLIN y toda Colombia y pago contra entrega. Calidad premium y precios increíbles en Karell Premium. ¡Compra ahora!."
+        title="Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia"
+        description="Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos en Colombia. Envíos rápidos, pago contra entrega y garantía."
       />
       <StructuredData type="organization" data={organizationData} />
       <StructuredData type="breadcrumb" data={breadcrumbData} />
@@ -119,7 +119,7 @@ function Home() {
           <div className="hero-content">
             <div className="hero-row-flex">
               <div className="hero-titles">
-                <h1 className="sr-only">Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium</h1>
+                <h1 className="sr-only">Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia</h1>
                 <p>Descubre los mejores productos con los mejores precios</p>
               </div>
               <Link to="/products" className="btn btn-primary btn-lg hero-cta">Explorar productos</Link>
