@@ -38,6 +38,102 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fallback de metadatos estáticos por ruta (para crawlers sin JS) -->
+    <script>
+      (function() {
+        var base = (function() {
+          var env = (window && window.__ENV__ && window.__ENV__.VITE_FRONTEND_URL) || '';
+          if (env && /^https?:\/\//i.test(env)) return env.replace(/\/+$/, '');
+          if (typeof window !== 'undefined' && window.location && window.location.origin) {
+            return window.location.origin.replace(/\/+$/, '');
+          }
+          return 'https://www.karellpremium.com.co';
+        })();
+
+        var routeMeta = {
+          '/': {
+            title: 'Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia | Karell Premium',
+            description: 'Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos en Colombia. Envíos rápidos, pago contra entrega y garantía.',
+            robots: 'index, follow'
+          },
+          '/products': {
+            title: 'Catálogo de Productos | Karell Premium',
+            description: 'Explora nuestro catálogo de audífonos, relojes inteligentes y accesorios tecnológicos con envío a toda Colombia.',
+            robots: 'index, follow'
+          },
+          '/blog': {
+            title: 'Blog de Tecnología y Audio | Karell Premium',
+            description: 'Consejos, guías y noticias sobre audífonos, smartwatches y gadgets en Colombia.',
+            robots: 'index, follow'
+          },
+          '/cart': {
+            title: 'Carrito | Karell Premium',
+            description: 'Revisa los productos en tu carrito antes de comprar.',
+            robots: 'noindex, nofollow'
+          },
+          '/checkout': {
+            title: 'Checkout | Karell Premium',
+            description: 'Confirma tu compra con pago contra entrega o en línea.',
+            robots: 'noindex, nofollow'
+          },
+          '/payment-return': {
+            title: 'Retorno de pago | Karell Premium',
+            description: 'Procesando tu pago, por favor espera.',
+            robots: 'noindex, nofollow'
+          },
+          '/payment-result': {
+            title: 'Resultado de pago | Karell Premium',
+            description: 'Resumen del estado de tu pago.',
+            robots: 'noindex, nofollow'
+          },
+          '/login': {
+            title: 'Iniciar sesión | Karell Premium',
+            description: 'Accede a tu cuenta para gestionar pedidos y compras.',
+            robots: 'noindex, nofollow'
+          },
+          '/register': {
+            title: 'Crear cuenta | Karell Premium',
+            description: 'Regístrate para comprar más rápido y seguir tus pedidos.',
+            robots: 'noindex, nofollow'
+          }
+        };
+
+        var path = (window.location && window.location.pathname) || '/';
+        if (path.length > 1) path = path.replace(/\/+$/, '') || '/';
+        var meta = routeMeta[path];
+        if (!meta) return; // no sobrescribir rutas dinámicas (p.ej. PDP)
+
+        var setMeta = function(name, content, isProperty) {
+          if (!content) return;
+          var attr = isProperty ? 'property' : 'name';
+          var selector = attr + '="' + name + '"';
+          var tag = document.head.querySelector('meta[' + selector + ']');
+          if (!tag) {
+            tag = document.createElement('meta');
+            tag.setAttribute(attr, name);
+            document.head.appendChild(tag);
+          }
+          tag.setAttribute('content', content);
+        };
+
+        document.title = meta.title;
+        setMeta('description', meta.description, false);
+        setMeta('robots', meta.robots || 'index, follow', false);
+        setMeta('og:title', meta.title, true);
+        setMeta('og:description', meta.description, true);
+        setMeta('twitter:title', meta.title, false);
+        setMeta('twitter:description', meta.description, false);
+
+        var canonical = document.head.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+          canonical = document.createElement('link');
+          canonical.setAttribute('rel', 'canonical');
+          document.head.appendChild(canonical);
+        }
+        canonical.setAttribute('href', base + path);
+      })();
+    </script>
       <!-- Datos estructurados de productos principales para Google -->
       <script type="application/ld+json">
       {
