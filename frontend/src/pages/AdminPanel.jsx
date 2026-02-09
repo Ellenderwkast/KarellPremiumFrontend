@@ -61,6 +61,7 @@ import { useAuthStore } from '../store/authStore';
 import { productService, authService, orderService, productInterestService } from '../services/api';
 import api, { getStaticUrl } from '../services/api';
 import '../styles/adminPanel.css';
+import SEO from '../components/SEO';
 
 export default function AdminPanel() {
   // --- Paginación de pedidos ---
@@ -1258,7 +1259,13 @@ export default function AdminPanel() {
   }, [orders, products, users]);
 
   return (
-    <div className="admin-panel admin-layout">
+    <>
+      <SEO
+        title="Panel administrador"
+        description="Gestiona productos, pedidos y contenidos de Karell Premium."
+        robots="noindex, nofollow"
+      />
+      <div className="admin-panel admin-layout">
       <aside className="admin-sidebar" aria-label="Navegación del panel admin">
         <div className="admin-sidebar-brand">
           <div className="admin-sidebar-title">Panel Admin</div>
@@ -3539,5 +3546,6 @@ export default function AdminPanel() {
       </div>
       
     </div>
+    </>
   );
 }

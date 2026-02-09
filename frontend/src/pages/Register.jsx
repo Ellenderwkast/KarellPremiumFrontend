@@ -200,6 +200,7 @@ function Register() {
         </p>
       </div>
     </div>
+           robots="noindex, nofollow"
   );
 }
 

@@ -64,6 +64,7 @@ function Login() {
       <SEO
         title="Iniciar Sesi\u00f3n"
         description="Accede a tu cuenta en Karell Premium para ver tus pedidos, seguimiento de env\u00edos y acceder a ofertas exclusivas."
+         robots="noindex, nofollow"
       />
       <div className="auth-card">
         <div className="auth-header">

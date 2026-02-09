@@ -6,6 +6,7 @@ import { authService, getStaticUrl } from '../services/api';
 import { validateEmail, getEmailError } from '../utils/validation';
 import '../styles/profile.css';
 import { departments, citiesByDepartment } from '../data/colombiaCities';
+import SEO from '../components/SEO';
 
 const isDev = import.meta.env.DEV;
 // Helper: normalizar y eliminar diacríticos
@@ -160,7 +161,13 @@ export default function Profile() {
   };
 
   return (
-    <div className="profile-container">
+    <>
+      <SEO
+        title="Mi cuenta"
+        description="Gestiona tus datos personales, contacto y dirección en Karell Premium."
+        robots="noindex, nofollow"
+      />
+      <div className="profile-container">
       <div className="page-header">
         <button onClick={() => navigate('/')} className="btn-back">
           ← Volver al inicio
@@ -330,5 +337,6 @@ export default function Profile() {
         </section>
       </form>
     </div>
+    </>
   );
 }
