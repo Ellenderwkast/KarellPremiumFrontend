@@ -39,7 +39,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Fallback de metadatos estáticos por ruta (para crawlers sin JS) -->
+    <!-- Fallback de metadatos estáticos por ruta (para crawlers sin JS/hidratación). Incluye patrones para PDP y blog. -->
     <script>
       (function() {
         var base = (function() {
@@ -102,7 +102,30 @@
         var path = (window.location && window.location.pathname) || '/';
         if (path.length > 1) path = path.replace(/\/+$/, '') || '/';
         var meta = routeMeta[path];
-        if (!meta) return; // no sobrescribir rutas dinámicas (p.ej. PDP)
+
+        // Patrones dinámicos: PDP (/products/:slug) y Blog (/blog/:slug)
+        var isProductDetail = !meta && /^\/products\/[A-Za-z0-9._~%-]+/.test(path);
+        var isBlogPost = !meta && /^\/blog\/[A-Za-z0-9._~%-]+/.test(path);
+        if (!meta && isProductDetail) {
+          var slug = path.split('/').pop();
+          meta = {
+            title: decodeURIComponent(slug).replace(/[-_]+/g, ' ') + ' | Comprar en Karell Premium',
+            description: 'Compra ' + decodeURIComponent(slug).replace(/[-_]+/g, ' ') + ' con envío a toda Colombia y pago contra entrega en Karell Premium.',
+            robots: 'index, follow',
+            ogType: 'product'
+          };
+        }
+        if (!meta && isBlogPost) {
+          var bslug = path.split('/').pop();
+          meta = {
+            title: decodeURIComponent(bslug).replace(/[-_]+/g, ' ') + ' | Blog Karell Premium',
+            description: 'Lee el artículo ' + decodeURIComponent(bslug).replace(/[-_]+/g, ' ') + ' en el blog de Karell Premium: consejos y guías sobre audio y gadgets.',
+            robots: 'index, follow',
+            ogType: 'article'
+          };
+        }
+
+        if (!meta) return; // rutas no contempladas
 
         var setMeta = function(name, content, isProperty) {
           if (!content) return;
@@ -122,6 +145,7 @@
         setMeta('robots', meta.robots || 'index, follow', false);
         setMeta('og:title', meta.title, true);
         setMeta('og:description', meta.description, true);
+        setMeta('og:type', meta.ogType || 'website', true);
         setMeta('twitter:title', meta.title, false);
         setMeta('twitter:description', meta.description, false);
 
@@ -134,147 +158,35 @@
         canonical.setAttribute('href', base + path);
       })();
     </script>
-      <!-- Datos estructurados de productos principales para Google -->
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "Audífonos Lenovo TH30",
-        "image": [
-          "https://www.karellpremium.com.co/images/lenovo_beig.webp"
-        ],
-        "description": "Audífonos Lenovo TH30 inalámbricos, Bluetooth, con cancelación de ruido.",
-        "brand": {
-          "@type": "Brand",
-          "name": "Lenovo"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "reviewCount": "21"
-        },
-        "review": [{
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Cliente verificado" },
-          "datePublished": "2026-01-15",
-          "reviewBody": "Excelente calidad de sonido y batería duradera.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
-        }],
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "COP",
-          "price": "99000",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.karellpremium.com.co/productos/lenovo-th30"
-        }
+    <!-- Datos estructurados estáticos de organización / sitio (solo básicos) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Karell Premium",
+      "url": "https://www.karellpremium.com.co",
+      "logo": "https://www.karellpremium.com.co/images/logo.webp",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": "Spanish",
+        "areaServed": "CO"
       }
-      </script>
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "Audífonos F9",
-        "image": [
-          "https://www.karellpremium.com.co/images/F9.webp"
-        ],
-        "description": "Audífonos F9 inalámbricos, Bluetooth, deportivos y con estuche de carga.",
-        "brand": {
-          "@type": "Brand",
-          "name": "F9"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.7",
-          "reviewCount": "15"
-        },
-        "review": [{
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Cliente verificado" },
-          "datePublished": "2026-01-10",
-          "reviewBody": "Muy cómodos y el estuche es práctico.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
-        }],
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "COP",
-          "price": "69000",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.karellpremium.com.co/productos/f9"
-        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://www.karellpremium.com.co",
+      "name": "Karell Premium",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.karellpremium.com.co/products?search={search_term_string}",
+        "query-input": "required name=search_term_string"
       }
-      </script>
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "Auriculares SP16",
-        "image": [
-          "https://www.karellpremium.com.co/images/SP16.webp"
-        ],
-        "description": "Auriculares SP16 deportivos, resistentes al agua, con micrófono.",
-        "brand": {
-          "@type": "Brand",
-          "name": "SP16"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.6",
-          "reviewCount": "9"
-        },
-        "review": [{
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Cliente verificado" },
-          "datePublished": "2026-01-12",
-          "reviewBody": "Resistentes y con buen sonido.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "4" }
-        }],
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "COP",
-          "price": "59000",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.karellpremium.com.co/productos/sp16"
-        }
-      }
-      </script>
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "Reloj inteligente - SmartWatch",
-        "image": [
-          "https://www.karellpremium.com.co/images/negro_1.webp"
-        ],
-        "description": "Reloj inteligente SmartWatch con monitor de actividad, notificaciones y pantalla táctil.",
-        "brand": {
-          "@type": "Brand",
-          "name": "SmartWatch"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "12"
-        },
-        "review": [{
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Cliente verificado" },
-          "datePublished": "2026-01-20",
-          "reviewBody": "Muy útil para monitorear mi actividad diaria.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
-        }],
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "COP",
-          "price": "129000",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.karellpremium.com.co/productos/smartwatch"
-        }
-      }
-      </script>
+    }
+    </script>
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

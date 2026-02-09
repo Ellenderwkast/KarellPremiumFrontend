@@ -7,6 +7,7 @@
     "dev": "vite",
     "prebuild": "node tools/find_css_issues.cjs",
     "build": "vite build",
+    "build:ssg": "npm run build && node tools/prerender-head.mjs",
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
     "check-css": "node tools/find_css_issues.cjs"
