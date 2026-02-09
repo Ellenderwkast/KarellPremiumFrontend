@@ -17,7 +17,7 @@ function Cart() {
         <SEO
           title="Tu carrito está vacío"
           description="Tu carrito de compras en Karell Premium está vacío. Explora nuestro catálogo de productos y añade tus audífonos y accesorios favoritos."
-          robots="noindex, follow"
+          robots="noindex, nofollow"
         />
         <div className="container">
           <h2>Tu carrito está vacío</h2>
@@ -35,7 +35,7 @@ function Cart() {
       <SEO
         title="Tu carrito de compras"
         description="Revisa y edita los productos de tu carrito antes de finalizar la compra en Karell Premium."
-        robots="noindex, follow"
+        robots="noindex, nofollow"
       />
       <div className="container">
         <div className="page-header">
