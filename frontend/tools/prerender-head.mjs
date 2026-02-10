@@ -16,7 +16,7 @@ const template = fs.readFileSync(templatePath, 'utf8');
 
 const routeMeta = {
   '/': {
-    title: 'Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia | Karell Premium',
+    title: 'Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia',
     description: 'Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos en Colombia. Envíos rápidos, pago contra entrega y garantía.',
     robots: 'index, follow'
   },
