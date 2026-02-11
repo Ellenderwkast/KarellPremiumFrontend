@@ -38,7 +38,7 @@ function Home() {
   return (
     <div className="home">
       <SEO
-        title="Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia"
+        title="Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio Colombia"
         description="Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos en Colombia. Envíos rápidos, pago contra entrega y garantía."
         appendBrand={false}
       />
@@ -120,7 +120,7 @@ function Home() {
           <div className="hero-content">
             <div className="hero-row-flex">
               <div className="hero-titles">
-                <h1 className="sr-only">Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia</h1>
+                <h1 className="sr-only">Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio Colombia</h1>
                 <p>Descubre los mejores productos con los mejores precios</p>
               </div>
               <Link to="/products" className="btn btn-primary btn-lg hero-cta">Explorar productos</Link>
