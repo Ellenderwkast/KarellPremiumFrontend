@@ -40,6 +40,7 @@ function Home() {
       <SEO
         title="Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia"
         description="Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos en Colombia. Envíos rápidos, pago contra entrega y garantía."
+        appendBrand={false}
       />
       <StructuredData type="organization" data={organizationData} />
       <StructuredData type="breadcrumb" data={breadcrumbData} />
