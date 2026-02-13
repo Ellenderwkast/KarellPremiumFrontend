@@ -18,17 +18,6 @@ function Home() {
     window.dispatchEvent(new CustomEvent('homePageActive'));
   }, [location.pathname]);
 
-  const organizationData = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Karell Premium',
-    url: window.location.origin,
-    logo: '/images/logo.webp',
-    description: 'Tienda online de productos tecnológicos premium y accesorios de alta calidad en Colombia.',
-    address: { '@type': 'PostalAddress', addressCountry: 'CO' },
-    contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: 'Spanish' }
-  };
-
   const breadcrumbData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -42,75 +31,7 @@ function Home() {
         description="Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos en Colombia. Envíos rápidos, pago contra entrega y garantía."
         appendBrand={false}
       />
-      <StructuredData type="organization" data={organizationData} />
       <StructuredData type="breadcrumb" data={breadcrumbData} />
-      {/* Datos estructurados de LocalBusiness para SEO local en Colombia */}
-      <StructuredData
-        type="localbusiness"
-        data={{
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "Karell Premium",
-          "image": "https://www.karellpremium.com.co/images/logo.webp",
-          "@id": "https://www.karellpremium.com.co/",
-          "url": "https://www.karellpremium.com.co/",
-          "telephone": "+57 320 1234567",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Calle 123 #45-67",
-            "addressLocality": "Bogotá",
-            "addressRegion": "Cundinamarca",
-            "postalCode": "110111",
-            "addressCountry": "CO"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 4.710989,
-            "longitude": -74.072092
-          },
-          "openingHoursSpecification": [{
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "opens": "09:00",
-            "closes": "19:00"
-          }],
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+57 320 1234567",
-            "contactType": "customer service",
-            "areaServed": "CO",
-            "availableLanguage": ["Spanish"]
-          }
-        }}
-      />
-      {/* Datos estructurados de producto para rich snippets en Google */}
-      <StructuredData
-        type="product"
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          "name": "Audífonos inalámbricos Karell Premium",
-          "image": [
-            "https://www.karellpremium.com.co/images/products/audifono1.jpg",
-            "https://www.karellpremium.com.co/images/products/audifono2.jpg"
-          ],
-          "description": "Compra audífonos diademas inalámbricos, Bluetooth y accesorios tecnológicos con excelente calidad de sonido, diseños modernos y precios increíbles. Envíos rápidos a toda Colombia y domicilios contraentrega.",
-          "brand": "Karell Premium",
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "COP",
-            "price": "199000",
-            "availability": "https://schema.org/InStock"
-          }
-        }}
-      />
       {/* ...header principal eliminado, solo botón de catálogo... */}
       {/* Botón de catálogo principal eliminado por solicitud */}
       <video className="video-bg" src="descubre/video22.mp4" autoPlay muted loop playsInline />

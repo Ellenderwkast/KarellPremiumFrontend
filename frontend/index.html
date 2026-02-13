@@ -158,7 +158,7 @@
         canonical.setAttribute('href', base + path);
       })();
     </script>
-    <!-- Datos estructurados estáticos de organización / sitio (solo básicos) -->
+    <!-- Datos estructurados estáticos (fuente única) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -166,20 +166,27 @@
       "name": "Karell Premium",
       "url": "https://www.karellpremium.com.co",
       "logo": "https://www.karellpremium.com.co/images/logo.webp",
+      "description": "Tienda online de tecnología y accesorios premium en Colombia",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CO"
+      },
       "contactPoint": {
         "@type": "ContactPoint",
+        "telephone": "+57-315-816-4656",
         "contactType": "customer service",
-        "availableLanguage": "Spanish",
+        "availableLanguage": ["Spanish"],
         "areaServed": "CO"
       }
     }
     </script>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": "https://www.karellpremium.com.co",
       "name": "Karell Premium",
+      "url": "https://www.karellpremium.com.co",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://www.karellpremium.com.co/products?search={search_term_string}",
@@ -192,43 +199,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://images.unsplash.com" />
     
-    <!-- Schema.org JSON-LD para Google -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Karell Premium",
-      "url": "https://www.karellpremium.com.co",
-      "logo": "https://www.karellpremium.com.co/images/logo.webp",
-      "description": "Tienda online de tecnología y accesorios premium en Colombia",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "CO",
-        "addressLocality": "Colombia"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+57-315-816-4656",
-        "contactType": "customer service",
-        "availableLanguage": ["Spanish"]
-      },
-      "sameAs": []
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Karell Premium",
-      "url": "https://www.karellpremium.com.co",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.karellpremium.com.co/products?search={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
   </head>
   <body>
     <div id="root"></div>

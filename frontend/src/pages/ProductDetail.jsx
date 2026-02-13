@@ -290,18 +290,26 @@ function ProductDetail() {
   const isOutOfStock = Number(availableStock) <= 0;
 
   // Construir array de URLs absolutas de imágenes públicas
-  const baseUrl = window.location.origin;
+  const normalizeImageUrl = (img) => {
+    if (!img) return null;
+    return getStaticUrl(img);
+  };
+
   let productImages = [];
   if (hasColorVariants && selectedColor && Array.isArray(selectedColor.images) && selectedColor.images.length > 0) {
-    productImages = selectedColor.images.map(img => img.startsWith('http') ? img : `${baseUrl}/images/${img.replace(/^.*[\\\/]/, '')}`);
+    productImages = selectedColor.images.map(normalizeImageUrl).filter(Boolean);
   } else if (Array.isArray(product.attributes?.images) && product.attributes.images.length > 0) {
-    productImages = product.attributes.images.map(img => img.startsWith('http') ? img : `${baseUrl}/images/${img.replace(/^.*[\\\/]/, '')}`);
+    productImages = product.attributes.images.map(normalizeImageUrl).filter(Boolean);
   } else if (product.image || product.attributes?.image) {
-    const img = product.image || product.attributes?.image;
-    productImages = [img.startsWith('http') ? img : `${baseUrl}/images/${img.replace(/^.*[\\\/]/, '')}`];
+    const img = normalizeImageUrl(product.image || product.attributes?.image);
+    productImages = img ? [img] : [];
   } else if (currentImage) {
-    productImages = [currentImage.startsWith('http') ? currentImage : `${baseUrl}/images/${currentImage.replace(/^.*[\\\/]/, '')}`];
+    const img = normalizeImageUrl(currentImage);
+    productImages = img ? [img] : [];
   }
+
+  // Si no hay imágenes específicas, usar las cargadas en estado (ya normalizadas)
+  const schemaImages = productImages.length > 0 ? productImages : images.filter(Boolean);
 
   // Calcular fecha de validez del precio (1 mes por defecto)
   const priceValidUntil = (() => {
@@ -310,18 +318,17 @@ function ProductDetail() {
     return d.toISOString().split('T')[0];
   })();
 
-  // Política de devoluciones ejemplo (ajusta según tu negocio)
+  // Política de devoluciones con valores válidos para schema
   const merchantReturnPolicy = {
     '@type': 'MerchantReturnPolicy',
     'applicableCountry': 'CO',
     'returnPolicyCategory': 'https://schema.org/RefundPolicy',
-    'returnPolicySeasonalOverride': 'No',
     'returnMethod': 'https://schema.org/ReturnByMail',
     'returnFees': 'https://schema.org/FreeReturn',
-    'returnWindow': '30 días'
+    'returnWindow': 'P30D'
   };
 
-  // Detalles de envío ejemplo (ajusta según tu negocio)
+  // Detalles de envío
   const shippingDetails = {
     '@type': 'OfferShippingDetails',
     'shippingRate': {
@@ -372,29 +379,73 @@ function ProductDetail() {
       }))
     : undefined;
 
+  const priceNumber = Number(product.price);
+  const hasValidPrice = Number.isFinite(priceNumber);
+
   const productData = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.title || product.name,
     description: product.description,
-    image: productImages,
+    ...(schemaImages.length > 0 ? { image: schemaImages } : {}),
+    ...(product.sku ? { sku: product.sku } : {}),
+    ...(selectedColor?.name ? { color: selectedColor.name } : {}),
     brand: {
       '@type': 'Brand',
       name: 'Karell Premium'
     },
-    offers: {
-      '@type': 'Offer',
-      url: window.location.href,
-      priceCurrency: 'COP',
-      price: Number(product.price).toFixed(2),
-      availability: availableStock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      itemCondition: 'https://schema.org/NewCondition',
-      priceValidUntil,
-      hasMerchantReturnPolicy: merchantReturnPolicy,
-      shippingDetails: shippingDetails
-    },
+    ...(hasValidPrice
+      ? {
+          offers: {
+            '@type': 'Offer',
+            url: window.location.href,
+            priceCurrency: 'COP',
+            price: priceNumber.toFixed(2),
+            availability: availableStock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+            itemCondition: 'https://schema.org/NewCondition',
+            priceValidUntil,
+            hasMerchantReturnPolicy: merchantReturnPolicy,
+            shippingDetails: shippingDetails
+          }
+        }
+      : {}),
     ...(aggregateRating && { aggregateRating }),
     ...(reviewList && { review: reviewList })
+  };
+
+  // Imagen principal para OG/Twitter (prioriza la primera imagen válida)
+  const mainOgImage = schemaImages[0] || 'https://www.karellpremium.com.co/images/logo.webp';
+
+  // FAQ para rich results del PDP
+  const faqData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': '¿Hacen envíos en Colombia?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Sí, hacemos envíos a toda Colombia con tiempos habituales de 2 a 5 días hábiles según la ciudad.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': '¿Qué pasa si el producto está agotado?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Si no hay stock disponible, puedes dejar tus datos y te notificamos cuando vuelva a estar disponible.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': '¿Puedo pagar cuando reciba el pedido?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Aceptamos pago contraentrega en las zonas habilitadas y métodos de pago en línea cuando estén disponibles.'
+        }
+      }
+    ]
   };
 
   const breadcrumbData = {
@@ -427,8 +478,10 @@ function ProductDetail() {
       <SEO
         title={product.title || product.name}
         description={`${product.description || product.title} - Precio: $${product.price.toLocaleString('es-CO')} COP. Disponible en Karell Premium con envío a toda Colombia.`}
+        image={mainOgImage}
       />
       <StructuredData type="product" data={productData} />
+      <StructuredData type="faq-product" data={faqData} />
       <StructuredData type="breadcrumb-product" data={breadcrumbData} />
       <div className="container">
         <button onClick={() => navigate('/products')} className="btn-back">

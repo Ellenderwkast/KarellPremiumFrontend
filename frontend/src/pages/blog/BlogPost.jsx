@@ -106,6 +106,36 @@ function BlogPost() {
     mainEntityOfPage: canonicalUrl,
     url: canonicalUrl
   };
+  const faqData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Puedo comprar los productos mencionados en este artículo?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí. Puedes ver los productos relacionados en la sección inferior del artículo o visitar el catálogo completo en la tienda.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Hacen envíos en Colombia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Realizamos envíos a toda Colombia. Los tiempos habituales van de 2 a 5 días hábiles según la ciudad.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo puedo contactar al equipo de Karell Premium?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Escríbenos por WhatsApp al ${import.meta.env.VITE_WHATSAPP_NUMBER || '+57 315 816 4656'} o usa el botón de contacto en la tienda en línea.`
+        }
+      }
+    ]
+  };
   const breadcrumbData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -140,6 +170,7 @@ function BlogPost() {
         type="article"
       />
       <StructuredData type="blog-post" data={articleData} />
+      <StructuredData type="faq-blog" data={faqData} />
       <StructuredData type="breadcrumb-blog-post" data={breadcrumbData} />
       <article className="blog-post-page container" style={{maxWidth:700,margin:'2em auto'}}>
         <h1 style={{fontSize:'2em',marginBottom:8}}>{post.title}</h1>
