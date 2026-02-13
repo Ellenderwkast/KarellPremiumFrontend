@@ -16,7 +16,7 @@ const template = fs.readFileSync(templatePath, 'utf8');
 
 const routeMeta = {
   '/': {
-    title: 'Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia',
+    title: 'Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio Colombia',
     description: 'Compra audífonos Bluetooth, relojes inteligentes y accesorios tecnológicos en Colombia. Envíos rápidos, pago contra entrega y garantía.',
     robots: 'index, follow'
   },
@@ -168,6 +168,7 @@ async function main() {
     const canonical = `https://www.karellpremium.com.co${route === '/' ? '' : route}`;
 
     html = setTitle(html, meta.title);
+    html = setMeta(html, 'title', meta.title, 'name');
     html = setMeta(html, 'description', meta.description, 'name');
     html = setMeta(html, 'robots', meta.robots || 'index, follow', 'name');
     html = setMeta(html, 'og:title', meta.title, 'property');
