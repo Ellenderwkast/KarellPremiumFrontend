@@ -34,10 +34,15 @@
     <meta property="og:title" content="Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio en Colombia" />
     <meta property="og:description" content="Audífonos Bluetooth inalámbricos y accesorios tecnológicos con pago contraentrega y envíos a toda Colombia." />
     <meta property="og:url" content="https://www.karellpremium.com.co/" />
-    <meta property="og:image" content="https://www.karellpremium.com.co/images/logo.webp" /> 
+    <meta property="og:image" content="https://www.karellpremium.com.co/images/logo_2026.png" />
+    <meta property="og:image:secure_url" content="https://www.karellpremium.com.co/images/logo_2026.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://www.karellpremium.com.co/images/logo_2026.png" />
 
     <!-- Fallback de metadatos estáticos por ruta (para crawlers sin JS/hidratación). Incluye patrones para PDP y blog. -->
     <script>
@@ -146,8 +151,14 @@
         setMeta('og:title', meta.title, true);
         setMeta('og:description', meta.description, true);
         setMeta('og:type', meta.ogType || 'website', true);
+        setMeta('og:image', base + '/images/logo_2026.png', true);
+        setMeta('og:image:secure_url', base + '/images/logo_2026.png', true);
+        setMeta('og:image:type', 'image/png', true);
+        setMeta('og:image:width', '1024', true);
+        setMeta('og:image:height', '1024', true);
         setMeta('twitter:title', meta.title, false);
         setMeta('twitter:description', meta.description, false);
+        setMeta('twitter:image', base + '/images/logo_2026.png', false);
 
         var canonical = document.head.querySelector('link[rel="canonical"]');
         if (!canonical) {

@@ -6,6 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.resolve(__dirname, '../dist');
 const templatePath = path.join(distDir, 'index.html');
+const SITE_BASE = 'https://www.karellpremium.com.co';
+const OG_IMAGE = `${SITE_BASE}/images/logo_2026.png`;
 
 if (!fs.existsSync(templatePath)) {
   console.error('No se encontró dist/index.html. Ejecuta primero "npm run build".');
@@ -206,7 +208,7 @@ async function main() {
     if (!meta) continue;
 
     let html = template;
-    const canonical = `https://www.karellpremium.com.co${route === '/' ? '' : route}`;
+    const canonical = `${SITE_BASE}${route === '/' ? '' : route}`;
 
     html = setTitle(html, meta.title);
     html = setMeta(html, 'title', meta.title, 'name');
@@ -215,8 +217,14 @@ async function main() {
     html = setMeta(html, 'og:title', meta.title, 'property');
     html = setMeta(html, 'og:description', meta.description, 'property');
     html = setMeta(html, 'og:type', meta.ogType || 'website', 'property');
+    html = setMeta(html, 'og:image', OG_IMAGE, 'property');
+    html = setMeta(html, 'og:image:secure_url', OG_IMAGE, 'property');
+    html = setMeta(html, 'og:image:type', 'image/png', 'property');
+    html = setMeta(html, 'og:image:width', '1024', 'property');
+    html = setMeta(html, 'og:image:height', '1024', 'property');
     html = setMeta(html, 'twitter:title', meta.title, 'name');
     html = setMeta(html, 'twitter:description', meta.description, 'name');
+    html = setMeta(html, 'twitter:image', OG_IMAGE, 'name');
     html = setCanonical(html, canonical);
 
     const outDir = route === '/' ? distDir : path.join(distDir, route.replace(/^\//, ''));
