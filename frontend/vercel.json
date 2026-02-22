@@ -1,7 +1,7 @@
 {
-  "rewrites": [
-    { "source": "/sitemap.xml", "destination": "https://karellpremiumbackend.onrender.com/sitemap.xml" },
-    { "source": "/(.*\\..*)", "destination": "/$1" },
-    { "source": "/(.*)", "destination": "/index.html" }
+  "routes": [
+    { "src": "/sitemap.xml", "dest": "https://karellpremiumbackend.onrender.com/sitemap.xml" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
