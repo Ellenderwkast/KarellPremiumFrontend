@@ -74,6 +74,46 @@ const routeMeta = {
 
 const baseRoutes = Object.keys(routeMeta);
 
+const SITEMAP_SOURCE = process.env.PRERENDER_SITEMAP_URL || 'https://karellpremiumbackend.onrender.com/sitemap.xml';
+
+function extractLocs(xml) {
+  const regex = /<loc>(.*?)<\/loc>/g;
+  const urls = [];
+  let match;
+  while ((match = regex.exec(xml)) !== null) {
+    const value = (match[1] || '').trim();
+    if (value) urls.push(value);
+  }
+  return Array.from(new Set(urls));
+}
+
+async function getRoutesFromSitemap() {
+  try {
+    const response = await fetch(SITEMAP_SOURCE);
+    if (!response.ok) {
+      console.warn(`No se pudo leer sitemap para prerender (${response.status}) en ${SITEMAP_SOURCE}`);
+      return [];
+    }
+
+    const xml = await response.text();
+    const locs = extractLocs(xml);
+    const dynamicRoutes = locs
+      .map((rawUrl) => {
+        try {
+          return new URL(rawUrl).pathname;
+        } catch {
+          return null;
+        }
+      })
+      .filter((pathname) => pathname && /^\/(products|blog)\/[A-Za-z0-9._~%\-]+$/.test(pathname));
+
+    return Array.from(new Set(dynamicRoutes));
+  } catch (error) {
+    console.warn('No se pudieron obtener rutas dinámicas desde sitemap:', error.message);
+    return [];
+  }
+}
+
 async function getBlogRoutes() {
   try {
     const blogModule = await import(pathToFileURL(path.resolve(__dirname, '../src/blogdata/posts.js')).href);
@@ -158,7 +198,8 @@ function setCanonical(html, href) {
 async function main() {
   const blogRoutes = await getBlogRoutes();
   const productRoutes = getProductRoutes();
-  const allRoutes = Array.from(new Set([...baseRoutes, ...blogRoutes, ...productRoutes]));
+  const sitemapRoutes = await getRoutesFromSitemap();
+  const allRoutes = Array.from(new Set([...baseRoutes, ...blogRoutes, ...productRoutes, ...sitemapRoutes]));
 
   for (const route of allRoutes) {
     const meta = metaForRoute(route);
