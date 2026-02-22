@@ -1,7 +1,24 @@
 import { useEffect } from 'react';
 
+const getCanonicalBaseUrl = () => {
+  const fallbackCanonical = 'https://www.karellpremium.com.co';
+  try {
+    const envUrl = import.meta.env.VITE_FRONTEND_URL;
+    if (envUrl && typeof envUrl === 'string' && /^https?:\/\//i.test(envUrl)) {
+      return envUrl.replace(/\/+$/, '');
+    }
+  } catch (_) {}
+
+  if (typeof window !== 'undefined' && window.location?.origin && import.meta.env.DEV) {
+    return window.location.origin.replace(/\/+$/, '');
+  }
+
+  return fallbackCanonical;
+};
+
 const StructuredData = ({ type, data }) => {
   useEffect(() => {
+    const canonicalBaseUrl = getCanonicalBaseUrl();
     const scriptId = `structured-data-${type}`;
     let script = document.getElementById(scriptId);
 
@@ -22,11 +39,11 @@ const StructuredData = ({ type, data }) => {
           return value.map(v =>
             typeof v === 'string' && v.startsWith('http')
               ? v
-              : `${window.location.origin}${v}`
+              : `${canonicalBaseUrl}${v}`
           );
         }
         if (typeof value === 'string') {
-          return value.startsWith('http') ? value : `${window.location.origin}${value}`;
+          return value.startsWith('http') ? value : `${canonicalBaseUrl}${value}`;
         }
       }
       return value;

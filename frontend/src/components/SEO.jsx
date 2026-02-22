@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 // Obtiene una URL base consistente para canónicos/OG (preferimos www.karellpremium.com.co)
 const getBaseUrl = () => {
+  const fallbackCanonical = 'https://www.karellpremium.com.co';
   try {
     const envUrl = import.meta.env.VITE_FRONTEND_URL;
     if (envUrl && typeof envUrl === 'string' && /^https?:\/\//i.test(envUrl)) {
@@ -12,12 +13,11 @@ const getBaseUrl = () => {
     // ignore, fallbacks below
   }
 
-  if (typeof window !== 'undefined' && window.location?.origin) {
+  if (typeof window !== 'undefined' && window.location?.origin && import.meta.env.DEV) {
     return window.location.origin.replace(/\/+$/, '');
   }
 
-  // Fallback seguro para entornos donde no haya window (SSR, herramientas)
-  return 'https://www.karellpremium.com.co';
+  return fallbackCanonical;
 };
 
 const SEO = ({ 
