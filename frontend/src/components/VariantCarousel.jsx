@@ -34,9 +34,13 @@ export default function VariantCarousel({ interval = 8000 }) {
             }
           } else {
             // No variants: use gallery/images or single image
-            const gallery = Array.isArray(attrs.gallery) ? attrs.gallery.filter(Boolean) : (Array.isArray(attrs.images) ? attrs.images.filter(Boolean) : []);
-            const single = attrs.image ? [attrs.image] : [];
-            const imgs = (gallery.length ? gallery : single).slice(0,3);
+            const gallery = Array.isArray(attrs.gallery)
+              ? attrs.gallery.filter(Boolean)
+              : (Array.isArray(attrs.images) ? attrs.images.filter(Boolean) : []);
+            const mainImage = attrs.image || p.image;
+            // Merge main image + gallery to always feed up to 3 slots
+            const merged = [mainImage, ...gallery].filter(Boolean);
+            const imgs = merged.length ? merged.slice(0, 3) : [];
             if (imgs.length > 0) collected.push({ product: p, variant: null, images: imgs });
           }
         }
