@@ -16,7 +16,7 @@ function Login() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  const { login, setToken } = useAuthStore();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -49,7 +49,19 @@ function Login() {
       setError(null);
       // Lógica real: enviar el token de Google al backend
       const response = await authService.loginWithGoogle(credentialResponse.credential);
-      login(response.data.user, response.data.token);
+      const token = response?.data?.token;
+      if (token) setToken(token); // asegurar que el interceptor tenga el token antes de pedir perfil
+
+      // Refrescar perfil para obtener roles actualizados (evita que isAdmin llegue desfasado)
+      let userData = response?.data?.user;
+      try {
+        const profileResp = await authService.getProfile();
+        userData = profileResp?.data?.user || userData;
+      } catch (profileErr) {
+        console.error('No se pudo refrescar el perfil tras login con Google', profileErr);
+      }
+
+      login(userData, token);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.error || 'No se pudo iniciar sesión con Google');

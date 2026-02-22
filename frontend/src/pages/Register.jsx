@@ -22,7 +22,7 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [emailTouched, setEmailTouched] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  const { login, setToken } = useAuthStore();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -73,7 +73,18 @@ function Register() {
       setError(null);
       // Lógica real: enviar el token de Google al backend
       const response = await authService.loginWithGoogle(credentialResponse.credential);
-      login(response.data.user, response.data.token);
+      const token = response?.data?.token;
+      if (token) setToken(token);
+
+      let userData = response?.data?.user;
+      try {
+        const profileResp = await authService.getProfile();
+        userData = profileResp?.data?.user || userData;
+      } catch (profileErr) {
+        console.error('No se pudo refrescar el perfil tras login con Google', profileErr);
+      }
+
+      login(userData, token);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.error || 'No se pudo registrar con Google');
