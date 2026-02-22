@@ -201,8 +201,55 @@
     
   </head>
   <body>
+    <h1 id="seo-h1-fallback" style="position:absolute;left:-99999px;top:auto;width:1px;height:1px;overflow:hidden;white-space:nowrap;">
+      Karell Premium
+    </h1>
     <div id="root"></div>
     <div id="modal-root"></div>
+    <script>
+      (function () {
+        var fallback = document.getElementById('seo-h1-fallback');
+        if (!fallback) return;
+
+        var path = (window.location && window.location.pathname) || '/';
+        if (path.length > 1) path = path.replace(/\/+$/, '') || '/';
+
+        var routeH1 = {
+          '/': 'Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio Colombia',
+          '/products': 'Catálogo de Productos | Karell Premium',
+          '/blog': 'Blog de Tecnología y Audio | Karell Premium'
+        };
+
+        if (routeH1[path]) {
+          fallback.textContent = routeH1[path];
+        } else if (/^\/products\/[A-Za-z0-9._~%-]+/.test(path) || /^\/blog\/[A-Za-z0-9._~%-]+/.test(path)) {
+          var slug = path.split('/').pop() || '';
+          fallback.textContent = decodeURIComponent(slug).replace(/[-_]+/g, ' ');
+        }
+
+        var removeIfRealH1Exists = function () {
+          var h1s = document.getElementsByTagName('h1');
+          for (var i = 0; i < h1s.length; i += 1) {
+            if (h1s[i].id !== 'seo-h1-fallback') {
+              fallback.remove();
+              return true;
+            }
+          }
+          return false;
+        };
+
+        if (removeIfRealH1Exists()) return;
+
+        var observer = new MutationObserver(function () {
+          if (removeIfRealH1Exists()) {
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+        setTimeout(function () { observer.disconnect(); }, 8000);
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
