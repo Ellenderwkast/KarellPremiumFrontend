@@ -201,8 +201,42 @@
     
   </head>
   <body>
+    <h1 id="seo-h1-fallback" style="position:absolute;left:-99999px;top:auto;width:1px;height:1px;overflow:hidden;white-space:nowrap;">
+      Karell Premium
+    </h1>
     <div id="root"></div>
     <div id="modal-root"></div>
+    <script>
+      (function () {
+        var h1 = document.getElementById('seo-h1-fallback');
+        if (!h1) return;
+
+        var path = (window.location && window.location.pathname) || '/';
+        if (path.length > 1) path = path.replace(/\/+$/, '') || '/';
+
+        var routeH1 = {
+          '/': 'Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio Colombia',
+          '/products': 'Catálogo de Productos | Karell Premium',
+          '/blog': 'Blog de Tecnología y Audio | Karell Premium'
+        };
+
+        if (routeH1[path]) {
+          h1.textContent = routeH1[path];
+          return;
+        }
+
+        if (/^\/products\/[A-Za-z0-9._~%-]+/.test(path)) {
+          var productSlug = path.split('/').pop() || '';
+          h1.textContent = decodeURIComponent(productSlug).replace(/[-_]+/g, ' ');
+          return;
+        }
+
+        if (/^\/blog\/[A-Za-z0-9._~%-]+/.test(path)) {
+          var postSlug = path.split('/').pop() || '';
+          h1.textContent = decodeURIComponent(postSlug).replace(/[-_]+/g, ' ');
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
