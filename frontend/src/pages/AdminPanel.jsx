@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import DispatchHistory from '../components/DispatchHistory.jsx';
+// Estado para controlar si el campo de email fue tocado en la orden manual
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
@@ -99,6 +101,8 @@ export default function AdminPanel() {
     height: ''
   });
 
+  // Estados para email tocado en orden manual
+  const [manualOrderEmailTouched, setManualOrderEmailTouched] = useState(false);
   // Estados para usuarios
   const [users, setUsers] = useState([]);
   const [userSearch, setUserSearch] = useState('');
