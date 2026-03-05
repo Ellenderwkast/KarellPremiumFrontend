@@ -103,6 +103,8 @@ export default function AdminPanel() {
 
   // Estados para email tocado en orden manual
   const [manualOrderEmailTouched, setManualOrderEmailTouched] = useState(false);
+  // Estado para email tocado en edición de orden
+  const [editOrderEmailTouched, setEditOrderEmailTouched] = useState(false);
   // Estados para usuarios
   const [users, setUsers] = useState([]);
   const [userSearch, setUserSearch] = useState('');
