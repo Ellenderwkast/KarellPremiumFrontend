@@ -322,9 +322,9 @@ function ProductDetail() {
   const merchantReturnPolicy = {
     '@type': 'MerchantReturnPolicy',
     'applicableCountry': 'CO',
-    'returnPolicyCategory': 'https://schema.org/RefundPolicy',
-    'returnMethod': 'https://schema.org/ReturnByMail',
-    'returnFees': 'https://schema.org/FreeReturn',
+    'returnPolicyCategory': 'RefundPolicy',
+    'returnMethod': 'ReturnByMail',
+    'returnFees': 'FreeReturn',
     'returnWindow': 'P30D'
   };
 
@@ -367,7 +367,10 @@ function ProductDetail() {
   const reviewList = (reviews && reviews.length > 0)
     ? reviews.slice(0, 5).map(r => ({
         '@type': 'Review',
-        'author': r.userName || 'Usuario',
+        'author': {
+          '@type': 'Person',
+          'name': r.userName || 'Usuario'
+        },
         'datePublished': r.createdAt ? r.createdAt.split('T')[0] : undefined,
         'reviewBody': r.comment,
         'reviewRating': {
