@@ -12,12 +12,26 @@ function NewContent() {
   const [msg, setMsg] = useState('');
   const [err, setErr] = useState('');
 
+  // Función para generar slug a partir del título
+  const slugify = (str) => {
+    return str
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Elimina acentos
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '') // Elimina caracteres no válidos
+      .replace(/\s+/g, '-') // Reemplaza espacios por guiones
+      .replace(/-+/g, '-'); // Quita guiones repetidos
+  };
+
   const handleSubmit = async (data) => {
     setSaving(true);
     setMsg('');
     setErr('');
     try {
-      const resp = await createPost(data);
+      const slug = slugify(data.title || '');
+      const resp = await createPost({ ...data, slug });
       if (isDev) console.log('createPost response', resp?.data || resp);
       setMsg('Publicación guardada correctamente');
       // Redirigir al listado después de una pequeña espera para que el usuario vea el mensaje
