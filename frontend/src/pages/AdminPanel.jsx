@@ -1177,7 +1177,7 @@ export default function AdminPanel() {
     // Ingreso total (productos + envío, para referencia)
     const totalRevenue = nonCancelledOrders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
 
-    const pendingStatuses = new Set(['pending', 'paid', 'processing']);
+    const pendingStatuses = new Set(['pending']);
     const pendingOrders = (Array.isArray(orders) ? orders : []).filter(o => pendingStatuses.has(o.status)).length;
     const outOfStockProducts = (Array.isArray(products) ? products : []).filter(p => (Number(p.stock) || 0) <= 0).length;
 
