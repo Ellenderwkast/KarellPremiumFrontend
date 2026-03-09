@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import DispatchHistory from '../components/DispatchHistory.jsx';
 // Estado para controlar si el campo de email fue tocado en la orden manual
+import { validateEmail } from '../utils/validation';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
