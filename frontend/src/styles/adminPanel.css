@@ -1,3 +1,33 @@
+/* Mejorar responsividad del select de producto en la tabla de registrar ventas */
+.admin-table .filter-select {
+  min-width: 200px;
+  width: 100%;
+  max-width: 350px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .admin-table .filter-select {
+    min-width: 140px;
+    width: 100%;
+    font-size: 1rem;
+    max-width: 100vw;
+  }
+}
+/* Mejorar visualización de mensajes de error en formularios */
+.form-group .error {
+  display: block;
+  color: #d32f2f;
+  background: #fff6f6;
+  border-radius: 4px;
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 0.95em;
+  padding: 4px 8px;
+  line-height: 1.3;
+  max-width: 100%;
+  word-break: break-word;
+}
 /* Limitar altura del textarea de descripción en edición de producto */
 textarea[name="description"], .product-description-textarea {
   max-height: 180px;
