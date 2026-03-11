@@ -3603,45 +3603,54 @@ export default function AdminPanel() {
                     borderRadius: '8px',
                     overflow: 'hidden'
                   }}>
-                    {selectedOrder.items.map((item, index) => (
-                      <div key={item.id} style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr auto auto',
-                        gap: '16px',
-                        alignItems: 'center',
-                        padding: '16px',
-                        backgroundColor: index % 2 === 0 ? '#fff' : '#f8f9fa',
-                        borderBottom: index < selectedOrder.items.length - 1 ? '1px solid #dee2e6' : 'none'
-                      }}>
-                        <div>
-                          <p style={{ margin: 0, fontWeight: '500', color: '#212529', fontSize: '14px' }}>
-                            {item.title || item.productTitle}
-                          </p>
-                          {item.color && (
-                            <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#6c757d' }}>
-                              Color: {item.color}
+                    {selectedOrder.items.map((item, index) => {
+                      // Buscar producto por productId si falta title/price
+                      let product = null;
+                      if ((!item.title || !item.price) && Array.isArray(products)) {
+                        product = products.find(p => Number(p.id) === Number(item.productId));
+                      }
+                      const displayTitle = item.title || item.productTitle || product?.title || 'Producto';
+                      const displayPrice = item.price != null ? item.price : (product ? product.price : 0);
+                      return (
+                        <div key={item.id || `${item.productId}-${index}`} style={{
+                          display: 'grid',
+                          gridTemplateColumns: '1fr auto auto',
+                          gap: '16px',
+                          alignItems: 'center',
+                          padding: '16px',
+                          backgroundColor: index % 2 === 0 ? '#fff' : '#f8f9fa',
+                          borderBottom: index < selectedOrder.items.length - 1 ? '1px solid #dee2e6' : 'none'
+                        }}>
+                          <div>
+                            <p style={{ margin: 0, fontWeight: '500', color: '#212529', fontSize: '14px' }}>
+                              {displayTitle}
                             </p>
-                          )}
+                            {item.color && (
+                              <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#6c757d' }}>
+                                Color: {item.color}
+                              </p>
+                            )}
+                          </div>
+                          <div style={{ textAlign: 'center' }}>
+                            <span style={{
+                              backgroundColor: '#e9ecef',
+                              padding: '4px 12px',
+                              borderRadius: '12px',
+                              fontSize: '13px',
+                              fontWeight: '500',
+                              color: '#495057'
+                            }}>
+                              ×{item.quantity}
+                            </span>
+                          </div>
+                          <div style={{ textAlign: 'right' }}>
+                            <p style={{ margin: 0, fontWeight: '600', color: '#212529', fontSize: '14px' }}>
+                              ${Number(displayPrice).toLocaleString('es-CO')}
+                            </p>
+                          </div>
                         </div>
-                        <div style={{ textAlign: 'center' }}>
-                          <span style={{
-                            backgroundColor: '#e9ecef',
-                            padding: '4px 12px',
-                            borderRadius: '12px',
-                            fontSize: '13px',
-                            fontWeight: '500',
-                            color: '#495057'
-                          }}>
-                            ×{item.quantity}
-                          </span>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                          <p style={{ margin: 0, fontWeight: '600', color: '#212529', fontSize: '14px' }}>
-                            ${Number(item.price).toLocaleString('es-CO')}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 ) : (
                   <p style={{ color: '#6c757d', fontSize: '14px' }}>No hay artículos en este pedido</p>
