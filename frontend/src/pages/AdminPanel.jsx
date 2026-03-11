@@ -893,6 +893,8 @@ export default function AdminPanel() {
   const [manualItems, setManualItems] = useState([
     { productId: '', quantity: 1, color: '' }
   ]);
+  // Estado para items de edición de pedido
+  const [editOrderItems, setEditOrderItems] = useState([]);
 
   // Estados para historial (audit logs)
   const [auditLogs, setAuditLogs] = useState([]);
@@ -1048,6 +1050,16 @@ export default function AdminPanel() {
       subtotal: order?.subtotal != null ? String(order.subtotal) : '',
       total: order?.total != null ? String(order.total) : ''
     });
+    // Inicializar productos del pedido para edición
+    setEditOrderItems(
+      Array.isArray(order?.items)
+        ? order.items.map(item => ({
+            productId: item.productId ? String(item.productId) : '',
+            quantity: item.quantity || 1,
+            color: item.color || ''
+          }))
+        : [{ productId: '', quantity: 1, color: '' }]
+    );
     setShowEditOrderModal(true);
   };
 
@@ -1057,6 +1069,39 @@ export default function AdminPanel() {
 
     try {
       setSavingOrderEdit(true);
+
+      // Validación de productos
+      for (let i = 0; i < (Array.isArray(editOrderItems) ? editOrderItems.length : 0); i++) {
+        const row = editOrderItems[i];
+        const pid = row?.productId ? Number(row.productId) : null;
+        const product = pid ? (Array.isArray(products) ? products : []).find(p => Number(p.id) === pid) : null;
+        const variants = Array.isArray(product?.attributes?.colorVariants) ? product.attributes.colorVariants : [];
+        if (variants.length > 0) {
+          const color = (row?.color || '').trim();
+          if (!color) {
+            alert(`Selecciona el color para: ${product?.title || 'producto'} (fila ${i + 1})`);
+            return;
+          }
+          const ok = variants.some(v => (v?.name || '').toString() === color);
+          if (!ok) {
+            alert(`El color seleccionado no existe para: ${product?.title || 'producto'} (fila ${i + 1})`);
+            return;
+          }
+        }
+      }
+
+      const itemsPayload = (Array.isArray(editOrderItems) ? editOrderItems : [])
+        .map(r => ({
+          productId: r.productId ? Number(r.productId) : null,
+          quantity: Number(r.quantity) || 0,
+          color: (r.color || '').trim() || null
+        }))
+        .filter(r => r.productId && r.quantity > 0);
+
+      if (itemsPayload.length === 0) {
+        alert('Agrega al menos 1 producto');
+        return;
+      }
 
       const channel = (editOrderData.sourceChannel || 'web').toString().trim().toLowerCase();
 
@@ -1068,7 +1113,8 @@ export default function AdminPanel() {
         shippingCity: (editOrderData.shippingCity || '').trim() || null,
         paymentMethod: (editOrderData.paymentMethod || 'other').toString().trim(),
         paymentReference: (editOrderData.paymentReference || '').trim() || null,
-        sourceChannel: channel
+        sourceChannel: channel,
+        items: itemsPayload
       };
 
       if (editOrderData.shippingCost !== '') {
@@ -2990,8 +3036,122 @@ export default function AdminPanel() {
                     </div>
                   </div>
                 )}
-              </div>
 
+                {/* Tabla de productos editable */}
+                <div className="form-group" style={{ marginTop: '0.25rem' }}>
+                  <label>Productos *</label>
+                  <div className="table-container">
+                    <table className="admin-table" style={{ marginBottom: 0 }}>
+                      <thead>
+                        <tr>
+                          <th>Producto</th>
+                          <th style={{ width: 110 }}>Cantidad</th>
+                          <th style={{ width: 200 }}>Color</th>
+                          <th style={{ width: 90 }}>Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(Array.isArray(editOrderItems) ? editOrderItems : []).map((row, idx) => {
+                          const pid = row?.productId ? Number(row.productId) : null;
+                          const product = pid ? (Array.isArray(products) ? products : []).find(p => Number(p.id) === pid) : null;
+                          const variants = Array.isArray(product?.attributes?.colorVariants) ? product.attributes.colorVariants : [];
+                          const requiresColor = variants.length > 0;
+                          return (
+                            <tr key={idx}>
+                              <td>
+                                <select
+                                  className="filter-select"
+                                  value={row.productId}
+                                  onChange={e => {
+                                    const value = e.target.value;
+                                    setEditOrderItems(prev => prev.map((r, i) => i === idx ? { ...r, productId: value, color: '' } : r));
+                                  }}
+                                  disabled={savingOrderEdit}
+                                  required
+                                >
+                                  <option value="">Selecciona un producto...</option>
+                                  {(Array.isArray(products) ? products : []).map(p => (
+                                    <option key={p.id} value={p.id}>
+                                      {p.title} (stock: {p.stock})
+                                    </option>
+                                  ))}
+                                </select>
+                              </td>
+                              <td>
+                                <input
+                                  type="number"
+                                  min="1"
+                                  step="1"
+                                  value={row.quantity}
+                                  onChange={e => {
+                                    const value = e.target.value;
+                                    setEditOrderItems(prev => prev.map((r, i) => i === idx ? { ...r, quantity: value } : r));
+                                  }}
+                                  disabled={savingOrderEdit}
+                                  style={{ width: '100%' }}
+                                />
+                              </td>
+                              <td>
+                                {requiresColor ? (
+                                  <select
+                                    className="filter-select"
+                                    value={row.color}
+                                    onChange={e => {
+                                      const value = e.target.value;
+                                      setEditOrderItems(prev => prev.map((r, i) => i === idx ? { ...r, color: value } : r));
+                                    }}
+                                    disabled={savingOrderEdit || !row.productId}
+                                    required
+                                  >
+                                    <option value="">Selecciona color...</option>
+                                    {variants.map((v, i) => (
+                                      <option key={(v?.name || '') + i} value={(v?.name || '').toString()}>
+                                        {(v?.name || 'Color').toString()} (stock: {Number(v?.stock) || 0})
+                                      </option>
+                                    ))}
+                                  </select>
+                                ) : (
+                                  <span style={{ color: 'var(--gray-500)' }}>Sin variantes</span>
+                                )}
+                              </td>
+                              <td>
+                                <div className="action-buttons">
+                                  <button
+                                    type="button"
+                                    className="action-icon action-icon-delete"
+                                    onClick={() => setEditOrderItems(prev => {
+                                      const next = [...prev];
+                                      next.splice(idx, 1);
+                                      return next.length > 0 ? next : [{ productId: '', quantity: 1, color: '' }];
+                                    })}
+                                    disabled={savingOrderEdit}
+                                    title="Quitar"
+                                    aria-label="Quitar"
+                                  >
+                                    <Trash2 aria-hidden="true" />
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div style={{ marginTop: '0.75rem', display: 'flex', justifyContent: 'flex-end' }}>
+                    <button
+                      type="button"
+                      className="btn-sm btn-role"
+                      onClick={() => setEditOrderItems(prev => [...(Array.isArray(prev) ? prev : []), { productId: '', quantity: 1, color: '' }])}
+                      disabled={savingOrderEdit}
+                      title="Agregar producto"
+                    >
+                      <Plus aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+
+              </div>
               <div className="modal-actions">
                 <button className="btn-primary" type="submit" disabled={savingOrderEdit}>
                   <span className="admin-icon" aria-hidden="true"><Save /></span>
