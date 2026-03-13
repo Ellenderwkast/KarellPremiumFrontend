@@ -103,7 +103,8 @@ function ProductDetail() {
           setCurrentImageIndex(0);
         } else {
           const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
-          const rawImages = fetchedProduct.attributes?.images;
+          // Soportar tanto attributes.images como attributes.gallery (compatibilidad con productos nuevos y antiguos)
+          const rawImages = fetchedProduct.attributes?.images || fetchedProduct.attributes?.gallery || [];
           const hasImages = Array.isArray(rawImages) && rawImages.filter(Boolean).length > 0;
           const productImages = (hasImages ? rawImages : [
             fetchedProduct.image || fetchedProduct.attributes?.image || placeholder
@@ -300,6 +301,8 @@ function ProductDetail() {
     productImages = selectedColor.images.map(normalizeImageUrl).filter(Boolean);
   } else if (Array.isArray(product.attributes?.images) && product.attributes.images.length > 0) {
     productImages = product.attributes.images.map(normalizeImageUrl).filter(Boolean);
+  } else if (Array.isArray(product.attributes?.gallery) && product.attributes.gallery.length > 0) {
+    productImages = product.attributes.gallery.map(normalizeImageUrl).filter(Boolean);
   } else if (product.image || product.attributes?.image) {
     const img = normalizeImageUrl(product.image || product.attributes?.image);
     productImages = img ? [img] : [];
