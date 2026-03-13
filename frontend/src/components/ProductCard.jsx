@@ -21,22 +21,24 @@ function ProductCard({ product }) {
 
   // Establecer el color por defecto y las imágenes al montar el componente
   useEffect(() => {
+    const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
     if (hasColorVariants && !selectedColor) {
       setSelectedColor(colorVariants[0]);
-      const imgs = colorVariants[0].images || [colorVariants[0].image];
-      setImages(imgs.map(getStaticUrl));
+      // Combinar imágenes de la variante, producto principal, gallery e images
+      const variantImgs = Array.isArray(colorVariants[0].images) ? colorVariants[0].images : [];
+      const mainImg = colorVariants[0].image;
+      const productImgs = Array.isArray(product.attributes?.images) ? product.attributes.images : [];
+      const galleryImgs = Array.isArray(product.attributes?.gallery) ? product.attributes.gallery : [];
+      const allImgs = [mainImg, ...variantImgs, ...productImgs, ...galleryImgs].filter(Boolean);
+      setImages(allImgs.length > 0 ? allImgs.map(getStaticUrl) : [placeholderSvg]);
       setCurrentImageIndex(0);
     } else if (!hasColorVariants) {
       // Producto sin variantes de color
-      const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
-      // Support both 'images' and legacy 'gallery' attribute
-      const rawImages = product.attributes?.images || product.attributes?.gallery || [];
-      const productImages = (Array.isArray(rawImages) && rawImages.length > 0)
-        ? rawImages
-        : [product.image || product.attributes?.image || placeholderSvg];
-      // Filtrar entradas vacías y convertir a URL completas
-      const mapped = productImages.filter(Boolean).map(getStaticUrl);
-      setImages(mapped.length > 0 ? mapped : [placeholderSvg]);
+      const mainImg = product.image || product.attributes?.image;
+      const productImgs = Array.isArray(product.attributes?.images) ? product.attributes.images : [];
+      const galleryImgs = Array.isArray(product.attributes?.gallery) ? product.attributes.gallery : [];
+      const allImgs = [mainImg, ...productImgs, ...galleryImgs].filter(Boolean);
+      setImages(allImgs.length > 0 ? allImgs.map(getStaticUrl) : [placeholderSvg]);
       setCurrentImageIndex(0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,8 +53,13 @@ function ProductCard({ product }) {
 
   const handleColorChange = colorVariant => {
     setSelectedColor(colorVariant);
-    const imgs = colorVariant.images || [colorVariant.image];
-    setImages(imgs.map(getStaticUrl));
+    // Combinar imágenes de la variante, producto principal, gallery e images
+    const variantImgs = Array.isArray(colorVariant.images) ? colorVariant.images : [];
+    const mainImg = colorVariant.image;
+    const productImgs = Array.isArray(product.attributes?.images) ? product.attributes.images : [];
+    const galleryImgs = Array.isArray(product.attributes?.gallery) ? product.attributes.gallery : [];
+    const allImgs = [mainImg, ...variantImgs, ...productImgs, ...galleryImgs].filter(Boolean);
+    setImages(allImgs.length > 0 ? allImgs.map(getStaticUrl) : []);
     setCurrentImageIndex(0);
   };
 
