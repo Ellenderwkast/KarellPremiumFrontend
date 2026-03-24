@@ -1131,9 +1131,13 @@ export default function AdminPanel() {
 
       const channel = (editOrderData.sourceChannel || 'web').toString().trim().toLowerCase();
 
+      const editCustomerEmail = (editOrderData.customerEmail || '').trim();
+
       const payload = {
         customerName: (editOrderData.customerName || '').trim() || null,
-        customerEmail: (editOrderData.customerEmail || '').trim() || null,
+        // Importante: si el campo se deja vacío al editar, enviamos cadena vacía
+        // para permitir que el backend quite la asociación de ese correo.
+        customerEmail: editCustomerEmail !== '' ? editCustomerEmail : '',
         customerPhone: (editOrderData.customerPhone || '').trim() || null,
         shippingAddress: (editOrderData.shippingAddress || '').trim() || null,
         shippingCity: (editOrderData.shippingCity || '').trim() || null,
