@@ -888,7 +888,12 @@ export default function AdminPanel() {
     customerEmail: '',
     customerPhone: '',
     total: '',
-    status: 'paid'
+    status: 'paid',
+    paymentMethod: 'other',
+    paymentReference: '',
+    shippingAddress: '',
+    shippingCity: '',
+    shippingCost: ''
   });
   const [manualItems, setManualItems] = useState([
     { productId: '', quantity: 1, color: '' }
@@ -934,7 +939,12 @@ export default function AdminPanel() {
       customerEmail: '',
       customerPhone: '',
       total: '',
-      status: 'paid'
+      status: 'paid',
+      paymentMethod: 'other',
+      paymentReference: '',
+      shippingAddress: '',
+      shippingCity: '',
+      shippingCost: ''
     });
     setManualItems([{ productId: '', quantity: 1, color: '' }]);
     setShowManualOrderModal(true);
@@ -994,6 +1004,13 @@ export default function AdminPanel() {
         alert('Total inválido');
         return;
       }
+      const shippingCostNumber = manualOrderData.shippingCost !== ''
+        ? Number(String(manualOrderData.shippingCost || '').replace(',', '.'))
+        : null;
+      if (manualOrderData.shippingCost !== '' && (!Number.isFinite(shippingCostNumber) || shippingCostNumber < 0)) {
+        alert('Costo de envío inválido');
+        return;
+      }
       if (itemsPayload.length === 0) {
         alert('Agrega al menos 1 producto');
         return;
@@ -1006,6 +1023,11 @@ export default function AdminPanel() {
         customerPhone: (manualOrderData.customerPhone || '').trim() || null,
         total: totalNumber,
         status: manualOrderData.status,
+        paymentMethod: manualOrderData.paymentMethod || null,
+        paymentReference: (manualOrderData.paymentReference || '').trim() || null,
+        shippingAddress: (manualOrderData.shippingAddress || '').trim() || null,
+        shippingCity: (manualOrderData.shippingCity || '').trim() || null,
+        shippingCost: Number.isFinite(shippingCostNumber) ? shippingCostNumber : null,
         items: itemsPayload
       });
 
