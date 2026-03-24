@@ -1016,10 +1016,14 @@ export default function AdminPanel() {
         return;
       }
 
+      const manualCustomerEmail = (manualOrderData.customerEmail || '').trim();
+
       await orderService.createManual({
         sourceChannel: manualOrderData.sourceChannel,
         customerName: (manualOrderData.customerName || '').trim() || null,
-        customerEmail: (manualOrderData.customerEmail || '').trim() || null,
+        // Importante: si el campo viene vacío, enviamos cadena vacía en lugar de null
+        // para evitar que el backend lo reemplace automáticamente con el correo del admin.
+        customerEmail: manualCustomerEmail !== '' ? manualCustomerEmail : '',
         customerPhone: (manualOrderData.customerPhone || '').trim() || null,
         total: totalNumber,
         status: manualOrderData.status,
