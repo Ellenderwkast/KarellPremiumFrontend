@@ -3292,6 +3292,74 @@ export default function AdminPanel() {
                   </div>
                 </div>
 
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Método de pago</label>
+                    <select
+                      className="filter-select"
+                      value={manualOrderData.paymentMethod}
+                      onChange={(e) => setManualOrderData(prev => ({ ...prev, paymentMethod: e.target.value }))}
+                      disabled={creatingManualOrder}
+                    >
+                      <option value="wompi">Wompi</option>
+                      <option value="card">Tarjeta</option>
+                      <option value="pse">PSE</option>
+                      <option value="nequi">Nequi</option>
+                      <option value="daviplata">Daviplata</option>
+                      <option value="bancolombia_transfer">Transferencia Bancolombia</option>
+                      <option value="corresponsales_bancolombia">Corresponsales Bancolombia</option>
+                      <option value="cash">Efectivo</option>
+                      <option value="cash_delivery">Contra entrega</option>
+                      <option value="other">Otro</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Referencia</label>
+                    <input
+                      type="text"
+                      value={manualOrderData.paymentReference}
+                      onChange={(e) => setManualOrderData(prev => ({ ...prev, paymentReference: e.target.value }))}
+                      disabled={creatingManualOrder}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Ciudad</label>
+                    <input
+                      type="text"
+                      value={manualOrderData.shippingCity}
+                      onChange={(e) => setManualOrderData(prev => ({ ...prev, shippingCity: e.target.value }))}
+                      disabled={creatingManualOrder}
+                      placeholder="Ciudad de entrega (opcional)"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Costo de envío</label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={manualOrderData.shippingCost}
+                      onChange={(e) => setManualOrderData(prev => ({ ...prev, shippingCost: e.target.value }))}
+                      disabled={creatingManualOrder}
+                      placeholder="Ej: 12000"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>Dirección</label>
+                  <textarea
+                    value={manualOrderData.shippingAddress}
+                    onChange={(e) => setManualOrderData(prev => ({ ...prev, shippingAddress: e.target.value }))}
+                    disabled={creatingManualOrder}
+                    rows={3}
+                    placeholder="Dirección de entrega (opcional)"
+                  />
+                </div>
+
                 <div className="form-group" style={{ marginTop: '0.25rem' }}>
                   <label>Productos *</label>
                   <div className="table-container">
