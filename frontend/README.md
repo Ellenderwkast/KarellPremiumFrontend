@@ -18,8 +18,10 @@ npm install
 Copia `.env.example` a `.env` y configura las variables:
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:4000/api
 ```
+
+En producción, evita dejar `VITE_API_URL` apuntando a proveedores antiguos. Si migraste el backend, actualiza también la variable del proyecto desplegado y vuelve a generar el build.
 
 ## Scripts Disponibles
 

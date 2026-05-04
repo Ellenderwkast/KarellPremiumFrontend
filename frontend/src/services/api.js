@@ -3,6 +3,38 @@ import { useAuthStore } from '../store/authStore';
 
 const isDev = import.meta.env.DEV;
 
+const PRODUCTION_HOSTS = new Set(['karellpremium.com.co', 'www.karellpremium.com.co']);
+
+const normalizeApiUrl = value => {
+  const rawValue = String(value || '').trim();
+  if (!rawValue) return '';
+
+  if (rawValue.startsWith('/')) {
+    return rawValue.replace(/\/+$/, '') || '/api';
+  }
+
+  const withoutTrailingSlash = rawValue.replace(/\/+$/, '');
+  return /\/api$/i.test(withoutTrailingSlash) ? withoutTrailingSlash : `${withoutTrailingSlash}/api`;
+};
+
+const getRuntimeApiOverride = () => {
+  if (typeof window === 'undefined') return '';
+
+  try {
+    const localOverride = window.localStorage?.getItem('NGROK_API_URL');
+    if (localOverride) {
+      return normalizeApiUrl(localOverride);
+    }
+  } catch (error) {
+    if (isDev) console.warn('No se pudo leer NGROK_API_URL desde localStorage:', error);
+  }
+
+  const runtimeEnvUrl = window.__ENV__?.VITE_API_URL;
+  return normalizeApiUrl(runtimeEnvUrl);
+};
+
+const getApiBaseUrl = () => normalizeApiUrl(API_URL).replace(/\/api$/i, '');
+
 // Detecta la URL del API dinámicamente en tiempo de ejecución
 const getApiUrl = () => {
   if (isDev) {
@@ -14,19 +46,38 @@ const getApiUrl = () => {
     });
   }
 
-  // 1) Si hay variable de entorno explícita, usarla
-  if (import.meta.env.VITE_API_URL) {
+  const runtimeApiOverride = getRuntimeApiOverride();
+  if (runtimeApiOverride) {
     if (isDev) {
-      console.log('ℹ️ API URL desde .env:', import.meta.env.VITE_API_URL);
+      console.log('ℹ️ API URL desde runtime override:', runtimeApiOverride);
     }
-    return import.meta.env.VITE_API_URL;
+    return runtimeApiOverride;
   }
 
-  // 2) Detección dinámica
   const hostname = window.location.hostname;
   const port = window.location.port;
   const protocol = window.location.protocol;
-  
+  const normalizedEnvApiUrl = normalizeApiUrl(import.meta.env.VITE_API_URL);
+
+  if (PRODUCTION_HOSTS.has(hostname)) {
+    if (normalizedEnvApiUrl && !/onrender\.com/i.test(normalizedEnvApiUrl)) {
+      if (isDev) console.log('ℹ️ API URL de producción desde .env válida:', normalizedEnvApiUrl);
+      return normalizedEnvApiUrl;
+    }
+    const url = `${window.location.origin}/api`;
+    if (isDev) console.log('ℹ️ API URL (same-origin producción fallback):', url);
+    return url;
+  }
+
+  // 1) Si hay variable de entorno explícita, usarla
+  if (normalizedEnvApiUrl) {
+    if (isDev) {
+      console.log('ℹ️ API URL desde .env:', normalizedEnvApiUrl);
+    }
+    return normalizedEnvApiUrl;
+  }
+
+  // 2) Detección dinámica
   // Si estamos en localhost o 127.0.0.1, siempre usar puerto 4000
   if (hostname === 'localhost' || hostname === '127.0.0.1') {
     const url = `${protocol}//localhost:4000/api`;
@@ -106,13 +157,14 @@ export const getStaticUrl = path => {
       const parsed = new URL(p);
       const pathname = parsed.pathname || '';
       if (pathname.startsWith('/uploads') || pathname.startsWith('/images')) {
-        if (import.meta.env.VITE_API_URL) {
-          const base = import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '');
+        const apiBaseUrl = getApiBaseUrl();
+        if (apiBaseUrl) {
+          const base = apiBaseUrl;
           const fullUrl = `${base}${pathname}`;
           if (isDev) console.log(`getStaticUrl(absolute-normalized) '${p}' => '${fullUrl}'`);
           return fullUrl;
         }
-        // si no hay VITE_API_URL, devolver la ruta tal cual
+        // si no hay URL base del API, devolver la ruta tal cual
         return p;
       }
     } catch (e) {
@@ -132,14 +184,14 @@ export const getStaticUrl = path => {
     //     pero conservando compatibilidad con escenarios LAN antiguos.
     if (p.startsWith('/images/')) {
       try {
-        const envApiUrl = import.meta.env.VITE_API_URL;
+        const resolvedApiUrl = normalizeApiUrl(API_URL);
 
-        if (envApiUrl) {
-          // Si tenemos VITE_API_URL, decidimos según el host:
+        if (resolvedApiUrl) {
+          // Si tenemos una URL efectiva del API, decidimos según el host:
           // - Si API y frontend comparten origen → usar ese origen.
           // - Si son distintos (ej: Vercel + Render) → servir desde el origen del frontend.
           try {
-            const apiUrl = new URL(envApiUrl);
+            const apiUrl = new URL(resolvedApiUrl, window.location.origin);
             const apiOrigin = apiUrl.origin;
             if (apiOrigin === origin) {
               const fullUrl = `${apiOrigin}${p}`;
@@ -156,7 +208,7 @@ export const getStaticUrl = path => {
           }
         }
 
-        // Sin VITE_API_URL: mantener el comportamiento previo
+        // Sin URL efectiva del API: mantener el comportamiento previo
         const hostname = window.location.hostname;
         // Cuando el navegador está en 'localhost' preferimos servir desde Vite
         if (hostname === 'localhost' || hostname === '127.0.0.1') {
@@ -182,7 +234,7 @@ export const getStaticUrl = path => {
     }
 
     // 3.b) /uploads/... y otras rutas absolutas → siempre desde el backend
-    const baseUrl = API_URL.replace('/api', ''); // Quitar /api del final
+    const baseUrl = getApiBaseUrl();
     const fullUrl = `${baseUrl}${p}`;
     if (isDev) console.log(`getStaticUrl('${p}') => '${fullUrl}'`);
     return fullUrl;
@@ -205,7 +257,7 @@ export const getStaticUrl = path => {
   // 5) Otras rutas relativas: asumir que apuntan al backend (por ejemplo
   //    "avatars/..", "profile-images/..."), construyendo la URL con la
   //    base de API_URL sin el sufijo "/api".
-  const baseUrl = API_URL.replace('/api', '');
+  const baseUrl = getApiBaseUrl();
   const normalizedRelative = cleaned.replace(/^\/+/, '');
   const fullUrl = `${baseUrl}/${normalizedRelative}`;
   if (isDev) console.log(`getStaticUrl(relative-backend) '${p}' => '${fullUrl}'`);
