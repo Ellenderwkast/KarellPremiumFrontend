@@ -85,6 +85,9 @@ function Footer() {
               </span>
             </a>
           </p>
+          <p style={{ marginTop: '6px', fontSize: '13px' }} itemProp="author" itemScope itemType="http://schema.org/Person">
+            Karell Premium es un producto/servicio operado por <span itemProp="name">Castillo Rincon Ellender</span>
+          </p>
         </div>
       </div>
     </footer>
