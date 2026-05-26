@@ -227,7 +227,6 @@ textarea[name="description"], .product-description-textarea {
 .dash-kpi-values {
   display: flex;
   align-items: center;
-  color:#155724;
   justify-content: space-between;
   margin-top: 8px;
   gap: 12px;
@@ -261,6 +260,18 @@ textarea[name="description"], .product-description-textarea {
   color: var(--gray-900);
   flex-shrink: 0;
 }
+
+.dash-kpi-card--primary .dash-kpi-value,
+.dash-kpi-card--success .dash-kpi-value,
+.dash-kpi-card--info .dash-kpi-value {
+  color: #10b981;
+}
+
+.dash-kpi-card--secondary .dash-kpi-value,
+.dash-kpi-card--warning .dash-kpi-value {
+  color: #10b981;
+}
+
 
 .dash-chart-card,
 .dash-status-card,
