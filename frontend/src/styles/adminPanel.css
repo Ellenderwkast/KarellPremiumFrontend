@@ -261,14 +261,7 @@ textarea[name="description"], .product-description-textarea {
   flex-shrink: 0;
 }
 
-.dash-kpi-card--primary .dash-kpi-value,
-.dash-kpi-card--success .dash-kpi-value,
-.dash-kpi-card--info .dash-kpi-value {
-  color: #10b981;
-}
-
-.dash-kpi-card--secondary .dash-kpi-value,
-.dash-kpi-card--warning .dash-kpi-value {
+.dash-kpi-grid > .dash-kpi-card:nth-child(-n+3) .dash-kpi-meta {
   color: #10b981;
 }
 
