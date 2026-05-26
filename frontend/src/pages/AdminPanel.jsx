@@ -1498,9 +1498,11 @@ export default function AdminPanel() {
                       <span className="dash-kpi-icon" aria-hidden="true"><TrendingUp /></span>
                       Ventas hoy
                     </div>
-                    <div className="dash-kpi-value">{dashboard.salesToday}</div>
-                    <div className="dash-kpi-meta">
-                      ${Number(dashboard.salesTodayRevenue).toLocaleString('es-CO')}
+                    <div className="dash-kpi-values">
+                      <div className="dash-kpi-value">{dashboard.salesToday}</div>
+                      <div className="dash-kpi-meta">
+                        ${Number(dashboard.salesTodayRevenue).toLocaleString('es-CO')}
+                      </div>
                     </div>
                   </div>
 
@@ -1509,9 +1511,11 @@ export default function AdminPanel() {
                       <span className="dash-kpi-icon" aria-hidden="true"><TrendingUp /></span>
                       Ventas semana
                     </div>
-                    <div className="dash-kpi-value">{dashboard.salesWeek}</div>
-                    <div className="dash-kpi-meta">
-                      ${Number(dashboard.salesWeekRevenue).toLocaleString('es-CO')}
+                    <div className="dash-kpi-values">
+                      <div className="dash-kpi-value">{dashboard.salesWeek}</div>
+                      <div className="dash-kpi-meta">
+                        ${Number(dashboard.salesWeekRevenue).toLocaleString('es-CO')}
+                      </div>
                     </div>
                   </div>
 
@@ -1520,9 +1524,11 @@ export default function AdminPanel() {
                       <span className="dash-kpi-icon" aria-hidden="true"><TrendingUp /></span>
                       Ventas mes
                     </div>
-                    <div className="dash-kpi-value">{dashboard.salesMonth}</div>
-                    <div className="dash-kpi-meta">
-                      ${Number(dashboard.salesMonthRevenue).toLocaleString('es-CO')}
+                    <div className="dash-kpi-values">
+                      <div className="dash-kpi-value">{dashboard.salesMonth}</div>
+                      <div className="dash-kpi-meta">
+                        ${Number(dashboard.salesMonthRevenue).toLocaleString('es-CO')}
+                      </div>
                     </div>
                   </div>
 
@@ -1531,8 +1537,10 @@ export default function AdminPanel() {
                       <span className="dash-kpi-icon" aria-hidden="true"><DollarSign /></span>
                       Ingresos productos
                     </div>
-                    <div className="dash-kpi-value">
-                      ${Number(dashboard.productRevenue).toLocaleString('es-CO')}
+                    <div className="dash-kpi-values">
+                      <div className="dash-kpi-value">
+                        ${Number(dashboard.productRevenue).toLocaleString('es-CO')}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1543,9 +1551,11 @@ export default function AdminPanel() {
                       <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
                       Envíos hoy
                     </div>
-                    <div className="dash-kpi-value">{dashboard.shippingToday}</div>
-                    <div className="dash-kpi-meta">
-                      ${Number(dashboard.shippingTodayRevenue).toLocaleString('es-CO')}
+                    <div className="dash-kpi-values">
+                      <div className="dash-kpi-value">{dashboard.shippingToday}</div>
+                      <div className="dash-kpi-meta">
+                        ${Number(dashboard.shippingTodayRevenue).toLocaleString('es-CO')}
+                      </div>
                     </div>
                   </div>
 
@@ -1554,9 +1564,11 @@ export default function AdminPanel() {
                       <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
                       Envíos semana
                     </div>
-                    <div className="dash-kpi-value">{dashboard.shippingWeek}</div>
-                    <div className="dash-kpi-meta">
-                      ${Number(dashboard.shippingWeekRevenue).toLocaleString('es-CO')}
+                    <div className="dash-kpi-values">
+                      <div className="dash-kpi-value">{dashboard.shippingWeek}</div>
+                      <div className="dash-kpi-meta">
+                        ${Number(dashboard.shippingWeekRevenue).toLocaleString('es-CO')}
+                      </div>
                     </div>
                   </div>
 
@@ -1565,9 +1577,11 @@ export default function AdminPanel() {
                       <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
                       Envíos mes
                     </div>
-                    <div className="dash-kpi-value">{dashboard.shippingMonth}</div>
-                    <div className="dash-kpi-meta">
-                      ${Number(dashboard.shippingMonthRevenue).toLocaleString('es-CO')}
+                    <div className="dash-kpi-values">
+                      <div className="dash-kpi-value">{dashboard.shippingMonth}</div>
+                      <div className="dash-kpi-meta">
+                        ${Number(dashboard.shippingMonthRevenue).toLocaleString('es-CO')}
+                      </div>
                     </div>
                   </div>
 
@@ -1576,8 +1590,10 @@ export default function AdminPanel() {
                       <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
                       Ingresos envíos
                     </div>
-                    <div className="dash-kpi-value">
-                      ${Number(dashboard.shippingRevenue).toLocaleString('es-CO')}
+                    <div className="dash-kpi-values">
+                      <div className="dash-kpi-value">
+                        ${Number(dashboard.shippingRevenue).toLocaleString('es-CO')}
+                      </div>
                     </div>
                   </div>
                 </div>
