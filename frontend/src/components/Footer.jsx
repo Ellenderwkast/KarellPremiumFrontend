@@ -81,7 +81,7 @@ function Footer() {
             <a href="mailto:contactokarellpremium@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>
               <span className="footer-email">
                 <Mail className="footer-email-icon" aria-hidden="true" />
-                contactokarellpremium@gmail.com
+                callende6666@gmail.com
               </span>
             </a>
           </p>
