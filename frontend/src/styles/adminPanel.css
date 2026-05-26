@@ -227,6 +227,7 @@ textarea[name="description"], .product-description-textarea {
 .dash-kpi-values {
   display: flex;
   align-items: center;
+  color:#155724;
   justify-content: space-between;
   margin-top: 8px;
   gap: 12px;
