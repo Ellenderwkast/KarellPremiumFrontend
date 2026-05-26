@@ -1526,6 +1526,18 @@ export default function AdminPanel() {
                     </div>
                   </div>
 
+                  <div className="dash-kpi-card dash-kpi-card--featured">
+                    <div className="dash-kpi-label">
+                      <span className="dash-kpi-icon" aria-hidden="true"><DollarSign /></span>
+                      Ingresos productos
+                    </div>
+                    <div className="dash-kpi-value">
+                      ${Number(dashboard.productRevenue).toLocaleString('es-CO')}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="dash-kpi-grid">
                   <div className="dash-kpi-card dash-kpi-card--secondary">
                     <div className="dash-kpi-label">
                       <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
@@ -1548,7 +1560,7 @@ export default function AdminPanel() {
                     </div>
                   </div>
 
-                  <div className="dash-kpi-card dash-kpi-card--featured">
+                  <div className="dash-kpi-card dash-kpi-card--info">
                     <div className="dash-kpi-label">
                       <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
                       Envíos mes
@@ -1556,18 +1568,6 @@ export default function AdminPanel() {
                     <div className="dash-kpi-value">{dashboard.shippingMonth}</div>
                     <div className="dash-kpi-meta">
                       ${Number(dashboard.shippingMonthRevenue).toLocaleString('es-CO')}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="dash-kpi-stack">
-                  <div className="dash-kpi-card dash-kpi-card--featured">
-                    <div className="dash-kpi-label">
-                      <span className="dash-kpi-icon" aria-hidden="true"><DollarSign /></span>
-                      Ingresos productos
-                    </div>
-                    <div className="dash-kpi-value">
-                      ${Number(dashboard.productRevenue).toLocaleString('es-CO')}
                     </div>
                   </div>
 
