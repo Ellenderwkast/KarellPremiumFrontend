@@ -1237,15 +1237,31 @@ export default function AdminPanel() {
     const tomorrowStart = new Date(startOfToday);
     tomorrowStart.setDate(tomorrowStart.getDate() + 1);
 
-    const salesToday = nonCancelledOrders.filter(o => isInRange(o.createdAt, startOfToday, tomorrowStart)).length;
-    const salesWeek = nonCancelledOrders.filter(o => {
+    const ordersInRange = (start, end) => nonCancelledOrders.filter(o => isInRange(o.createdAt, start, end));
+    const todayOrders = ordersInRange(startOfToday, tomorrowStart);
+    const weekOrders = nonCancelledOrders.filter(o => {
       const d = safeDate(o.createdAt);
       return d && d >= weekStart;
-    }).length;
-    const salesMonth = nonCancelledOrders.filter(o => {
+    });
+    const monthOrders = nonCancelledOrders.filter(o => {
       const d = safeDate(o.createdAt);
       return d && d >= monthStart;
-    }).length;
+    });
+
+    const salesToday = todayOrders.length;
+    const salesWeek = weekOrders.length;
+    const salesMonth = monthOrders.length;
+
+    const salesTodayRevenue = todayOrders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
+    const salesWeekRevenue = weekOrders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
+    const salesMonthRevenue = monthOrders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
+
+    const shippingToday = todayOrders.length;
+    const shippingWeek = weekOrders.length;
+    const shippingMonth = monthOrders.length;
+    const shippingTodayRevenue = todayOrders.reduce((sum, o) => sum + (Number(o.shippingCost) || 0), 0);
+    const shippingWeekRevenue = weekOrders.reduce((sum, o) => sum + (Number(o.shippingCost) || 0), 0);
+    const shippingMonthRevenue = monthOrders.reduce((sum, o) => sum + (Number(o.shippingCost) || 0), 0);
 
     // Ingreso solo por productos (sin envío)
     const productRevenue = nonCancelledOrders.reduce((sum, o) => sum + (Number(o.subtotal) || 0), 0);
@@ -1327,6 +1343,15 @@ export default function AdminPanel() {
       salesToday,
       salesWeek,
       salesMonth,
+      salesTodayRevenue,
+      salesWeekRevenue,
+      salesMonthRevenue,
+      shippingToday,
+      shippingWeek,
+      shippingMonth,
+      shippingTodayRevenue,
+      shippingWeekRevenue,
+      shippingMonthRevenue,
       productRevenue,
       shippingRevenue,
       totalRevenue,
@@ -1474,6 +1499,9 @@ export default function AdminPanel() {
                       Ventas hoy
                     </div>
                     <div className="dash-kpi-value">{dashboard.salesToday}</div>
+                    <div className="dash-kpi-meta">
+                      ${Number(dashboard.salesTodayRevenue).toLocaleString('es-CO')}
+                    </div>
                   </div>
 
                   <div className="dash-kpi-card dash-kpi-card--success">
@@ -1482,6 +1510,9 @@ export default function AdminPanel() {
                       Ventas semana
                     </div>
                     <div className="dash-kpi-value">{dashboard.salesWeek}</div>
+                    <div className="dash-kpi-meta">
+                      ${Number(dashboard.salesWeekRevenue).toLocaleString('es-CO')}
+                    </div>
                   </div>
 
                   <div className="dash-kpi-card dash-kpi-card--info">
@@ -1490,8 +1521,46 @@ export default function AdminPanel() {
                       Ventas mes
                     </div>
                     <div className="dash-kpi-value">{dashboard.salesMonth}</div>
+                    <div className="dash-kpi-meta">
+                      ${Number(dashboard.salesMonthRevenue).toLocaleString('es-CO')}
+                    </div>
                   </div>
 
+                  <div className="dash-kpi-card dash-kpi-card--secondary">
+                    <div className="dash-kpi-label">
+                      <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
+                      Envíos hoy
+                    </div>
+                    <div className="dash-kpi-value">{dashboard.shippingToday}</div>
+                    <div className="dash-kpi-meta">
+                      ${Number(dashboard.shippingTodayRevenue).toLocaleString('es-CO')}
+                    </div>
+                  </div>
+
+                  <div className="dash-kpi-card dash-kpi-card--warning">
+                    <div className="dash-kpi-label">
+                      <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
+                      Envíos semana
+                    </div>
+                    <div className="dash-kpi-value">{dashboard.shippingWeek}</div>
+                    <div className="dash-kpi-meta">
+                      ${Number(dashboard.shippingWeekRevenue).toLocaleString('es-CO')}
+                    </div>
+                  </div>
+
+                  <div className="dash-kpi-card dash-kpi-card--featured">
+                    <div className="dash-kpi-label">
+                      <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
+                      Envíos mes
+                    </div>
+                    <div className="dash-kpi-value">{dashboard.shippingMonth}</div>
+                    <div className="dash-kpi-meta">
+                      ${Number(dashboard.shippingMonthRevenue).toLocaleString('es-CO')}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="dash-kpi-stack">
                   <div className="dash-kpi-card dash-kpi-card--featured">
                     <div className="dash-kpi-label">
                       <span className="dash-kpi-icon" aria-hidden="true"><DollarSign /></span>
@@ -1501,6 +1570,7 @@ export default function AdminPanel() {
                       ${Number(dashboard.productRevenue).toLocaleString('es-CO')}
                     </div>
                   </div>
+
                   <div className="dash-kpi-card dash-kpi-card--secondary">
                     <div className="dash-kpi-label">
                       <span className="dash-kpi-icon" aria-hidden="true"><Truck /></span>
