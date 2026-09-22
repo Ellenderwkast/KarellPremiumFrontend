@@ -1261,8 +1261,21 @@ export default function AdminPanel() {
     doc.text(`Pedido: #${order.id}`, margin, 182);
 
     const clientX = pageWidth - margin - 220;
+    const paymentMethodMap = {
+      wompi: 'Wompi',
+      card: 'Tarjeta',
+      pse: 'PSE',
+      nequi: 'Nequi',
+      daviplata: 'Daviplata',
+      cash: 'Efectivo',
+      cash_delivery: 'Contra entrega',
+      bancolombia_transfer: 'Transferencia Bancolombia',
+      corresponsales_bancolombia: 'Corresponsales Bancolombia',
+      other: 'Otro'
+    };
+
     doc.setDrawColor(214, 219, 226);
-    doc.roundedRect(clientX, 128, 220, 98, 8, 8, 'S');
+    doc.roundedRect(clientX, 128, 220, 122, 8, 8, 'S');
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(12);
     doc.text('Datos del cliente', clientX + 16, 150);
@@ -1273,13 +1286,15 @@ export default function AdminPanel() {
     const customerPhone = order.customerPhone || 'Sin teléfono';
     const customerAddress = order.shippingAddress || 'Sin dirección';
     const customerCity = order.shippingCity || 'Sin ciudad';
+    const paymentMethodLabel = paymentMethodMap[(order.paymentMethod || '').toString().trim().toLowerCase()] || (order.paymentMethod || 'No registrado');
 
     const customerLines = [
       `Nombre: ${customerName}`,
       `Email: ${customerEmail}`,
       `Teléfono: ${customerPhone}`,
       `Dirección: ${customerAddress}`,
-      `Ciudad: ${customerCity}`
+      `Ciudad: ${customerCity}`,
+      `Medio de pago: ${paymentMethodLabel}`
     ];
 
     customerLines.forEach((line, lineIndex) => {
@@ -1303,12 +1318,14 @@ export default function AdminPanel() {
 
     items.forEach((item, index) => {
       const title = item.title || item.productTitle || `Producto ${index + 1}`;
+      const variantColor = item.color || item.variantColor || item.selectedColor || item.productColor || '';
+      const displayTitle = variantColor ? `${title} - Color: ${variantColor}` : title;
       const quantity = Number(item.quantity || 1);
       const unitPrice = Number(item.price || 0);
       const lineTotal = unitPrice * quantity;
 
-      const lines = doc.splitTextToSize(title, 170);
-      const firstLine = lines[0] || title;
+      const lines = doc.splitTextToSize(displayTitle, 170);
+      const firstLine = lines[0] || displayTitle;
       doc.text(firstLine, margin + 12, y + 12);
       if (lines.length > 1) {
         doc.text(lines.slice(1).join(' '), margin + 12, y + 24);
