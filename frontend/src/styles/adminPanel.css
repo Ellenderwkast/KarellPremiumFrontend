@@ -1710,6 +1710,69 @@ content-header.orders-header .order-filters .filter-select {
   background: #bfdbfe;
 }
 
+.btn-sm.btn-pdf {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.btn-sm.btn-pdf:hover {
+  background: #fecaca;
+}
+
+.order-modal-pdf-button {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  width: clamp(42px, 4vw, 54px);
+  height: clamp(42px, 4vw, 54px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%);
+  color: #991b1b;
+  box-shadow: 0 10px 24px rgba(185, 28, 28, 0.18);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 2;
+}
+
+.order-modal-pdf-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(185, 28, 28, 0.22);
+}
+
+.order-modal-pdf-button svg {
+  width: clamp(18px, 2vw, 22px);
+  height: clamp(18px, 2vw, 22px);
+}
+
+@media (max-width: 640px) {
+  .action-buttons {
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-sm {
+    padding: 0.45rem 0.6rem;
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .btn-sm svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .order-modal-pdf-button {
+    left: 14px;
+    bottom: 14px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
 /* Select de estado */
 .status-control {
   position: relative;

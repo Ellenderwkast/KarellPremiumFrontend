@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { jsPDF } from 'jspdf';
 import DispatchHistory from '../components/DispatchHistory.jsx';
 // Estado para controlar si el campo de email fue tocado en la orden manual
 import { validateEmail } from '../utils/validation';
@@ -1206,6 +1207,153 @@ export default function AdminPanel() {
   const openOrderModal = (order) => {
     setSelectedOrder(order);
     setShowOrderModal(true);
+  };
+
+  const formatCurrency = (value) =>
+    new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(Number(value || 0));
+
+  const buildInvoiceNumber = (orderId) => `FAC-${String(orderId ?? '0000').padStart(6, '0')}`;
+
+  const downloadOrderPdf = (order) => {
+    if (!order) return;
+
+    const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 40;
+    const invoiceNumber = buildInvoiceNumber(order.id);
+    const items = Array.isArray(order.items) ? order.items : [];
+    const subtotal = Number(order.subtotal || 0);
+    const shippingCost = Number(order.shippingCost || 0);
+    const total = Number(order.total || subtotal + shippingCost);
+
+    doc.setFillColor(18, 38, 63);
+    doc.rect(0, 0, pageWidth, 96, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text('Karell Premium', margin, 38);
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text('NIT: 1087204978 - 1', margin, 58);
+    doc.text('contactokarellpremium@gmail.com', margin, 74);
+
+    doc.setTextColor(33, 37, 41);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(22);
+    doc.text('Factura de venta', margin, 128);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(11);
+    doc.text(`Número: ${invoiceNumber}`, margin, 150);
+    doc.text(`Fecha: ${new Date(order.createdAt || Date.now()).toLocaleDateString('es-CO', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    })}`, margin, 166);
+    doc.text(`Pedido: #${order.id}`, margin, 182);
+
+    const clientX = pageWidth - margin - 220;
+    doc.setDrawColor(214, 219, 226);
+    doc.roundedRect(clientX, 128, 220, 98, 8, 8, 'S');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.text('Datos del cliente', clientX + 16, 150);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10.5);
+    const customerName = order.customerName || 'Cliente no registrado';
+    const customerEmail = order.customerEmail || 'Sin correo';
+    const customerPhone = order.customerPhone || 'Sin teléfono';
+    const customerAddress = order.shippingAddress || 'Sin dirección';
+    const customerCity = order.shippingCity || 'Sin ciudad';
+
+    const customerLines = [
+      `Nombre: ${customerName}`,
+      `Email: ${customerEmail}`,
+      `Teléfono: ${customerPhone}`,
+      `Dirección: ${customerAddress}`,
+      `Ciudad: ${customerCity}`
+    ];
+
+    customerLines.forEach((line, lineIndex) => {
+      doc.text(line, clientX + 16, 168 + lineIndex * 14);
+    });
+
+    let y = 250;
+    doc.setFillColor(245, 247, 250);
+    doc.rect(margin, y, pageWidth - margin * 2, 24, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(33, 37, 41);
+    doc.text('Producto', margin + 12, y + 16);
+    doc.text('Cant.', margin + 300, y + 16);
+    doc.text('Precio', margin + 360, y + 16);
+    doc.text('Subtotal', margin + 455, y + 16);
+
+    y += 36;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9.5);
+
+    items.forEach((item, index) => {
+      const title = item.title || item.productTitle || `Producto ${index + 1}`;
+      const quantity = Number(item.quantity || 1);
+      const unitPrice = Number(item.price || 0);
+      const lineTotal = unitPrice * quantity;
+
+      const lines = doc.splitTextToSize(title, 170);
+      const firstLine = lines[0] || title;
+      doc.text(firstLine, margin + 12, y + 12);
+      if (lines.length > 1) {
+        doc.text(lines.slice(1).join(' '), margin + 12, y + 24);
+      }
+
+      doc.text(String(quantity), margin + 310, y + 12);
+      doc.text(formatCurrency(unitPrice), margin + 360, y + 12);
+      doc.text(formatCurrency(lineTotal), margin + 455, y + 12);
+      y += lines.length > 1 ? 26 : 20;
+
+      if (y > pageHeight - 120) {
+        doc.addPage();
+        y = 60;
+      }
+    });
+
+    y += 18;
+    doc.setDrawColor(214, 219, 226);
+    doc.line(margin, y, pageWidth - margin, y);
+
+    y += 28;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10.5);
+    doc.text('Subtotal', margin + 370, y);
+    doc.text(formatCurrency(subtotal), margin + 470, y, { align: 'right' });
+
+    y += 18;
+    doc.text('Envío', margin + 370, y);
+    doc.text(formatCurrency(shippingCost), margin + 470, y, { align: 'right' });
+
+    y += 22;
+    doc.setFillColor(18, 38, 63);
+    doc.roundedRect(margin + 320, y - 12, 210, 26, 6, 6, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(12);
+    doc.text('Total', margin + 336, y + 4);
+    doc.text(formatCurrency(total), margin + 520, y + 4, { align: 'right' });
+
+    doc.setTextColor(33, 37, 41);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.text('Gracias por elegir Karell Premium.', margin, pageHeight - 44);
+    doc.text('Factura generada desde el panel administrativo.', margin + 250, pageHeight - 44);
+
+    doc.save(`factura-${invoiceNumber}.pdf`);
   };
 
   // ========== DASHBOARD (KPIs) ==========
@@ -2739,6 +2887,17 @@ export default function AdminPanel() {
                             <td>
                               <div className="action-buttons">
                                 <button
+                                  className="btn-sm btn-pdf"
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    downloadOrderPdf(order);
+                                  }}
+                                  title="Descargar factura PDF"
+                                  aria-label="Descargar factura PDF"
+                                >
+                                  <FileText aria-hidden="true" />
+                                </button>
+                                <button
                                   className="btn-sm btn-view"
                                   onClick={() => openOrderModal(order)}
                                   title="Ver detalles"
@@ -3656,7 +3815,17 @@ export default function AdminPanel() {
             </div>
 
             {/* Content */}
-            <div style={{ padding: '30px' }}>
+            <div className="order-modal-body" style={{ padding: '30px', position: 'relative' }}>
+              <button
+                type="button"
+                className="order-modal-pdf-button"
+                onClick={() => downloadOrderPdf(selectedOrder)}
+                title="Descargar factura PDF"
+                aria-label="Descargar factura PDF"
+              >
+                <FileText aria-hidden="true" />
+              </button>
+
               {/* Estado Badge */}
               <div style={{ marginBottom: '24px' }}>
                 {(() => {
