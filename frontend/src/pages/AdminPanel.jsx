@@ -22,6 +22,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
+import PictureAsPdf from '@mui/icons-material/PictureAsPdf';
 import '../styles/productFormMui.css';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -2912,7 +2913,7 @@ export default function AdminPanel() {
                                   title="Descargar factura PDF"
                                   aria-label="Descargar factura PDF"
                                 >
-                                  <FileText aria-hidden="true" />
+                                  <PictureAsPdf aria-hidden="true" />
                                 </button>
                                 <button
                                   className="btn-sm btn-view"
@@ -3840,7 +3841,7 @@ export default function AdminPanel() {
                 title="Descargar factura PDF"
                 aria-label="Descargar factura PDF"
               >
-                <FileText aria-hidden="true" />
+                <PictureAsPdf aria-hidden="true" />
               </button>
 
               {/* Estado Badge */}

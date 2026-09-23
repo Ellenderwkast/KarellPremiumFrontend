@@ -1711,41 +1711,47 @@ content-header.orders-header .order-filters .filter-select {
 }
 
 .btn-sm.btn-pdf {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: transparent;
+  color: #d32f2f;
+  padding: 0;
+  min-width: 24px;
+  min-height: 24px;
+  border-radius: 0;
 }
 
 .btn-sm.btn-pdf:hover {
-  background: #fecaca;
+  background: transparent;
+  color: #a82020;
+  transform: scale(1.12);
 }
 
 .order-modal-pdf-button {
   position: absolute;
   left: 20px;
   bottom: 20px;
-  width: clamp(42px, 4vw, 54px);
-  height: clamp(42px, 4vw, 54px);
+  width: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%);
-  color: #991b1b;
-  box-shadow: 0 10px 24px rgba(185, 28, 28, 0.18);
+  border-radius: 0;
+  background: transparent;
+  color: #d32f2f;
+  padding: 0;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease;
   z-index: 2;
 }
 
 .order-modal-pdf-button:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 14px 28px rgba(185, 28, 28, 0.22);
+  transform: scale(1.12);
+  color: #a82020;
 }
 
 .order-modal-pdf-button svg {
-  width: clamp(18px, 2vw, 22px);
-  height: clamp(18px, 2vw, 22px);
+  width: 28px;
+  height: 28px;
 }
 
 @media (max-width: 640px) {
@@ -1768,8 +1774,13 @@ content-header.orders-header .order-filters .filter-select {
   .order-modal-pdf-button {
     left: 14px;
     bottom: 14px;
-    width: 42px;
-    height: 42px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .order-modal-pdf-button svg {
+    width: 26px;
+    height: 26px;
   }
 }
 
