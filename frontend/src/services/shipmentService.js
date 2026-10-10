@@ -17,5 +17,7 @@ export const shipmentService = {
   getGuidePdfUrl: (orderId) => `${api.defaults.baseURL}/shipments/admin/order/${orderId}/guide-pdf`,
   downloadGuidePdf: (orderId) => api.get(`/shipments/admin/order/${orderId}/guide-pdf`, { responseType: 'arraybuffer' }),
   // Anular guía (admin)
-  voidGuide: (orderId) => api.post(`/shipments/admin/order/${orderId}/void`)
+  voidGuide: (orderId) => api.post(`/shipments/admin/order/${orderId}/void`),
+  // Eliminar registros de envío en estados terminales o no procesados
+  delete: (orderId) => api.delete(`/shipments/admin/order/${orderId}`)
 };

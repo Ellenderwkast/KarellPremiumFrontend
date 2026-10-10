@@ -9,6 +9,7 @@ import { shippingStatusService } from '../services/shippingStatusService';
 
 export default function ShipmentGuideList({ guides, loading, error, onRefresh, onCreateGuide, onVoid, page, pageSize, total, onPageChange, onPageSizeChange, filter, onFilterChange, creatingGuideId }) {
   const [voidingId, setVoidingId] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
   const [statuses, setStatuses] = useState([]);
   // Estados internos del sistema
   const internalStatuses = [
@@ -64,6 +65,23 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
       alert('Error anulando guía: ' + (err?.response?.data?.message || err?.message || JSON.stringify(err)));
     } finally {
       setVoidingId(null);
+    }
+  };
+
+  const handleDelete = async (guide) => {
+    if (!guide?.orderId) return;
+    if (!confirm(`¿Eliminar el registro de envío de la orden ${guide.orderId}? Esta acción no se puede deshacer.`)) return;
+
+    try {
+      setDeletingId(guide.orderId);
+      await shipmentService.delete(guide.orderId);
+      if (onRefresh) await onRefresh();
+      alert('Registro de envío eliminado correctamente');
+    } catch (err) {
+      console.error('Error eliminando registro de envío', err);
+      alert('Error eliminando registro de envío: ' + (err?.response?.data?.message || err?.message || JSON.stringify(err)));
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -241,6 +259,7 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
                 {(() => {
                   const hasGuide = Boolean(g.guideNumber);
                   const isCancelled = g.status === 'cancelled';
+                  const isDeletable = ['cancelled', 'pending_guide', 'error'].includes(g.status);
                   const createDisabled = loading || creatingGuideId === g.orderId || !(!hasGuide && !isCancelled);
                   const voidDisabled = loading || voidingId === g.orderId || !hasGuide || isCancelled;
 
@@ -294,6 +313,18 @@ export default function ShipmentGuideList({ guides, loading, error, onRefresh, o
                         {voidingId === g.orderId ? <InlineSpinner size={14} color="#fff" /> : null}
                         Anular guía
                       </button>
+
+                      {isDeletable && (
+                        <button
+                          className="shipment-action-btn void"
+                          onClick={() => handleDelete(g)}
+                          disabled={loading || deletingId === g.orderId}
+                          title="Eliminar registro de envío"
+                          style={{ background: '#64748b' }}
+                        >
+                          {deletingId === g.orderId ? <><InlineSpinner size={14} color="#fff" /> Eliminando...</> : 'Eliminar'}
+                        </button>
+                      )}
                     </div>
                   );
                 })()}
