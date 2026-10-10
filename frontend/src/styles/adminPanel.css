@@ -682,6 +682,15 @@ textarea[name="description"], .product-description-textarea {
   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 59, 130, 246), 0.1);
 }
 
+.form-group input.admin-compact-date {
+  box-sizing: border-box;
+  max-width: 240px;
+  min-height: 42px;
+  padding: 0.6rem 0.75rem;
+  color: var(--gray-800);
+  background: #fff;
+}
+
 .form-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -2502,4 +2511,3 @@ content-header.orders-header .order-filters .filter-select {
 .admin-modal-actions { display: flex; gap: 8px; }
 .admin-modal-copy-btn { padding: 6px 10px; border-radius: 8px; background: #e5e7eb; border: none; cursor: pointer; }
 .admin-modal-close-btn { padding: 6px 10px; border-radius: 8px; background: #ef4444; border: none; color: #fff; cursor: pointer; }
-

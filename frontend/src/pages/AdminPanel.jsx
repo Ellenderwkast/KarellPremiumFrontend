@@ -68,6 +68,63 @@ import api, { getStaticUrl } from '../services/api';
 import '../styles/adminPanel.css';
 import SEO from '../components/SEO';
 
+const toColombiaDateInputValue = (value = new Date()) => {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Bogota',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(date);
+  const dateParts = Object.fromEntries(parts.map(({ type, value: partValue }) => [type, partValue]));
+  return `${dateParts.year}-${dateParts.month}-${dateParts.day}`;
+};
+
+const formatColombiaDate = (value, options = {}) => {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '-';
+  return new Intl.DateTimeFormat('es-CO', {
+    timeZone: 'America/Bogota',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    ...options
+  }).format(date);
+};
+
+const getSalesChannelLabel = (channel) => {
+  const normalizedChannel = (channel || 'web').toString().trim().toLowerCase();
+  const labels = {
+    web: 'Web',
+    whatsapp: 'WhatsApp',
+    marketplace: 'Marketplace',
+    mercadolibre: 'Mercado Libre',
+    presencial: 'Presencial',
+    instagram: 'Instagram',
+    tiktok: 'TikTok',
+    other: 'Otro'
+  };
+  return labels[normalizedChannel] || normalizedChannel.replace(/_/g, ' ');
+};
+
+const resolveInvoiceProductTitle = (item, index, products) => {
+  const candidates = [
+    item?.title,
+    item?.productTitle,
+    item?.productName,
+    item?.product?.title,
+    item?.name
+  ].map(title => (title || '').toString().trim()).filter(Boolean);
+  const descriptiveTitle = candidates.find(title => !/^producto\s*#?\s*\d+$/i.test(title));
+  if (descriptiveTitle) return descriptiveTitle;
+
+  const productId = item?.productId ?? item?.product_id ?? item?.id;
+  const catalogTitle = (Array.isArray(products) ? products : [])
+    .find(product => String(product?.id) === String(productId))?.title;
+  return (catalogTitle || candidates[0] || `Producto ${index + 1}`).toString().trim();
+};
+
 export default function AdminPanel() {
   // --- Paginación de pedidos ---
   // (debe ir después de declarar orders y ordersPage)
@@ -146,6 +203,7 @@ export default function AdminPanel() {
     paymentMethod: 'other',
     paymentReference: '',
     sourceChannel: 'web',
+    orderDate: toColombiaDateInputValue(),
     subtotal: '',
     total: ''
   });
@@ -895,7 +953,8 @@ export default function AdminPanel() {
     paymentReference: '',
     shippingAddress: '',
     shippingCity: '',
-    shippingCost: ''
+    shippingCost: '',
+    orderDate: toColombiaDateInputValue()
   });
   const [manualItems, setManualItems] = useState([
     { productId: '', quantity: 1, color: '' }
@@ -946,7 +1005,8 @@ export default function AdminPanel() {
       paymentReference: '',
       shippingAddress: '',
       shippingCity: '',
-      shippingCost: ''
+      shippingCost: '',
+      orderDate: toColombiaDateInputValue()
     });
     setManualItems([{ productId: '', quantity: 1, color: '' }]);
     setShowManualOrderModal(true);
@@ -1022,6 +1082,7 @@ export default function AdminPanel() {
 
       await orderService.createManual({
         sourceChannel: manualOrderData.sourceChannel,
+        orderDate: manualOrderData.orderDate,
         customerName: (manualOrderData.customerName || '').trim() || null,
         // Importante: si el campo viene vacío, enviamos cadena vacía en lugar de null
         // para evitar que el backend lo reemplace automáticamente con el correo del admin.
@@ -1075,6 +1136,7 @@ export default function AdminPanel() {
       paymentMethod: order?.paymentMethod || 'other',
       paymentReference: order?.paymentReference || '',
       sourceChannel: (order?.sourceChannel || 'web').toString(),
+      orderDate: toColombiaDateInputValue(order?.createdAt),
       subtotal: order?.subtotal != null ? String(order.subtotal) : '',
       total: order?.total != null ? String(order.total) : ''
     });
@@ -1146,6 +1208,7 @@ export default function AdminPanel() {
         paymentMethod: (editOrderData.paymentMethod || 'other').toString().trim(),
         paymentReference: (editOrderData.paymentReference || '').trim() || null,
         sourceChannel: channel,
+        orderDate: editOrderData.orderDate,
         items: itemsPayload
       };
 
@@ -1254,11 +1317,7 @@ export default function AdminPanel() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(11);
     doc.text(`Número: ${invoiceNumber}`, margin, 150);
-    doc.text(`Fecha: ${new Date(order.createdAt || Date.now()).toLocaleDateString('es-CO', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    })}`, margin, 166);
+    doc.text(`Fecha: ${formatColombiaDate(order.createdAt || Date.now())}`, margin, 166);
     doc.text(`Pedido: #${order.id}`, margin, 182);
 
     const clientX = pageWidth - margin - 220;
@@ -1318,9 +1377,9 @@ export default function AdminPanel() {
     doc.setFontSize(9.5);
 
     items.forEach((item, index) => {
-      const title = item.title || item.productTitle || `Producto ${index + 1}`;
+      const title = resolveInvoiceProductTitle(item, index, products);
       const variantColor = item.color || item.variantColor || item.selectedColor || item.productColor || '';
-      const displayTitle = variantColor ? `${title} - Color: ${variantColor}` : title;
+      const displayTitle = variantColor ? `${title} - Color ${variantColor}` : title;
       const quantity = Number(item.quantity || 1);
       const unitPrice = Number(item.price || 0);
       const lineTotal = unitPrice * quantity;
@@ -1444,6 +1503,7 @@ export default function AdminPanel() {
       { key: 'web', label: 'Web' },
       { key: 'whatsapp', label: 'WhatsApp' },
       { key: 'marketplace', label: 'Marketplace' },
+      { key: 'mercadolibre', label: 'Mercado Libre' },
       { key: 'presencial', label: 'Presencial' },
       { key: 'instagram', label: 'Instagram' },
       { key: 'tiktok', label: 'TikTok' },
@@ -2771,6 +2831,7 @@ export default function AdminPanel() {
                           <option value="web">Web</option>
                           <option value="whatsapp">WhatsApp</option>
                           <option value="marketplace">Marketplace</option>
+                          <option value="mercadolibre">Mercado Libre</option>
                           <option value="presencial">Presencial</option>
                           <option value="instagram">Instagram</option>
                           <option value="tiktok">TikTok</option>
@@ -2863,7 +2924,7 @@ export default function AdminPanel() {
                             </td>
                             <td>{order.customerName || 'N/A'}</td>
                             <td>{order.customerEmail || 'N/A'}</td>
-                            <td style={{ textTransform: 'capitalize' }}>{(order.sourceChannel || 'web').toString().replace('_', ' ')}</td>
+                            <td>{getSalesChannelLabel(order.sourceChannel)}</td>
                             <td className="admin-price">
                               ${Number(order.total).toLocaleString('es-CO')}
                             </td>
@@ -2901,7 +2962,7 @@ export default function AdminPanel() {
                               })()}
                             </td>
                             <td className="items-count">{order.items?.length || 0}</td>
-                            <td>{new Date(order.createdAt).toLocaleDateString('es-CO')}</td>
+                            <td>{formatColombiaDate(order.createdAt)}</td>
                             <td>
                               <div className="action-buttons">
                                 <button
@@ -3237,11 +3298,26 @@ export default function AdminPanel() {
                       <option value="web">Web</option>
                       <option value="whatsapp">WhatsApp</option>
                       <option value="marketplace">Marketplace</option>
+                      <option value="mercadolibre">Mercado Libre</option>
                       <option value="presencial">Presencial</option>
                       <option value="instagram">Instagram</option>
                       <option value="tiktok">TikTok</option>
                       <option value="other">Otro</option>
                     </select>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Fecha de la venta</label>
+                    <input
+                      className="admin-compact-date"
+                      type="date"
+                      value={editOrderData.orderDate}
+                      onChange={(e) => setEditOrderData(prev => ({ ...prev, orderDate: e.target.value }))}
+                      disabled={savingOrderEdit}
+                      required
+                    />
                   </div>
                 </div>
 
@@ -3487,6 +3563,7 @@ export default function AdminPanel() {
                     >
                       <option value="whatsapp">WhatsApp</option>
                       <option value="marketplace">Marketplace</option>
+                      <option value="mercadolibre">Mercado Libre</option>
                       <option value="presencial">Presencial</option>
                       <option value="instagram">Instagram</option>
                       <option value="tiktok">TikTok</option>
@@ -3506,6 +3583,20 @@ export default function AdminPanel() {
                       <option value="paid">Pagado</option>
                       <option value="pending">Pendiente</option>
                     </select>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Fecha de la venta *</label>
+                    <input
+                      className="admin-compact-date"
+                      type="date"
+                      value={manualOrderData.orderDate}
+                      onChange={(e) => setManualOrderData(prev => ({ ...prev, orderDate: e.target.value }))}
+                      disabled={creatingManualOrder}
+                      required
+                    />
                   </div>
                 </div>
 
@@ -3822,10 +3913,9 @@ export default function AdminPanel() {
                 Pedido #{selectedOrder.id}
               </h2>
               <p style={{ margin: '8px 0 0 0', opacity: 0.9, fontSize: '14px' }}>
-                {new Date(selectedOrder.createdAt).toLocaleDateString('es-CO', { 
-                  year: 'numeric', 
-                  month: 'long', 
+                {formatColombiaDate(selectedOrder.createdAt, {
                   day: 'numeric',
+                  month: 'long',
                   hour: '2-digit',
                   minute: '2-digit'
                 })}
