@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useCartStore } from '../store/cartStore';
 import { getStaticUrl } from '../services/api';
 import OptimizedImage from './OptimizedImage';
+import { shouldFillProductImageFrame } from '../utils/productImagePresentation';
 import '../styles/productCard.css';
 
 function ProductCard({ product }) {
@@ -86,6 +87,7 @@ function ProductCard({ product }) {
   };
 
   const productSlug = product.slug || product.id || product._id;
+  const fillImageFrame = shouldFillProductImageFrame(product);
   // Construir URL con color seleccionado como query param
   const productUrl = selectedColor 
     ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
@@ -93,7 +95,7 @@ function ProductCard({ product }) {
 
   return (
     <div className="product-card">
-      <div className="product-image">
+      <div className={`product-image${fillImageFrame ? ' product-image--fill-frame' : ''}`}>
         <Link
           to={productUrl}
           aria-label={`Ver producto ${product.title || product.name}`}
@@ -106,6 +108,7 @@ function ProductCard({ product }) {
             width="300"
             height="300"
             objectFit="contain"
+            fillFrame={fillImageFrame}
           />
         </Link>
         {images.length > 1 && (

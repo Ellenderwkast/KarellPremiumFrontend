@@ -8,6 +8,7 @@ import StructuredData from '../components/StructuredData';
 import OptimizedImage from '../components/OptimizedImage';
 import '../styles/productDetail.css';
 import { renderDescription } from '../utils/renderDescription.jsx';
+import { shouldFillProductImageFrame } from '../utils/productImagePresentation';
 
 function ProductDetail() {
   const { slug } = useParams();
@@ -288,6 +289,7 @@ function ProductDetail() {
   const availableStock = hasColorVariants
     ? Number(selectedColor?.stock ?? 0)
     : Number(product.stock ?? 0);
+  const fillImageFrame = shouldFillProductImageFrame(product);
   const isOutOfStock = Number(availableStock) <= 0;
 
   // Construir array de URLs absolutas de imágenes públicas
@@ -494,7 +496,7 @@ function ProductDetail() {
           ← Volver a productos
         </button>
         <div className="product-detail-content">
-          <div className="product-image-large">
+          <div className={`product-image-large${fillImageFrame ? ' product-image-large--fill-frame' : ''}`}>
             <OptimizedImage
               src={currentImage || product.image || product.attributes?.image || 'https://via.placeholder.com/500'}
               alt={product.title || product.name}
@@ -502,6 +504,7 @@ function ProductDetail() {
               height="500"
               objectFit="contain"
               loading="eager"
+              fillFrame={fillImageFrame}
             />
             {images.length > 1 && (
               <>

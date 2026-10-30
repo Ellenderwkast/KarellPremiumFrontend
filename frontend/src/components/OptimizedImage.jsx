@@ -13,12 +13,12 @@ const OptimizedImage = ({
   sizes = '100vw',
   loading = 'lazy',
   objectFit = 'cover',
+  fillFrame = false,
   fallback = null
 }) => {
   const [imageError, setImageError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [fitMode, setFitMode] = useState(objectFit);
-  const [fillsProductFrame, setFillsProductFrame] = useState(false);
 
   if (!src) {
     return null;
@@ -84,15 +84,12 @@ const OptimizedImage = ({
     const img = e?.target;
     if (img?.naturalWidth && img?.naturalHeight) {
       const ratio = img.naturalWidth / img.naturalHeight;
-      const currentSrc = img.currentSrc || src;
-      const isOpaquePhoto = /\.jpe?g(?:[?#]|$)/i.test(currentSrc);
-      setFillsProductFrame(isOpaquePhoto || (ratio >= 0.9 && ratio <= 1.1));
       // Portrait sources should remain fully visible in product frames.
       if (ratio < 1) setFitMode('contain');
       else setFitMode(objectFit || 'cover');
     }
   };
-  const imageClassName = [className, fillsProductFrame ? 'optimized-image--filled-frame' : '']
+  const imageClassName = [className, fillFrame ? 'optimized-image--fill-frame' : '']
     .filter(Boolean)
     .join(' ');
 
