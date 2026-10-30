@@ -77,17 +77,6 @@ function Footer() {
         <div className="footer-bottom">
           <p>Audífonos Bluetooth Inalámbricos y Accesorios Tecnológicos al Mejor Precio | Karell Premium</p>
           <p>&copy; {currentYear} Karell Premium. Todos los derechos reservados.</p>
-          <p style={{ marginTop: '8px', fontSize: '14px' }}>
-            <a href="mailto:contactokarellpremium@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>
-              <span className="footer-email">
-                <Mail className="footer-email-icon" aria-hidden="true" />
-                callende6666@gmail.com
-              </span>
-            </a>
-          </p>
-          <p style={{ marginTop: '6px', fontSize: '13px' }} itemProp="author" itemScope itemType="http://schema.org/Person">
-            Karell Premium es un producto/servicio operado por <span itemProp="name">Castillo Rincon Ellender</span>
-          </p>
         </div>
       </div>
     </footer>

@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react';
 import { useCartStore } from '../store/cartStore';
 import { getStaticUrl } from '../services/api';
 import OptimizedImage from './OptimizedImage';
-import { shouldFillProductImageFrame } from '../utils/productImagePresentation';
+import {
+  getVariantImageSources,
+  shouldFillProductImageFrame
+} from '../utils/productImagePresentation';
 import '../styles/productCard.css';
 
 function ProductCard({ product }) {
@@ -25,13 +28,8 @@ function ProductCard({ product }) {
     const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
     if (hasColorVariants && !selectedColor) {
       setSelectedColor(colorVariants[0]);
-      // Combinar imágenes de la variante, producto principal, gallery e images
-      const variantImgs = Array.isArray(colorVariants[0].images) ? colorVariants[0].images : [];
-      const mainImg = colorVariants[0].image;
-      const productImgs = Array.isArray(product.attributes?.images) ? product.attributes.images : [];
-      const galleryImgs = Array.isArray(product.attributes?.gallery) ? product.attributes.gallery : [];
-      const allImgs = [mainImg, ...variantImgs, ...productImgs, ...galleryImgs].filter(Boolean);
-      setImages(allImgs.length > 0 ? allImgs.map(getStaticUrl) : [placeholderSvg]);
+      const variantImages = getVariantImageSources(product, colorVariants[0]);
+      setImages(variantImages.length > 0 ? variantImages.map(getStaticUrl) : [placeholderSvg]);
       setCurrentImageIndex(0);
     } else if (!hasColorVariants) {
       // Producto sin variantes de color
@@ -54,13 +52,8 @@ function ProductCard({ product }) {
 
   const handleColorChange = colorVariant => {
     setSelectedColor(colorVariant);
-    // Combinar imágenes de la variante, producto principal, gallery e images
-    const variantImgs = Array.isArray(colorVariant.images) ? colorVariant.images : [];
-    const mainImg = colorVariant.image;
-    const productImgs = Array.isArray(product.attributes?.images) ? product.attributes.images : [];
-    const galleryImgs = Array.isArray(product.attributes?.gallery) ? product.attributes.gallery : [];
-    const allImgs = [mainImg, ...variantImgs, ...productImgs, ...galleryImgs].filter(Boolean);
-    setImages(allImgs.length > 0 ? allImgs.map(getStaticUrl) : []);
+    const variantImages = getVariantImageSources(product, colorVariant);
+    setImages(variantImages.map(getStaticUrl));
     setCurrentImageIndex(0);
   };
 
@@ -92,10 +85,15 @@ function ProductCard({ product }) {
   const productUrl = selectedColor 
     ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
     : `/products/${productSlug}`;
+  const imageFrameClassNames = [
+    'product-image',
+    fillImageFrame ? 'product-image--fill-frame' : '',
+    fillImageFrame && !hasColorVariants ? 'product-image--portrait-frame' : ''
+  ].filter(Boolean).join(' ');
 
   return (
     <div className="product-card">
-      <div className={`product-image${fillImageFrame ? ' product-image--fill-frame' : ''}`}>
+      <div className={imageFrameClassNames}>
         <Link
           to={productUrl}
           aria-label={`Ver producto ${product.title || product.name}`}

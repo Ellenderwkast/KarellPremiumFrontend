@@ -9,32 +9,10 @@ import OptimizedImage from '../components/OptimizedImage';
 import '../styles/productDetail.css';
 import { renderDescription } from '../utils/renderDescription.jsx';
 import { shouldFillProductImageFrame } from '../utils/productImagePresentation';
-
-const getImageEntries = (value) => {
-  if (Array.isArray(value)) return value;
-  if (typeof value !== 'string' || !value.trim()) return [];
-
-  try {
-    const parsed = JSON.parse(value);
-    return Array.isArray(parsed) ? parsed : [value];
-  } catch {
-    return [value];
-  }
-};
+import { getVariantImageSources } from '../utils/productImagePresentation';
 
 const getProductImageUrls = (product, variant = null) => {
-  const attributes = product?.attributes || {};
-  const imageValues = [
-    variant?.image,
-    ...getImageEntries(variant?.images),
-    product?.image,
-    attributes.image,
-    ...getImageEntries(attributes.images),
-    ...getImageEntries(attributes.gallery)
-  ];
-
-  const imageUrls = imageValues
-    .filter(value => (typeof value === 'string' ? value.trim() : value))
+  const imageUrls = getVariantImageSources(product, variant)
     .map(value => getStaticUrl(typeof value === 'string' ? value.trim() : value))
     .filter(Boolean);
 
