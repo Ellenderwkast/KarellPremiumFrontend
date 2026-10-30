@@ -18,7 +18,7 @@ const OptimizedImage = ({
   const [imageError, setImageError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [fitMode, setFitMode] = useState(objectFit);
-  const [isSquareImage, setIsSquareImage] = useState(false);
+  const [fillsProductFrame, setFillsProductFrame] = useState(false);
 
   if (!src) {
     return null;
@@ -84,13 +84,15 @@ const OptimizedImage = ({
     const img = e?.target;
     if (img?.naturalWidth && img?.naturalHeight) {
       const ratio = img.naturalWidth / img.naturalHeight;
-      setIsSquareImage(ratio >= 0.9 && ratio <= 1.1);
+      const currentSrc = img.currentSrc || src;
+      const isOpaquePhoto = /\.jpe?g(?:[?#]|$)/i.test(currentSrc);
+      setFillsProductFrame(isOpaquePhoto || (ratio >= 0.9 && ratio <= 1.1));
       // Portrait sources should remain fully visible in product frames.
       if (ratio < 1) setFitMode('contain');
       else setFitMode(objectFit || 'cover');
     }
   };
-  const imageClassName = [className, isSquareImage ? 'optimized-image--square' : '']
+  const imageClassName = [className, fillsProductFrame ? 'optimized-image--filled-frame' : '']
     .filter(Boolean)
     .join(' ');
 

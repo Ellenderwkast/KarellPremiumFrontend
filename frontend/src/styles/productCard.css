@@ -118,9 +118,33 @@
   object-fit: contain !important;
 }
 
-.product-image .optimized-image--square {
+.product-image .product-card-image.optimized-image--filled-frame {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center;
   border-radius: 12px;
   box-shadow: 0 5px 16px rgba(31, 41, 55, 0.12);
+}
+
+.home .featured-products .product-image .product-card-image.optimized-image--filled-frame,
+.products-page .product-image .product-card-image.optimized-image--filled-frame {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+}
+
+@media (max-width: 768px) {
+  .home .featured-products .product-image:has(.optimized-image--filled-frame),
+  .products-page .product-image:has(.optimized-image--filled-frame) {
+    aspect-ratio: 4 / 3 !important;
+    height: auto !important;
+    max-height: 200px !important;
+    min-height: 140px !important;
+    overflow: hidden !important;
+  }
 }
 
 /* Botones del carrusel */
