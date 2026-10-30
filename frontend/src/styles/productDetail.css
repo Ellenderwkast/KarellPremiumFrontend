@@ -42,6 +42,16 @@
   position: relative;
 }
 
+.product-image-large--fill-frame {
+  width: min(100%, 68vh);
+  height: auto;
+  aspect-ratio: 5 / 6;
+  max-height: 82vh;
+  justify-self: center;
+  padding: 0;
+  background: #f7f5f0;
+}
+
 .product-image-large picture {
   width: 100%;
   height: 100%;
@@ -64,6 +74,13 @@
   display: block;
   position: relative;
   z-index: 1;
+}
+
+.product-image-large img.optimized-image--fill-frame {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center;
 }
 
 /* Botones de navegación de imágenes */
@@ -715,6 +732,12 @@
   .product-image-large {
     height: clamp(340px, 105vw, 500px);
     max-height: 72vh;
+  }
+
+  .product-image-large--fill-frame {
+    width: min(100%, 68vh);
+    height: auto;
+    max-height: 78vh;
   }
 
   .product-info-detail {
