@@ -9,6 +9,37 @@ import OptimizedImage from '../components/OptimizedImage';
 import '../styles/productDetail.css';
 import { renderDescription } from '../utils/renderDescription.jsx';
 
+const getImageEntries = (value) => {
+  if (Array.isArray(value)) return value;
+  if (typeof value !== 'string' || !value.trim()) return [];
+
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed : [value];
+  } catch {
+    return [value];
+  }
+};
+
+const getProductImageUrls = (product, variant = null) => {
+  const attributes = product?.attributes || {};
+  const imageValues = [
+    variant?.image,
+    ...getImageEntries(variant?.images),
+    product?.image,
+    attributes.image,
+    ...getImageEntries(attributes.images),
+    ...getImageEntries(attributes.gallery)
+  ];
+
+  const imageUrls = imageValues
+    .filter(value => (typeof value === 'string' ? value.trim() : value))
+    .map(value => getStaticUrl(typeof value === 'string' ? value.trim() : value))
+    .filter(Boolean);
+
+  return [...new Set(imageUrls)];
+};
+
 function ProductDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -97,18 +128,14 @@ function ProductDetail() {
             ? variants.find(v => v.name === colorFromUrl) || variants[0]
             : variants[0];
           setSelectedColor(targetColor);
-          const colorImages = (targetColor.images || [targetColor.image]).map(getStaticUrl);
+          const colorImages = getProductImageUrls(fetchedProduct, targetColor);
           setImages(colorImages);
           setCurrentImage(colorImages[0]);
           setCurrentImageIndex(0);
         } else {
           const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
-          // Soportar tanto attributes.images como attributes.gallery (compatibilidad con productos nuevos y antiguos)
-          const rawImages = fetchedProduct.attributes?.images || fetchedProduct.attributes?.gallery || [];
-          const hasImages = Array.isArray(rawImages) && rawImages.filter(Boolean).length > 0;
-          const productImages = (hasImages ? rawImages : [
-            fetchedProduct.image || fetchedProduct.attributes?.image || placeholder
-          ]).filter(Boolean).map(getStaticUrl);
+          const productImages = getProductImageUrls(fetchedProduct);
+          if (productImages.length === 0) productImages.push(placeholder);
           setImages(productImages);
           setCurrentImage(productImages[0]);
           setCurrentImageIndex(0);
@@ -153,7 +180,7 @@ function ProductDetail() {
 
   const handleColorChange = colorVariant => {
     setSelectedColor(colorVariant);
-    const colorImages = (colorVariant.images || [colorVariant.image]).map(getStaticUrl);
+    const colorImages = getProductImageUrls(product, colorVariant);
     setImages(colorImages);
     setCurrentImage(colorImages[0]);
     setCurrentImageIndex(0);
