@@ -16,5 +16,5 @@ export function shouldFillProductImageFrame(product) {
     .replace(/\s+/g, ' ')
     .trim();
 
-  return productsWithBackgroundImages.has(name);
+  return [...productsWithBackgroundImages].some(productName => name.includes(productName));
 }
