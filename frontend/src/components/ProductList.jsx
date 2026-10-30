@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { productService } from '../services/api';
 import ProductCard from './ProductCard';
@@ -21,12 +21,13 @@ function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const hasFetchedProducts = useRef(false);
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get('search') || '';
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (showLoading = false) => {
     try {
-      setLoading(true);
+      if (showLoading || !hasFetchedProducts.current) setLoading(true);
       if (isDev) console.log('Fetching products from API...');
       const response = await productService.getAll();
       if (isDev) console.log('Products fetched:', response.data);
@@ -63,8 +64,10 @@ function ProductList() {
       }
 
       setProducts(allProducts);
+      hasFetchedProducts.current = true;
+      setError(null);
     } catch (err) {
-      setError('Error al cargar los productos');
+      if (!hasFetchedProducts.current) setError('Error al cargar los productos');
       console.error('Error fetching products:', err);
     } finally {
       setLoading(false);
@@ -73,7 +76,7 @@ function ProductList() {
 
   useEffect(() => {
     if (isDev) console.log('ProductList mounted, fetching products...');
-    fetchProducts();
+    fetchProducts(true);
     
     // Recargar cuando la página se vuelve visible (tab/window focus)
     const handleVisibilityChange = () => {
@@ -88,12 +91,6 @@ function ProductList() {
       fetchProducts();
     };
 
-    // Recargar cuando Home envía el evento personalizado
-    const handleHomePageActive = () => {
-      if (isDev) console.log('Home page active event, reloading products...');
-      fetchProducts();
-    };
-
     // Recargar cuando se crea/actualiza/elimina un producto en admin
     const handleProductChanged = () => {
       if (isDev) console.log('Product changed in admin, reloading products...');
@@ -102,13 +99,11 @@ function ProductList() {
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('focus', handleFocus);
-    window.addEventListener('homePageActive', handleHomePageActive);
     window.addEventListener('productChanged', handleProductChanged);
     
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('focus', handleFocus);
-      window.removeEventListener('homePageActive', handleHomePageActive);
       window.removeEventListener('productChanged', handleProductChanged);
     };
   }, [searchTerm]);

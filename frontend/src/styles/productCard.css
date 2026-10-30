@@ -118,6 +118,11 @@
   object-fit: contain !important;
 }
 
+.product-image .optimized-image--square {
+  border-radius: 12px;
+  box-shadow: 0 5px 16px rgba(31, 41, 55, 0.12);
+}
+
 /* Botones del carrusel */
 .carousel-btn {
   position: absolute;

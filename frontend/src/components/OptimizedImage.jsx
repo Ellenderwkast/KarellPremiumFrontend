@@ -18,6 +18,7 @@ const OptimizedImage = ({
   const [imageError, setImageError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [fitMode, setFitMode] = useState(objectFit);
+  const [isSquareImage, setIsSquareImage] = useState(false);
 
   if (!src) {
     return null;
@@ -80,19 +81,18 @@ const OptimizedImage = ({
 
   const handleLoad = (e) => {
     setIsLoaded(true);
-    try {
-      const img = e?.target;
-      if (img && img.naturalWidth && img.naturalHeight) {
-        const ratio = img.naturalWidth / img.naturalHeight;
-        // If the source image is portrait (taller than wide), prefer 'contain'
-        // to avoid unwanted cropping inside wide/cards. Otherwise keep requested mode.
-        if (ratio < 1) setFitMode('contain');
-        else setFitMode(objectFit || 'cover');
-      }
-    } catch (err) {
-      // ignore and keep default
+    const img = e?.target;
+    if (img?.naturalWidth && img?.naturalHeight) {
+      const ratio = img.naturalWidth / img.naturalHeight;
+      setIsSquareImage(ratio >= 0.9 && ratio <= 1.1);
+      // Portrait sources should remain fully visible in product frames.
+      if (ratio < 1) setFitMode('contain');
+      else setFitMode(objectFit || 'cover');
     }
   };
+  const imageClassName = [className, isSquareImage ? 'optimized-image--square' : '']
+    .filter(Boolean)
+    .join(' ');
 
   // Si la fuente es un data URI (placeholder SVG/PNG), no usar <picture>/<source>
   // porque algunos navegadores generan advertencias al incluir data URIs en srcset.
@@ -102,7 +102,7 @@ const OptimizedImage = ({
       <img
         src={src}
         alt={alt}
-        className={className}
+        className={imageClassName}
         width={width}
         height={height}
         loading={loading}
@@ -128,7 +128,7 @@ const OptimizedImage = ({
       <img
         src={urls.webp}
         alt={alt}
-        className={className}
+        className={imageClassName}
         width={width}
         height={height}
         loading={loading}
@@ -157,7 +157,7 @@ const OptimizedImage = ({
       
       {/* Fallback para navegadores que no soportan WebP */}
       <img
-        className={className}
+        className={imageClassName}
         src={imageError ? urls.fallback : urls.webp}
         alt={alt}
         width={width}

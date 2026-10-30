@@ -68,8 +68,16 @@ import api, { getStaticUrl } from '../services/api';
 import '../styles/adminPanel.css';
 import SEO from '../components/SEO';
 
+const parseOrderTimestamp = (value) => {
+  if (typeof value === 'string') {
+    const mysqlDateTime = /^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?)$/.exec(value);
+    if (mysqlDateTime) return new Date(`${mysqlDateTime[1]}T${mysqlDateTime[2]}-05:00`);
+  }
+  return new Date(value);
+};
+
 const toColombiaDateInputValue = (value = new Date()) => {
-  const date = new Date(value);
+  const date = parseOrderTimestamp(value);
   if (Number.isNaN(date.getTime())) return '';
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'America/Bogota',
@@ -82,7 +90,7 @@ const toColombiaDateInputValue = (value = new Date()) => {
 };
 
 const formatColombiaDate = (value, options = {}) => {
-  const date = new Date(value);
+  const date = parseOrderTimestamp(value);
   if (Number.isNaN(date.getTime())) return '-';
   return new Intl.DateTimeFormat('es-CO', {
     timeZone: 'America/Bogota',
@@ -1428,6 +1436,16 @@ export default function AdminPanel() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     doc.text('Gracias por elegir Karell Premium.', margin, pageHeight - 44);
+    const websiteText = 'Visita nuestra página www.karellpremium.com.co';
+    const websiteY = pageHeight - 28;
+    doc.text(websiteText, margin, websiteY);
+    doc.link(
+      margin,
+      websiteY - doc.getFontSize(),
+      doc.getTextWidth(websiteText),
+      doc.getFontSize() + 2,
+      { url: 'https://www.karellpremium.com.co' }
+    );
     doc.text('Factura generada desde el panel administrativo.', margin + 250, pageHeight - 44);
 
     doc.save(`factura-${invoiceNumber}.pdf`);

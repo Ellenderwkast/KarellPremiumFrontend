@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BadgePercent, Headset, ShieldCheck, Truck } from 'lucide-react';
 import ProductList from '../components/ProductList';
 import SearchBar from '../components/SearchBar';
@@ -12,12 +11,6 @@ import '../styles/home.css';
 import '../styles/products.css';
 
 function Home() {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.dispatchEvent(new CustomEvent('homePageActive'));
-  }, [location.pathname]);
-
   const breadcrumbData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -187,4 +180,3 @@ function Home() {
 }
 
 export default Home;
-
