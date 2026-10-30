@@ -45,7 +45,7 @@
 .product-image-large--fill-frame {
   width: min(100%, 68vh);
   height: auto;
-  aspect-ratio: 5 / 6;
+  aspect-ratio: 3 / 4;
   max-height: 82vh;
   justify-self: center;
   padding: 0;
@@ -737,6 +737,7 @@
   .product-image-large--fill-frame {
     width: min(100%, 68vh);
     height: auto;
+    aspect-ratio: 3 / 4;
     max-height: 78vh;
   }
 
