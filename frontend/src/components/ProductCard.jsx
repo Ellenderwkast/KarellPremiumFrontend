@@ -99,9 +99,10 @@ function ProductCard({ product }) {
     <div className="product-card">
       <div className={imageFrameClassNames}>
         {(fillImageFrame || hasImageBackdrop) && (
-          <span
+          <img
             className="product-image-backdrop"
-            style={{ backgroundImage: `url("${currentImage}")` }}
+            src={currentImage}
+            alt=""
             aria-hidden="true"
           />
         )}

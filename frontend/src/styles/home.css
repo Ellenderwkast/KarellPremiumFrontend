@@ -140,7 +140,7 @@
 
   .home .featured-products .product-image img,
   .home .featured-products .product-card-image {
-    width: 100% !important;
+    width: auto !important;
     max-width: 100% !important;
     height: 100% !important;
     max-height: 100% !important;
@@ -149,8 +149,8 @@
     margin: 0 auto;
   }
 
-  .home .featured-products .product-image-backdrop {
-    inset: 0;
+  .home .featured-products .product-image--with-backdrop .product-card-image {
+    border-radius: 12px;
   }
 
   /* Evitar que el hover agrande la imagen en esta sección en pantallas pequeñas */

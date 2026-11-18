@@ -98,6 +98,9 @@ const OptimizedImage = ({
   const imageClassName = [className, fillFrame ? 'optimized-image--fill-frame' : '']
     .filter(Boolean)
     .join(' ');
+  const productCardImageStyle = className?.includes('product-card-image')
+    ? { width: 'auto', height: '100%', maxWidth: '100%', maxHeight: '100%' }
+    : {};
 
   // Si la fuente es un data URI (placeholder SVG/PNG), no usar <picture>/<source>
   // porque algunos navegadores generan advertencias al incluir data URIs en srcset.
@@ -114,6 +117,7 @@ const OptimizedImage = ({
         onError={handleError}
         onLoad={handleLoad}
         style={{
+          ...productCardImageStyle,
           objectFit: fitMode,
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.3s ease-in-out'
@@ -140,6 +144,7 @@ const OptimizedImage = ({
           onError={handleError}
           onLoad={handleLoad}
           style={{
+            ...productCardImageStyle,
             objectFit: fitMode,
             opacity: isLoaded ? 1 : 0,
             transition: 'opacity 0.3s ease-in-out'
@@ -177,10 +182,14 @@ const OptimizedImage = ({
           // Ajuste especial para tarjetas de producto: evitar recortes en móviles
           ...(fitMode === 'contain'
             ? (className?.includes('product-card-image') || className?.includes('cart-item-image')
-                ? { width: '100%', height: 'auto', maxHeight: '100%' }
+                ? className?.includes('product-card-image')
+                  ? productCardImageStyle
+                  : { width: '100%', height: 'auto', maxHeight: '100%' }
                 : { width: 'auto', height: '100%' }
               )
-            : { width: '100%', height: '100%' }
+            : className?.includes('product-card-image')
+              ? productCardImageStyle
+              : { width: '100%', height: '100%' }
           )
         }}
       />

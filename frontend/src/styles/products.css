@@ -63,7 +63,7 @@
 
   .products-page .product-image img,
   .products-page .product-card-image {
-    width: 100% !important;
+    width: auto !important;
     max-width: 100% !important;
     height: 100% !important;
     max-height: 100% !important;
@@ -72,8 +72,8 @@
     margin: 0 auto;
   }
 
-  .products-page .product-image-backdrop {
-    inset: 0;
+  .products-page .product-image--with-backdrop .product-card-image {
+    border-radius: 12px;
   }
 
   .products-page .product-card:hover .product-image img {
