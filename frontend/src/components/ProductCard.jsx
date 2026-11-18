@@ -88,13 +88,14 @@ function ProductCard({ product }) {
   const productSlug = product.slug || product.id || product._id;
   const currentImage = images[currentImageIndex] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
   const currentImageAspectRatio = imageAspectRatios[currentImage] ?? imageAspectRatio;
+  const isPortraitImage = currentImageAspectRatio !== null && currentImageAspectRatio < 0.85;
   // Construir URL con color seleccionado como query param
   const productUrl = selectedColor 
     ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
     : `/products/${productSlug}`;
   const imageFrameClassNames = [
     'product-image',
-    currentImageAspectRatio ? 'product-image--adaptive' : ''
+    isPortraitImage ? 'product-image--adaptive' : ''
   ].filter(Boolean).join(' ');
 
   return (
@@ -102,9 +103,8 @@ function ProductCard({ product }) {
       <div
         className={imageFrameClassNames}
         {...swipeHandlers}
-        style={currentImageAspectRatio ? {
-          '--product-image-ratio': currentImageAspectRatio,
-          '--product-image-width': `${Math.min(currentImageAspectRatio * 220, 380)}px`
+        style={isPortraitImage ? {
+          '--product-image-ratio': currentImageAspectRatio
         } : undefined}
       >
         <Link

@@ -74,10 +74,10 @@
 
   .products-page .product-image.product-image--adaptive {
     width: 100% !important;
-    aspect-ratio: 3 / 2 !important;
+    aspect-ratio: var(--product-image-ratio, 3 / 2) !important;
     height: auto !important;
     min-height: 0 !important;
-    max-height: 220px !important;
+    max-height: 260px !important;
   }
 
   .products-page .product-card:hover .product-image img {
