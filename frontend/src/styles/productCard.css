@@ -113,7 +113,14 @@
   aspect-ratio: var(--product-image-ratio, 3 / 2) !important;
   height: auto !important;
   min-height: 0 !important;
-  max-height: 260px !important;
+  max-height: 320px !important;
+}
+
+.product-image--adaptive .product-card-image {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
 }
 
 @media (max-width: 768px) {
