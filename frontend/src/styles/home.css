@@ -149,8 +149,10 @@
     margin: 0 auto;
   }
 
-  .home .featured-products .product-image--with-backdrop .product-card-image {
-    border-radius: 12px;
+  .home .featured-products .product-image--cover .product-card-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
 
   /* Evitar que el hover agrande la imagen en esta sección en pantallas pequeñas */

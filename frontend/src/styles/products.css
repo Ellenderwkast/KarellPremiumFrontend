@@ -72,8 +72,10 @@
     margin: 0 auto;
   }
 
-  .products-page .product-image--with-backdrop .product-card-image {
-    border-radius: 12px;
+  .products-page .product-image--cover .product-card-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
 
   .products-page .product-card:hover .product-image img {

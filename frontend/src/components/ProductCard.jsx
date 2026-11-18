@@ -15,7 +15,7 @@ function ProductCard({ product }) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
-  const [hasImageBackdrop, setHasImageBackdrop] = useState(false);
+  const [coverImage, setCoverImage] = useState(false);
 
   // Verificar si el producto tiene variantes de color
   const colorVariants = (product.attributes?.colorVariants || []).map(v => ({
@@ -56,21 +56,21 @@ function ProductCard({ product }) {
     const variantImages = getVariantImageSources(product, colorVariant);
     setImages(variantImages.map(getStaticUrl));
     setCurrentImageIndex(0);
-    setHasImageBackdrop(false);
+    setCoverImage(false);
   };
 
   const nextImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    setHasImageBackdrop(false);
+    setCoverImage(false);
   };
 
   const prevImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-    setHasImageBackdrop(false);
+    setCoverImage(false);
   };
 
   const handleAddToCart = () => {
@@ -92,20 +92,12 @@ function ProductCard({ product }) {
     : `/products/${productSlug}`;
   const imageFrameClassNames = [
     'product-image',
-    fillImageFrame || hasImageBackdrop ? 'product-image--with-backdrop' : ''
+    fillImageFrame || coverImage ? 'product-image--cover' : ''
   ].filter(Boolean).join(' ');
 
   return (
     <div className="product-card">
       <div className={imageFrameClassNames}>
-        {(fillImageFrame || hasImageBackdrop) && (
-          <img
-            className="product-image-backdrop"
-            src={currentImage}
-            alt=""
-            aria-hidden="true"
-          />
-        )}
         <Link
           to={productUrl}
           aria-label={`Ver producto ${product.title || product.name}`}
@@ -118,7 +110,7 @@ function ProductCard({ product }) {
             width="300"
             height="300"
             objectFit="contain"
-            onDimensions={({ ratio }) => setHasImageBackdrop(fillImageFrame || ratio < 0.9)}
+            onDimensions={({ ratio }) => setCoverImage(fillImageFrame || ratio < 0.9)}
           />
         </Link>
         {images.length > 1 && (
@@ -148,14 +140,14 @@ function ProductCard({ product }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentImageIndex(idx);
-                    setHasImageBackdrop(false);
+                    setCoverImage(false);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       e.stopPropagation();
                       setCurrentImageIndex(idx);
-                      setHasImageBackdrop(false);
+                      setCoverImage(false);
                     }
                   }}
                 />
