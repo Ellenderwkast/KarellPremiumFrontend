@@ -126,6 +126,20 @@
   object-position: center;
 }
 
+.product-image.product-image--portrait-frame {
+  width: min(100%, calc(320px * var(--product-image-ratio, 0.75)));
+  height: auto;
+  min-height: 0;
+  max-height: 320px;
+  aspect-ratio: var(--product-image-ratio, 0.75);
+  padding: 0.2rem;
+  margin-inline: auto;
+}
+
+.product-image.product-image--portrait-frame .product-card-image {
+  object-fit: contain !important;
+}
+
 .home .featured-products .product-image .product-card-image.optimized-image--fill-frame,
 .products-page .product-image .product-card-image.optimized-image--fill-frame {
   width: 100% !important;
@@ -136,16 +150,18 @@
 
 .home .featured-products .product-image.product-image--portrait-frame,
 .products-page .product-image.product-image--portrait-frame {
-  height: clamp(250px, 23vw, 320px) !important;
-  min-height: 250px !important;
+  width: min(100%, calc(320px * var(--product-image-ratio, 0.75))) !important;
+  height: auto !important;
+  min-height: 0 !important;
   max-height: 320px !important;
-  aspect-ratio: auto !important;
+  aspect-ratio: var(--product-image-ratio, 0.75) !important;
   padding: 0.2rem !important;
   overflow: hidden !important;
+  margin-inline: auto !important;
 }
 
-.home .featured-products .product-image.product-image--portrait-frame .product-card-image,
-.products-page .product-image.product-image--portrait-frame .product-card-image {
+.home .featured-products .product-image.product-image--portrait-frame.product-image--fill-frame .product-card-image,
+.products-page .product-image.product-image--portrait-frame.product-image--fill-frame .product-card-image {
   width: 100% !important;
   height: 100% !important;
   max-height: 100% !important;
@@ -153,6 +169,14 @@
 }
 
 @media (max-width: 768px) {
+  .product-image.product-image--portrait-frame {
+    width: min(100%, calc(300px * var(--product-image-ratio, 0.75))) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 300px !important;
+    aspect-ratio: var(--product-image-ratio, 0.75) !important;
+  }
+
   .home .featured-products .product-image.product-image--fill-frame,
   .products-page .product-image.product-image--fill-frame {
     aspect-ratio: 4 / 3 !important;
@@ -164,9 +188,11 @@
 
   .home .featured-products .product-image.product-image--portrait-frame,
   .products-page .product-image.product-image--portrait-frame {
-    height: clamp(240px, 66vw, 300px) !important;
-    min-height: 240px !important;
+    width: min(100%, calc(300px * var(--product-image-ratio, 0.75))) !important;
+    height: auto !important;
+    min-height: 0 !important;
     max-height: 300px !important;
+    aspect-ratio: var(--product-image-ratio, 0.75) !important;
   }
 }
 

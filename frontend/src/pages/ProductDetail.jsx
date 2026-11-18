@@ -31,6 +31,7 @@ function ProductDetail() {
   const [currentImage, setCurrentImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
+  const [portraitAspectRatio, setPortraitAspectRatio] = useState(null);
   const { addItem } = useCartStore();
   const { user, isAuthenticated } = useAuthStore();
 
@@ -83,6 +84,7 @@ function ProductDetail() {
       try {
         setLoading(true);
         setError(null);
+        setPortraitAspectRatio(null);
         const response = await productService.getById(slug);
         if (!response.data || !response.data.id) {
           setError('El producto no existe o no está disponible');
@@ -163,18 +165,21 @@ function ProductDetail() {
     setImages(colorImages);
     setCurrentImage(colorImages[0]);
     setCurrentImageIndex(0);
+    setPortraitAspectRatio(null);
   };
 
   const nextImage = () => {
     const newIndex = (currentImageIndex + 1) % images.length;
     setCurrentImageIndex(newIndex);
     setCurrentImage(images[newIndex]);
+    setPortraitAspectRatio(null);
   };
 
   const prevImage = () => {
     const newIndex = (currentImageIndex - 1 + images.length) % images.length;
     setCurrentImageIndex(newIndex);
     setCurrentImage(images[newIndex]);
+    setPortraitAspectRatio(null);
   };
 
   const handleAddToCart = () => {
@@ -295,6 +300,7 @@ function ProductDetail() {
     ? Number(selectedColor?.stock ?? 0)
     : Number(product.stock ?? 0);
   const fillImageFrame = shouldFillProductImageFrame(product);
+  const portraitImageFrame = fillImageFrame || portraitAspectRatio !== null;
   const isOutOfStock = Number(availableStock) <= 0;
 
   // Construir array de URLs absolutas de imágenes públicas
@@ -501,7 +507,10 @@ function ProductDetail() {
           ← Volver a productos
         </button>
         <div className="product-detail-content">
-          <div className={`product-image-large${fillImageFrame ? ' product-image-large--fill-frame' : ''}`}>
+          <div
+            className={`product-image-large${fillImageFrame ? ' product-image-large--fill-frame' : ''}${portraitImageFrame ? ' product-image-large--portrait-frame' : ''}`}
+            style={portraitAspectRatio ? { '--product-image-ratio': portraitAspectRatio } : undefined}
+          >
             <OptimizedImage
               src={currentImage || product.image || product.attributes?.image || 'https://via.placeholder.com/500'}
               alt={product.title || product.name}
@@ -510,6 +519,7 @@ function ProductDetail() {
               objectFit="contain"
               loading="eager"
               fillFrame={fillImageFrame}
+              onDimensions={({ ratio }) => setPortraitAspectRatio(ratio < 0.85 ? ratio : null)}
             />
             {images.length > 1 && (
               <>
@@ -535,6 +545,7 @@ function ProductDetail() {
                       onClick={() => {
                         setCurrentImageIndex(idx);
                         setCurrentImage(images[idx]);
+                        setPortraitAspectRatio(null);
                       }}
                     />
                   ))}

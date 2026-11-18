@@ -70,6 +70,27 @@
     margin: 0 auto;
   }
 
+  .products-page .product-image.product-image--portrait-frame {
+    width: min(100%, calc(320px * var(--product-image-ratio, 0.75))) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 320px !important;
+    aspect-ratio: var(--product-image-ratio, 0.75) !important;
+    overflow: hidden !important;
+    margin-inline: auto !important;
+  }
+
+  .products-page .product-image.product-image--portrait-frame .product-card-image {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .products-page .product-image.product-image--portrait-frame.product-image--fill-frame .product-card-image {
+    object-fit: cover !important;
+  }
+
   .products-page .product-card:hover .product-image img {
     transform: none !important;
   }

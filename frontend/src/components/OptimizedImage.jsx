@@ -14,6 +14,7 @@ const OptimizedImage = ({
   loading = 'lazy',
   objectFit = 'cover',
   fillFrame = false,
+  onDimensions,
   fallback = null
 }) => {
   const [imageError, setImageError] = useState(false);
@@ -84,6 +85,11 @@ const OptimizedImage = ({
     const img = e?.target;
     if (img?.naturalWidth && img?.naturalHeight) {
       const ratio = img.naturalWidth / img.naturalHeight;
+      onDimensions?.({
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+        ratio
+      });
       // Portrait sources should remain fully visible in product frames.
       if (ratio < 1) setFitMode('contain');
       else setFitMode(objectFit || 'cover');

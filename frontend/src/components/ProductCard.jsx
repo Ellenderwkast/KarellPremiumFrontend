@@ -15,6 +15,7 @@ function ProductCard({ product }) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
+  const [portraitAspectRatio, setPortraitAspectRatio] = useState(null);
 
   // Verificar si el producto tiene variantes de color
   const colorVariants = (product.attributes?.colorVariants || []).map(v => ({
@@ -55,18 +56,21 @@ function ProductCard({ product }) {
     const variantImages = getVariantImageSources(product, colorVariant);
     setImages(variantImages.map(getStaticUrl));
     setCurrentImageIndex(0);
+    setPortraitAspectRatio(null);
   };
 
   const nextImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    setPortraitAspectRatio(null);
   };
 
   const prevImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    setPortraitAspectRatio(null);
   };
 
   const handleAddToCart = () => {
@@ -81,6 +85,7 @@ function ProductCard({ product }) {
 
   const productSlug = product.slug || product.id || product._id;
   const fillImageFrame = shouldFillProductImageFrame(product);
+  const portraitFrame = fillImageFrame || portraitAspectRatio !== null;
   // Construir URL con color seleccionado como query param
   const productUrl = selectedColor 
     ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
@@ -88,12 +93,15 @@ function ProductCard({ product }) {
   const imageFrameClassNames = [
     'product-image',
     fillImageFrame ? 'product-image--fill-frame' : '',
-    fillImageFrame && !hasColorVariants ? 'product-image--portrait-frame' : ''
+    portraitFrame ? 'product-image--portrait-frame' : ''
   ].filter(Boolean).join(' ');
 
   return (
     <div className="product-card">
-      <div className={imageFrameClassNames}>
+      <div
+        className={imageFrameClassNames}
+        style={portraitAspectRatio ? { '--product-image-ratio': portraitAspectRatio } : undefined}
+      >
         <Link
           to={productUrl}
           aria-label={`Ver producto ${product.title || product.name}`}
@@ -107,6 +115,7 @@ function ProductCard({ product }) {
             height="300"
             objectFit="contain"
             fillFrame={fillImageFrame}
+            onDimensions={({ ratio }) => setPortraitAspectRatio(ratio < 0.85 ? ratio : null)}
           />
         </Link>
         {images.length > 1 && (
@@ -133,12 +142,17 @@ function ProductCard({ product }) {
                   role="button"
                   tabIndex={0}
                   aria-label={`Ir a imagen ${idx + 1}`}
-                  onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentImageIndex(idx);
+                    setPortraitAspectRatio(null);
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       e.stopPropagation();
                       setCurrentImageIndex(idx);
+                      setPortraitAspectRatio(null);
                     }
                   }}
                 />
