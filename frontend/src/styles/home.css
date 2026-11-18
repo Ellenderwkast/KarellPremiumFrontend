@@ -155,6 +155,13 @@
     object-fit: cover !important;
   }
 
+  .home .featured-products .product-image.product-image--portrait {
+    aspect-ratio: var(--product-image-ratio, 3 / 2) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
   /* Evitar que el hover agrande la imagen en esta sección en pantallas pequeñas */
   .home .featured-products .product-card:hover .product-image img {
     transform: none !important;

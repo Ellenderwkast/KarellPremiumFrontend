@@ -78,6 +78,13 @@
     object-fit: cover !important;
   }
 
+  .products-page .product-image.product-image--portrait {
+    aspect-ratio: var(--product-image-ratio, 3 / 2) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
   .products-page .product-card:hover .product-image img {
     transform: none !important;
   }

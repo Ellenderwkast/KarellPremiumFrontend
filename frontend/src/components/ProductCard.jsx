@@ -15,7 +15,7 @@ function ProductCard({ product }) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
-  const [coverImage, setCoverImage] = useState(false);
+  const [imageAspectRatio, setImageAspectRatio] = useState(null);
 
   // Verificar si el producto tiene variantes de color
   const colorVariants = (product.attributes?.colorVariants || []).map(v => ({
@@ -56,21 +56,21 @@ function ProductCard({ product }) {
     const variantImages = getVariantImageSources(product, colorVariant);
     setImages(variantImages.map(getStaticUrl));
     setCurrentImageIndex(0);
-    setCoverImage(false);
+    setImageAspectRatio(null);
   };
 
   const nextImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    setCoverImage(false);
+    setImageAspectRatio(null);
   };
 
   const prevImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-    setCoverImage(false);
+    setImageAspectRatio(null);
   };
 
   const handleAddToCart = () => {
@@ -86,18 +86,23 @@ function ProductCard({ product }) {
   const productSlug = product.slug || product.id || product._id;
   const fillImageFrame = shouldFillProductImageFrame(product);
   const currentImage = images[currentImageIndex] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
+  const portraitImageFrame = fillImageFrame || imageAspectRatio !== null;
   // Construir URL con color seleccionado como query param
   const productUrl = selectedColor 
     ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
     : `/products/${productSlug}`;
   const imageFrameClassNames = [
     'product-image',
-    fillImageFrame || coverImage ? 'product-image--cover' : ''
+    fillImageFrame ? 'product-image--cover' : '',
+    portraitImageFrame ? 'product-image--portrait' : ''
   ].filter(Boolean).join(' ');
 
   return (
     <div className="product-card">
-      <div className={imageFrameClassNames}>
+      <div
+        className={imageFrameClassNames}
+        style={imageAspectRatio ? { '--product-image-ratio': imageAspectRatio } : undefined}
+      >
         <Link
           to={productUrl}
           aria-label={`Ver producto ${product.title || product.name}`}
@@ -110,7 +115,9 @@ function ProductCard({ product }) {
             width="300"
             height="300"
             objectFit="contain"
-            onDimensions={({ ratio }) => setCoverImage(fillImageFrame || ratio < 0.9)}
+            onDimensions={({ ratio }) => setImageAspectRatio(
+              fillImageFrame || ratio < 0.85 ? ratio : null
+            )}
           />
         </Link>
         {images.length > 1 && (
@@ -140,14 +147,14 @@ function ProductCard({ product }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentImageIndex(idx);
-                    setCoverImage(false);
+                    setImageAspectRatio(null);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       e.stopPropagation();
                       setCurrentImageIndex(idx);
-                      setCoverImage(false);
+                      setImageAspectRatio(null);
                     }
                   }}
                 />

@@ -115,6 +115,13 @@
   border-radius: inherit;
 }
 
+.product-image--portrait {
+  aspect-ratio: var(--product-image-ratio, 3 / 2) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+
 @media (max-width: 768px) {
   .product-image {
     max-height: 180px;
@@ -212,6 +219,10 @@
 
 .product-card:hover .product-image img {
   transform: scale(1.05);
+}
+
+.product-card:hover .product-image--portrait img {
+  transform: none;
 }
 
 
