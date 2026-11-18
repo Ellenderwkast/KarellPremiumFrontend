@@ -154,7 +154,7 @@
     aspect-ratio: var(--product-image-ratio, 3 / 2) !important;
     height: auto !important;
     min-height: 0 !important;
-    max-height: 400px !important;
+    max-height: 360px !important;
   }
 
   /* Evitar que el hover agrande la imagen en esta sección en pantallas pequeñas */

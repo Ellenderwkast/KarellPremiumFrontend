@@ -7,13 +7,18 @@ import { getVariantImageSources } from '../utils/productImagePresentation';
 import { useSwipeNavigation } from '../utils/useSwipeNavigation';
 import '../styles/productCard.css';
 
+const getProductImageUrls = (product, variant = null) => [...new Set(
+  getVariantImageSources(product, variant)
+    .map(image => getStaticUrl(typeof image === 'string' ? image.trim() : image))
+    .filter(Boolean)
+)];
+
 function ProductCard({ product }) {
   const { addItem } = useCartStore();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
-  const [imageAspectRatio, setImageAspectRatio] = useState(null);
   const [imageAspectRatios, setImageAspectRatios] = useState({});
 
   // Verificar si el producto tiene variantes de color
@@ -28,16 +33,12 @@ function ProductCard({ product }) {
     const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
     if (hasColorVariants && !selectedColor) {
       setSelectedColor(colorVariants[0]);
-      const variantImages = getVariantImageSources(product, colorVariants[0]);
-      setImages(variantImages.length > 0 ? variantImages.map(getStaticUrl) : [placeholderSvg]);
+      const variantImages = getProductImageUrls(product, colorVariants[0]);
+      setImages(variantImages.length > 0 ? variantImages : [placeholderSvg]);
       setCurrentImageIndex(0);
     } else if (!hasColorVariants) {
-      // Producto sin variantes de color
-      const mainImg = product.image || product.attributes?.image;
-      const productImgs = Array.isArray(product.attributes?.images) ? product.attributes.images : [];
-      const galleryImgs = Array.isArray(product.attributes?.gallery) ? product.attributes.gallery : [];
-      const allImgs = [mainImg, ...productImgs, ...galleryImgs].filter(Boolean);
-      setImages(allImgs.length > 0 ? allImgs.map(getStaticUrl) : [placeholderSvg]);
+      const productImages = getProductImageUrls(product);
+      setImages(productImages.length > 0 ? productImages : [placeholderSvg]);
       setCurrentImageIndex(0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,8 +53,7 @@ function ProductCard({ product }) {
 
   const handleColorChange = colorVariant => {
     setSelectedColor(colorVariant);
-    const variantImages = getVariantImageSources(product, colorVariant);
-    setImages(variantImages.map(getStaticUrl));
+    setImages(getProductImageUrls(product, colorVariant));
     setCurrentImageIndex(0);
   };
 
@@ -87,15 +87,15 @@ function ProductCard({ product }) {
 
   const productSlug = product.slug || product.id || product._id;
   const currentImage = images[currentImageIndex] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
-  const currentImageAspectRatio = imageAspectRatios[currentImage] ?? imageAspectRatio;
-  const isPortraitImage = currentImageAspectRatio !== null && currentImageAspectRatio < 0.85;
+  const currentImageAspectRatio = imageAspectRatios[currentImage];
+  const isAdaptiveImage = currentImageAspectRatio !== undefined && currentImageAspectRatio < 1.15;
   // Construir URL con color seleccionado como query param
   const productUrl = selectedColor 
     ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
     : `/products/${productSlug}`;
   const imageFrameClassNames = [
     'product-image',
-    isPortraitImage ? 'product-image--adaptive' : ''
+    isAdaptiveImage ? 'product-image--adaptive' : ''
   ].filter(Boolean).join(' ');
 
   return (
@@ -103,7 +103,7 @@ function ProductCard({ product }) {
       <div
         className={imageFrameClassNames}
         {...swipeHandlers}
-        style={isPortraitImage ? {
+        style={isAdaptiveImage ? {
           '--product-image-ratio': currentImageAspectRatio
         } : undefined}
       >
@@ -120,7 +120,6 @@ function ProductCard({ product }) {
             height="300"
             objectFit="contain"
             onDimensions={({ ratio }) => {
-              setImageAspectRatio(ratio);
               setImageAspectRatios(previous => (
                 previous[currentImage] === ratio
                   ? previous
