@@ -8,7 +8,6 @@ import StructuredData from '../components/StructuredData';
 import OptimizedImage from '../components/OptimizedImage';
 import '../styles/productDetail.css';
 import { renderDescription } from '../utils/renderDescription.jsx';
-import { shouldFillProductImageFrame } from '../utils/productImagePresentation';
 import { getVariantImageSources } from '../utils/productImagePresentation';
 
 const getProductImageUrls = (product, variant = null) => {
@@ -31,7 +30,8 @@ function ProductDetail() {
   const [currentImage, setCurrentImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
-  const [portraitAspectRatio, setPortraitAspectRatio] = useState(null);
+  const [imageAspectRatio, setImageAspectRatio] = useState(null);
+  const [imageAspectRatios, setImageAspectRatios] = useState({});
   const { addItem } = useCartStore();
   const { user, isAuthenticated } = useAuthStore();
 
@@ -84,7 +84,8 @@ function ProductDetail() {
       try {
         setLoading(true);
         setError(null);
-        setPortraitAspectRatio(null);
+        setImageAspectRatio(null);
+        setImageAspectRatios({});
         const response = await productService.getById(slug);
         if (!response.data || !response.data.id) {
           setError('El producto no existe o no está disponible');
@@ -165,21 +166,18 @@ function ProductDetail() {
     setImages(colorImages);
     setCurrentImage(colorImages[0]);
     setCurrentImageIndex(0);
-    setPortraitAspectRatio(null);
   };
 
   const nextImage = () => {
     const newIndex = (currentImageIndex + 1) % images.length;
     setCurrentImageIndex(newIndex);
     setCurrentImage(images[newIndex]);
-    setPortraitAspectRatio(null);
   };
 
   const prevImage = () => {
     const newIndex = (currentImageIndex - 1 + images.length) % images.length;
     setCurrentImageIndex(newIndex);
     setCurrentImage(images[newIndex]);
-    setPortraitAspectRatio(null);
   };
 
   const handleAddToCart = () => {
@@ -299,8 +297,7 @@ function ProductDetail() {
   const availableStock = hasColorVariants
     ? Number(selectedColor?.stock ?? 0)
     : Number(product.stock ?? 0);
-  const fillImageFrame = shouldFillProductImageFrame(product);
-  const portraitImageFrame = fillImageFrame || portraitAspectRatio !== null;
+  const currentImageAspectRatio = imageAspectRatios[currentImage] ?? imageAspectRatio;
   const isOutOfStock = Number(availableStock) <= 0;
 
   // Construir array de URLs absolutas de imágenes públicas
@@ -508,8 +505,11 @@ function ProductDetail() {
         </button>
         <div className="product-detail-content">
           <div
-            className={`product-image-large${fillImageFrame ? ' product-image-large--fill-frame' : ''}${portraitImageFrame ? ' product-image-large--portrait-frame' : ''}`}
-            style={portraitAspectRatio ? { '--product-image-ratio': portraitAspectRatio } : undefined}
+            className={`product-image-large${currentImageAspectRatio ? ' product-image-large--adaptive' : ''}`}
+            style={currentImageAspectRatio ? {
+              '--product-image-ratio': currentImageAspectRatio,
+              '--product-image-width': `${Math.min(currentImageAspectRatio * 400, 640)}px`
+            } : undefined}
           >
             <OptimizedImage
               src={currentImage || product.image || product.attributes?.image || 'https://via.placeholder.com/500'}
@@ -518,8 +518,14 @@ function ProductDetail() {
               height="500"
               objectFit="contain"
               loading="eager"
-              fillFrame={fillImageFrame}
-              onDimensions={({ ratio }) => setPortraitAspectRatio(ratio < 0.85 ? ratio : null)}
+              onDimensions={({ ratio }) => {
+                setImageAspectRatio(ratio);
+                setImageAspectRatios(previous => (
+                  previous[currentImage] === ratio
+                    ? previous
+                    : { ...previous, [currentImage]: ratio }
+                ));
+              }}
             />
             {images.length > 1 && (
               <>
@@ -545,7 +551,6 @@ function ProductDetail() {
                       onClick={() => {
                         setCurrentImageIndex(idx);
                         setCurrentImage(images[idx]);
-                        setPortraitAspectRatio(null);
                       }}
                     />
                   ))}

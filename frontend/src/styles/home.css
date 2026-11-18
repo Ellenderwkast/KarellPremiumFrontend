@@ -149,17 +149,13 @@
     margin: 0 auto;
   }
 
-  .home .featured-products .product-image--cover .product-card-image {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-  }
-
-  .home .featured-products .product-image.product-image--portrait {
+  .home .featured-products .product-image.product-image--adaptive {
+    width: min(100%, var(--product-image-width, 270px)) !important;
     aspect-ratio: var(--product-image-ratio, 3 / 2) !important;
     height: auto !important;
     min-height: 0 !important;
-    max-height: none !important;
+    max-height: 180px !important;
+    margin-inline: auto;
   }
 
   /* Evitar que el hover agrande la imagen en esta sección en pantallas pequeñas */

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Componente para servir imágenes WebP con fallback automático
@@ -20,6 +20,12 @@ const OptimizedImage = ({
   const [imageError, setImageError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [fitMode, setFitMode] = useState(objectFit);
+
+  useEffect(() => {
+    setImageError(false);
+    setIsLoaded(false);
+    setFitMode(objectFit);
+  }, [src, objectFit]);
 
   if (!src) {
     return null;

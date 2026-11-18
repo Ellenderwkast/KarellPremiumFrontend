@@ -3,10 +3,7 @@ import { useState, useEffect } from 'react';
 import { useCartStore } from '../store/cartStore';
 import { getStaticUrl } from '../services/api';
 import OptimizedImage from './OptimizedImage';
-import {
-  getVariantImageSources,
-  shouldFillProductImageFrame
-} from '../utils/productImagePresentation';
+import { getVariantImageSources } from '../utils/productImagePresentation';
 import '../styles/productCard.css';
 
 function ProductCard({ product }) {
@@ -16,6 +13,7 @@ function ProductCard({ product }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
   const [imageAspectRatio, setImageAspectRatio] = useState(null);
+  const [imageAspectRatios, setImageAspectRatios] = useState({});
 
   // Verificar si el producto tiene variantes de color
   const colorVariants = (product.attributes?.colorVariants || []).map(v => ({
@@ -56,21 +54,18 @@ function ProductCard({ product }) {
     const variantImages = getVariantImageSources(product, colorVariant);
     setImages(variantImages.map(getStaticUrl));
     setCurrentImageIndex(0);
-    setImageAspectRatio(null);
   };
 
   const nextImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    setImageAspectRatio(null);
   };
 
   const prevImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-    setImageAspectRatio(null);
   };
 
   const handleAddToCart = () => {
@@ -84,24 +79,25 @@ function ProductCard({ product }) {
   };
 
   const productSlug = product.slug || product.id || product._id;
-  const fillImageFrame = shouldFillProductImageFrame(product);
   const currentImage = images[currentImageIndex] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
-  const portraitImageFrame = fillImageFrame || imageAspectRatio !== null;
+  const currentImageAspectRatio = imageAspectRatios[currentImage] ?? imageAspectRatio;
   // Construir URL con color seleccionado como query param
   const productUrl = selectedColor 
     ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
     : `/products/${productSlug}`;
   const imageFrameClassNames = [
     'product-image',
-    fillImageFrame ? 'product-image--cover' : '',
-    portraitImageFrame ? 'product-image--portrait' : ''
+    currentImageAspectRatio ? 'product-image--adaptive' : ''
   ].filter(Boolean).join(' ');
 
   return (
     <div className="product-card">
       <div
         className={imageFrameClassNames}
-        style={imageAspectRatio ? { '--product-image-ratio': imageAspectRatio } : undefined}
+        style={currentImageAspectRatio ? {
+          '--product-image-ratio': currentImageAspectRatio,
+          '--product-image-width': `${Math.min(currentImageAspectRatio * 180, 320)}px`
+        } : undefined}
       >
         <Link
           to={productUrl}
@@ -115,9 +111,14 @@ function ProductCard({ product }) {
             width="300"
             height="300"
             objectFit="contain"
-            onDimensions={({ ratio }) => setImageAspectRatio(
-              fillImageFrame || ratio < 0.85 ? ratio : null
-            )}
+            onDimensions={({ ratio }) => {
+              setImageAspectRatio(ratio);
+              setImageAspectRatios(previous => (
+                previous[currentImage] === ratio
+                  ? previous
+                  : { ...previous, [currentImage]: ratio }
+              ));
+            }}
           />
         </Link>
         {images.length > 1 && (
@@ -147,14 +148,12 @@ function ProductCard({ product }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentImageIndex(idx);
-                    setImageAspectRatio(null);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       e.stopPropagation();
                       setCurrentImageIndex(idx);
-                      setImageAspectRatio(null);
                     }
                   }}
                 />
