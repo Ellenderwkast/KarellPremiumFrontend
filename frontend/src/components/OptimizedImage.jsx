@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 /**
  * Componente para servir imágenes WebP con fallback automático
@@ -17,15 +17,12 @@ const OptimizedImage = ({
   onDimensions,
   fallback = null
 }) => {
-  const [imageError, setImageError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [fitMode, setFitMode] = useState(objectFit);
-
-  useEffect(() => {
-    setImageError(false);
-    setIsLoaded(false);
-    setFitMode(objectFit);
-  }, [src, objectFit]);
+  const [imageErrorSrc, setImageErrorSrc] = useState(null);
+  const [loadedSrc, setLoadedSrc] = useState(null);
+  const [fitState, setFitState] = useState(null);
+  const isLoaded = loadedSrc === src;
+  const imageError = imageErrorSrc === src;
+  const fitMode = fitState?.src === src ? fitState.mode : objectFit;
 
   if (!src) {
     return null;
@@ -83,11 +80,11 @@ const OptimizedImage = ({
 
   const urls = getImageUrls();
   const handleError = () => {
-    setImageError(true);
+    setImageErrorSrc(src);
   };
 
   const handleLoad = (e) => {
-    setIsLoaded(true);
+    setLoadedSrc(src);
     const img = e?.target;
     if (img?.naturalWidth && img?.naturalHeight) {
       const ratio = img.naturalWidth / img.naturalHeight;
@@ -96,9 +93,10 @@ const OptimizedImage = ({
         height: img.naturalHeight,
         ratio
       });
-      // Portrait sources should remain fully visible in product frames.
-      if (ratio < 1) setFitMode('contain');
-      else setFitMode(objectFit || 'cover');
+      setFitState({
+        src,
+        mode: ratio < 1 ? 'contain' : (objectFit || 'cover')
+      });
     }
   };
   const imageClassName = [className, fillFrame ? 'optimized-image--fill-frame' : '']
