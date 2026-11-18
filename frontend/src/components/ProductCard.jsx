@@ -4,6 +4,7 @@ import { useCartStore } from '../store/cartStore';
 import { getStaticUrl } from '../services/api';
 import OptimizedImage from './OptimizedImage';
 import { getVariantImageSources } from '../utils/productImagePresentation';
+import { useSwipeNavigation } from '../utils/useSwipeNavigation';
 import '../styles/productCard.css';
 
 function ProductCard({ product }) {
@@ -68,6 +69,12 @@ function ProductCard({ product }) {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const swipeHandlers = useSwipeNavigation({
+    enabled: images.length > 1,
+    onPrevious: () => setCurrentImageIndex(prev => (prev - 1 + images.length) % images.length),
+    onNext: () => setCurrentImageIndex(prev => (prev + 1) % images.length)
+  });
+
   const handleAddToCart = () => {
     const options = { quantity };
     if (selectedColor) {
@@ -94,9 +101,10 @@ function ProductCard({ product }) {
     <div className="product-card">
       <div
         className={imageFrameClassNames}
+        {...swipeHandlers}
         style={currentImageAspectRatio ? {
           '--product-image-ratio': currentImageAspectRatio,
-          '--product-image-width': `${Math.min(currentImageAspectRatio * 180, 320)}px`
+          '--product-image-width': `${Math.min(currentImageAspectRatio * 220, 380)}px`
         } : undefined}
       >
         <Link

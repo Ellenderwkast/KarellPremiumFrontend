@@ -58,6 +58,7 @@
   background: linear-gradient(145deg, #f8fafc, #fff);
   padding: 0;
   position: relative;
+  touch-action: pan-y;
 }
 
 .product-image a,
@@ -108,12 +109,11 @@
 }
 
 .product-image--adaptive {
-  width: min(100%, var(--product-image-width, 270px)) !important;
-  aspect-ratio: var(--product-image-ratio, 3 / 2) !important;
+  width: 100% !important;
+  aspect-ratio: 3 / 2 !important;
   height: auto !important;
   min-height: 0 !important;
-  max-height: 180px !important;
-  margin-inline: auto;
+  max-height: 220px !important;
 }
 
 @media (max-width: 768px) {

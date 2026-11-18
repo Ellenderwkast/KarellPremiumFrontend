@@ -9,6 +9,7 @@ import OptimizedImage from '../components/OptimizedImage';
 import '../styles/productDetail.css';
 import { renderDescription } from '../utils/renderDescription.jsx';
 import { getVariantImageSources } from '../utils/productImagePresentation';
+import { useSwipeNavigation } from '../utils/useSwipeNavigation';
 
 const getProductImageUrls = (product, variant = null) => {
   const imageUrls = getVariantImageSources(product, variant)
@@ -179,6 +180,12 @@ function ProductDetail() {
     setCurrentImageIndex(newIndex);
     setCurrentImage(images[newIndex]);
   };
+
+  const swipeHandlers = useSwipeNavigation({
+    enabled: images.length > 1,
+    onPrevious: prevImage,
+    onNext: nextImage
+  });
 
   const handleAddToCart = () => {
     const options = { quantity };
@@ -506,6 +513,7 @@ function ProductDetail() {
         <div className="product-detail-content">
           <div
             className={`product-image-large${currentImageAspectRatio ? ' product-image-large--adaptive' : ''}`}
+            {...swipeHandlers}
             style={currentImageAspectRatio ? {
               '--product-image-ratio': currentImageAspectRatio,
               '--product-image-width': `${Math.min(currentImageAspectRatio * 400, 640)}px`
