@@ -15,7 +15,7 @@ function ProductCard({ product }) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
-  const [portraitAspectRatio, setPortraitAspectRatio] = useState(null);
+  const [hasImageBackdrop, setHasImageBackdrop] = useState(false);
 
   // Verificar si el producto tiene variantes de color
   const colorVariants = (product.attributes?.colorVariants || []).map(v => ({
@@ -56,21 +56,21 @@ function ProductCard({ product }) {
     const variantImages = getVariantImageSources(product, colorVariant);
     setImages(variantImages.map(getStaticUrl));
     setCurrentImageIndex(0);
-    setPortraitAspectRatio(null);
+    setHasImageBackdrop(false);
   };
 
   const nextImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    setPortraitAspectRatio(null);
+    setHasImageBackdrop(false);
   };
 
   const prevImage = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-    setPortraitAspectRatio(null);
+    setHasImageBackdrop(false);
   };
 
   const handleAddToCart = () => {
@@ -85,37 +85,39 @@ function ProductCard({ product }) {
 
   const productSlug = product.slug || product.id || product._id;
   const fillImageFrame = shouldFillProductImageFrame(product);
-  const portraitFrame = fillImageFrame || portraitAspectRatio !== null;
+  const currentImage = images[currentImageIndex] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
   // Construir URL con color seleccionado como query param
   const productUrl = selectedColor 
     ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
     : `/products/${productSlug}`;
   const imageFrameClassNames = [
     'product-image',
-    fillImageFrame ? 'product-image--fill-frame' : '',
-    portraitFrame ? 'product-image--portrait-frame' : ''
+    fillImageFrame || hasImageBackdrop ? 'product-image--with-backdrop' : ''
   ].filter(Boolean).join(' ');
 
   return (
     <div className="product-card">
-      <div
-        className={imageFrameClassNames}
-        style={portraitAspectRatio ? { '--product-image-ratio': portraitAspectRatio } : undefined}
-      >
+      <div className={imageFrameClassNames}>
+        {(fillImageFrame || hasImageBackdrop) && (
+          <span
+            className="product-image-backdrop"
+            style={{ backgroundImage: `url("${currentImage}")` }}
+            aria-hidden="true"
+          />
+        )}
         <Link
           to={productUrl}
           aria-label={`Ver producto ${product.title || product.name}`}
           className="product-image-link"
         >
           <OptimizedImage 
-            src={images[currentImageIndex] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E'} 
+            src={currentImage}
             alt={`Comprar ${product.title || product.name} en Colombia | Audífonos y accesorios Karell Premium`}
             className="product-card-image"
             width="300"
             height="300"
             objectFit="contain"
-            fillFrame={fillImageFrame}
-            onDimensions={({ ratio }) => setPortraitAspectRatio(ratio < 0.85 ? ratio : null)}
+            onDimensions={({ ratio }) => setHasImageBackdrop(fillImageFrame || ratio < 0.9)}
           />
         </Link>
         {images.length > 1 && (
@@ -145,14 +147,14 @@ function ProductCard({ product }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentImageIndex(idx);
-                    setPortraitAspectRatio(null);
+                    setHasImageBackdrop(false);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       e.stopPropagation();
                       setCurrentImageIndex(idx);
-                      setPortraitAspectRatio(null);
+                      setHasImageBackdrop(false);
                     }
                   }}
                 />

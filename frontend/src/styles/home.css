@@ -120,8 +120,8 @@
   .home .featured-products .product-card {
     padding-top: 0.18rem;
     padding-bottom: 0.3rem;
-    width: 92%;
-    max-width: 380px;
+    width: 100%;
+    max-width: none;
     margin-left: auto;
     margin-right: auto;
     /* En destacados, mantener la card contenida para que no se monte sobre otras */
@@ -130,21 +130,27 @@
 
   /* En destacados móviles: imagen más pequeña y sin recortes */
   .home .featured-products .product-image {
-    aspect-ratio: auto !important;
+    aspect-ratio: 3 / 2 !important;
     height: auto !important;
-    padding: 0.12rem !important;
-    overflow: visible !important;
+    min-height: 130px !important;
+    max-height: 180px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
   }
 
   .home .featured-products .product-image img,
   .home .featured-products .product-card-image {
-    width: auto !important;
+    width: 100% !important;
     max-width: 100% !important;
-    height: auto !important;
-    max-height: 200px !important;
+    height: 100% !important;
+    max-height: 100% !important;
     object-fit: contain !important;
     display: block;
     margin: 0 auto;
+  }
+
+  .home .featured-products .product-image-backdrop {
+    inset: 0;
   }
 
   /* Evitar que el hover agrande la imagen en esta sección en pantallas pequeñas */

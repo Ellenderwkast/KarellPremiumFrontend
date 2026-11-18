@@ -12,7 +12,6 @@
   padding: 0.35rem 0.35rem 0.6rem 0.35rem;
 }
 
-/* Fuerza compactación final en móviles: ubicamos estas reglas al final para sobreescribir otras declaraciones */
 @media (max-width: 768px) {
   .product-card {
     height: auto !important;
@@ -35,22 +34,6 @@
     margin-bottom: 0.06rem !important;
   }
 
-  .product-image {
-    /* En móvil: imagen visible, tamaño moderado y sin solaparse */
-    aspect-ratio: 4 / 3 !important;
-    max-height: 200px !important;
-    min-height: 140px !important;
-    overflow: hidden !important;
-    padding: 0.14rem !important;
-  }
-
-  .product-image img,
-  .product-card-image {
-    width: 100% !important;
-    height: 100% !important;
-    max-height: 100% !important;
-    object-fit: contain !important;
-  }
 }
 
 /* Forzar una altura mínima en pantallas grandes para mantener tarjetas alineadas */
@@ -67,132 +50,72 @@
 
 .product-image {
   width: 100%;
-  /* Usar una relación más horizontal para mostrar más contenido de la imagen sin recortar */
-  aspect-ratio: 4 / 3;
-  /* Aumentar altura máxima para que las miniaturas sean más grandes (ajustable por responsivo) */
-  max-height: 200px;
-  min-height: 120px;
+  aspect-ratio: 3 / 2;
+  max-height: 190px;
+  min-height: 130px;
   overflow: hidden;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  padding: 0.3rem;
+  background: linear-gradient(145deg, #f8fafc, #fff);
+  padding: 0;
   position: relative;
 }
 
-/* Asegurar que el enlace no altere dimensiones del contenedor */
 .product-image a,
 .product-image-link {
   display: block;
   width: 100%;
   height: 100%;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.product-image-backdrop {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  filter: blur(18px);
+  opacity: 0.24;
+  transform: scale(1.12);
+  z-index: 0;
+}
+
+.product-image-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.22));
 }
 
 .product-image img {
-  /* Mantener la imagen centrada y escalada sin recortar */
   display: block;
-  margin: 0 auto;
+  width: 100% !important;
+  height: 100% !important;
   max-width: 100%;
   max-height: 100%;
-  width: auto;
-  height: auto;
   object-fit: contain;
+  object-position: center;
   transition: var(--transition);
-  background-color: #ffffff;
+  background: transparent;
   cursor: pointer;
 }
 
-/* En pantallas muy grandes dar aún más altura a la miniatura */
 @media (min-width: 1200px) {
   .product-image {
-    max-height: 240px;
-    min-height: 150px;
+    max-height: 190px;
   }
 }
 
-/* Forzar tamaño para imágenes con clase específica */
 .product-card-image {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
 }
 
-.product-image .product-card-image.optimized-image--fill-frame {
-  width: 100% !important;
-  height: 100% !important;
-  max-height: 100% !important;
-  object-fit: cover !important;
-  object-position: center;
-}
-
-.product-image.product-image--portrait-frame {
-  width: min(100%, calc(320px * var(--product-image-ratio, 0.75)));
-  height: auto;
-  min-height: 0;
-  max-height: 320px;
-  aspect-ratio: var(--product-image-ratio, 0.75);
-  padding: 0.2rem;
-  margin-inline: auto;
-}
-
-.product-image.product-image--portrait-frame .product-card-image {
-  object-fit: contain !important;
-}
-
-.home .featured-products .product-image .product-card-image.optimized-image--fill-frame,
-.products-page .product-image .product-card-image.optimized-image--fill-frame {
-  width: 100% !important;
-  height: 100% !important;
-  max-height: 100% !important;
-  object-fit: cover !important;
-}
-
-.home .featured-products .product-image.product-image--portrait-frame,
-.products-page .product-image.product-image--portrait-frame {
-  width: min(100%, calc(320px * var(--product-image-ratio, 0.75))) !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: 320px !important;
-  aspect-ratio: var(--product-image-ratio, 0.75) !important;
-  padding: 0.2rem !important;
-  overflow: hidden !important;
-  margin-inline: auto !important;
-}
-
-.home .featured-products .product-image.product-image--portrait-frame.product-image--fill-frame .product-card-image,
-.products-page .product-image.product-image--portrait-frame.product-image--fill-frame .product-card-image {
-  width: 100% !important;
-  height: 100% !important;
-  max-height: 100% !important;
-  object-fit: cover !important;
-}
-
 @media (max-width: 768px) {
-  .product-image.product-image--portrait-frame {
-    width: min(100%, calc(300px * var(--product-image-ratio, 0.75))) !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: 300px !important;
-    aspect-ratio: var(--product-image-ratio, 0.75) !important;
-  }
-
-  .home .featured-products .product-image.product-image--fill-frame,
-  .products-page .product-image.product-image--fill-frame {
-    aspect-ratio: 4 / 3 !important;
-    height: clamp(140px, 42vw, 200px) !important;
-    max-height: 200px !important;
-    min-height: 140px !important;
-    overflow: hidden !important;
-  }
-
-  .home .featured-products .product-image.product-image--portrait-frame,
-  .products-page .product-image.product-image--portrait-frame {
-    width: min(100%, calc(300px * var(--product-image-ratio, 0.75))) !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: 300px !important;
-    aspect-ratio: var(--product-image-ratio, 0.75) !important;
+  .product-image {
+    max-height: 180px;
+    aspect-ratio: 3 / 2;
   }
 }
 
@@ -604,9 +527,9 @@
 
   /* Mobile: compactar imagen y padding */
   .product-image {
-    max-height: 70px;
-    aspect-ratio: 1 / 1;
-    padding: 0.12rem;
+    aspect-ratio: 4 / 3;
+    min-height: 130px;
+    max-height: 190px;
   }
 
   .product-info {
@@ -750,9 +673,8 @@
   @media (max-width: 480px) {
     /* Extra small screens: mantener legibilidad y compactación */
     .product-image {
-      /* aumentar en pantallas muy pequeñas para mantener legibilidad */
+      min-height: 140px;
       max-height: 180px;
-      padding: 0.14rem;
     }
 
     .product-info {
