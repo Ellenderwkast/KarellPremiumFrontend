@@ -545,8 +545,8 @@
   }
 
   .info-gallery-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
   }
 
   .gallery-image {
@@ -565,6 +565,7 @@
   .gallery-content p {
     font-size: 0.9rem;
   }
+
 }
 
 @media (max-width: 480px) {
@@ -637,7 +638,33 @@
 
 @media (max-width: 768px) {
   .features-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .feature {
+    min-width: 0;
+    padding: 0.85rem 0.45rem;
+  }
+
+  .feature h3 {
+    min-height: 3.2em;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.82rem;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .feature-icon {
+    width: 23px;
+    height: 23px;
+  }
+
+  .feature p {
+    font-size: 0.72rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -662,5 +689,97 @@
     margin: 0 0 0.12rem;
     font-size: 0.72rem;
     line-height: 1.05;
+  }
+
+  .info-gallery {
+    padding: 1.25rem 0;
+  }
+
+  .info-gallery h2 {
+    margin-bottom: 0.8rem;
+    font-size: 1.15rem;
+  }
+
+  .info-gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    align-items: stretch;
+    gap: 0.45rem;
+  }
+
+  .info-gallery .gallery-item {
+    min-width: 0;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .info-gallery .gallery-image {
+    height: auto;
+    max-height: none;
+    aspect-ratio: 4 / 3;
+  }
+
+  .info-gallery .gallery-content {
+    min-width: 0;
+    padding: 0.5rem 0.45rem 0.6rem;
+  }
+
+  .info-gallery .gallery-content h3 {
+    min-height: 2.2em;
+    max-height: 2.2em;
+    margin: 0 0 0.25rem;
+    font-size: 0.68rem;
+    line-height: 1.1;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+  }
+
+  .info-gallery .gallery-content p {
+    display: -webkit-box;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.55rem;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .features {
+    padding: 1rem 0;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.35rem;
+  }
+
+  .feature {
+    min-width: 0;
+    padding: 0.55rem 0.25rem;
+    border-radius: 9px;
+  }
+
+  .feature h3 {
+    min-height: 3.2em;
+    margin: 0 0 0.2rem;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.57rem;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+
+  .feature-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+  }
+
+  .feature p {
+    font-size: 0.5rem;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
   }
 }

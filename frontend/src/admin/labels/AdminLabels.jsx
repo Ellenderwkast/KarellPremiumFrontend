@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { jsPDF } from 'jspdf';
 import JsBarcode from 'jsbarcode';
 import QRCode from 'qrcode';
-import { Barcode, Download, Pencil, Plus, Printer, Save, Search, Trash2, X } from 'lucide-react';
+import { Barcode, Download, Eye, Pencil, Plus, Printer, Save, Trash2, X } from 'lucide-react';
 import { productLabelService } from '../../services/api';
 import './adminLabels.css';
 
@@ -314,15 +314,68 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
   }
 };
 
+const createLabelPages = (queue, page) => {
+  const margin = 5;
+  const gap = 2;
+  const rightEdge = page.width - margin;
+  const bottomEdge = page.height - margin;
+  const labels = queue.flatMap(entry => {
+    const width = Number(entry.template.widthCm) * 10;
+    const height = Number(entry.template.heightCm) * 10;
+    const quantity = Math.max(1, Math.floor(Number(entry.quantity) || 1));
+    if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
+      throw new Error(`La plantilla "${entry.template.name}" tiene dimensiones no válidas.`);
+    }
+    if (width > rightEdge - margin || height > bottomEdge - margin) {
+      throw new Error(`La etiqueta de ${Number(entry.template.widthCm)}×${Number(entry.template.heightCm)} cm no cabe en una hoja ${page.label}.`);
+    }
+    return Array.from({ length: quantity }, () => ({ entry, width, height }));
+  }).sort((a, b) => b.height - a.height || b.width - a.width);
+
+  const pages = [[]];
+  let pageIndex = 0;
+  let cursorX = margin;
+  let cursorY = margin;
+  let rowHeight = 0;
+
+  labels.forEach(label => {
+    if (cursorX + label.width > rightEdge && rowHeight > 0) {
+      cursorX = margin;
+      cursorY += rowHeight + gap;
+      rowHeight = 0;
+    }
+    if (cursorY + label.height > bottomEdge) {
+      pageIndex += 1;
+      pages.push([]);
+      cursorX = margin;
+      cursorY = margin;
+      rowHeight = 0;
+    }
+    pages[pageIndex].push({
+      ...label,
+      x: cursorX,
+      y: cursorY
+    });
+    cursorX += label.width + gap;
+    rowHeight = Math.max(rowHeight, label.height);
+  });
+
+  return pages;
+};
+
 function AdminLabels() {
   const [items, setItems] = useState([]);
   const [templates, setTemplates] = useState([]);
-  const [selectedItemId, setSelectedItemId] = useState('');
-  const [selectedTemplateId, setSelectedTemplateId] = useState('');
-  const [fields, setFields] = useState({});
+  const [selectedItemIds, setSelectedItemIds] = useState([]);
+  const [selectedTemplateIds, setSelectedTemplateIds] = useState([]);
+  const [editingItemIds, setEditingItemIds] = useState([]);
+  const [editingItemId, setEditingItemId] = useState('');
+  const [fieldsDraft, setFieldsDraft] = useState({});
+  const [itemModalOpen, setItemModalOpen] = useState(false);
   const [templateDraft, setTemplateDraft] = useState(null);
   const [templateModalOpen, setTemplateModalOpen] = useState(false);
-  const [query, setQuery] = useState('');
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [previewModalOpen, setPreviewModalOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [pageSize, setPageSize] = useState('letter');
   const [queue, setQueue] = useState([]);
@@ -346,8 +399,6 @@ function AdminLabels() {
         if (active) {
           setItems(catalogResponse.data.items);
           setTemplates(templateResponse.data);
-          setSelectedItemId(String(catalogResponse.data.items[0]?.id || ''));
-          setSelectedTemplateId(String(templateResponse.data[0]?.id || ''));
           setError('');
         }
       } catch (loadError) {
@@ -362,20 +413,39 @@ function AdminLabels() {
     };
   }, []);
 
-  const selectedItem = items.find(item => String(item.id) === selectedItemId) || null;
-  const selectedTemplate = templates.find(template => String(template.id) === selectedTemplateId) || null;
+  const selectedItems = items.filter(item => selectedItemIds.includes(String(item.id)));
+  const selectedTemplates = templates.filter(template => selectedTemplateIds.includes(String(template.id)));
+  const editingItem = items.find(item => String(item.id) === editingItemId) || null;
+  const editingItemIndex = editingItemIds.indexOf(editingItemId);
+  const isEditingDirty = editingItem && Object.keys(FIELD_LABELS).some(key => (
+    String(fieldsDraft[key] || '') !== String(editingItem.fields?.[key] || '')
+  ));
+  const closeItemEditor = useCallback(() => {
+    if (busy) return;
+    if (isEditingDirty && !window.confirm('Hay cambios sin guardar. ¿Deseas descartarlos?')) return;
+    setItemModalOpen(false);
+    setEditingItemIds([]);
+    setEditingItemId('');
+  }, [busy, isEditingDirty]);
 
   const closeTemplateEditor = useCallback(() => {
     if (busy) return;
-    setTemplateDraft(selectedTemplate ? cloneTemplate(selectedTemplate) : null);
+    setTemplateDraft(null);
     setTemplateModalOpen(false);
-  }, [busy, selectedTemplate]);
+  }, [busy]);
 
   useEffect(() => {
-    if (!templateModalOpen) return undefined;
+    if (!templateModalOpen && !itemModalOpen && !previewModalOpen) return undefined;
     const previousOverflow = document.body.style.overflow;
     const handleKeyDown = event => {
-      if (event.key === 'Escape' && !busy) closeTemplateEditor();
+      if (event.key === 'Escape' && !busy) {
+        if (itemModalOpen) closeItemEditor();
+        else if (templateModalOpen) closeTemplateEditor();
+        else {
+          setPreviewModalOpen(false);
+          setPreviewUrl('');
+        }
+      }
     };
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
@@ -383,64 +453,68 @@ function AdminLabels() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [templateModalOpen, busy, closeTemplateEditor]);
+  }, [templateModalOpen, itemModalOpen, previewModalOpen, busy, closeItemEditor, closeTemplateEditor]);
 
   useEffect(() => {
-    setFields(selectedItem?.fields || {});
-  }, [selectedItemId, items]);
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
 
-  useEffect(() => {
-    setTemplateDraft(selectedTemplate ? cloneTemplate(selectedTemplate) : null);
-  }, [selectedTemplateId, templates]);
+  const openItemEditor = (itemId, itemIds = [itemId]) => {
+    const item = items.find(candidate => String(candidate.id) === String(itemId));
+    if (!item) return;
+    const editableIds = itemIds.map(String).filter(id => items.some(candidate => String(candidate.id) === id));
+    setEditingItemIds(editableIds.length ? editableIds : [String(item.id)]);
+    setEditingItemId(String(item.id));
+    setFieldsDraft({ ...(item.fields || {}) });
+    setError('');
+    setNotice('');
+    setItemModalOpen(true);
+  };
 
-  const filteredItems = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-    if (!normalizedQuery) return items;
-    return items.filter(item => [
-      item.product.title,
-      item.product.sku,
-      item.variantName,
-      item.code
-    ].some(value => String(value || '').toLowerCase().includes(normalizedQuery)));
-  }, [items, query]);
-
-  const selectedTemplateSize = selectedTemplate
-    ? `${Number(selectedTemplate.widthCm)}×${Number(selectedTemplate.heightCm)}`
-    : '';
+  const moveEditingItem = direction => {
+    if (isEditingDirty && !window.confirm('Hay cambios sin guardar. ¿Deseas descartarlos antes de cambiar de producto?')) return;
+    const nextIndex = editingItemIndex + direction;
+    const nextId = editingItemIds[nextIndex];
+    const nextItem = items.find(item => String(item.id) === nextId);
+    if (!nextItem) return;
+    setEditingItemId(nextId);
+    setFieldsDraft({ ...(nextItem.fields || {}) });
+  };
 
   const saveLabelFields = async () => {
-    if (!selectedItem) return false;
+    if (!editingItem) return;
     setBusy(true);
     setError('');
     setNotice('');
     try {
-      const response = await productLabelService.updateCodeFields(selectedItem.id, fields);
+      const response = await productLabelService.updateCodeFields(editingItem.id, fieldsDraft);
       setItems(previous => previous.map(item => (
-        item.id === selectedItem.id ? { ...item, fields: response.data.fields } : item
+        item.id === editingItem.id ? { ...item, fields: response.data.fields } : item
       )));
+      setFieldsDraft(response.data.fields);
       setNotice('Datos de la etiqueta guardados.');
-      return true;
     } catch (saveError) {
       setError(saveError.response?.data?.message || 'No se pudo guardar la etiqueta');
-      return false;
     } finally {
       setBusy(false);
     }
   };
 
-  const addToQueue = async () => {
-    if (!selectedItem || !selectedTemplate) return;
+  const addToQueue = () => {
+    if (!selectedItems.length || !selectedTemplates.length) return;
     const safeQuantity = Math.max(1, Math.min(500, Number(quantity) || 1));
-    const saved = await saveLabelFields();
-    if (!saved) return;
-    const currentItem = { ...selectedItem, fields: { ...fields } };
-    setQueue(previous => [...previous, {
-      key: `${Date.now()}-${Math.random()}`,
-      item: currentItem,
-      template: cloneTemplate(selectedTemplate),
+    const additions = selectedItems.flatMap(item => selectedTemplates.map(template => ({
+      key: `${Date.now()}-${item.id}-${template.id}-${Math.random()}`,
+      item: { ...item, fields: { ...(item.fields || {}) } },
+      template: cloneTemplate(template),
       quantity: safeQuantity
-    }]);
-    setNotice(`${safeQuantity} ${safeQuantity === 1 ? 'etiqueta añadida' : 'etiquetas añadidas'} al lote.`);
+    })));
+    setQueue(previous => [...previous, ...additions]);
+    const count = additions.length * safeQuantity;
+    setError('');
+    setNotice(`${count} ${count === 1 ? 'etiqueta añadida' : 'etiquetas añadidas'} al lote.`);
   };
 
   const saveTemplate = async () => {
@@ -466,7 +540,9 @@ function AdminLabels() {
           ? previous.map(template => template.id === savedTemplate.id ? savedTemplate : template)
           : [...previous, savedTemplate];
       });
-      setSelectedTemplateId(String(savedTemplate.id));
+      setSelectedTemplateIds(previous => (
+        previous.includes(String(savedTemplate.id)) ? previous : [...previous, String(savedTemplate.id)]
+      ));
       setTemplateDraft(cloneTemplate(savedTemplate));
       setTemplateModalOpen(false);
       setNotice('Plantilla guardada correctamente.');
@@ -512,11 +588,11 @@ function AdminLabels() {
     setTemplateModalOpen(true);
   };
 
-  const editTemplate = () => {
-    if (!selectedTemplate) return;
+  const editTemplate = template => {
+    if (!template) return;
     setError('');
     setNotice('');
-    setTemplateDraft(cloneTemplate(selectedTemplate));
+    setTemplateDraft(cloneTemplate(template));
     setTemplateModalOpen(true);
   };
 
@@ -529,7 +605,7 @@ function AdminLabels() {
       await productLabelService.deleteTemplate(templateDraft.id);
       const remainingTemplates = templates.filter(template => template.id !== templateDraft.id);
       setTemplates(remainingTemplates);
-      setSelectedTemplateId(String(remainingTemplates[0]?.id || ''));
+      setSelectedTemplateIds(previous => previous.filter(id => id !== String(templateDraft.id)));
       setTemplateDraft(null);
       setTemplateModalOpen(false);
       setNotice('Plantilla eliminada.');
@@ -540,79 +616,76 @@ function AdminLabels() {
     }
   };
 
-  const generatePdf = async () => {
+  const buildPdf = async () => {
     if (!queue.length) {
-      setError('Agrega por lo menos una etiqueta al lote antes de generar la plancha.');
-      return;
+      throw new Error('Agrega por lo menos una etiqueta al lote antes de generar la plancha.');
     }
     const page = PAGE_SIZES[pageSize];
-    const margin = 5;
-    const gap = 2;
-    const groupedQueue = new Map();
-    for (const entry of queue) {
-      const dimensions = `${Number(entry.template.widthCm).toFixed(2)}x${Number(entry.template.heightCm).toFixed(2)}`;
-      if (!groupedQueue.has(dimensions)) groupedQueue.set(dimensions, []);
-      groupedQueue.get(dimensions).push(entry);
+    const pages = createLabelPages(queue, page);
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: pageSize });
+    const assetsByLabel = new Map();
+    for (const placement of pages.flat()) {
+      const { entry } = placement;
+      const key = `${entry.template.id}:${entry.item.id}`;
+      if (assetsByLabel.has(key)) continue;
+      const [barcodeDataUrl, qrData] = await Promise.all([
+        entry.template.settings?.showBarcode === false
+          ? Promise.resolve(null)
+          : Promise.resolve(createBarcodeDataUrl(entry.item.code)),
+        entry.template.settings?.showQr === false
+          ? Promise.resolve(null)
+          : QRCode.toDataURL(buildProductUrl(entry.item), {
+            errorCorrectionLevel: 'M',
+            margin: 1,
+            width: 220
+          })
+      ]);
+      assetsByLabel.set(key, { barcodeDataUrl, qrData });
     }
-    const layouts = [];
-    for (const entries of groupedQueue.values()) {
-      const width = Number(entries[0].template.widthCm) * 10;
-      const height = Number(entries[0].template.heightCm) * 10;
-      const columns = Math.floor((page.width - margin * 2 + gap) / (width + gap));
-      const rows = Math.floor((page.height - margin * 2 + gap) / (height + gap));
-      if (columns < 1 || rows < 1) {
-        setError(`La etiqueta de ${Number(entries[0].template.widthCm)}×${Number(entries[0].template.heightCm)} cm no cabe en una hoja ${page.label}.`);
-        return;
-      }
-      layouts.push({ entries, width, height, columns, rows });
-    }
+    pages.forEach((placements, pageIndex) => {
+      if (pageIndex > 0) doc.addPage(pageSize, 'portrait');
+      placements.forEach(({ entry, x, y, width, height }) => {
+        const key = `${entry.template.id}:${entry.item.id}`;
+        drawLabel(doc, entry, assetsByLabel.get(key), x, y, width, height);
+      });
+    });
+    return { doc, totalLabels: pages.reduce((total, currentPage) => total + currentPage.length, 0), pageCount: pages.length };
+  };
 
+  const generatePdf = async () => {
     setBusy(true);
     setError('');
+    setNotice('');
     try {
-      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: pageSize });
-      const assetsByLabel = new Map();
-      for (const entry of queue) {
-        const key = `${entry.template.id}:${entry.item.id}`;
-        if (assetsByLabel.has(key)) continue;
-        const [barcodeDataUrl, qrData] = await Promise.all([
-          entry.template.settings?.showBarcode === false
-            ? Promise.resolve(null)
-            : Promise.resolve(createBarcodeDataUrl(entry.item.code)),
-          entry.template.settings?.showQr === false
-            ? Promise.resolve(null)
-            : QRCode.toDataURL(buildProductUrl(entry.item), {
-              errorCorrectionLevel: 'M',
-              margin: 1,
-              width: 220
-            })
-        ]);
-        assetsByLabel.set(key, { barcodeDataUrl, qrData });
-      }
-      let totalLabels = 0;
-      layouts.forEach((layout, layoutIndex) => {
-        if (layoutIndex > 0) doc.addPage(pageSize, 'portrait');
-        const labels = layout.entries.flatMap(entry => Array.from({ length: entry.quantity }, () => entry));
-        const perPage = layout.columns * layout.rows;
-        totalLabels += labels.length;
-        labels.forEach((entry, index) => {
-          if (index > 0 && index % perPage === 0) doc.addPage(pageSize, 'portrait');
-          const cellIndex = index % perPage;
-          const column = cellIndex % layout.columns;
-          const row = Math.floor(cellIndex / layout.columns);
-          const x = margin + column * (layout.width + gap);
-          const y = margin + row * (layout.height + gap);
-          const assetKey = `${entry.template.id}:${entry.item.id}`;
-          drawLabel(doc, entry, assetsByLabel.get(assetKey), x, y, layout.width, layout.height);
-        });
-      });
+      const { doc, totalLabels, pageCount } = await buildPdf();
       doc.save(`etiquetas-${new Date().toISOString().slice(0, 10)}.pdf`);
-      setNotice(`PDF generado con ${totalLabels} etiquetas organizadas por tamaño en hojas ${page.label}.`);
+      setNotice(`PDF generado con ${totalLabels} etiquetas en ${pageCount} ${pageCount === 1 ? 'página' : 'páginas'} tamaño ${PAGE_SIZES[pageSize].label}.`);
     } catch (pdfError) {
       setError(pdfError.message || 'No se pudo generar el PDF de etiquetas');
     } finally {
       setBusy(false);
     }
+  };
+
+  const previewPdf = async () => {
+    setBusy(true);
+    setError('');
+    setNotice('');
+    try {
+      const { doc } = await buildPdf();
+      const url = URL.createObjectURL(doc.output('blob'));
+      setPreviewUrl(url);
+      setPreviewModalOpen(true);
+    } catch (pdfError) {
+      setError(pdfError.message || 'No se pudo preparar la vista previa');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const closePreview = () => {
+    setPreviewModalOpen(false);
+    setPreviewUrl('');
   };
 
   if (loading) return <div className="admin-labels-loading">Cargando catálogo de etiquetas...</div>;
@@ -639,71 +712,64 @@ function AdminLabels() {
                 <p>Los códigos Code 128 se generan una sola vez y se mantienen vinculados al producto o variante.</p>
               </div>
             </div>
-
-            <label className="admin-labels-field">
-              <span>Producto o variante</span>
-              <span className="admin-labels-search">
-                <Search size={16} aria-hidden="true" />
-                <input
-                  value={query}
-                  onChange={event => {
-                    setQuery(event.target.value);
-                    setSelectedItemId('');
-                  }}
-                  placeholder="Buscar producto, color o código"
-                />
-              </span>
-              <select value={selectedItemId} onChange={event => setSelectedItemId(event.target.value)}>
-                {!selectedItemId && (
-                  <option value="" disabled>
-                    {filteredItems.length === 0 ? 'No hay coincidencias' : 'Selecciona un producto'}
-                  </option>
-                )}
-                {filteredItems.map(item => (
-                  <option key={item.id} value={item.id}>
-                    {item.product.title}{item.variantName ? ` · ${item.variantName}` : ''} · ${item.code}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            {selectedItem ? (
-              <>
-                <div className="admin-label-code">
-                  <span>Código interno único</span>
-                  <strong>{selectedItem.code}</strong>
-                  <small>Code 128 · asignado una vez a este producto/variante</small>
-                </div>
-
-                <div className="admin-label-fields">
-                  {Object.entries(FIELD_LABELS).map(([key, label]) => (
-                    <label className={`admin-labels-field${MULTILINE_FIELDS.has(key) ? ' admin-labels-field--wide' : ''}`} key={key}>
-                      <span>{label}</span>
-                      {MULTILINE_FIELDS.has(key) ? (
-                        <textarea
-                          rows={2}
-                          maxLength={2000}
-                          value={fields[key] || ''}
-                          onChange={event => setFields(previous => ({ ...previous, [key]: event.target.value }))}
-                        />
-                      ) : (
+            <div className="admin-label-selection-toolbar">
+              <span>{selectedItems.length} seleccionados</span>
+              <button
+                type="button"
+                className="admin-labels-secondary"
+                onClick={() => setSelectedItemIds(selectedItems.length === items.length ? [] : items.map(item => String(item.id)))}
+                disabled={!items.length}
+              >
+                {selectedItems.length === items.length ? 'Quitar selección' : 'Seleccionar todos'}
+              </button>
+              <button
+                type="button"
+                className="admin-labels-secondary"
+                onClick={() => openItemEditor(selectedItemIds[0], selectedItemIds)}
+                disabled={!selectedItems.length || busy}
+              >
+                <Pencil size={15} aria-hidden="true" /> Editar seleccionados
+              </button>
+            </div>
+            {items.length ? (
+              <div className="admin-label-choice-grid" role="group" aria-label="Productos y variantes">
+                {items.map(item => {
+                  const itemId = String(item.id);
+                  const isSelected = selectedItemIds.includes(itemId);
+                  return (
+                    <article className={`admin-label-choice-card${isSelected ? ' is-selected' : ''}`} key={item.id}>
+                      <label className="admin-label-choice-check">
                         <input
-                          maxLength={500}
-                          value={fields[key] || ''}
-                          onChange={event => setFields(previous => ({ ...previous, [key]: event.target.value }))}
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={event => setSelectedItemIds(previous => (
+                            event.target.checked
+                              ? (previous.includes(itemId) ? previous : [...previous, itemId])
+                              : previous.filter(id => id !== itemId)
+                          ))}
                         />
-                      )}
-                    </label>
-                  ))}
-                </div>
-                <div className="admin-labels-actions">
-                  <button type="button" className="admin-labels-secondary" onClick={saveLabelFields} disabled={busy}>
-                    <Save size={16} aria-hidden="true" /> Guardar datos
-                  </button>
-                </div>
-              </>
+                        <span className="admin-labels-sr-only">Seleccionar {item.product.title}{item.variantName ? `, ${item.variantName}` : ''}</span>
+                      </label>
+                      <div className="admin-label-choice-copy">
+                        <strong>{item.product.title}</strong>
+                        <small>{item.variantName || item.product.sku || 'Producto'}</small>
+                        <code>{item.code}</code>
+                      </div>
+                      <button
+                        type="button"
+                        className="admin-label-choice-edit"
+                        onClick={() => openItemEditor(itemId, isSelected ? selectedItemIds : [itemId])}
+                        disabled={busy}
+                        aria-label={`Editar datos de ${item.product.title}${item.variantName ? `, ${item.variantName}` : ''}`}
+                      >
+                        <Pencil size={15} aria-hidden="true" />
+                      </button>
+                    </article>
+                  );
+                })}
+              </div>
             ) : (
-              <p className="admin-labels-empty">No hay productos que coincidan con la búsqueda.</p>
+              <p className="admin-labels-empty">No hay productos o variantes disponibles.</p>
             )}
           </section>
 
@@ -713,31 +779,60 @@ function AdminLabels() {
                 <h2>Plantillas editables</h2>
                 <p>Configura el contenido, los símbolos y el tamaño físico en centímetros.</p>
               </div>
-              <button type="button" className="admin-labels-secondary" onClick={createTemplate}>
+              <button type="button" className="admin-labels-secondary" onClick={createTemplate} disabled={busy}>
                 <Plus size={16} aria-hidden="true" /> Nueva
               </button>
             </div>
-
-            <div className="admin-label-template-selection">
-              <label className="admin-labels-field">
-                <span>Plantilla activa</span>
-                <select
-                  value={selectedTemplateId}
-                  onChange={event => setSelectedTemplateId(event.target.value)}
-                >
-                  {templates.length ? (
-                    templates.map(template => (
-                      <option key={template.id} value={template.id}>{template.name}</option>
-                    ))
-                  ) : (
-                    <option value="">No hay plantillas guardadas</option>
-                  )}
-                </select>
-              </label>
-              <button type="button" className="admin-labels-secondary" onClick={editTemplate} disabled={!selectedTemplate}>
-                <Pencil size={16} aria-hidden="true" /> Editar
+            <div className="admin-label-selection-toolbar">
+              <span>{selectedTemplates.length} seleccionadas</span>
+              <button
+                type="button"
+                className="admin-labels-secondary"
+                onClick={() => setSelectedTemplateIds(selectedTemplates.length === templates.length ? [] : templates.map(template => String(template.id)))}
+                disabled={!templates.length}
+              >
+                {selectedTemplates.length === templates.length ? 'Quitar selección' : 'Seleccionar todas'}
               </button>
             </div>
+            {templates.length ? (
+              <div className="admin-label-template-cards" role="group" aria-label="Plantillas disponibles">
+                {templates.map(template => {
+                  const templateId = String(template.id);
+                  const isSelected = selectedTemplateIds.includes(templateId);
+                  return (
+                    <article className={`admin-label-template-card${isSelected ? ' is-selected' : ''}`} key={template.id}>
+                      <label className="admin-label-choice-check">
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={event => setSelectedTemplateIds(previous => (
+                            event.target.checked
+                              ? (previous.includes(templateId) ? previous : [...previous, templateId])
+                              : previous.filter(id => id !== templateId)
+                          ))}
+                        />
+                        <span className="admin-labels-sr-only">Seleccionar plantilla {template.name}</span>
+                      </label>
+                      <div className="admin-label-choice-copy">
+                        <strong>{template.name}</strong>
+                        <small>{Number(template.widthCm)} × {Number(template.heightCm)} cm · {template.kind === 'barcode' ? 'Código de barras' : template.kind === 'package' ? 'Empaque' : 'Código + QR'}</small>
+                      </div>
+                      <button
+                        type="button"
+                        className="admin-label-choice-edit"
+                        onClick={() => editTemplate(template)}
+                        disabled={busy}
+                        aria-label={`Editar plantilla ${template.name}`}
+                      >
+                        <Pencil size={15} aria-hidden="true" />
+                      </button>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="admin-labels-empty">No hay plantillas guardadas.</p>
+            )}
           </section>
         </div>
 
@@ -745,7 +840,7 @@ function AdminLabels() {
           <div className="admin-labels-panel-heading">
             <div>
               <h2>Plancha de impresión</h2>
-              <p>Combina productos y tamaños; el PDF separa cada dimensión en sus propias páginas.</p>
+              <p>Combina varias variantes y plantillas; las etiquetas comparten página cuando hay espacio.</p>
             </div>
             <Printer size={21} aria-hidden="true" />
           </div>
@@ -763,11 +858,11 @@ function AdminLabels() {
             <input type="number" min="1" max="500" value={quantity} onChange={event => setQuantity(event.target.value)} />
           </label>
           <p className="admin-labels-size-note">
-            {selectedTemplate
-              ? `Tamaño seleccionado: ${selectedTemplateSize} cm. El PDF agrupa cada tamaño en sus propias páginas.`
-              : 'Selecciona una plantilla para conocer sus dimensiones.'}
+            {selectedItems.length && selectedTemplates.length
+              ? `${selectedItems.length} productos/variantes × ${selectedTemplates.length} plantillas seleccionadas.`
+              : 'Marca uno o más productos/variantes y plantillas para agregarlos al lote.'}
           </p>
-          <button type="button" className="admin-labels-primary" onClick={addToQueue} disabled={busy || !selectedItem || !selectedTemplate}>
+          <button type="button" className="admin-labels-primary" onClick={addToQueue} disabled={busy || !selectedItems.length || !selectedTemplates.length}>
             <Plus size={17} aria-hidden="true" /> Agregar al lote
           </button>
 
@@ -803,6 +898,16 @@ function AdminLabels() {
             </button>
             <button type="button" className="admin-labels-primary" onClick={generatePdf} disabled={!queue.length || busy}>
               <Download size={17} aria-hidden="true" /> Descargar PDF
+            </button>
+            <button
+              type="button"
+              className="admin-labels-secondary admin-labels-preview-button"
+              onClick={previewPdf}
+              disabled={!queue.length || busy}
+              aria-label="Previsualizar documento PDF"
+              title="Previsualizar documento PDF"
+            >
+              <Eye size={18} aria-hidden="true" />
             </button>
           </div>
           <small className="admin-labels-print-note">El PDF se genera en tamaño real. En el diálogo de impresión, usa escala 100 % y desactiva “Ajustar a página”.</small>
@@ -945,6 +1050,137 @@ function AdminLabels() {
               </button>
             </div>
           </footer>
+        </section>
+      </div>,
+      document.body
+    )}
+    {itemModalOpen && editingItem && createPortal(
+      <div
+        className="admin-label-template-backdrop"
+        onMouseDown={event => {
+          if (event.target === event.currentTarget) closeItemEditor();
+        }}
+      >
+        <section
+          className="admin-label-template-modal admin-label-item-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="admin-label-item-title"
+        >
+          <header className="admin-label-template-modal-header">
+            <div className="admin-label-item-heading">
+              <span className="admin-label-template-modal-eyebrow">Datos por producto o variante</span>
+              <h2 id="admin-label-item-title">Editar datos de etiqueta</h2>
+              <p>{editingItem.product.title}{editingItem.variantName ? ` · ${editingItem.variantName}` : ''}</p>
+            </div>
+            <div className="admin-label-item-navigation">
+              {editingItemIds.length > 1 && (
+                <span>{editingItemIndex + 1} de {editingItemIds.length} seleccionados</span>
+              )}
+              {editingItemIds.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className="admin-label-template-close"
+                    onClick={() => moveEditingItem(-1)}
+                    disabled={busy || editingItemIndex <= 0}
+                    aria-label="Editar producto anterior"
+                  >
+                    <span aria-hidden="true">‹</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="admin-label-template-close"
+                    onClick={() => moveEditingItem(1)}
+                    disabled={busy || editingItemIndex >= editingItemIds.length - 1}
+                    aria-label="Editar producto siguiente"
+                  >
+                    <span aria-hidden="true">›</span>
+                  </button>
+                </>
+              )}
+              <button
+                type="button"
+                className="admin-label-template-close"
+                onClick={closeItemEditor}
+                disabled={busy}
+                aria-label="Cerrar editor de etiqueta"
+              >
+                <X size={20} aria-hidden="true" />
+              </button>
+            </div>
+          </header>
+          <div className="admin-label-template-modal-body admin-label-item-modal-body">
+            {error && <div className="admin-labels-alert admin-labels-alert--error" role="alert">{error}</div>}
+            <div className="admin-label-code">
+              <span>Código interno único · Code 128</span>
+              <strong>{editingItem.code}</strong>
+            </div>
+            <div className="admin-label-fields">
+              {Object.entries(FIELD_LABELS).map(([key, label]) => (
+                <label className={`admin-labels-field${MULTILINE_FIELDS.has(key) ? ' admin-labels-field--wide' : ''}`} key={key}>
+                  <span>{label}</span>
+                  {MULTILINE_FIELDS.has(key) ? (
+                    <textarea
+                      rows={2}
+                      maxLength={2000}
+                      value={fieldsDraft[key] || ''}
+                      onChange={event => setFieldsDraft(previous => ({ ...previous, [key]: event.target.value }))}
+                    />
+                  ) : (
+                    <input
+                      maxLength={500}
+                      value={fieldsDraft[key] || ''}
+                      onChange={event => setFieldsDraft(previous => ({ ...previous, [key]: event.target.value }))}
+                    />
+                  )}
+                </label>
+              ))}
+            </div>
+          </div>
+          <footer className="admin-label-template-modal-footer">
+            <span />
+            <div className="admin-label-template-modal-actions">
+              <button type="button" className="admin-labels-secondary" onClick={closeItemEditor} disabled={busy}>
+                Cerrar
+              </button>
+              <button type="button" className="admin-labels-primary" onClick={saveLabelFields} disabled={busy}>
+                <Save size={16} aria-hidden="true" /> Guardar datos
+              </button>
+            </div>
+          </footer>
+        </section>
+      </div>,
+      document.body
+    )}
+    {previewModalOpen && previewUrl && createPortal(
+      <div
+        className="admin-label-template-backdrop"
+        onMouseDown={event => {
+          if (event.target === event.currentTarget) closePreview();
+        }}
+      >
+        <section
+          className="admin-label-preview-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="admin-label-preview-title"
+        >
+          <header className="admin-label-template-modal-header">
+            <div>
+              <span className="admin-label-template-modal-eyebrow">Plancha de impresión</span>
+              <h2 id="admin-label-preview-title">Vista previa del documento</h2>
+              <p>{queue.reduce((total, entry) => total + entry.quantity, 0)} etiquetas · Hoja {PAGE_SIZES[pageSize].label}</p>
+            </div>
+            <button type="button" className="admin-label-template-close" onClick={closePreview} aria-label="Cerrar vista previa">
+              <X size={20} aria-hidden="true" />
+            </button>
+          </header>
+          <iframe
+            className="admin-label-preview-frame"
+            src={previewUrl}
+            title="Vista previa del PDF de etiquetas"
+          />
         </section>
       </div>,
       document.body

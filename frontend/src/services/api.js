@@ -319,6 +319,15 @@ export const productLabelService = {
   deleteTemplate: id => api.delete(`/product-labels/templates/${id}`)
 };
 
+export const experienceCardService = {
+  getPublic: () => api.get('/experience-cards'),
+  getAllAdmin: () => api.get('/experience-cards/admin'),
+  create: card => api.post('/experience-cards', card),
+  update: (id, card) => api.put(`/experience-cards/${id}`, card),
+  delete: id => api.delete(`/experience-cards/${id}`),
+  reorder: ids => api.patch('/experience-cards/reorder', { ids })
+};
+
 export const orderService = {
   create: orderData => api.post('/orders', orderData),
   createManual: orderData => api.post('/orders/manual', orderData),

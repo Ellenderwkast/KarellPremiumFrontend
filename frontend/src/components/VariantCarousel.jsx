@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { productService, getStaticUrl } from '../services/api';
 import OptimizedImage from './OptimizedImage';
@@ -17,6 +17,7 @@ export default function VariantCarousel({ interval = 8000 }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [isJumping, setIsJumping] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -58,12 +59,13 @@ export default function VariantCarousel({ interval = 8000 }) {
   }, []);
 
   useEffect(() => {
-    if (paused || slides.length < 2) return undefined;
+    if (paused || isTransitioning || slides.length < 2) return undefined;
     const timer = window.setInterval(() => {
+      setIsTransitioning(true);
       setIndex(current => current + 1);
     }, interval);
     return () => window.clearInterval(timer);
-  }, [index, interval, paused, slides.length]);
+  }, [interval, isTransitioning, paused, slides.length]);
 
   useEffect(() => {
     if (slides.length === 0) return;
@@ -82,31 +84,35 @@ export default function VariantCarousel({ interval = 8000 }) {
     });
   }, [index, slides]);
 
-  useEffect(() => {
-    if (slides.length < 2 || (index !== 0 && index !== slides.length + 1)) return undefined;
-
-    const destination = index === 0 ? slides.length : 1;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const timer = window.setTimeout(() => {
+  const finishTransition = useCallback(completedIndex => {
+    if (completedIndex === 0 || completedIndex === slides.length + 1) {
       setIsJumping(true);
-      setIndex(destination);
+      setIndex(completedIndex === 0 ? slides.length : 1);
       window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => setIsJumping(false));
+        window.requestAnimationFrame(() => {
+          setIsJumping(false);
+          setIsTransitioning(false);
+        });
       });
-    }, reducedMotion ? 0 : 700);
-    return () => window.clearTimeout(timer);
-  }, [index, slides.length]);
+      return;
+    }
+    setIsTransitioning(false);
+  }, [slides.length]);
 
-  const previous = () => {
-    if (slides.length > 1) {
-      setIndex(current => current <= 0 ? slides.length - 1 : current - 1);
-    }
+  useEffect(() => {
+    if (!isTransitioning) return undefined;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = window.setTimeout(() => finishTransition(index), reducedMotion ? 0 : 700);
+    return () => window.clearTimeout(timer);
+  }, [finishTransition, index, isTransitioning]);
+
+  const move = direction => {
+    if (slides.length < 2 || isTransitioning) return;
+    setIsTransitioning(true);
+    setIndex(current => current + direction);
   };
-  const next = () => {
-    if (slides.length > 1) {
-      setIndex(current => current >= slides.length + 1 ? 2 : current + 1);
-    }
-  };
+  const previous = () => move(-1);
+  const next = () => move(1);
   const swipeHandlers = useSwipeNavigation({
     enabled: slides.length > 1,
     onPrevious: previous,
@@ -139,7 +145,7 @@ export default function VariantCarousel({ interval = 8000 }) {
           className="carousel-btn carousel-prev"
           aria-label="Grupo anterior de imágenes"
           onClick={previous}
-          disabled={slides.length < 2}
+          disabled={slides.length < 2 || isTransitioning}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -150,7 +156,7 @@ export default function VariantCarousel({ interval = 8000 }) {
           className="carousel-btn carousel-next"
           aria-label="Siguiente grupo de imágenes"
           onClick={next}
-          disabled={slides.length < 2}
+          disabled={slides.length < 2 || isTransitioning}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -169,8 +175,13 @@ export default function VariantCarousel({ interval = 8000 }) {
         >
           <div
             className={`carousel-track${isJumping ? ' is-jumping' : ''}`}
-            style={{ transform: `translateX(-${index * 100}%)` }}
+            style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
             aria-live="off"
+            onTransitionEnd={event => {
+              if (event.target === event.currentTarget && event.propertyName === 'transform' && isTransitioning) {
+                finishTransition(index);
+              }
+            }}
           >
             {visibleSlides.map(({ slide, originalIndex, key }) => {
               const productId = slide.product.id || slide.product._id || slide.product.slug;

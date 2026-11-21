@@ -18,6 +18,9 @@
 
 .carousel-track {
   display: flex;
+  width: 100%;
+  min-width: 100%;
+  flex-flow: row nowrap;
   transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
@@ -28,7 +31,9 @@
 
 .carousel-page {
   flex: 0 0 100%;
+  width: 100%;
   min-width: 0;
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.5rem, 2vw, 1.5rem);

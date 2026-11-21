@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BadgePercent, Headset, ShieldCheck, Truck } from 'lucide-react';
 import ProductList from '../components/ProductList';
@@ -7,10 +7,42 @@ import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
 import OptimizedImage from '../components/OptimizedImage';
 import VariantCarousel from '../components/VariantCarousel';
+import { experienceCardService } from '../services/api';
 import '../styles/home.css';
 import '../styles/products.css';
 
+const DEFAULT_EXPERIENCE_CARDS = [
+  { defaultKey: 'running', title: 'Running & Deporte', description: 'Audífonos perfectos para tus entrenamientos más intensos', imageUrl: 'descubre/running.webp', imageAlt: 'Corriendo con audífonos', imagePosition: 'center' },
+  { defaultKey: 'fitness', title: 'Gimnasio & Fitness', description: 'Sonido motivador para alcanzar tus metas', imageUrl: 'descubre/gym.webp', imageAlt: 'Gimnasio con audífonos', imagePosition: 'center' },
+  { defaultKey: 'comfort', title: 'Cómodos', description: 'Cómodos para cualquier tipo de situación', imageUrl: 'descubre/comodidad.webp', imageAlt: 'Audífonos cómodos para el día a día', imagePosition: 'center' },
+  { defaultKey: 'waterproof', title: 'Resistentes al agua', description: 'Entrenamientos bajo la lluvia sin preocupaciones', imageUrl: 'descubre/lluvia.webp', imageAlt: 'Audífonos resistentes al agua', imagePosition: '50% 12%' },
+  { defaultKey: 'battery', title: 'Batería duradera', description: 'Hasta 30 horas de música sin interrupciones', imageUrl: 'descubre/bateria.webp', imageAlt: 'Batería de larga duración', imagePosition: 'center' },
+  { defaultKey: 'noise-cancelling', title: 'Cancelación de ruido', description: 'Sumérgete en tu música sin distracciones', imageUrl: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80', imageAlt: 'Audífonos con cancelación de ruido', imagePosition: '50% 40%' },
+  { defaultKey: 'meditation', title: 'Yoga & Meditación', description: 'Sonido cristalino para tu práctica mindful', imageUrl: 'descubre/meditacion.webp', imageAlt: 'Yoga y meditación con música', imagePosition: 'center' },
+  { defaultKey: 'work-study', title: 'Trabajo & Estudio', description: 'Concentración total con audio de alta calidad', imageUrl: 'descubre/estudio.webp', imageAlt: 'Audífonos para trabajo y estudio', imagePosition: 'center' },
+  { defaultKey: 'travel', title: 'Viajes & Aventuras', description: 'Tu compañero ideal para cada travesía', imageUrl: 'descubre/viaje.webp', imageAlt: 'Viajes y aventuras con audífonos', imagePosition: '50% 25%' }
+];
+
 function Home() {
+  const [experienceCards, setExperienceCards] = useState(DEFAULT_EXPERIENCE_CARDS);
+
+  useEffect(() => {
+    let active = true;
+    experienceCardService.getPublic()
+      .then(response => {
+        if (!Array.isArray(response.data)) {
+          throw new Error('La respuesta de tarjetas de experiencia no es válida');
+        }
+        if (active) setExperienceCards(response.data);
+      })
+      .catch(error => {
+        console.error('Error cargando la sección Vive la experiencia:', error);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const breadcrumbData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -60,102 +92,34 @@ function Home() {
       {/* Carousel de variantes solicitado: entre Productos destacados y Vive la experiencia */}
       <VariantCarousel interval={4500} />
 
-      <section className="info-gallery">
-        <div className="container">
-          <h2>Vive la experiencia</h2>
-          <div className="info-gallery-grid">
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage src="descubre/running.webp" alt="Corriendo con audífonos" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Running & Deporte</h3>
-                <p>Audífonos perfectos para tus entrenamientos más intensos</p>
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage src="descubre/gym.webp" alt="Gimnasio con audífonos" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Gimnasio & Fitness</h3>
-                <p>Sonido motivador para alcanzar tus metas</p>
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage src="descubre/comodidad.webp" alt="Ciclismo con audífonos" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Comodos</h3>
-                <p>Comodos para cualquier tipo de situación</p>
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage className="water-image" src="descubre/lluvia.webp" alt="Resistentes al agua" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Resistentes al agua</h3>
-                <p>Entrenamientos bajo la lluvia sin preocupaciones</p>
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage src="descubre/bateria.webp" alt="Batería de larga duración" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Batería duradera</h3>
-                <p>Hasta 30 horas de música sin interrupciones</p>
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage className="noise-image" src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80" alt="Cancelación de ruido" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Cancelación de ruido</h3>
-                <p>Sumérgete en tu música sin distracciones</p>
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage src="descubre/meditacion.webp" alt="Yoga con música" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Yoga & Meditación</h3>
-                <p>Sonido cristalino para tu práctica mindful</p>
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage src="descubre/estudio.webp" alt="Trabajo y productividad" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Trabajo & Estudio</h3>
-                <p>Concentración total con audio de alta calidad</p>
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <div className="gallery-image">
-                <OptimizedImage className="center-image" src="descubre/viaje.webp" alt="Viajes y aventuras" width="400" height="300" objectFit="cover" />
-              </div>
-              <div className="gallery-content">
-                <h3>Viajes & Aventuras</h3>
-                <p>Tu compañero ideal para cada travesía</p>
-              </div>
+      {experienceCards.length > 0 && (
+        <section className="info-gallery">
+          <div className="container">
+            <h2>Vive la experiencia</h2>
+            <div className="info-gallery-grid">
+              {experienceCards.map(card => (
+                <article className="gallery-item" key={card.id || card.defaultKey}>
+                  <div className="gallery-image">
+                    <OptimizedImage
+                      src={card.imageUrl}
+                      alt={card.imageAlt || card.title}
+                      width="400"
+                      height="300"
+                      objectFit="cover"
+                      objectPosition={card.imagePosition || 'center'}
+                      forceObjectFit
+                    />
+                  </div>
+                  <div className="gallery-content">
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="features">
         <div className="container">

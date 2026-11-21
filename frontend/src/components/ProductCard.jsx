@@ -102,7 +102,8 @@ function ProductCard({ product }) {
   const productUrl = `/products/${productSlug}?${productQuery.toString()}`;
   const imageFrameClassNames = [
     'product-image',
-    isAdaptiveImage ? 'product-image--adaptive' : ''
+    isAdaptiveImage ? 'product-image--adaptive' : '',
+    images.length > 1 ? 'product-image--with-dots' : ''
   ].filter(Boolean).join(' ');
 
   return (

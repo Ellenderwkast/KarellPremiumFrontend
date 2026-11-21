@@ -13,6 +13,8 @@ const OptimizedImage = ({
   sizes = '100vw',
   loading = 'lazy',
   objectFit = 'cover',
+  objectPosition = 'center',
+  forceObjectFit = false,
   fillFrame = false,
   onDimensions,
   fallback = null
@@ -95,7 +97,11 @@ const OptimizedImage = ({
       });
       setFitState({
         src,
-        mode: ratio < 1 ? 'contain' : (objectFit || 'cover')
+        mode: forceObjectFit
+          ? (objectFit || 'cover')
+          : ratio < 1
+            ? 'contain'
+            : (objectFit || 'cover')
       });
     }
   };
@@ -123,6 +129,7 @@ const OptimizedImage = ({
         style={{
           ...productCardImageStyle,
           objectFit: fitMode,
+          objectPosition,
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.3s ease-in-out'
         }}
@@ -150,6 +157,7 @@ const OptimizedImage = ({
           style={{
             ...productCardImageStyle,
             objectFit: fitMode,
+            objectPosition,
             opacity: isLoaded ? 1 : 0,
             transition: 'opacity 0.3s ease-in-out'
           }}
@@ -181,6 +189,7 @@ const OptimizedImage = ({
         onLoad={handleLoad}
         style={{
           objectFit: fitMode,
+          objectPosition,
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 0.3s ease-in-out',
           // Ajuste especial para tarjetas de producto: evitar recortes en móviles

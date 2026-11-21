@@ -55,14 +55,15 @@ import {
   XCircle,
   Truck,
   BookOpen,
-  Send
- ,
-  CreditCard
+  Send,
+  CreditCard,
+  Sparkles
 } from 'lucide-react';
 import AdminShipments from './AdminShipments';
 import AdminDespacho from './AdminDespacho';
 import AdminContentsRoutes from './AdminContentsRoutes';
 import AdminLabels from '../admin/labels/AdminLabels';
+import ExperienceCardsAdmin from '../admin/experience/ExperienceCardsAdmin';
 import { ContentsDashboard, ContentsList, NewContent, EditContent } from '../admin/contents';
 import { useAuthStore } from '../store/authStore';
 import { productService, authService, orderService, productInterestService } from '../services/api';
@@ -1657,6 +1658,13 @@ export default function AdminPanel() {
             <span className="admin-nav-label">Etiquetas</span>
           </Link>
           <Link
+            to="/admin/experience"
+            className={`admin-nav-btn${location.pathname.startsWith('/admin/experience') ? ' active' : ''}`}
+          >
+            <span className="admin-nav-icon" aria-hidden="true"><Sparkles /></span>
+            <span className="admin-nav-label">Vive la experiencia</span>
+          </Link>
+          <Link
             to="/admin/users"
             className={`admin-nav-btn${location.pathname.startsWith('/admin/users') ? ' active' : ''}`}
           >
@@ -1723,6 +1731,9 @@ export default function AdminPanel() {
             )}
             {activeTab === 'labels' && (
               <AdminLabels />
+            )}
+            {activeTab === 'experience' && (
+              <ExperienceCardsAdmin />
             )}
             {activeTab === 'contents' && (
               (() => {

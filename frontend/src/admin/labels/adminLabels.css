@@ -89,8 +89,7 @@
 
 .admin-labels-field input,
 .admin-labels-field select,
-.admin-labels-field textarea,
-.admin-labels-search {
+.admin-labels-field textarea {
   width: 100%;
   min-width: 0;
   border: 1px solid #d0d5dd;
@@ -114,26 +113,9 @@
 
 .admin-labels-field input:focus,
 .admin-labels-field select:focus,
-.admin-labels-field textarea:focus,
-.admin-labels-search:focus-within {
+.admin-labels-field textarea:focus {
   border-color: #3182ce;
   outline: 3px solid rgba(49, 130, 206, 0.14);
-}
-
-.admin-labels-search {
-  display: flex;
-  min-height: 40px;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0 0.65rem;
-  color: #667085;
-}
-
-.admin-labels-search input {
-  min-height: 36px;
-  padding: 0;
-  border: 0;
-  outline: 0;
 }
 
 .admin-label-code {
@@ -158,22 +140,137 @@
   letter-spacing: 0.09em;
 }
 
+.admin-label-selection-toolbar {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  margin: 0.8rem 0;
+}
+
+.admin-label-selection-toolbar > span {
+  margin-right: auto;
+  color: #667085;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.admin-label-choice-grid,
+.admin-label-template-cards {
+  display: grid;
+  max-height: 430px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 0.55rem;
+  padding: 2px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.admin-label-choice-card,
+.admin-label-template-card {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 18px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem;
+  border: 1px solid #e6eaf0;
+  border-radius: 10px;
+  background: #fff;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.admin-label-choice-card.is-selected,
+.admin-label-template-card.is-selected {
+  border-color: #69a6dc;
+  background: #f3f8ff;
+}
+
+.admin-label-choice-check {
+  display: grid;
+  width: 18px;
+  min-height: 28px;
+  place-items: center;
+  cursor: pointer;
+}
+
+.admin-label-choice-check input,
+.admin-label-checks input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1769aa;
+}
+
+.admin-label-choice-copy {
+  display: grid;
+  min-width: 0;
+  gap: 0.2rem;
+}
+
+.admin-label-choice-copy strong,
+.admin-label-choice-copy small,
+.admin-label-choice-copy code {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-label-choice-copy strong {
+  color: #344054;
+  font-size: 0.8rem;
+}
+
+.admin-label-choice-copy small {
+  color: #667085;
+  font-size: 0.72rem;
+}
+
+.admin-label-choice-copy code {
+  color: #1769aa;
+  font-size: 0.7rem;
+}
+
+.admin-label-choice-edit {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #fff;
+  color: #344054;
+  cursor: pointer;
+}
+
+.admin-label-choice-edit:hover:not(:disabled) {
+  border-color: #98a2b3;
+  background: #f8fafc;
+}
+
+.admin-label-choice-edit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.admin-labels-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .admin-label-fields,
 .admin-label-template-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
-}
-
-.admin-label-template-selection {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 0.65rem;
-}
-
-.admin-label-template-selection > button {
-  min-width: 6.5rem;
 }
 
 .admin-labels-field--wide {
@@ -195,29 +292,31 @@
 
 .admin-label-checks {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem 0.8rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem 0.6rem;
 }
 
 .admin-label-checks label {
-  display: flex;
+  display: grid;
   min-width: 0;
-  align-items: flex-start;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: start;
   gap: 0.45rem;
   color: #475467;
   font-size: 0.78rem;
   font-weight: 500;
+  line-height: 1.35;
 }
 
 .admin-label-checks label span {
   min-width: 0;
   overflow-wrap: anywhere;
+  white-space: normal;
+  writing-mode: horizontal-tb;
 }
 
 .admin-label-checks input {
-  flex: 0 0 auto;
-  margin: 0.1rem 0 0;
-  accent-color: #1769aa;
+  margin: 0.05rem 0 0;
 }
 
 .admin-label-template-backdrop {
@@ -249,6 +348,54 @@
   background: #fff;
   box-shadow: 0 24px 80px rgba(16, 24, 40, 0.28);
   color: #172033;
+}
+
+.admin-label-item-modal {
+  width: min(100%, 900px);
+}
+
+.admin-label-item-modal-body .admin-label-code {
+  margin-top: 0;
+}
+
+.admin-label-item-heading {
+  min-width: 0;
+}
+
+.admin-label-item-navigation {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.admin-label-item-navigation > span {
+  margin-right: 0.2rem;
+  color: #667085;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.admin-label-preview-modal {
+  display: grid;
+  width: min(100%, 1000px);
+  height: min(90vh, 900px);
+  height: min(90dvh, 900px);
+  min-width: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid #e6eaf0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgba(16, 24, 40, 0.28);
+  color: #172033;
+}
+
+.admin-label-preview-frame {
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  background: #e9edf3;
 }
 
 .admin-label-template-modal-header {
@@ -518,7 +665,12 @@
 
 .admin-labels-batch-actions {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) 42px;
+}
+
+.admin-labels-preview-button {
+  width: 42px;
+  padding: 0.45rem;
 }
 
 .admin-labels-print-note {
@@ -559,20 +711,16 @@
 
   .admin-label-fields,
   .admin-label-template-grid,
-  .admin-label-checks {
+  .admin-label-item-modal-body .admin-label-fields {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-label-checks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .admin-labels-field--wide {
     grid-column: auto;
-  }
-
-  .admin-label-template-selection {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .admin-label-template-selection > button {
-    width: 100%;
   }
 
   .admin-labels-panel-heading {
@@ -580,6 +728,16 @@
   }
 
   .admin-labels-batch-actions {
+    grid-template-columns: minmax(0, 1fr) 42px;
+  }
+
+  .admin-labels-batch-actions > button:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .admin-label-choice-grid,
+  .admin-label-template-cards {
+    max-height: 360px;
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -616,5 +774,28 @@
   .admin-label-template-modal-actions > button,
   .admin-label-template-modal-footer > .admin-labels-danger {
     width: 100%;
+  }
+
+  .admin-label-item-navigation {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .admin-label-item-navigation > span {
+    width: 100%;
+    text-align: right;
+  }
+
+  .admin-label-preview-modal {
+    width: 100%;
+    height: 94vh;
+    height: 94dvh;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .admin-label-checks {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
