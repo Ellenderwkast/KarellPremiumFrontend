@@ -109,7 +109,12 @@ function Header() {
 
   return (
     <header className="header">
-      <div className="announcement-bar" role="region" aria-label="Anuncio principal" ref={annRef}>
+      <div
+        className={`announcement-bar${location.pathname === '/' ? ' announcement-bar--home' : ''}`}
+        role="region"
+        aria-label="Anuncio principal"
+        ref={annRef}
+      >
         {typeof window !== 'undefined' && (() => {
           const text = 'Audífonos Bluetooth, Relojes Inteligentes y Accesorios Tecnológicos | Karell Premium';
           return (

@@ -210,7 +210,8 @@ function ProductCard({ product }) {
             </span>
           ) : (
             <span className="product-unavailable-note" role="status">
-              Producto no disponible
+              <span className="product-unavailable-desktop">Producto no disponible</span>
+              <span className="product-unavailable-mobile">No disponible</span>
             </span>
           )}
             <span className="product-stock">

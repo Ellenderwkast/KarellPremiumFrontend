@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { jsPDF } from 'jspdf';
 import JsBarcode from 'jsbarcode';
 import QRCode from 'qrcode';
-import { Barcode, Download, Plus, Printer, Save, Search, Trash2 } from 'lucide-react';
+import { Barcode, Download, Pencil, Plus, Printer, Save, Search, Trash2, X } from 'lucide-react';
 import { productLabelService } from '../../services/api';
 import './adminLabels.css';
 
@@ -320,6 +321,7 @@ function AdminLabels() {
   const [selectedTemplateId, setSelectedTemplateId] = useState('');
   const [fields, setFields] = useState({});
   const [templateDraft, setTemplateDraft] = useState(null);
+  const [templateModalOpen, setTemplateModalOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [pageSize, setPageSize] = useState('letter');
@@ -363,12 +365,31 @@ function AdminLabels() {
   const selectedItem = items.find(item => String(item.id) === selectedItemId) || null;
   const selectedTemplate = templates.find(template => String(template.id) === selectedTemplateId) || null;
 
+  const closeTemplateEditor = useCallback(() => {
+    if (busy) return;
+    setTemplateDraft(selectedTemplate ? cloneTemplate(selectedTemplate) : null);
+    setTemplateModalOpen(false);
+  }, [busy, selectedTemplate]);
+
+  useEffect(() => {
+    if (!templateModalOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = event => {
+      if (event.key === 'Escape' && !busy) closeTemplateEditor();
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [templateModalOpen, busy, closeTemplateEditor]);
+
   useEffect(() => {
     setFields(selectedItem?.fields || {});
   }, [selectedItemId, items]);
 
   useEffect(() => {
-    if (selectedTemplateId === 'new') return;
     setTemplateDraft(selectedTemplate ? cloneTemplate(selectedTemplate) : null);
   }, [selectedTemplateId, templates]);
 
@@ -446,6 +467,8 @@ function AdminLabels() {
           : [...previous, savedTemplate];
       });
       setSelectedTemplateId(String(savedTemplate.id));
+      setTemplateDraft(cloneTemplate(savedTemplate));
+      setTemplateModalOpen(false);
       setNotice('Plantilla guardada correctamente.');
     } catch (saveError) {
       setError(saveError.response?.data?.message || 'No se pudo guardar la plantilla');
@@ -455,7 +478,8 @@ function AdminLabels() {
   };
 
   const createTemplate = () => {
-    setSelectedTemplateId('new');
+    setError('');
+    setNotice('');
     setTemplateDraft({
       name: 'Nueva plantilla',
       kind: 'barcode_qr',
@@ -485,10 +509,20 @@ function AdminLabels() {
         symbols: { ce: false, fcc: false, ukca: false, weee: false, recycling: false }
       }
     });
+    setTemplateModalOpen(true);
+  };
+
+  const editTemplate = () => {
+    if (!selectedTemplate) return;
+    setError('');
+    setNotice('');
+    setTemplateDraft(cloneTemplate(selectedTemplate));
+    setTemplateModalOpen(true);
   };
 
   const removeTemplate = async () => {
     if (!templateDraft?.id || templateDraft.templateKey) return;
+    if (!window.confirm(`¿Eliminar la plantilla "${templateDraft.name}"? Esta acción no se puede deshacer.`)) return;
     setBusy(true);
     setError('');
     try {
@@ -496,6 +530,8 @@ function AdminLabels() {
       const remainingTemplates = templates.filter(template => template.id !== templateDraft.id);
       setTemplates(remainingTemplates);
       setSelectedTemplateId(String(remainingTemplates[0]?.id || ''));
+      setTemplateDraft(null);
+      setTemplateModalOpen(false);
       setNotice('Plantilla eliminada.');
     } catch (deleteError) {
       setError(deleteError.response?.data?.message || 'No se pudo eliminar la plantilla');
@@ -582,12 +618,11 @@ function AdminLabels() {
   if (loading) return <div className="admin-labels-loading">Cargando catálogo de etiquetas...</div>;
 
   return (
+    <>
     <section className="admin-labels">
       <header className="admin-labels-header">
         <div>
-          <span className="admin-labels-eyebrow">Inventario e impresión</span>
           <h1>Etiquetas de productos</h1>
-          <p>Asigna códigos internos únicos por variante y prepara planchas listas para imprimir.</p>
         </div>
         <div className="admin-labels-header-icon"><Barcode size={25} aria-hidden="true" /></div>
       </header>
@@ -683,120 +718,26 @@ function AdminLabels() {
               </button>
             </div>
 
-            <label className="admin-labels-field">
-              <span>Plantilla</span>
-              <select
-                value={selectedTemplateId}
-                onChange={event => setSelectedTemplateId(event.target.value)}
-              >
-                {templates.map(template => (
-                  <option key={template.id} value={template.id}>{template.name}</option>
-                ))}
-                {selectedTemplateId === 'new' && <option value="new">Nueva plantilla sin guardar</option>}
-              </select>
-            </label>
-
-            {templateDraft && (
-              <>
-                <div className="admin-label-template-grid">
-                  <label className="admin-labels-field admin-labels-field--wide">
-                    <span>Nombre de plantilla</span>
-                    <input
-                      value={templateDraft.name}
-                      maxLength={100}
-                      onChange={event => setTemplateDraft(previous => ({ ...previous, name: event.target.value }))}
-                    />
-                  </label>
-                  <label className="admin-labels-field">
-                    <span>Diseño</span>
-                    <select
-                      value={templateDraft.kind}
-                      onChange={event => setTemplateDraft(previous => ({ ...previous, kind: event.target.value }))}
-                    >
-                      <option value="barcode">Código de barras compacto</option>
-                      <option value="package">Etiqueta de empaque</option>
-                      <option value="barcode_qr">Código de barras + QR</option>
-                    </select>
-                  </label>
-                  <label className="admin-labels-field">
-                    <span>Ancho (cm)</span>
-                    <input
-                      type="number"
-                      min="1"
-                      max="30"
-                      step="0.1"
-                      value={templateDraft.widthCm}
-                      onChange={event => setTemplateDraft(previous => ({ ...previous, widthCm: event.target.value }))}
-                    />
-                  </label>
-                  <label className="admin-labels-field">
-                    <span>Alto (cm)</span>
-                    <input
-                      type="number"
-                      min="1"
-                      max="40"
-                      step="0.1"
-                      value={templateDraft.heightCm}
-                      onChange={event => setTemplateDraft(previous => ({ ...previous, heightCm: event.target.value }))}
-                    />
-                  </label>
-                </div>
-
-                <div className="admin-label-settings">
-                  <strong>Contenido visible</strong>
-                  <div className="admin-label-checks">
-                    {TEMPLATE_SETTINGS.map(([key, label]) => (
-                      <label key={key}>
-                        <input
-                          type="checkbox"
-                          checked={Boolean(templateDraft.settings?.[key])}
-                          onChange={event => setTemplateDraft(previous => ({
-                            ...previous,
-                            settings: { ...previous.settings, [key]: event.target.checked }
-                          }))}
-                        />
-                        {label}
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {templateDraft.kind !== 'barcode' && (
-                  <div className="admin-label-settings">
-                    <strong>Símbolos opcionales</strong>
-                    <p>Activa solo los símbolos que correspondan a tu producto.</p>
-                    <div className="admin-label-checks">
-                      {Object.entries(SYMBOL_LABELS).map(([key, label]) => (
-                        <label key={key}>
-                          <input
-                            type="checkbox"
-                            checked={Boolean(templateDraft.settings?.symbols?.[key])}
-                            onChange={event => setTemplateDraft(previous => ({
-                              ...previous,
-                              settings: {
-                                ...previous.settings,
-                                symbols: { ...previous.settings.symbols, [key]: event.target.checked }
-                              }
-                            }))}
-                          />
-                          {label}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                <div className="admin-labels-actions">
-                  <button type="button" className="admin-labels-secondary" onClick={saveTemplate} disabled={busy}>
-                    <Save size={16} aria-hidden="true" /> Guardar plantilla
-                  </button>
-                  {templateDraft.id && !templateDraft.templateKey && (
-                    <button type="button" className="admin-labels-danger" onClick={removeTemplate} disabled={busy}>
-                      <Trash2 size={16} aria-hidden="true" /> Eliminar
-                    </button>
+            <div className="admin-label-template-selection">
+              <label className="admin-labels-field">
+                <span>Plantilla activa</span>
+                <select
+                  value={selectedTemplateId}
+                  onChange={event => setSelectedTemplateId(event.target.value)}
+                >
+                  {templates.length ? (
+                    templates.map(template => (
+                      <option key={template.id} value={template.id}>{template.name}</option>
+                    ))
+                  ) : (
+                    <option value="">No hay plantillas guardadas</option>
                   )}
-                </div>
-              </>
-            )}
+                </select>
+              </label>
+              <button type="button" className="admin-labels-secondary" onClick={editTemplate} disabled={!selectedTemplate}>
+                <Pencil size={16} aria-hidden="true" /> Editar
+              </button>
+            </div>
           </section>
         </div>
 
@@ -868,6 +809,147 @@ function AdminLabels() {
         </aside>
       </div>
     </section>
+    {templateModalOpen && templateDraft && createPortal(
+      <div
+        className="admin-label-template-backdrop"
+        onMouseDown={event => {
+          if (event.target === event.currentTarget) closeTemplateEditor();
+        }}
+      >
+        <section
+          className="admin-label-template-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="admin-label-template-title"
+        >
+          <header className="admin-label-template-modal-header">
+            <div>
+              <span className="admin-label-template-modal-eyebrow">Plantillas de producto</span>
+              <h2 id="admin-label-template-title">{templateDraft.id ? 'Editar plantilla' : 'Nueva plantilla'}</h2>
+              <p>Personaliza el contenido y las dimensiones físicas de impresión.</p>
+            </div>
+            <button
+              type="button"
+              className="admin-label-template-close"
+              onClick={closeTemplateEditor}
+              disabled={busy}
+              aria-label="Cerrar editor de plantilla"
+            >
+              <X size={20} aria-hidden="true" />
+            </button>
+          </header>
+
+          <div className="admin-label-template-modal-body">
+            {error && <div className="admin-labels-alert admin-labels-alert--error" role="alert">{error}</div>}
+            <div className="admin-label-template-grid">
+              <label className="admin-labels-field admin-labels-field--wide">
+                <span>Nombre de plantilla</span>
+                <input
+                  value={templateDraft.name}
+                  maxLength={100}
+                  onChange={event => setTemplateDraft(previous => ({ ...previous, name: event.target.value }))}
+                />
+              </label>
+              <label className="admin-labels-field">
+                <span>Diseño</span>
+                <select
+                  value={templateDraft.kind}
+                  onChange={event => setTemplateDraft(previous => ({ ...previous, kind: event.target.value }))}
+                >
+                  <option value="barcode">Código de barras compacto</option>
+                  <option value="package">Etiqueta de empaque</option>
+                  <option value="barcode_qr">Código de barras + QR</option>
+                </select>
+              </label>
+              <label className="admin-labels-field">
+                <span>Ancho (cm)</span>
+                <input
+                  type="number"
+                  min="1"
+                  max="30"
+                  step="0.1"
+                  value={templateDraft.widthCm}
+                  onChange={event => setTemplateDraft(previous => ({ ...previous, widthCm: event.target.value }))}
+                />
+              </label>
+              <label className="admin-labels-field">
+                <span>Alto (cm)</span>
+                <input
+                  type="number"
+                  min="1"
+                  max="40"
+                  step="0.1"
+                  value={templateDraft.heightCm}
+                  onChange={event => setTemplateDraft(previous => ({ ...previous, heightCm: event.target.value }))}
+                />
+              </label>
+            </div>
+
+            <div className="admin-label-settings">
+              <strong>Contenido visible</strong>
+              <div className="admin-label-checks">
+                {TEMPLATE_SETTINGS.map(([key, label]) => (
+                  <label key={key}>
+                    <input
+                      type="checkbox"
+                      checked={Boolean(templateDraft.settings?.[key])}
+                      onChange={event => setTemplateDraft(previous => ({
+                        ...previous,
+                        settings: { ...previous.settings, [key]: event.target.checked }
+                      }))}
+                    />
+                    <span>{label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {templateDraft.kind !== 'barcode' && (
+              <div className="admin-label-settings">
+                <strong>Símbolos opcionales</strong>
+                <p>Activa solo los símbolos que correspondan a tu producto.</p>
+                <div className="admin-label-checks">
+                  {Object.entries(SYMBOL_LABELS).map(([key, label]) => (
+                    <label key={key}>
+                      <input
+                        type="checkbox"
+                        checked={Boolean(templateDraft.settings?.symbols?.[key])}
+                        onChange={event => setTemplateDraft(previous => ({
+                          ...previous,
+                          settings: {
+                            ...previous.settings,
+                            symbols: { ...previous.settings.symbols, [key]: event.target.checked }
+                          }
+                        }))}
+                      />
+                      <span>{label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <footer className="admin-label-template-modal-footer">
+            {templateDraft.id && !templateDraft.templateKey ? (
+              <button type="button" className="admin-labels-danger" onClick={removeTemplate} disabled={busy}>
+                <Trash2 size={16} aria-hidden="true" /> Eliminar plantilla
+              </button>
+            ) : <span />}
+            <div className="admin-label-template-modal-actions">
+              <button type="button" className="admin-labels-secondary" onClick={closeTemplateEditor} disabled={busy}>
+                Cancelar
+              </button>
+              <button type="button" className="admin-labels-primary" onClick={saveTemplate} disabled={busy}>
+                <Save size={16} aria-hidden="true" /> Guardar plantilla
+              </button>
+            </div>
+          </footer>
+        </section>
+      </div>,
+      document.body
+    )}
+    </>
   );
 }
 

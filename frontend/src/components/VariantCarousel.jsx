@@ -16,6 +16,7 @@ export default function VariantCarousel({ interval = 8000 }) {
   const [slides, setSlides] = useState([]);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isJumping, setIsJumping] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -43,7 +44,7 @@ export default function VariantCarousel({ interval = 8000 }) {
 
         if (active) {
           setSlides(collected);
-          setIndex(0);
+          setIndex(collected.length > 1 ? 1 : 0);
         }
       } catch (error) {
         console.error('Error cargando el carrusel de productos:', error);
@@ -59,17 +60,20 @@ export default function VariantCarousel({ interval = 8000 }) {
   useEffect(() => {
     if (paused || slides.length < 2) return undefined;
     const timer = window.setInterval(() => {
-      setIndex(current => (current + 1) % slides.length);
+      setIndex(current => current + 1);
     }, interval);
     return () => window.clearInterval(timer);
   }, [index, interval, paused, slides.length]);
 
   useEffect(() => {
     if (slides.length === 0) return;
-    const nextIndex = (index + 1) % slides.length;
+    const activeIndex = slides.length > 1 ? (index - 1 + slides.length) % slides.length : 0;
+    const nextIndex = (activeIndex + 1) % slides.length;
+    const previousIndex = (activeIndex - 1 + slides.length) % slides.length;
     const urls = new Set([
-      ...(slides[index]?.images || []),
-      ...(slides[nextIndex]?.images || [])
+      ...(slides[activeIndex]?.images || []),
+      ...(slides[nextIndex]?.images || []),
+      ...(slides[previousIndex]?.images || [])
     ]);
     urls.forEach(url => {
       const image = new window.Image();
@@ -78,8 +82,31 @@ export default function VariantCarousel({ interval = 8000 }) {
     });
   }, [index, slides]);
 
-  const previous = () => setIndex(current => (current - 1 + slides.length) % slides.length);
-  const next = () => setIndex(current => (current + 1) % slides.length);
+  useEffect(() => {
+    if (slides.length < 2 || (index !== 0 && index !== slides.length + 1)) return undefined;
+
+    const destination = index === 0 ? slides.length : 1;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = window.setTimeout(() => {
+      setIsJumping(true);
+      setIndex(destination);
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => setIsJumping(false));
+      });
+    }, reducedMotion ? 0 : 700);
+    return () => window.clearTimeout(timer);
+  }, [index, slides.length]);
+
+  const previous = () => {
+    if (slides.length > 1) {
+      setIndex(current => current <= 0 ? slides.length - 1 : current - 1);
+    }
+  };
+  const next = () => {
+    if (slides.length > 1) {
+      setIndex(current => current >= slides.length + 1 ? 2 : current + 1);
+    }
+  };
   const swipeHandlers = useSwipeNavigation({
     enabled: slides.length > 1,
     onPrevious: previous,
@@ -87,6 +114,23 @@ export default function VariantCarousel({ interval = 8000 }) {
   });
 
   if (slides.length === 0) return null;
+
+  const activeIndex = slides.length > 1 ? (index - 1 + slides.length) % slides.length : 0;
+  const visibleSlides = slides.length > 1
+    ? [
+      { slide: slides[slides.length - 1], originalIndex: slides.length - 1, key: 'clone-last' },
+      ...slides.map((slide, originalIndex) => ({
+        slide,
+        originalIndex,
+        key: `${slide.product.id || slide.product._id || slide.product.slug}-${slide.variant?.name || 'product'}`
+      })),
+      { slide: slides[0], originalIndex: 0, key: 'clone-first' }
+    ]
+    : slides.map((slide, originalIndex) => ({
+      slide,
+      originalIndex,
+      key: `${slide.product.id || slide.product._id || slide.product.slug}-${slide.variant?.name || 'product'}`
+    }));
 
   return (
     <section className="variant-carousel" aria-label="Galería de productos">
@@ -124,17 +168,17 @@ export default function VariantCarousel({ interval = 8000 }) {
           }}
         >
           <div
-            className="carousel-track"
+            className={`carousel-track${isJumping ? ' is-jumping' : ''}`}
             style={{ transform: `translateX(-${index * 100}%)` }}
             aria-live="off"
           >
-            {slides.map((slide, slideIndex) => {
+            {visibleSlides.map(({ slide, originalIndex, key }) => {
               const productId = slide.product.id || slide.product._id || slide.product.slug;
               const query = new URLSearchParams();
               if (slide.variant?.name) query.set('color', slide.variant.name);
 
               return (
-                <div className="carousel-page" key={`${productId}-${slide.variant?.name || 'product'}`}>
+                <div className="carousel-page" key={key}>
                   {slide.images.map((image, imageIndex) => {
                     query.set('image', String(imageIndex));
                     const productUrl = `/products/${productId}?${query.toString()}`;
@@ -147,7 +191,9 @@ export default function VariantCarousel({ interval = 8000 }) {
                               alt={`${slide.product.title || slide.product.name || 'Producto'}${slide.variant?.name ? ` - ${slide.variant.name}` : ''}, imagen ${imageIndex + 1}`}
                               objectFit="contain"
                               loading={
-                                slideIndex === index || slideIndex === (index + 1) % slides.length
+                                originalIndex === activeIndex ||
+                                originalIndex === (activeIndex + 1) % slides.length ||
+                                originalIndex === (activeIndex - 1 + slides.length) % slides.length
                                   ? 'eager'
                                   : 'lazy'
                               }

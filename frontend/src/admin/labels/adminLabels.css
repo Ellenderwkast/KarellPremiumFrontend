@@ -31,14 +31,6 @@
   line-height: 1.5;
 }
 
-.admin-labels-eyebrow {
-  color: #1769aa;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .admin-labels-header-icon {
   display: grid;
   width: 3.25rem;
@@ -173,6 +165,17 @@
   gap: 0.75rem;
 }
 
+.admin-label-template-selection {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.65rem;
+}
+
+.admin-label-template-selection > button {
+  min-width: 6.5rem;
+}
+
 .admin-labels-field--wide {
   grid-column: 1 / -1;
 }
@@ -206,10 +209,129 @@
   font-weight: 500;
 }
 
+.admin-label-checks label span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .admin-label-checks input {
   flex: 0 0 auto;
   margin: 0.1rem 0 0;
   accent-color: #1769aa;
+}
+
+.admin-label-template-backdrop {
+  position: fixed;
+  z-index: 1500;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.65rem, 3vw, 2rem);
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(3px);
+}
+
+.admin-label-template-modal,
+.admin-label-template-modal * {
+  box-sizing: border-box;
+}
+
+.admin-label-template-modal {
+  display: grid;
+  width: min(100%, 760px);
+  max-height: min(90vh, 900px);
+  max-height: min(90dvh, 900px);
+  min-width: 0;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  border: 1px solid #e6eaf0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgba(16, 24, 40, 0.28);
+  color: #172033;
+}
+
+.admin-label-template-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.4rem 1rem;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.admin-label-template-modal-eyebrow {
+  color: #1769aa;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-label-template-modal-header h2 {
+  margin: 0.25rem 0;
+  font-size: 1.25rem;
+}
+
+.admin-label-template-modal-header p {
+  margin: 0;
+  color: #667085;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.admin-label-template-close {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: 0 0 2.4rem;
+  place-items: center;
+  border: 1px solid #e6eaf0;
+  border-radius: 9px;
+  background: #fff;
+  color: #475467;
+  cursor: pointer;
+}
+
+.admin-label-template-close:hover:not(:disabled) {
+  background: #f8fafc;
+  color: #172033;
+}
+
+.admin-label-template-close:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.admin-label-template-modal-body {
+  min-width: 0;
+  padding: 1.2rem 1.4rem;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.admin-label-template-modal-body .admin-label-template-grid,
+.admin-label-template-modal-body .admin-label-settings,
+.admin-label-template-modal-body .admin-label-checks {
+  min-width: 0;
+}
+
+.admin-label-template-modal-footer {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem 1.4rem;
+  border-top: 1px solid #edf0f4;
+  background: #fff;
+}
+
+.admin-label-template-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
 }
 
 .admin-labels-actions {
@@ -445,11 +567,54 @@
     grid-column: auto;
   }
 
+  .admin-label-template-selection {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-label-template-selection > button {
+    width: 100%;
+  }
+
   .admin-labels-panel-heading {
     align-items: flex-start;
   }
 
   .admin-labels-batch-actions {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-label-template-backdrop {
+    padding: 0.45rem;
+  }
+
+  .admin-label-template-modal {
+    width: 100%;
+    max-height: 94vh;
+    max-height: 94dvh;
+    border-radius: 14px;
+  }
+
+  .admin-label-template-modal-header {
+    padding: 1rem 1rem 0.8rem;
+  }
+
+  .admin-label-template-modal-body {
+    padding: 1rem;
+  }
+
+  .admin-label-template-modal-footer {
+    align-items: stretch;
+    flex-direction: column-reverse;
+    padding: 0.8rem 1rem;
+  }
+
+  .admin-label-template-modal-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+
+  .admin-label-template-modal-actions > button,
+  .admin-label-template-modal-footer > .admin-labels-danger {
+    width: 100%;
   }
 }
