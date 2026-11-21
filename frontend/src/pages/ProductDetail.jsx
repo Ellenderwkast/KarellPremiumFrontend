@@ -99,6 +99,7 @@ function ProductDetail() {
 
         // Leer el color desde query params
         const colorFromUrl = searchParams.get('color');
+        const imageIndexFromUrl = Number(searchParams.get('image'));
 
         // Establecer imagen y color por defecto
         let variants = (fetchedProduct.attributes?.colorVariants || []).map(v => ({
@@ -112,16 +113,26 @@ function ProductDetail() {
             : variants[0];
           setSelectedColor(targetColor);
           const colorImages = getProductImageUrls(fetchedProduct, targetColor);
+          const initialImageIndex = Number.isInteger(imageIndexFromUrl) &&
+            imageIndexFromUrl >= 0 &&
+            imageIndexFromUrl < colorImages.length
+            ? imageIndexFromUrl
+            : 0;
           setImages(colorImages);
-          setCurrentImage(colorImages[0]);
-          setCurrentImageIndex(0);
+          setCurrentImage(colorImages[initialImageIndex]);
+          setCurrentImageIndex(initialImageIndex);
         } else {
           const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="500"%3E%3Crect fill="%23eee" width="500" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="18" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
           const productImages = getProductImageUrls(fetchedProduct);
           if (productImages.length === 0) productImages.push(placeholder);
+          const initialImageIndex = Number.isInteger(imageIndexFromUrl) &&
+            imageIndexFromUrl >= 0 &&
+            imageIndexFromUrl < productImages.length
+            ? imageIndexFromUrl
+            : 0;
           setImages(productImages);
-          setCurrentImage(productImages[0]);
-          setCurrentImageIndex(0);
+          setCurrentImage(productImages[initialImageIndex]);
+          setCurrentImageIndex(initialImageIndex);
         }
       } catch (err) {
         const errorMsg = err.response?.status === 404

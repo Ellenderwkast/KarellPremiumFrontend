@@ -1,0 +1,455 @@
+.admin-labels {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  color: #172033;
+}
+
+.admin-labels-header,
+.admin-labels-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-labels-header {
+  margin-bottom: 1.25rem;
+}
+
+.admin-labels-header h1 {
+  margin: 0.2rem 0 0.35rem;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.admin-labels-header p,
+.admin-labels-panel-heading p,
+.admin-label-settings p {
+  margin: 0;
+  color: #667085;
+  line-height: 1.5;
+}
+
+.admin-labels-eyebrow {
+  color: #1769aa;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-labels-header-icon {
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  flex: 0 0 3.25rem;
+  place-items: center;
+  border-radius: 1rem;
+  background: #eaf3ff;
+  color: #1769aa;
+}
+
+.admin-labels-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.85fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.admin-labels-main {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.admin-labels-panel {
+  min-width: 0;
+  padding: clamp(0.85rem, 2vw, 1.25rem);
+  border: 1px solid #e6eaf0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(16, 24, 40, 0.05);
+}
+
+.admin-labels-panel-heading {
+  margin-bottom: 1rem;
+}
+
+.admin-labels-panel-heading h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1.05rem;
+}
+
+.admin-labels-panel-heading p {
+  max-width: 680px;
+  font-size: 0.84rem;
+}
+
+.admin-labels-field {
+  display: grid;
+  min-width: 0;
+  gap: 0.38rem;
+  color: #344054;
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.admin-labels-field input,
+.admin-labels-field select,
+.admin-labels-field textarea,
+.admin-labels-search {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #fff;
+  color: #172033;
+  font: inherit;
+  font-weight: 400;
+}
+
+.admin-labels-field input,
+.admin-labels-field select,
+.admin-labels-field textarea {
+  min-height: 40px;
+  padding: 0.55rem 0.65rem;
+}
+
+.admin-labels-field textarea {
+  resize: vertical;
+}
+
+.admin-labels-field input:focus,
+.admin-labels-field select:focus,
+.admin-labels-field textarea:focus,
+.admin-labels-search:focus-within {
+  border-color: #3182ce;
+  outline: 3px solid rgba(49, 130, 206, 0.14);
+}
+
+.admin-labels-search {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0 0.65rem;
+  color: #667085;
+}
+
+.admin-labels-search input {
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+.admin-label-code {
+  display: grid;
+  gap: 0.25rem;
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 1px dashed #a9c7e9;
+  border-radius: 10px;
+  background: #f5f9ff;
+}
+
+.admin-label-code span,
+.admin-label-code small {
+  color: #667085;
+  font-size: 0.75rem;
+}
+
+.admin-label-code strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.15rem;
+  letter-spacing: 0.09em;
+}
+
+.admin-label-fields,
+.admin-label-template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.admin-labels-field--wide {
+  grid-column: 1 / -1;
+}
+
+.admin-label-settings {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #edf0f4;
+  font-size: 0.82rem;
+}
+
+.admin-label-settings > strong {
+  color: #344054;
+}
+
+.admin-label-checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 0.8rem;
+}
+
+.admin-label-checks label {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 0.45rem;
+  color: #475467;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.admin-label-checks input {
+  flex: 0 0 auto;
+  margin: 0.1rem 0 0;
+  accent-color: #1769aa;
+}
+
+.admin-labels-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.admin-labels-primary,
+.admin-labels-secondary,
+.admin-labels-danger {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.admin-labels-primary {
+  background: #1769aa;
+  color: #fff;
+}
+
+.admin-labels-primary:hover:not(:disabled) {
+  background: #105687;
+  transform: translateY(-1px);
+}
+
+.admin-labels-secondary {
+  border-color: #d0d5dd;
+  background: #fff;
+  color: #344054;
+}
+
+.admin-labels-secondary:hover:not(:disabled) {
+  border-color: #98a2b3;
+  background: #f8fafc;
+}
+
+.admin-labels-danger {
+  border-color: #f2c5c5;
+  background: #fff8f8;
+  color: #b42318;
+}
+
+.admin-labels-danger:hover:not(:disabled) {
+  background: #ffeded;
+}
+
+.admin-labels-primary:disabled,
+.admin-labels-secondary:disabled,
+.admin-labels-danger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-labels-alert {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid;
+  border-radius: 9px;
+  font-size: 0.84rem;
+}
+
+.admin-labels-alert--error {
+  border-color: #f2c5c5;
+  background: #fff6f5;
+  color: #b42318;
+}
+
+.admin-labels-alert--success {
+  border-color: #b7e4c7;
+  background: #f0fff4;
+  color: #18794e;
+}
+
+.admin-labels-empty,
+.admin-labels-size-note,
+.admin-labels-print-note {
+  color: #667085;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.admin-labels-size-note {
+  margin: 0.75rem 0;
+}
+
+.admin-labels-batch {
+  position: sticky;
+  top: 1rem;
+}
+
+.admin-labels-batch > .admin-labels-primary {
+  width: 100%;
+}
+
+.admin-label-queue-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid #edf0f4;
+  color: #344054;
+  font-size: 0.84rem;
+}
+
+.admin-label-queue-heading span {
+  min-width: 1.6rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: #eaf3ff;
+  color: #1769aa;
+  text-align: center;
+  font-weight: 700;
+}
+
+.admin-label-queue {
+  display: grid;
+  max-height: 360px;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+.admin-label-queue li {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem;
+  border: 1px solid #edf0f4;
+  border-radius: 8px;
+}
+
+.admin-label-queue li div {
+  display: grid;
+  min-width: 0;
+  gap: 0.2rem;
+}
+
+.admin-label-queue li strong,
+.admin-label-queue li small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-label-queue li strong {
+  color: #344054;
+  font-size: 0.78rem;
+}
+
+.admin-label-queue li small {
+  color: #667085;
+  font-size: 0.72rem;
+}
+
+.admin-label-queue li button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  background: #fff1f0;
+  color: #b42318;
+  cursor: pointer;
+}
+
+.admin-labels-batch-actions {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.admin-labels-print-note {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+.admin-labels-loading {
+  padding: 2rem;
+  color: #667085;
+  text-align: center;
+}
+
+@media (max-width: 1050px) {
+  .admin-labels-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-labels-batch {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .admin-labels {
+    padding: 0.65rem;
+  }
+
+  .admin-labels-header {
+    align-items: flex-start;
+  }
+
+  .admin-labels-header-icon {
+    width: 2.7rem;
+    height: 2.7rem;
+    flex-basis: 2.7rem;
+  }
+
+  .admin-label-fields,
+  .admin-label-template-grid,
+  .admin-label-checks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-labels-field--wide {
+    grid-column: auto;
+  }
+
+  .admin-labels-panel-heading {
+    align-items: flex-start;
+  }
+
+  .admin-labels-batch-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

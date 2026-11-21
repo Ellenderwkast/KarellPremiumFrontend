@@ -44,6 +44,13 @@ function ProductCard({ product }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    images.forEach(src => {
+      const preloadedImage = new window.Image();
+      preloadedImage.src = src;
+    });
+  }, [images]);
+
   const availableStock = hasColorVariants
     ? Number(selectedColor?.stock ?? 0)
     : Number(product.stock ?? 0);
@@ -89,10 +96,10 @@ function ProductCard({ product }) {
   const currentImage = images[currentImageIndex] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23eee" width="300" height="300"/%3E%3Ctext x="50%25" y="50%25" font-size="16" fill="%23999" text-anchor="middle" dy=".3em" font-family="Arial"%3ESin imagen%3C/text%3E%3C/svg%3E';
   const currentImageAspectRatio = imageAspectRatios[currentImage];
   const isAdaptiveImage = currentImageAspectRatio !== undefined && currentImageAspectRatio < 1.15;
-  // Construir URL con color seleccionado como query param
-  const productUrl = selectedColor 
-    ? `/products/${productSlug}?color=${encodeURIComponent(selectedColor.name)}`
-    : `/products/${productSlug}`;
+  const productQuery = new URLSearchParams();
+  if (selectedColor?.name) productQuery.set('color', selectedColor.name);
+  productQuery.set('image', String(currentImageIndex));
+  const productUrl = `/products/${productSlug}?${productQuery.toString()}`;
   const imageFrameClassNames = [
     'product-image',
     isAdaptiveImage ? 'product-image--adaptive' : ''
@@ -118,6 +125,7 @@ function ProductCard({ product }) {
             className="product-card-image"
             width="300"
             height="300"
+            loading="eager"
             objectFit="contain"
             onDimensions={({ ratio }) => {
               setImageAspectRatios(previous => (

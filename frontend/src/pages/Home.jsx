@@ -35,7 +35,11 @@ function Home() {
             <div className="hero-row-flex">
               <div className="hero-titles">
                 <h1 className="sr-only">Audífonos Bluetooth y Accesorios Tecnológicos al Mejor Precio Colombia</h1>
-                <p>Descubre los mejores productos con los mejores precios</p>
+                <p className="hero-description">
+                  <span className="hero-copy">Descubre los mejores productos con los mejores</span>{' '}
+                  <span className="hero-price-desktop">precios</span>
+                </p>
+                <span className="hero-price-mobile">precios</span>
               </div>
               <Link to="/products" className="btn btn-primary btn-lg hero-cta">Explorar productos</Link>
             </div>

@@ -42,6 +42,7 @@ import {
   Pencil,
   PhoneCall,
   Plus,
+  Tag,
   Save,
   ShoppingBag,
   ShoppingCart,
@@ -61,6 +62,7 @@ import {
 import AdminShipments from './AdminShipments';
 import AdminDespacho from './AdminDespacho';
 import AdminContentsRoutes from './AdminContentsRoutes';
+import AdminLabels from '../admin/labels/AdminLabels';
 import { ContentsDashboard, ContentsList, NewContent, EditContent } from '../admin/contents';
 import { useAuthStore } from '../store/authStore';
 import { productService, authService, orderService, productInterestService } from '../services/api';
@@ -1648,6 +1650,13 @@ export default function AdminPanel() {
             <span className="admin-nav-count" aria-hidden="true">{products.length}</span>
           </Link>
           <Link
+            to="/admin/labels"
+            className={`admin-nav-btn${location.pathname.startsWith('/admin/labels') ? ' active' : ''}`}
+          >
+            <span className="admin-nav-icon" aria-hidden="true"><Tag /></span>
+            <span className="admin-nav-label">Etiquetas</span>
+          </Link>
+          <Link
             to="/admin/users"
             className={`admin-nav-btn${location.pathname.startsWith('/admin/users') ? ' active' : ''}`}
           >
@@ -1711,6 +1720,9 @@ export default function AdminPanel() {
             )}
             {activeTab === 'despacho' && (
               <AdminDespacho />
+            )}
+            {activeTab === 'labels' && (
+              <AdminLabels />
             )}
             {activeTab === 'contents' && (
               (() => {

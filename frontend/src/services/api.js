@@ -310,6 +310,15 @@ export const productService = {
   uploadImage: (formData, config = {}) => api.post('/products/upload-image', formData, config)
 };
 
+export const productLabelService = {
+  getCatalog: () => api.get('/product-labels/catalog'),
+  updateCodeFields: (id, fields) => api.patch(`/product-labels/codes/${id}`, { fields }),
+  getTemplates: () => api.get('/product-labels/templates'),
+  createTemplate: template => api.post('/product-labels/templates', template),
+  updateTemplate: (id, template) => api.put(`/product-labels/templates/${id}`, template),
+  deleteTemplate: id => api.delete(`/product-labels/templates/${id}`)
+};
+
 export const orderService = {
   create: orderData => api.post('/orders', orderData),
   createManual: orderData => api.post('/orders/manual', orderData),
