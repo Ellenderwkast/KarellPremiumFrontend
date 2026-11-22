@@ -1,9 +1,15 @@
 import '../styles/footer.css';
-import { Mail } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+
+  const scrollHomeToTop = event => {
+    if (location.pathname !== '/') return;
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
 
   return (
     <footer className="footer">
@@ -18,7 +24,7 @@ function Footer() {
             <h4>Enlaces rápidos</h4>
             <ul>
               <li>
-                <Link to="/">Inicio</Link>
+                <Link to="/" onClick={scrollHomeToTop}>Inicio</Link>
               </li>
               <li>
                 <Link to="/products">Productos</Link>

@@ -840,29 +840,30 @@ function AdminLabels() {
           <div className="admin-labels-panel-heading">
             <div>
               <h2>Plancha de impresión</h2>
-              <p>Combina varias variantes y plantillas; las etiquetas comparten página cuando hay espacio.</p>
             </div>
             <Printer size={21} aria-hidden="true" />
           </div>
 
-          <label className="admin-labels-field">
-            <span>Hoja</span>
-            <select value={pageSize} onChange={event => setPageSize(event.target.value)}>
-              {Object.entries(PAGE_SIZES).map(([key, page]) => (
-                <option key={key} value={key}>{page.label}</option>
-              ))}
-            </select>
-          </label>
-          <label className="admin-labels-field">
-            <span>Cantidad</span>
-            <input type="number" min="1" max="500" value={quantity} onChange={event => setQuantity(event.target.value)} />
-          </label>
+          <div className="admin-labels-print-fields">
+            <label className="admin-labels-field">
+              <span>Hoja</span>
+              <select value={pageSize} onChange={event => setPageSize(event.target.value)}>
+                {Object.entries(PAGE_SIZES).map(([key, page]) => (
+                  <option key={key} value={key}>{page.label}</option>
+                ))}
+              </select>
+            </label>
+            <label className="admin-labels-field">
+              <span>Cantidad</span>
+              <input type="number" min="1" max="500" value={quantity} onChange={event => setQuantity(event.target.value)} />
+            </label>
+          </div>
           <p className="admin-labels-size-note">
             {selectedItems.length && selectedTemplates.length
               ? `${selectedItems.length} productos/variantes × ${selectedTemplates.length} plantillas seleccionadas.`
               : 'Marca uno o más productos/variantes y plantillas para agregarlos al lote.'}
           </p>
-          <button type="button" className="admin-labels-primary" onClick={addToQueue} disabled={busy || !selectedItems.length || !selectedTemplates.length}>
+          <button type="button" className="admin-labels-primary admin-labels-add-to-batch" onClick={addToQueue} disabled={busy || !selectedItems.length || !selectedTemplates.length}>
             <Plus size={17} aria-hidden="true" /> Agregar al lote
           </button>
 
@@ -896,19 +897,21 @@ function AdminLabels() {
             <button type="button" className="admin-labels-secondary" onClick={() => setQueue([])} disabled={!queue.length || busy}>
               Vaciar lote
             </button>
-            <button type="button" className="admin-labels-primary" onClick={generatePdf} disabled={!queue.length || busy}>
-              <Download size={17} aria-hidden="true" /> Descargar PDF
-            </button>
-            <button
-              type="button"
-              className="admin-labels-secondary admin-labels-preview-button"
-              onClick={previewPdf}
-              disabled={!queue.length || busy}
-              aria-label="Previsualizar documento PDF"
-              title="Previsualizar documento PDF"
-            >
-              <Eye size={18} aria-hidden="true" />
-            </button>
+            <div className="admin-labels-download-actions">
+              <button type="button" className="admin-labels-primary admin-labels-download-button" onClick={generatePdf} disabled={!queue.length || busy}>
+                <Download size={16} aria-hidden="true" /> Descargar PDF
+              </button>
+              <button
+                type="button"
+                className="admin-labels-secondary admin-labels-preview-button"
+                onClick={previewPdf}
+                disabled={!queue.length || busy}
+                aria-label="Previsualizar documento PDF"
+                title="Previsualizar documento PDF"
+              >
+                <Eye size={18} aria-hidden="true" />
+              </button>
+            </div>
           </div>
           <small className="admin-labels-print-note">El PDF se genera en tamaño real. En el diálogo de impresión, usa escala 100 % y desactiva “Ajustar a página”.</small>
         </aside>
@@ -1178,7 +1181,7 @@ function AdminLabels() {
           </header>
           <iframe
             className="admin-label-preview-frame"
-            src={previewUrl}
+            src={`${previewUrl}#zoom=page-fit`}
             title="Vista previa del PDF de etiquetas"
           />
         </section>

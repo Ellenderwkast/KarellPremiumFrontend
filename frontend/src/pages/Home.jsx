@@ -103,9 +103,10 @@ function Home() {
                     <OptimizedImage
                       src={card.imageUrl}
                       alt={card.imageAlt || card.title}
+                      className={card.defaultKey === 'noise-cancelling' ? 'noise-image' : ''}
                       width="400"
                       height="300"
-                      objectFit="cover"
+                      objectFit={card.imageFit || 'cover'}
                       objectPosition={card.imagePosition || 'center'}
                       forceObjectFit
                     />

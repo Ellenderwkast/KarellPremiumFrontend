@@ -10,6 +10,7 @@ const EMPTY_CARD = {
   description: '',
   imageUrl: '',
   imageAlt: '',
+  imageFit: 'cover',
   imagePosition: 'center',
   isActive: true,
   position: 0
@@ -96,6 +97,7 @@ function ExperienceCardsAdmin() {
       description: draft.description.trim(),
       imageUrl: draft.imageUrl.trim(),
       imageAlt: draft.imageAlt.trim(),
+      imageFit: draft.imageFit,
       imagePosition: draft.imagePosition,
       isActive: Boolean(draft.isActive),
       position: draft.id ? Number(draft.position) : undefined
@@ -337,13 +339,21 @@ function ExperienceCardsAdmin() {
                     </select>
                   </label>
                 </div>
+                <label className="experience-admin-field">
+                  <span>Ajuste de imagen</span>
+                  <select value={draft.imageFit || 'cover'} onChange={event => setDraft(previous => ({ ...previous, imageFit: event.target.value }))}>
+                    <option value="cover">Compacta · llenar el marco</option>
+                    <option value="contain">Completa · sin recortar</option>
+                  </select>
+                  <small>El encuadre y el ajuste se conservan al crear o actualizar la tarjeta.</small>
+                </label>
                 {draft.imageUrl && (
                   <div className="experience-admin-preview">
                     <span>Vista previa</span>
                     <OptimizedImage
                       src={getExperienceImageUrl(draft.imageUrl)}
                       alt={draft.imageAlt || draft.title || 'Vista previa de la tarjeta'}
-                      objectFit="cover"
+                      objectFit={draft.imageFit || 'cover'}
                       objectPosition={draft.imagePosition}
                       forceObjectFit
                     />

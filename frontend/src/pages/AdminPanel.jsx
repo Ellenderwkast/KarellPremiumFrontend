@@ -1651,20 +1651,6 @@ export default function AdminPanel() {
             <span className="admin-nav-count" aria-hidden="true">{products.length}</span>
           </Link>
           <Link
-            to="/admin/labels"
-            className={`admin-nav-btn${location.pathname.startsWith('/admin/labels') ? ' active' : ''}`}
-          >
-            <span className="admin-nav-icon" aria-hidden="true"><Tag /></span>
-            <span className="admin-nav-label">Etiquetas</span>
-          </Link>
-          <Link
-            to="/admin/experience"
-            className={`admin-nav-btn${location.pathname.startsWith('/admin/experience') ? ' active' : ''}`}
-          >
-            <span className="admin-nav-icon" aria-hidden="true"><Sparkles /></span>
-            <span className="admin-nav-label">Vive la experiencia</span>
-          </Link>
-          <Link
             to="/admin/users"
             className={`admin-nav-btn${location.pathname.startsWith('/admin/users') ? ' active' : ''}`}
           >
@@ -1713,6 +1699,20 @@ export default function AdminPanel() {
           >
             <span className="admin-nav-icon" aria-hidden="true"><BookOpen /></span>
             <span className="admin-nav-label">Contenidos</span>
+          </Link>
+          <Link
+            to="/admin/labels"
+            className={`admin-nav-btn${location.pathname.startsWith('/admin/labels') ? ' active' : ''}`}
+          >
+            <span className="admin-nav-icon" aria-hidden="true"><Tag /></span>
+            <span className="admin-nav-label">Etiquetas</span>
+          </Link>
+          <Link
+            to="/admin/experience"
+            className={`admin-nav-btn${location.pathname.startsWith('/admin/experience') ? ' active' : ''}`}
+          >
+            <span className="admin-nav-icon" aria-hidden="true"><Sparkles /></span>
+            <span className="admin-nav-label">Vive la experiencia</span>
           </Link>
         </nav>
       </aside>

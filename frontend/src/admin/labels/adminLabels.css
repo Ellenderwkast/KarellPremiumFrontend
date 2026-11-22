@@ -577,13 +577,21 @@
   margin: 0.75rem 0;
 }
 
+.admin-labels-print-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
 .admin-labels-batch {
   position: sticky;
   top: 1rem;
 }
 
-.admin-labels-batch > .admin-labels-primary {
-  width: 100%;
+.admin-labels-add-to-batch {
+  width: auto;
+  max-width: 100%;
+  justify-self: start;
 }
 
 .admin-label-queue-heading {
@@ -665,10 +673,25 @@
 
 .admin-labels-batch-actions {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) 42px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.admin-labels-download-actions {
+  display: flex;
+  min-width: 0;
+  gap: 0.5rem;
+}
+
+.admin-labels-download-button {
+  min-width: 0;
+  flex: 1 1 auto;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.76rem;
+  white-space: nowrap;
 }
 
 .admin-labels-preview-button {
+  flex: 0 0 42px;
   width: 42px;
   padding: 0.45rem;
 }
@@ -728,11 +751,7 @@
   }
 
   .admin-labels-batch-actions {
-    grid-template-columns: minmax(0, 1fr) 42px;
-  }
-
-  .admin-labels-batch-actions > button:first-child {
-    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .admin-label-choice-grid,
