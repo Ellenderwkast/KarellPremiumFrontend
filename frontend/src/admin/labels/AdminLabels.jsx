@@ -94,6 +94,15 @@ const fitTextLines = (doc, text, maxWidth, fontSize, maxLines, bold) => {
   const value = String(text ?? '')
     .normalize('NFC')
     .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF\u00AD]/g, '')
+    // jsPDF's built-in Helvetica font cannot encode these Turkish glyphs reliably.
+    .replace(/[ıİğĞşŞ]/g, character => ({
+      ı: 'i',
+      İ: 'I',
+      ğ: 'g',
+      Ğ: 'G',
+      ş: 's',
+      Ş: 'S'
+    })[character])
     .replace(/\s+/g, ' ')
     .trim();
   if (!value || !Number.isFinite(maxWidth) || maxWidth <= 0 || maxLines <= 0) return [];
@@ -182,7 +191,7 @@ const drawText = (doc, text, x, y, maxWidth, fontSize = 8, maxLines = 2, bold = 
   if (!lines.length) return y;
   const lineHeight = fontSize * 0.42;
   lines.forEach((line, index) => {
-    doc.text(line, x, y + index * lineHeight, { align, maxWidth: maxWidth - 0.4 });
+    doc.text(line, x, y + index * lineHeight, { align });
   });
   return y + lines.length * lineHeight;
 };
@@ -314,16 +323,44 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
     const leftWidth = width - qrSize - margin * 3;
     const leftX = x + margin;
     const qrX = x + width - margin - qrSize;
+    const symbolScale = Math.min(1, height / 75);
+    const activeSymbols = Object.values(settings.symbols || {}).some(Boolean);
+    const codeY = y + height - margin - 1;
+    const maxBarcodeHeight = Math.max(0, codeY - y - margin - 4);
+    const barcodeHeight = barcodeEnabled
+      ? Math.min(Math.max(7, height * 0.12), maxBarcodeHeight)
+      : 0;
+    const hasBarcode = barcodeEnabled && barcodeHeight > 2;
+    const barcodeY = codeY - barcodeHeight - 2;
+    const symbolsY = hasBarcode
+      ? barcodeY - symbolScale - 2.5
+      : codeY;
+    const textBottomY = activeSymbols
+      ? symbolsY - (8.5 * symbolScale) - 1
+      : hasBarcode
+        ? barcodeY - 1
+        : codeY - 1;
     let cursorY = y + margin + 3;
-    const heading = enabled('showModel') && fields.model
-      ? fields.model
-      : (enabled('showTitle') ? fields.title : '');
-    cursorY = drawText(doc, heading, leftX, cursorY, leftWidth, 9, 2, true) + 1;
+    const drawContent = (text, fontSize, maxLines, bold = false) => {
+      const availableLines = Math.floor((textBottomY - cursorY) / (fontSize * 0.42));
+      const lineLimit = Math.min(maxLines, availableLines);
+      if (lineLimit < 1) return false;
+      const nextY = drawText(doc, text, leftX, cursorY, leftWidth, fontSize, lineLimit, bold);
+      if (nextY <= cursorY) return false;
+      cursorY = nextY + 0.35;
+      return true;
+    };
+    const title = enabled('showTitle') ? fields.title : '';
+    const model = enabled('showModel') ? fields.model : '';
+    if (title) drawContent(title, 9, 2, true);
+    if (model && (!title || model.trim().toLowerCase() !== title.trim().toLowerCase())) {
+      drawContent(title ? `Modelo: ${model}` : model, title ? 7 : 9, 2, !title);
+    }
     if (enabled('showColor') && fields.color) {
-      cursorY = drawText(doc, `Color: ${fields.color}`, leftX, cursorY, leftWidth, 7, 2) + 1;
+      drawContent(`Color: ${fields.color}`, 7, 2);
     }
     if (enabled('showOrigin') && fields.origin) {
-      cursorY = drawText(doc, `Origen: ${fields.origin}`, leftX, cursorY, leftWidth, 6, 2) + 1;
+      drawContent(`Origen: ${fields.origin}`, 6, 2);
     }
     if (qrData) doc.addImage(qrData, 'PNG', qrX, y + (height - qrSize) / 2, qrSize, qrSize);
     const additionalFields = [
@@ -343,21 +380,13 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
       ['warning', 'Advertencia', 'showWarning']
     ];
     for (const [key, label, setting] of additionalFields) {
-      if (!enabled(setting) || !fields[key] || cursorY >= y + height * 0.43) continue;
-      cursorY = drawText(doc, `${label}: ${fields[key]}`, leftX, cursorY, leftWidth, 5.5, 1) + 0.35;
+      if (!enabled(setting) || !fields[key]) continue;
+      if (!drawContent(`${label}: ${fields[key]}`, 6, 2)) break;
     }
-    const symbolScale = Math.min(1, height / 75);
-    const symbolsY = Math.max(y + height * 0.44, cursorY + (7.5 * symbolScale) + 1);
-    if (settings.symbols) drawSymbols(doc, settings.symbols, leftX, symbolsY, leftWidth, symbolScale);
-    if (barcodeEnabled) {
-      const barcodeY = Math.max(y + height * 0.49, symbolsY + symbolScale + 2.5);
-      const codeYLimit = y + height - margin - 1;
-      const availableBarcodeHeight = codeYLimit - barcodeY - 2;
-      if (availableBarcodeHeight > 2) {
-        const barcodeHeight = Math.min(Math.max(7, height * 0.18), availableBarcodeHeight);
-        drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, leftWidth, barcodeHeight);
-        drawText(doc, item.code, leftX, barcodeY + barcodeHeight + 2, leftWidth, 6, 1, true);
-      }
+    if (activeSymbols) drawSymbols(doc, settings.symbols, leftX, symbolsY, leftWidth, symbolScale);
+    if (hasBarcode) {
+      drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, leftWidth, barcodeHeight);
+      drawText(doc, item.code, leftX, codeY, leftWidth, 6, 1, true);
     }
     doc.restoreGraphicsState();
     return;
