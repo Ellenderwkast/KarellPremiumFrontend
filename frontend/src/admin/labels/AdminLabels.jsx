@@ -91,47 +91,66 @@ const buildProductUrl = item => {
 };
 
 const fitTextLines = (doc, text, maxWidth, fontSize, maxLines, bold) => {
-  const value = String(text || '')
-    .replace(/[\u200B-\u200F\u202A-\u202E\u2060\uFEFF\u00AD]/g, '')
+  const value = String(text ?? '')
+    .normalize('NFC')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF\u00AD]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
-  if (!value || maxWidth <= 0 || maxLines <= 0) return [];
+  if (!value || !Number.isFinite(maxWidth) || maxWidth <= 0 || maxLines <= 0) return [];
   doc.setFont('helvetica', bold ? 'bold' : 'normal');
   doc.setFontSize(fontSize);
   const safeWidth = maxWidth - 0.4;
   if (safeWidth <= 0) return [];
+  const textWidth = value => {
+    const width = doc.getTextWidth(value);
+    return Number.isFinite(width) ? width : Number.POSITIVE_INFINITY;
+  };
   const allLines = [];
   let line = '';
+  let lineEnd = 0;
   let omittedCharacters = false;
   const pushLine = () => {
-    if (line) allLines.push(line);
+    if (line) allLines.push({ text: line, end: lineEnd });
     line = '';
+    lineEnd = 0;
   };
-  for (const word of value.split(' ')) {
-    const candidate = line ? `${line} ${word}` : word;
-    if (doc.getTextWidth(candidate) <= safeWidth) {
+  const words = [];
+  const wordMatcher = /\S+/g;
+  let wordMatch = wordMatcher.exec(value);
+  while (wordMatch) {
+    words.push({ text: wordMatch[0], start: wordMatch.index, end: wordMatcher.lastIndex });
+    wordMatch = wordMatcher.exec(value);
+  }
+  for (const word of words) {
+    const candidate = line ? `${line} ${word.text}` : word.text;
+    if (textWidth(candidate) <= safeWidth) {
       line = candidate;
+      lineEnd = word.end;
       continue;
     }
     pushLine();
-    let remaining = Array.from(word);
+    let remaining = Array.from(word.text);
+    let consumedCharacters = 0;
     while (remaining.length) {
       let segment = '';
       let consumed = 0;
       while (consumed < remaining.length) {
         const next = segment + remaining[consumed];
-        if (doc.getTextWidth(next) > safeWidth) break;
+        if (textWidth(next) > safeWidth) break;
         segment = next;
         consumed += 1;
       }
       if (!consumed) {
+        consumedCharacters += remaining[0].length;
         remaining.shift();
         omittedCharacters = true;
       } else if (consumed === remaining.length) {
         line = segment;
+        lineEnd = word.start + consumedCharacters + segment.length;
         remaining = [];
       } else {
-        allLines.push(segment);
+        consumedCharacters += segment.length;
+        allLines.push({ text: segment, end: word.start + consumedCharacters });
         remaining = remaining.slice(consumed);
       }
     }
@@ -141,21 +160,31 @@ const fitTextLines = (doc, text, maxWidth, fontSize, maxLines, bold) => {
   const wasTruncated = allLines.length > maxLines || omittedCharacters;
   if (wasTruncated && lines.length) {
     const lastLineIndex = lines.length - 1;
-    const characters = Array.from(lines[lastLineIndex]);
-    while (characters.length && doc.getTextWidth(`${characters.join('')}…`) > safeWidth) {
+    const lastLine = lines[lastLineIndex];
+    let filledLine = lastLine.text;
+    const remainingText = value.slice(lastLine.end);
+    for (const character of Array.from(remainingText)) {
+      if (textWidth(`${filledLine}${character}…`) > safeWidth) break;
+      filledLine += character;
+    }
+    const characters = Array.from(filledLine.trimEnd());
+    while (characters.length && textWidth(`${characters.join('')}…`) > safeWidth) {
       characters.pop();
     }
-    const ellipsis = doc.getTextWidth('…') <= safeWidth ? '…' : '';
-    lines[lastLineIndex] = `${characters.join('')}${ellipsis}`;
+    const ellipsis = textWidth('…') <= safeWidth ? '…' : '';
+    lines[lastLineIndex].text = `${characters.join('')}${ellipsis}`;
   }
-  return lines;
+  return lines.map(({ text }) => text);
 };
 
 const drawText = (doc, text, x, y, maxWidth, fontSize = 8, maxLines = 2, bold = false, align = 'left') => {
   const lines = fitTextLines(doc, text, maxWidth, fontSize, maxLines, bold);
   if (!lines.length) return y;
-  doc.text(lines, x, y, { align });
-  return y + lines.length * (fontSize * 0.42);
+  const lineHeight = fontSize * 0.42;
+  lines.forEach((line, index) => {
+    doc.text(line, x, y + index * lineHeight, { align, maxWidth: maxWidth - 0.4 });
+  });
+  return y + lines.length * lineHeight;
 };
 
 const createBarcodeDataUrl = code => {
@@ -318,16 +347,16 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
       cursorY = drawText(doc, `${label}: ${fields[key]}`, leftX, cursorY, leftWidth, 5.5, 1) + 0.35;
     }
     const symbolScale = Math.min(1, height / 75);
-    const symbolsY = Math.max(y + height * 0.46, cursorY + (7.5 * symbolScale) + 2.5);
+    const symbolsY = Math.max(y + height * 0.44, cursorY + (7.5 * symbolScale) + 1);
     if (settings.symbols) drawSymbols(doc, settings.symbols, leftX, symbolsY, leftWidth, symbolScale);
     if (barcodeEnabled) {
-      const barcodeY = Math.max(y + height * 0.52, symbolsY + symbolScale + 4);
+      const barcodeY = Math.max(y + height * 0.49, symbolsY + symbolScale + 2.5);
       const codeYLimit = y + height - margin - 1;
-      const availableBarcodeHeight = codeYLimit - barcodeY - 2.5;
+      const availableBarcodeHeight = codeYLimit - barcodeY - 2;
       if (availableBarcodeHeight > 2) {
-        const barcodeHeight = Math.min(height * 0.42, availableBarcodeHeight);
+        const barcodeHeight = Math.min(Math.max(7, height * 0.18), availableBarcodeHeight);
         drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, leftWidth, barcodeHeight);
-        drawText(doc, item.code, leftX, barcodeY + barcodeHeight + 2.5, leftWidth, 6, 1, true);
+        drawText(doc, item.code, leftX, barcodeY + barcodeHeight + 2, leftWidth, 6, 1, true);
       }
     }
     doc.restoreGraphicsState();
