@@ -319,10 +319,7 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
   }
 
   if (isCombined) {
-    const qrSize = Math.min(height * 0.24, width * 0.25);
-    const leftWidth = width - qrSize - margin * 3;
     const leftX = x + margin;
-    const qrX = x + width - margin - qrSize;
     const symbolScale = Math.min(1, height / 75);
     const activeSymbols = Object.values(settings.symbols || {}).some(Boolean);
     const codeY = y + height - margin - 1;
@@ -331,21 +328,29 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
       ? Math.min(Math.max(7, height * 0.12), maxBarcodeHeight)
       : 0;
     const hasBarcode = barcodeEnabled && barcodeHeight > 2;
-    const barcodeY = codeY - barcodeHeight - 2;
-    const symbolsY = hasBarcode
-      ? barcodeY - symbolScale - 2.5
+    const qrSize = qrData
+      ? Math.min(height * 0.18, width * 0.24, hasBarcode ? barcodeHeight : height * 0.18)
+      : 0;
+    const hasQr = qrSize > 0;
+    const footerHeight = Math.max(hasBarcode ? barcodeHeight : 0, hasQr ? qrSize : 0);
+    const footerY = codeY - footerHeight - (hasBarcode ? 2 : 0);
+    const barcodeY = footerY + (footerHeight - barcodeHeight) / 2;
+    const qrX = x + width - margin - qrSize;
+    const qrY = footerY + (footerHeight - qrSize) / 2;
+    const symbolsY = footerHeight > 0
+      ? footerY - symbolScale - 2.5
       : codeY;
     const textBottomY = activeSymbols
       ? symbolsY - (8.5 * symbolScale) - 1
-      : hasBarcode
-        ? barcodeY - 1
+      : footerHeight > 0
+        ? footerY - 1
         : codeY - 1;
     let cursorY = y + margin + 3;
     const drawContent = (text, fontSize, maxLines, bold = false) => {
       const availableLines = Math.floor((textBottomY - cursorY) / (fontSize * 0.42));
       const lineLimit = Math.min(maxLines, availableLines);
       if (lineLimit < 1) return false;
-      const nextY = drawText(doc, text, leftX, cursorY, leftWidth, fontSize, lineLimit, bold);
+      const nextY = drawText(doc, text, leftX, cursorY, contentWidth, fontSize, lineLimit, bold);
       if (nextY <= cursorY) return false;
       cursorY = nextY + 0.35;
       return true;
@@ -362,7 +367,6 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
     if (enabled('showOrigin') && fields.origin) {
       drawContent(`Origen: ${fields.origin}`, 6, 2);
     }
-    if (qrData) doc.addImage(qrData, 'PNG', qrX, y + (height - qrSize) / 2, qrSize, qrSize);
     const additionalFields = [
       ['brand', 'Marca', 'showBrand'],
       ['manufacturer', 'Fabricante', 'showManufacturer'],
@@ -383,10 +387,12 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
       if (!enabled(setting) || !fields[key]) continue;
       if (!drawContent(`${label}: ${fields[key]}`, 6, 2)) break;
     }
-    if (activeSymbols) drawSymbols(doc, settings.symbols, leftX, symbolsY, leftWidth, symbolScale);
+    if (hasQr) doc.addImage(qrData, 'PNG', qrX, qrY, qrSize, qrSize);
+    if (activeSymbols) drawSymbols(doc, settings.symbols, leftX, symbolsY, contentWidth, symbolScale);
     if (hasBarcode) {
-      drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, leftWidth, barcodeHeight);
-      drawText(doc, item.code, leftX, codeY, leftWidth, 6, 1, true);
+      const barcodeWidth = Math.max(0, contentWidth - (hasQr ? qrSize + 2 : 0));
+      drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, barcodeWidth, barcodeHeight);
+      drawText(doc, item.code, leftX, codeY, barcodeWidth, 6, 1, true);
     }
     doc.restoreGraphicsState();
     return;
