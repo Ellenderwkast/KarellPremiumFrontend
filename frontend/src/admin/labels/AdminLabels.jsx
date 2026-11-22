@@ -328,23 +328,20 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
       ? Math.min(Math.max(7, height * 0.12), maxBarcodeHeight)
       : 0;
     const hasBarcode = barcodeEnabled && barcodeHeight > 2;
-    const qrSize = qrData
-      ? Math.min(height * 0.18, width * 0.24, hasBarcode ? barcodeHeight : height * 0.18)
-      : 0;
+    const symbolRegionHeight = activeSymbols ? 8.5 * symbolScale : 0;
+    const symbolsBarcodeGap = activeSymbols && hasBarcode ? 2.5 : 0;
+    const barcodeStackHeight = (hasBarcode ? barcodeHeight : 0) + symbolRegionHeight + symbolsBarcodeGap;
+    const maxQrSize = Math.min(width * 0.36, height * 0.28, contentWidth * 0.42);
+    const qrSize = qrData ? Math.min(maxQrSize, Math.max(18, barcodeStackHeight)) : 0;
     const hasQr = qrSize > 0;
-    const footerHeight = Math.max(hasBarcode ? barcodeHeight : 0, hasQr ? qrSize : 0);
+    const footerHeight = Math.max(barcodeStackHeight, hasQr ? qrSize : 0);
     const footerY = codeY - footerHeight - (hasBarcode ? 2 : 0);
-    const barcodeY = footerY + (footerHeight - barcodeHeight) / 2;
+    const stackY = footerY + (footerHeight - barcodeStackHeight) / 2;
+    const barcodeY = stackY + symbolRegionHeight + symbolsBarcodeGap;
     const qrX = x + width - margin - qrSize;
     const qrY = footerY + (footerHeight - qrSize) / 2;
-    const symbolsY = footerHeight > 0
-      ? footerY - symbolScale - 2.5
-      : codeY;
-    const textBottomY = activeSymbols
-      ? symbolsY - (8.5 * symbolScale) - 1
-      : footerHeight > 0
-        ? footerY - 1
-        : codeY - 1;
+    const symbolsY = activeSymbols ? stackY + (7.5 * symbolScale) : codeY;
+    const textBottomY = footerHeight > 0 ? footerY - 1 : codeY - 1;
     let cursorY = y + margin + 3;
     const drawContent = (text, fontSize, maxLines, bold = false) => {
       const availableLines = Math.floor((textBottomY - cursorY) / (fontSize * 0.42));
@@ -388,11 +385,11 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
       if (!drawContent(`${label}: ${fields[key]}`, 6, 2)) break;
     }
     if (hasQr) doc.addImage(qrData, 'PNG', qrX, qrY, qrSize, qrSize);
-    if (activeSymbols) drawSymbols(doc, settings.symbols, leftX, symbolsY, contentWidth, symbolScale);
+    const footerContentWidth = Math.max(0, contentWidth - (hasQr ? qrSize + 2 : 0));
+    if (activeSymbols) drawSymbols(doc, settings.symbols, leftX, symbolsY, footerContentWidth, symbolScale);
     if (hasBarcode) {
-      const barcodeWidth = Math.max(0, contentWidth - (hasQr ? qrSize + 2 : 0));
-      drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, barcodeWidth, barcodeHeight);
-      drawText(doc, item.code, leftX, codeY, barcodeWidth, 6, 1, true);
+      drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, footerContentWidth, barcodeHeight);
+      drawText(doc, item.code, leftX, codeY, footerContentWidth, 6, 1, true);
     }
     doc.restoreGraphicsState();
     return;
