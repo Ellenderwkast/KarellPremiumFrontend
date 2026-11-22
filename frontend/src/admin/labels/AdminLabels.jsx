@@ -91,31 +91,64 @@ const buildProductUrl = item => {
 };
 
 const fitTextLines = (doc, text, maxWidth, fontSize, maxLines, bold) => {
-  const value = String(text || '').trim();
-  if (!value) return [];
+  const value = String(text || '')
+    .replace(/[\u200B-\u200F\u202A-\u202E\u2060\uFEFF\u00AD]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!value || maxWidth <= 0 || maxLines <= 0) return [];
   doc.setFont('helvetica', bold ? 'bold' : 'normal');
   doc.setFontSize(fontSize);
-  const safeWidth = Math.max(1, maxWidth - 0.4);
-  const allLines = doc.splitTextToSize(value, safeWidth);
-  const lines = allLines.slice(0, maxLines);
-  const fitLine = line => {
-    if (doc.getTextWidth(line) <= safeWidth) return line;
-    let fitted = '';
-    for (const character of Array.from(line)) {
-      if (doc.getTextWidth(`${fitted}${character}…`) > safeWidth) break;
-      fitted += character;
-    }
-    return fitted.trimEnd() ? `${fitted.trimEnd()}…` : '';
+  const safeWidth = maxWidth - 0.4;
+  if (safeWidth <= 0) return [];
+  const allLines = [];
+  let line = '';
+  let omittedCharacters = false;
+  const pushLine = () => {
+    if (line) allLines.push(line);
+    line = '';
   };
-  const lastLineIndex = lines.length - 1;
-  if (allLines.length > maxLines && lastLineIndex >= 0) {
-    lines[lastLineIndex] = fitLine(`${lines[lastLineIndex].trimEnd()}…`);
-  } else {
-    for (let index = 0; index < lines.length; index += 1) {
-      lines[index] = fitLine(lines[index]);
+  for (const word of value.split(' ')) {
+    const candidate = line ? `${line} ${word}` : word;
+    if (doc.getTextWidth(candidate) <= safeWidth) {
+      line = candidate;
+      continue;
+    }
+    pushLine();
+    let remaining = Array.from(word);
+    while (remaining.length) {
+      let segment = '';
+      let consumed = 0;
+      while (consumed < remaining.length) {
+        const next = segment + remaining[consumed];
+        if (doc.getTextWidth(next) > safeWidth) break;
+        segment = next;
+        consumed += 1;
+      }
+      if (!consumed) {
+        remaining.shift();
+        omittedCharacters = true;
+      } else if (consumed === remaining.length) {
+        line = segment;
+        remaining = [];
+      } else {
+        allLines.push(segment);
+        remaining = remaining.slice(consumed);
+      }
     }
   }
-  return lines.filter(Boolean);
+  pushLine();
+  const lines = allLines.slice(0, maxLines);
+  const wasTruncated = allLines.length > maxLines || omittedCharacters;
+  if (wasTruncated && lines.length) {
+    const lastLineIndex = lines.length - 1;
+    const characters = Array.from(lines[lastLineIndex]);
+    while (characters.length && doc.getTextWidth(`${characters.join('')}…`) > safeWidth) {
+      characters.pop();
+    }
+    const ellipsis = doc.getTextWidth('…') <= safeWidth ? '…' : '';
+    lines[lastLineIndex] = `${characters.join('')}${ellipsis}`;
+  }
+  return lines;
 };
 
 const drawText = (doc, text, x, y, maxWidth, fontSize = 8, maxLines = 2, bold = false, align = 'left') => {
@@ -204,6 +237,10 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
   doc.setLineWidth(0.25);
   doc.roundedRect(x + 0.4, y + 0.4, width - 0.8, height - 0.8, 1, 1);
   doc.setTextColor(20);
+  doc.saveGraphicsState();
+  doc.rect(x + 0.6, y + 0.6, width - 1.2, height - 1.2);
+  doc.clip();
+  doc.discardPath();
 
   const barcodeEnabled = enabled('showBarcode');
   const isCompact = template.kind === 'barcode';
@@ -239,6 +276,7 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
     if (fields.origin && enabled('showOrigin')) {
       drawText(doc, `Made in ${fields.origin}`, x + width - margin, y + height - margin, contentWidth, 6, 1, false, 'right');
     }
+    doc.restoreGraphicsState();
     return;
   }
 
@@ -258,18 +296,6 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
     if (enabled('showOrigin') && fields.origin) {
       cursorY = drawText(doc, `Origen: ${fields.origin}`, leftX, cursorY, leftWidth, 6, 2) + 1;
     }
-    if (barcodeEnabled) {
-      const barcodeY = y + height * 0.68;
-      const barcodeHeight = Math.max(7, height * 0.18);
-      drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, leftWidth, barcodeHeight);
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(6);
-      drawText(doc, item.code, leftX, Math.min(y + height - margin, barcodeY + barcodeHeight + 2.5), leftWidth, 6, 1, true);
-    }
-    if (settings.symbols) {
-      const symbolScale = Math.min(1, height / 75);
-      drawSymbols(doc, settings.symbols, leftX, y + height * 0.56, leftWidth, symbolScale);
-    }
     if (qrData) doc.addImage(qrData, 'PNG', qrX, y + (height - qrSize) / 2, qrSize, qrSize);
     const additionalFields = [
       ['brand', 'Marca', 'showBrand'],
@@ -288,9 +314,23 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
       ['warning', 'Advertencia', 'showWarning']
     ];
     for (const [key, label, setting] of additionalFields) {
-      if (!enabled(setting) || !fields[key] || cursorY >= y + height * 0.46) continue;
-      cursorY = drawText(doc, `${label}: ${fields[key]}`, leftX, cursorY, leftWidth, 6, 1) + 1;
+      if (!enabled(setting) || !fields[key] || cursorY >= y + height * 0.43) continue;
+      cursorY = drawText(doc, `${label}: ${fields[key]}`, leftX, cursorY, leftWidth, 5.5, 1) + 0.35;
     }
+    const symbolScale = Math.min(1, height / 75);
+    const symbolsY = Math.max(y + height * 0.46, cursorY + (7.5 * symbolScale) + 2.5);
+    if (settings.symbols) drawSymbols(doc, settings.symbols, leftX, symbolsY, leftWidth, symbolScale);
+    if (barcodeEnabled) {
+      const barcodeY = Math.max(y + height * 0.52, symbolsY + symbolScale + 4);
+      const codeYLimit = y + height - margin - 1;
+      const availableBarcodeHeight = codeYLimit - barcodeY - 2.5;
+      if (availableBarcodeHeight > 2) {
+        const barcodeHeight = Math.min(height * 0.42, availableBarcodeHeight);
+        drawBarcode(doc, barcodeDataUrl, leftX, barcodeY, leftWidth, barcodeHeight);
+        drawText(doc, item.code, leftX, barcodeY + barcodeHeight + 2.5, leftWidth, 6, 1, true);
+      }
+    }
+    doc.restoreGraphicsState();
     return;
   }
 
@@ -338,6 +378,7 @@ const drawLabel = (doc, entry, assets, x, y, width, height) => {
     doc.setFontSize(7);
     drawText(doc, item.code, x + margin, y + height - margin, contentWidth, 7, 1, true);
   }
+  doc.restoreGraphicsState();
 };
 
 const createLabelPages = (queue, page) => {
